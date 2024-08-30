@@ -161,7 +161,7 @@ public class WebSocketPoseHandler : MonoBehaviour
             {
                 return latestPoseList.landmarkList[index];
             }
-        }
+        } 
         return new PoseData();
     }
 
