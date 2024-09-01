@@ -3,105 +3,156 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using System.Linq;
+using System;
+
 
 public class Y_ShowTrackingList : MonoBehaviour
 {
 
     public WebSocketPoseHandler conn;
-    public List<Transform> bones;
-    public Y_MeasureModelSize measureModelSize;
+    //public List<Transform> bones;
+    //public Y_MeasureModelSize measureModelSize;
+    public Camera mainCamera;
     public Vector3 locationOffset;
-    Vector3 scaleFactor;
+    //public Vector3 scaleFactor;
+    //private Vector3 initialModelScale;
+    private Vector3 currentScaleFactor = Vector3.one;
+    private Vector3 initialModelScale;
+    public float targetHeight = 1.94f;
+    public float scaleSmoothing = 0.1f; 
+    public float minScale = 0.1f; 
+    public float maxScale = 10f; 
+
+    // Rigging
+    public GameObject rigLeftArmTarget;
+    public GameObject rigLeftArmHint;
+    public GameObject rigRightArmTarget;
+    public GameObject rigRightArmHint;
+    public GameObject rigLeftLegTarget;
+    public GameObject rigLeftLegHint;
+    public GameObject rigRightLegTarget;
+    public GameObject rigRightLegHint;
+    public GameObject rigHead;
   
 
     // Start is called before the first frame update
     void Start()
     {
+
         conn = GameObject.Find("UDPConnector").GetComponent<WebSocketPoseHandler>();
-        measureModelSize = GetComponent<Y_MeasureModelSize>();
+        //measureModelSize = GetComponent<Y_MeasureModelSize>();
+        initialModelScale = transform.localScale;
         locationOffset = transform.position;
+        mainCamera = Camera.main;
 
-        bones = new List<Transform>();
+        rigLeftArmTarget = GameObject.Find("Rig_LeftArm_target");
+        rigLeftArmHint = GameObject.Find("Rig_LeftArm_hint");
+        rigRightArmTarget = GameObject.Find("Rig_RightArm_target");
+        rigRightArmHint = GameObject.Find("Rig_RightArm_hint");
+        rigLeftLegTarget = GameObject.Find("Rig_LeftLeg_target");
+        rigLeftLegHint = GameObject.Find("Rig_LeftLeg_hint");
+        rigRightLegTarget = GameObject.Find("Rig_RightLeg_target");
+        rigRightLegHint = GameObject.Find("Rig_RightLeg_hint");
+        rigHead = GameObject.Find("Rig_Head");
 
-        Transform root = GameObject.Find("root").transform;
-        if (root == null)
-        {
-            Debug.LogError("Root bone not found!");
-            return;
-        }
-
-        // Initialize the list with 33 null entries
-        for (int i = 0; i < 33; i++)
-        {
-            bones.Add(null);
-        }
-
-        // Assign bones according to the enum order
-        bones[0] = FindBone(root, "DEF-spine/DEF-spine.001/DEF-spine.002/DEF-spine.003/DEF-spine.004/DEF-spine.006"); // nose (approximation)
-        // 1-10 => null 값으로 유지
-
-        bones[11] = FindBone(root, "DEF-spine/DEF-spine.001/DEF-spine.002/DEF-spine.003/DEF-shoulder.L/DEF-upper_arm.L"); // left_shoulder
-        bones[12] = FindBone(root, "DEF-spine/DEF-spine.001/DEF-spine.002/DEF-spine.003/DEF-shoulder.R/DEF-upper_arm.R"); // right_shoulder
-        bones[13] = FindBone(root, "DEF-spine/DEF-spine.001/DEF-spine.002/DEF-spine.003/DEF-shoulder.L/DEF-upper_arm.L/DEF-forearm.L"); // left_elbow
-        bones[14] = FindBone(root, "DEF-spine/DEF-spine.001/DEF-spine.002/DEF-spine.003/DEF-shoulder.R/DEF-upper_arm.R/DEF-forearm.R"); // right_elbow
-        bones[15] = FindBone(root, "DEF-spine/DEF-spine.001/DEF-spine.002/DEF-spine.003/DEF-shoulder.L/DEF-upper_arm.L/DEF-forearm.L/DEF-hand.L"); // left_wrist
-        bones[16] = FindBone(root, "DEF-spine/DEF-spine.001/DEF-spine.002/DEF-spine.003/DEF-shoulder.R/DEF-upper_arm.R/DEF-forearm.R/DEF-hand.R"); // right_wrist
-
-        bones[17] = FindBone(root, "DEF-spine/DEF-spine.001/DEF-spine.002/DEF-spine.003/DEF-shoulder.L/DEF-upper_arm.L/DEF-forearm.L/DEF-hand.L/DEF-f_pinky.01.L"); // left_pinky
-        bones[18] = FindBone(root, "DEF-spine/DEF-spine.001/DEF-spine.002/DEF-spine.003/DEF-shoulder.R/DEF-upper_arm.R/DEF-forearm.R/DEF-hand.R/DEF-f_pinky.01.R"); // right_pinky
-        bones[19] = FindBone(root, "DEF-spine/DEF-spine.001/DEF-spine.002/DEF-spine.003/DEF-shoulder.L/DEF-upper_arm.L/DEF-forearm.L/DEF-hand.L/DEF-f_index.01.L"); // left_index
-        bones[20] = FindBone(root, "DEF-spine/DEF-spine.001/DEF-spine.002/DEF-spine.003/DEF-shoulder.R/DEF-upper_arm.R/DEF-forearm.R/DEF-hand.R/DEF-f_index.01.R"); // right_index
-        bones[21] = FindBone(root, "DEF-spine/DEF-spine.001/DEF-spine.002/DEF-spine.003/DEF-shoulder.L/DEF-upper_arm.L/DEF-forearm.L/DEF-hand.L/DEF-thumb.01.L"); // left_thumb
-        bones[22] = FindBone(root, "DEF-spine/DEF-spine.001/DEF-spine.002/DEF-spine.003/DEF-shoulder.R/DEF-upper_arm.R/DEF-forearm.R/DEF-hand.R/DEF-thumb.01.R"); // right_thumb
-
-        bones[23] = FindBone(root, "DEF-spine/DEF-thigh.L"); // left_hip
-        bones[24] = FindBone(root, "DEF-spine/DEF-thigh.R"); // right_hip
-        bones[25] = FindBone(root, "DEF-spine/DEF-thigh.L/DEF-shin.L"); // left_knee
-        bones[26] = FindBone(root, "DEF-spine/DEF-thigh.R/DEF-shin.R"); // right_knee
-        bones[27] = FindBone(root, "DEF-spine/DEF-thigh.L/DEF-shin.L/DEF-foot.L"); // left_ankle
-        bones[28] = FindBone(root, "DEF-spine/DEF-thigh.R/DEF-shin.R/DEF-foot.R"); // right_ankle
-
-        // 29-30 => null 값으로 유지
-
-        bones[31] = FindBone(root, "DEF-spine/DEF-thigh.L/DEF-shin.L/DEF-foot.L/DEF-toe.L"); // left_foot_index
-        bones[32] = FindBone(root, "DEF-spine/DEF-thigh.R/DEF-shin.R/DEF-foot.R/DEF-toe.R"); // right_foot_index
-
-        
     }
 
-    Transform FindBone(Transform parent, string bonePath)
-    {
-        Transform bone = parent.Find(bonePath);
-        if (bone == null)
-        {
-            Debug.LogWarning($"Bone not found: {bonePath}");
-        }
-        return bone;
-    }
+    
 
     // Update is called once per frame
     void Update()
     {
 
-        scaleFactor = measureModelSize.modelSize;
+        //scaleFactor = measureModelSize.modelSize;
         // 만일, 트래킹된 데이터가 있다면
         if (conn.latestPoseList.landmarkList.Count > 0) //// < ?
         {
-            // 트래킹된 벡터 값을 모든 자식 오브젝트의 로컬 위치 값으로 전달한다
-            for (int i = 0; i < conn.latestPoseList.landmarkList.Count; i++)
-            {
-                if(i == 0 || (i >= 11 && i <= 28) || (i >= 31 && i <=32))
-                {
-                    bones[i].localPosition = new Vector3 (
-                        conn.latestPoseList.landmarkList[i].x * scaleFactor.x, 
-                        conn.latestPoseList.landmarkList[i].y * scaleFactor.y, 
-                        conn.latestPoseList.landmarkList[i].z * scaleFactor.z) 
-                        + locationOffset;
+            UpdateScaleFactor();
+            UpdateRigPosition();
 
-                }
-            }
         }
+
     }
 
     
+    void UpdateScaleFactor()
+    {
+        float fullHeight = GetFullHeight();
+        if (fullHeight > 0)
+        {
+            float targetScale = targetHeight / fullHeight;
+            targetScale = Mathf.Clamp(targetScale, minScale, maxScale);
+
+            // 부드러운 스케일 변화
+            currentScaleFactor = Vector3.Lerp(currentScaleFactor, new Vector3(targetScale, targetScale, targetScale), scaleSmoothing);
+
+            //Vector3 newScale = Vector3.Scale(initialModelScale, currentScaleFactor);
+            //transform.localScale = newScale;
+
+            //Debug.Log($"Full Height: {fullHeight}, Target Scale: {targetScale}, Current Scale: {currentScaleFactor}, New Model Scale: {newScale}");
+        }
+        //transform.localScale = Vector3.Scale(initialModelScale, scaleFactor);
+    }
+
+    public float GetFullHeight()
+    {
+        if (conn.latestPoseList.landmarkList.Count == 0)
+            return 0f;
+
+        float topY = conn.latestPoseList.landmarkList.Min(I => I.y);
+        float bottomY = conn.latestPoseList.landmarkList.Max(l => l.y);
+        return Mathf.Abs(bottomY - topY);
+    }
+
+    void UpdateRigPosition()
+    {
+        rigLeftArmTarget.transform.position = UpdateRigPart(15);
+        rigLeftArmHint.transform.position = UpdateRigPart(13);
+        rigRightArmTarget.transform.position = UpdateRigPart(16);
+        rigRightArmHint.transform.position = UpdateRigPart(14);
+        rigLeftLegTarget.transform.position = UpdateRigPart(27);
+        rigLeftLegHint.transform.position = UpdateRigPart(25);
+        rigRightLegTarget.transform.position = UpdateRigPart(28);
+        rigRightLegHint.transform.position = UpdateRigPart(26);
+        rigHead.transform.position = UpdateRigPart(0);
+    }
+
+    Vector3 UpdateRigPart(int i)
+    {
+
+        //float avatarHeight = 1.94f;
+        //float dataHeight = Mathf.Abs(conn.latestPoseList.landmarkList[0].y - conn.latestPoseList.landmarkList[27].y);
+        //float scaleY = avatarHeight / dataHeight;
+        //scaleFactor = new Vector3(scaleY, scaleY, scaleY);
+
+        Vector3 localPos = new Vector3(
+                    conn.latestPoseList.landmarkList[i].x,
+                    conn.latestPoseList.landmarkList[i].y,
+                    conn.latestPoseList.landmarkList[i].z);
+
+        //Vector3 scaledPos = Vector3.Scale(normalizedPos, scaleFactor);
+
+        //Vector3 cameraSpacePos = mainCamera.transform.TransformPoint(scaledPos);
+
+        localPos = new Vector3(localPos.x, -localPos.y, -localPos.z);
+
+        Vector3 scaledPos = Vector3.Scale(localPos, currentScaleFactor);
+        Vector3 worldPos = transform.TransformPoint(scaledPos) + locationOffset;
+
+        //Debug.LogError($"Index {i} while Landmark list count: {conn.latestPoseList.landmarkList.Count}");
+
+        return worldPos;
+
+        //return transform.TransformPoint(Vector3.Scale(localPos, scaleFactor)) + locationOffset;
+
+        //return localPos;
+
+    }
+
+    
+
+    
+
+
 }
