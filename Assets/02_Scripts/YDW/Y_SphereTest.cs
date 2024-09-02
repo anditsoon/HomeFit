@@ -22,7 +22,9 @@ public class Y_SphereTest : MonoBehaviour
                     conn.latestPoseList.landmarkList[i].y,
                     conn.latestPoseList.landmarkList[i].z);
 
-            transform.GetChild(i).localPosition = localPos;
+            localPos = new Vector3(localPos.x, -localPos.y, -localPos.z);
+
+            transform.GetChild(i).localPosition = localPos * 3;
         }
     }
 }
