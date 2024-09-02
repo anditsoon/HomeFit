@@ -1965,6 +1965,8 @@ MonoBehaviour:
     m_Active: 1
   - m_Rig: {fileID: 715977007}
     m_Active: 1
+  - m_Rig: {fileID: 0}
+    m_Active: 1
   m_Effectors: []
 --- !u!95 &429669475
 Animator:
@@ -8422,10 +8424,6 @@ MonoBehaviour:
   rigRightThumb: {fileID: 0}
   rigRightIndex: {fileID: 0}
   rigRightPinky: {fileID: 0}
-  rigBody11: {fileID: 0}
-  rigBody12: {fileID: 0}
-  rigBody23: {fileID: 0}
-  rigBody24: {fileID: 0}
 --- !u!1 &1744712362
 GameObject:
   m_ObjectHideFlags: 0

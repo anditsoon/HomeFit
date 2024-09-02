@@ -41,10 +41,10 @@ public class Y_ShowTrackingList : MonoBehaviour
     public GameObject rigRightThumb;
     public GameObject rigRightIndex;
     public GameObject rigRightPinky;
-    public GameObject rigBody11;
-    public GameObject rigBody12;
-    public GameObject rigBody23;
-    public GameObject rigBody24;
+    //public GameObject rigBody11;
+    //public GameObject rigBody12;
+    //public GameObject rigBody23;
+    //public GameObject rigBody24;
 
 
 
@@ -75,10 +75,10 @@ public class Y_ShowTrackingList : MonoBehaviour
         rigRightThumb = GameObject.Find("Rig_RHandThumb");
         rigRightIndex = GameObject.Find("Rig_RHandIndex");
         rigRightPinky = GameObject.Find("Rig_RHandPinky");
-        rigBody11 = GameObject.Find("Rig_Body11");
-        rigBody12 = GameObject.Find("Rig_Body12");
-        rigBody23 = GameObject.Find("Rig_Body23");
-        rigBody24 = GameObject.Find("Rig_Body24");
+        //rigBody11 = GameObject.Find("Rig_Body11");
+        //rigBody12 = GameObject.Find("Rig_Body12");
+        //rigBody23 = GameObject.Find("Rig_Body23");
+        //rigBody24 = GameObject.Find("Rig_Body24");
 
 
     }
@@ -137,10 +137,10 @@ public class Y_ShowTrackingList : MonoBehaviour
         rigRightThumb.transform.position = UpdateRigPart(21);
         rigRightIndex.transform.position = UpdateRigPart(19);
         rigRightPinky.transform.position = UpdateRigPart(17);
-        rigBody11.transform.position = UpdateRigPart(11);
-        rigBody12.transform.position = UpdateRigPart(12);
-        rigBody23.transform.position = UpdateRigPart(23);
-        rigBody24.transform.position = UpdateRigPart(24);
+        //rigBody11.transform.position = UpdateRigPart(11);
+        //rigBody12.transform.position = UpdateRigPart(12);
+        //rigBody23.transform.position = UpdateRigPart(23);
+        //rigBody24.transform.position = UpdateRigPart(24);
 
 
     }
@@ -171,6 +171,7 @@ public class Y_ShowTrackingList : MonoBehaviour
         localPos = localPos - vectorMiddle;
 
         localPos = new Vector3(localPos.x, -localPos.y, localPos.z);
+        localPos.z = 0;
 
         return transform.TransformPoint(Vector3.Scale(localPos, currentScaleFactor));
 
