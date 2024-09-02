@@ -35,8 +35,11 @@ public class Y_ShowTrackingList : MonoBehaviour
     public GameObject rigRightLegHint;
     public GameObject rigHeadAim1;
     public GameObject rigHeadAim2;
-    //public GameObject rigBodyTarget;
-    //public GameObject rigBodyHint;
+    public GameObject rigBodyTarget;
+    public GameObject rigBodyHint;
+    public GameObject rigLeftThumb;
+    public GameObject rigLeftIndex;
+    public GameObject rigLeftPinky;
 
   
 
@@ -60,8 +63,11 @@ public class Y_ShowTrackingList : MonoBehaviour
         rigRightLegHint = GameObject.Find("Rig_RightLeg_hint");
         rigHeadAim1 = GameObject.Find("Aim");
         rigHeadAim2 = GameObject.Find("Aim2");
-        //rigBodyTarget = GameObject.Find("Rig_Body_target");
-        //rigBodyHint = GameObject.Find("Rig_Body_hint");
+        rigBodyTarget = GameObject.Find("Rig_Body_target");
+        rigBodyHint = GameObject.Find("Rig_Body_hint");
+        rigLeftThumb = GameObject.Find("Rig_LeftHandThumb_target");
+        rigLeftIndex = GameObject.Find("Rig_LeftHandIndex_hint");
+        rigLeftPinky = GameObject.Find("Rig_LeftHandPinky_hint");
 
     }
 
@@ -87,17 +93,8 @@ public class Y_ShowTrackingList : MonoBehaviour
         if (fullHeight > 0)
         {
             float targetScale = targetHeight / fullHeight;
-            //targetScale = Mathf.Clamp(targetScale, minScale, maxScale);
-
-            // 부드러운 스케일 변화
-            //currentScaleFactor = Vector3.Lerp(currentScaleFactor, new Vector3(targetScale, targetScale, targetScale), scaleSmoothing * Time.deltaTime);
             currentScaleFactor = Vector3.one * targetScale;
-            //Vector3 newScale = Vector3.Scale(initialModelScale, currentScaleFactor);
-            //transform.localScale = newScale;
-
-            //Debug.Log($"Full Height: {fullHeight}, Target Scale: {targetScale}, Current Scale: {currentScaleFactor}, New Model Scale: {newScale}");
         }
-        //transform.localScale = Vector3.Scale(initialModelScale, scaleFactor);
     }
 
     public float GetFullHeight()
@@ -122,11 +119,14 @@ public class Y_ShowTrackingList : MonoBehaviour
         rigRightLegHint.transform.position = UpdateRigPart(26);
         rigHeadAim1.transform.position = UpdateRigPart(9);
         rigHeadAim2.transform.position = UpdateRigPart(10);
-        //rigBodyTarget.transform.position = (UpdateRigPart(11) + UpdateRigPart(12)) * 0.5f;
-        //rigBodyHint.transform.position = (UpdateRigPart(23) + UpdateRigPart(24)) * 0.5f;
+        rigBodyTarget.transform.position = (UpdateRigPart(11) + UpdateRigPart(12)) * 0.5f;
+        rigBodyHint.transform.position = ((UpdateRigPart(11) + UpdateRigPart(12)) +(UpdateRigPart(23) + UpdateRigPart(24))) * 0.5f;
+        rigLeftThumb.transform.position = UpdateRigPart(22);
+        rigLeftIndex.transform.position = UpdateRigPart(20);
+        rigLeftPinky.transform.position = UpdateRigPart(18);
 
 
-    }
+}
 
     Vector3 UpdateRigPart(int i)
     {
