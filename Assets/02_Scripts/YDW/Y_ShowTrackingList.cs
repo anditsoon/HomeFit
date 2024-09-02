@@ -35,14 +35,17 @@ public class Y_ShowTrackingList : MonoBehaviour
     public GameObject rigRightLegHint;
     public GameObject rigHeadAim1;
     public GameObject rigHeadAim2;
-    public GameObject rigBodyTarget;
-    public GameObject rigBodyHint;
     public GameObject rigLeftThumb;
     public GameObject rigLeftIndex;
     public GameObject rigLeftPinky;
     public GameObject rigRightThumb;
     public GameObject rigRightIndex;
     public GameObject rigRightPinky;
+    public GameObject rigBody11;
+    public GameObject rigBody12;
+    public GameObject rigBody23;
+    public GameObject rigBody24;
+
 
 
 
@@ -66,14 +69,17 @@ public class Y_ShowTrackingList : MonoBehaviour
         rigRightLegHint = GameObject.Find("Rig_RightLeg_hint");
         rigHeadAim1 = GameObject.Find("Aim");
         rigHeadAim2 = GameObject.Find("Aim2");
-        rigBodyTarget = GameObject.Find("Rig_Body_target");
-        rigBodyHint = GameObject.Find("Rig_Body_hint");
-        rigLeftThumb = GameObject.Find("Rig_LeftHandThumb_target");
-        rigLeftIndex = GameObject.Find("Rig_LeftHandIndex_target");
-        rigLeftPinky = GameObject.Find("Rig_LeftHandPinky_target");
-        rigRightThumb = GameObject.Find("Rig_RightHandThumb_target");
-        rigRightIndex = GameObject.Find("Rig_RightHandIndex_target");
-        rigRightPinky = GameObject.Find("Rig_RightHandPinky_target");
+        rigLeftThumb = GameObject.Find("Rig_LHandThumb");
+        rigLeftIndex = GameObject.Find("Rig_LHandIndex");
+        rigLeftPinky = GameObject.Find("Rig_LHandPinky");
+        rigRightThumb = GameObject.Find("Rig_RHandThumb");
+        rigRightIndex = GameObject.Find("Rig_RHandIndex");
+        rigRightPinky = GameObject.Find("Rig_RHandPinky");
+        rigBody11 = GameObject.Find("Rig_Body11");
+        rigBody12 = GameObject.Find("Rig_Body12");
+        rigBody23 = GameObject.Find("Rig_Body23");
+        rigBody24 = GameObject.Find("Rig_Body24");
+
 
     }
 
@@ -125,17 +131,19 @@ public class Y_ShowTrackingList : MonoBehaviour
         rigRightLegHint.transform.position = UpdateRigPart(26);
         rigHeadAim1.transform.position = UpdateRigPart(9);
         rigHeadAim2.transform.position = UpdateRigPart(10);
-        rigBodyTarget.transform.position = (UpdateRigPart(11) + UpdateRigPart(12)) * 0.5f;
-        rigBodyHint.transform.position = ((UpdateRigPart(11) + UpdateRigPart(12)) +(UpdateRigPart(23) + UpdateRigPart(24))) * 0.5f;
         rigLeftThumb.transform.position = UpdateRigPart(22);
         rigLeftIndex.transform.position = UpdateRigPart(20);
         rigLeftPinky.transform.position = UpdateRigPart(18);
         rigRightThumb.transform.position = UpdateRigPart(21);
         rigRightIndex.transform.position = UpdateRigPart(19);
         rigRightPinky.transform.position = UpdateRigPart(17);
+        rigBody11.transform.position = UpdateRigPart(11);
+        rigBody12.transform.position = UpdateRigPart(12);
+        rigBody23.transform.position = UpdateRigPart(23);
+        rigBody24.transform.position = UpdateRigPart(24);
 
 
-}
+    }
 
     Vector3 UpdateRigPart(int i)
     {
