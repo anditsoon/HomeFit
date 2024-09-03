@@ -2165,10 +2165,10 @@ TextureImporter:
       name: button2_01
       rect:
         serializedVersion: 2
-        x: 70
-        y: 371
-        width: 70
-        height: 70
+        x: 74
+        y: 375
+        width: 62
+        height: 62
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3151,7 +3151,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 13f1ccd2630c95e47bd7640bf2b89e8e
     internalID: 0
     vertices: []
     indices: 

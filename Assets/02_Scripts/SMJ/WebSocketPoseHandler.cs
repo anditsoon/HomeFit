@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 [System.Serializable]
 public struct PoseData
@@ -59,28 +59,28 @@ public enum PoseName
 
 public class WebSocketPoseHandler : MonoBehaviour
 {
-    [SerializeField] private string serverUrl = "ws://localhost:8080";
+    [SerializeField] private string serverUrl = "ws://192.168.0.250:8765";
     private ClientWebSocket webSocket;
-    private CancellationTokenSource cts;
+    private bool isRunning = false;
 
     public PoseList latestPoseList;
 
-    private async void Start()
+    private void Start()
     {
-        cts = new CancellationTokenSource();
-        await ConnectToServerAsync();
+        ConnectToServer();
     }
 
-    private async Task ConnectToServerAsync()
+    private void ConnectToServer()
     {
         webSocket = new ClientWebSocket();
         Uri serverUri = new Uri(serverUrl);
 
         try
         {
-            await webSocket.ConnectAsync(serverUri, cts.Token);
+            webSocket.ConnectAsync(serverUri, CancellationToken.None).Wait();
             Debug.Log("Connected to server");
-            _ = ReceiveLoop();
+            isRunning = true;
+            StartCoroutine(ReceiveLoop());
         }
         catch (Exception ex)
         {
@@ -88,14 +88,18 @@ public class WebSocketPoseHandler : MonoBehaviour
         }
     }
 
-    private async Task ReceiveLoop()
+    private IEnumerator ReceiveLoop()
     {
         var buffer = new byte[1024 * 4];
-        while (webSocket.State == WebSocketState.Open)
+        while (isRunning && webSocket.State == WebSocketState.Open)
         {
+            var segment = new ArraySegment<byte>(buffer);
+            WebSocketReceiveResult result = null;
+
             try
             {
-                var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), cts.Token);
+                result = webSocket.ReceiveAsync(segment, CancellationToken.None).Result;
+
                 if (result.MessageType == WebSocketMessageType.Text)
                 {
                     var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
@@ -103,15 +107,17 @@ public class WebSocketPoseHandler : MonoBehaviour
                 }
                 else if (result.MessageType == WebSocketMessageType.Close)
                 {
-                    await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, string.Empty, cts.Token);
-                    break;
+                    isRunning = false;
+                    webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None).Wait();
                 }
             }
             catch (Exception ex)
             {
                 Debug.LogError($"Error receiving message: {ex.Message}");
-                break;
+                isRunning = false;
             }
+
+            yield return null;
         }
     }
 
@@ -119,23 +125,8 @@ public class WebSocketPoseHandler : MonoBehaviour
     {
         try
         {
-            // 디버그를 위해 받은 메시지 출력
             Debug.Log($"Received message: {message}");
-
-            // 메시지가 단일 PoseData인 경우
-            if (message.StartsWith("{") && message.EndsWith("}"))
-            {
-                PoseData poseData = JsonUtility.FromJson<PoseData>(message);
-                if (latestPoseList.landmarkList == null)
-                {
-                    latestPoseList.landmarkList = new List<PoseData>();
-                }
-                latestPoseList.landmarkList.Clear();
-                latestPoseList.landmarkList.Add(poseData);
-                Debug.Log($"Processed single PoseData: x={poseData.x}, y={poseData.y}, z={poseData.z}");
-            }
-            // 메시지가 PoseList인 경우
-            else if (message.StartsWith("[") && message.EndsWith("]"))
+            if (message.StartsWith("[") && message.EndsWith("]"))
             {
                 message = "{\"landmarkList\":" + message + "}";
                 latestPoseList = JsonUtility.FromJson<PoseList>(message);
@@ -152,25 +143,12 @@ public class WebSocketPoseHandler : MonoBehaviour
         }
     }
 
-    public PoseData GetPoseData(PoseName poseName)
+    private void OnApplicationQuit()
     {
-        if (latestPoseList.landmarkList != null)
-        {
-            int index = (int)poseName;
-            if (index < latestPoseList.landmarkList.Count)
-            {
-                return latestPoseList.landmarkList[index];
-            }
-        } 
-        return new PoseData();
-    }
-
-    private async void OnApplicationQuit()
-    {
-        cts.Cancel();
+        isRunning = false;
         if (webSocket != null && webSocket.State == WebSocketState.Open)
         {
-            await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Application quitting", CancellationToken.None);
+            webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Application quitting", CancellationToken.None).Wait();
         }
     }
 }

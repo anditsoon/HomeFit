@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
@@ -11,10 +11,10 @@ namespace CharacterCustomization
     {
         public const string BodyPartName = "Body";
 
-        private const string MaterialPath = "Assets/Characters_7/Materials/Main_Material.mat";
-        private const string PartsPath = "Assets/Characters_7/Meshes";
-        private const string FbxPath = "Assets/Characters_7/Meshes/Basic_Character.fbx";
-        private const string AnimationControllerPath = "Assets/Characters_7/Animations/Animation controller.controller";
+        private const string MaterialPath = "Assets/05_Models/Characters_7/Materials/Main_Material.mat";
+        private const string PartsPath = "Assets/05_Models/Characters_7/Meshes";
+        private const string FbxPath = "Assets/05_Models/Characters_7/Meshes/Basic_Character.fbx";
+        private const string AnimationControllerPath = "Assets/05_Models/Characters_7/Animations/Animation controller.controller";
 
         private readonly List<List<SavedPart>> _savedCombinations = new List<List<SavedPart>>();
         private readonly List<string> _partsOrder = new List<string>()
