@@ -441,7 +441,7 @@ Transform:
   m_GameObject: {fileID: 86337484}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.8899999, y: 4.4508033, z: -8.791511}
+  m_LocalPosition: {x: -3.8899999, y: 4.2093053, z: -8.366474}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2015,21 +2015,21 @@ MonoBehaviour:
   - m_Rig: {fileID: 1795594427}
     m_Active: 1
   - m_Rig: {fileID: 992819481}
-    m_Active: 1
+    m_Active: 0
   - m_Rig: {fileID: 1905311455}
-    m_Active: 1
+    m_Active: 0
   - m_Rig: {fileID: 1564185736}
-    m_Active: 1
+    m_Active: 0
   - m_Rig: {fileID: 353475732}
-    m_Active: 1
+    m_Active: 0
   - m_Rig: {fileID: 1771349886}
-    m_Active: 1
+    m_Active: 0
   - m_Rig: {fileID: 1709470103}
     m_Active: 0
   - m_Rig: {fileID: 1015145512}
     m_Active: 0
   - m_Rig: {fileID: 69926032}
-    m_Active: 1
+    m_Active: 0
   m_Effectors: []
 --- !u!95 &429669475
 Animator:
@@ -6233,8 +6233,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343657114}
   serializedVersion: 2
-  m_LocalRotation: {x: -1.2323476e-14, y: 1, z: 0.00000017881393, w: -7.216448e-15}
-  m_LocalPosition: {x: -3.8899999, y: 4.510483, z: -9.068936}
+  m_LocalRotation: {x: -0.000000011329985, y: 0.99547315, z: -0.09504289, w: 0.00000011866958}
+  m_LocalPosition: {x: -3.8899999, y: 4.4450088, z: -9.056319}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7657,6 +7657,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1692329756}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1708689843 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1974607751597009579, guid: d9f56a20727e81048ac9e7da447fe7a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1200839758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1709470100
 GameObject:
   m_ObjectHideFlags: 0
@@ -7674,7 +7680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1709470101
 Transform:
   m_ObjectHideFlags: 0
@@ -7708,7 +7714,7 @@ MonoBehaviour:
   m_Data:
     m_Root: {fileID: 2105566526}
     m_Mid: {fileID: 702556083}
-    m_Tip: {fileID: 1440466502}
+    m_Tip: {fileID: 1708689843}
     m_Target: {fileID: 1343657115}
     m_Hint: {fileID: 86337485}
     m_TargetPositionWeight: 1
@@ -7730,6 +7736,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Weight: 1
   m_Effectors:
+  - m_Transform: {fileID: 1343657115}
+    m_Style:
+      shape: {fileID: 4300000, guid: 687b70eb9c49243639f9379f6965034f, type: 2}
+      color: {r: 1, g: 0, b: 0, a: 0.5}
+      size: 0.1
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    m_Visible: 1
+  - m_Transform: {fileID: 86337485}
+    m_Style:
+      shape: {fileID: 4300000, guid: e050c2b16fe384bd994474655a4b4968, type: 2}
+      color: {r: 1, g: 0, b: 0, a: 0.5}
+      size: 0.1
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    m_Visible: 1
   - m_Transform: {fileID: 1343657115}
     m_Style:
       shape: {fileID: 4300000, guid: 687b70eb9c49243639f9379f6965034f, type: 2}
@@ -7929,6 +7951,8 @@ MonoBehaviour:
   rigRightHandHint: {fileID: 0}
   rigLeftHandTarget: {fileID: 0}
   rigLeftHandHint: {fileID: 0}
+  rigSpineTarget: {fileID: 0}
+  rigSpineHint: {fileID: 0}
 --- !u!1 &1744712362
 GameObject:
   m_ObjectHideFlags: 0
@@ -9414,7 +9438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b61da8fdda7fa4c9a031151fe1c089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverUrl: ws://192.168.0.250:8765/
+  serverUrl: ws://localhost:8765
   latestPoseList:
     landmarkList: []
 --- !u!1001 &1990726636
