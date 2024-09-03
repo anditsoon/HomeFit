@@ -19,7 +19,7 @@ public class Y_ShowTrackingList : MonoBehaviour
     //private Vector3 initialModelScale;
     private Vector3 currentScaleFactor = Vector3.one;
     private Vector3 initialModelScale;
-    public float targetHeight = 1.94f;
+    public float targetHeight;
     public float scaleSmoothing = 0.1f; 
     public float minScale = 0.1f; 
     public float maxScale = 10f; 
@@ -33,8 +33,17 @@ public class Y_ShowTrackingList : MonoBehaviour
     public GameObject rigLeftLegHint;
     public GameObject rigRightLegTarget;
     public GameObject rigRightLegHint;
-    public GameObject rigHead;
-  
+    public GameObject rigHeadAim1;
+    public GameObject rigHeadAim2;
+    public GameObject rigRightHandTarget;
+    public GameObject rigRightHandHint;
+    public GameObject rigLeftHandTarget;
+    public GameObject rigLeftHandHint;
+    public GameObject rigSpineTarget;
+    public GameObject rigSpineHint;
+    //public GameObject rigRootTarget;
+    //public GameObject rigRootHint;
+
 
     // Start is called before the first frame update
     void Start()
@@ -43,8 +52,9 @@ public class Y_ShowTrackingList : MonoBehaviour
         conn = GameObject.Find("UDPConnector").GetComponent<WebSocketPoseHandler>();
         //measureModelSize = GetComponent<Y_MeasureModelSize>();
         initialModelScale = transform.localScale;
-        locationOffset = transform.position;
+        //locationOffset = GameObject.Find("GameObject").transform.position;
         mainCamera = Camera.main;
+        targetHeight = 0.78f;
 
         rigLeftArmTarget = GameObject.Find("Rig_LeftArm_target");
         rigLeftArmHint = GameObject.Find("Rig_LeftArm_hint");
@@ -54,11 +64,19 @@ public class Y_ShowTrackingList : MonoBehaviour
         rigLeftLegHint = GameObject.Find("Rig_LeftLeg_hint");
         rigRightLegTarget = GameObject.Find("Rig_RightLeg_target");
         rigRightLegHint = GameObject.Find("Rig_RightLeg_hint");
-        rigHead = GameObject.Find("Rig_Head");
-
+        rigHeadAim1 = GameObject.Find("Aim");
+        rigHeadAim2 = GameObject.Find("Aim2");
+        rigRightHandTarget = GameObject.Find("RigRightHand_target");
+        rigLeftHandTarget = GameObject.Find("RigLeftHand_target");
+        rigRightHandHint = GameObject.Find("RigRightHand_hint");
+        rigLeftHandHint = GameObject.Find("RigLeftHand_hint");
+        rigSpineTarget = GameObject.Find("Rig_Spine_target");
+        rigSpineHint = GameObject.Find("Rig_Spine_hint");
+        //rigRootTarget = GameObject.Find("RigRoot_target");
+        //rigRootHint = GameObject.Find("RigRoot_hint");
     }
 
-    
+
 
     // Update is called once per frame
     void Update()
@@ -70,9 +88,7 @@ public class Y_ShowTrackingList : MonoBehaviour
         {
             UpdateScaleFactor();
             UpdateRigPosition();
-
         }
-
     }
 
     
@@ -81,18 +97,12 @@ public class Y_ShowTrackingList : MonoBehaviour
         float fullHeight = GetFullHeight();
         if (fullHeight > 0)
         {
-            float targetScale = targetHeight / fullHeight;
-            targetScale = Mathf.Clamp(targetScale, minScale, maxScale);
-
-            // 부드러운 스케일 변화
-            currentScaleFactor = Vector3.Lerp(currentScaleFactor, new Vector3(targetScale, targetScale, targetScale), scaleSmoothing);
-
-            //Vector3 newScale = Vector3.Scale(initialModelScale, currentScaleFactor);
-            //transform.localScale = newScale;
-
-            //Debug.Log($"Full Height: {fullHeight}, Target Scale: {targetScale}, Current Scale: {currentScaleFactor}, New Model Scale: {newScale}");
+            float targetScale = targetHeight / fullHeight;// - 0.5f;
+            currentScaleFactor = Vector3.one * targetScale;
+            currentScaleFactor.z = currentScaleFactor.z * 0.3f;
         }
-        //transform.localScale = Vector3.Scale(initialModelScale, scaleFactor);
+
+        //print("영상에서 보이는 높이 : " + fullHeight);
     }
 
     public float GetFullHeight()
@@ -100,59 +110,79 @@ public class Y_ShowTrackingList : MonoBehaviour
         if (conn.latestPoseList.landmarkList.Count == 0)
             return 0f;
 
-        float topY = conn.latestPoseList.landmarkList.Min(I => I.y);
-        float bottomY = conn.latestPoseList.landmarkList.Max(l => l.y);
+        //float topY = conn.latestPoseList.landmarkList.Max(I => I.y);
+        //float bottomY = conn.latestPoseList.landmarkList.Min(l => l.y);
+
+
+        float topY = (conn.latestPoseList.landmarkList[11].y + conn.latestPoseList.landmarkList[12].y) * 0.5f;
+        float bottomY = (conn.latestPoseList.landmarkList[23].y + conn.latestPoseList.landmarkList[24].y) * 0.5f;
+
         return Mathf.Abs(bottomY - topY);
     }
 
     void UpdateRigPosition()
     {
-        rigLeftArmTarget.transform.position = UpdateRigPart(15);
-        rigLeftArmHint.transform.position = UpdateRigPart(13);
-        rigRightArmTarget.transform.position = UpdateRigPart(16);
+        rigHeadAim1.transform.position = UpdateRigPart(9);
+        rigHeadAim2.transform.position = UpdateRigPart(10);
+        rigLeftArmHint.transform.position = Vector3.Lerp(rigLeftArmHint.transform.position, UpdateRigPart(13), 0.1f);
         rigRightArmHint.transform.position = UpdateRigPart(14);
-        rigLeftLegTarget.transform.position = UpdateRigPart(27);
+        rigLeftArmTarget.transform.position = Vector3.Lerp(rigLeftArmTarget.transform.position, UpdateRigPart(15),0.1f);
+        rigLeftHandHint.transform.position = UpdateRigPart(15);
+        rigRightArmTarget.transform.position = UpdateRigPart(16);
+        rigRightHandHint.transform.position = UpdateRigPart(16);
+        rigLeftHandTarget.transform.position = UpdateRigPart(21);
+        rigRightHandTarget.transform.position = UpdateRigPart(22);
         rigLeftLegHint.transform.position = UpdateRigPart(25);
-        rigRightLegTarget.transform.position = UpdateRigPart(28);
         rigRightLegHint.transform.position = UpdateRigPart(26);
-        rigHead.transform.position = UpdateRigPart(0);
+        rigLeftLegTarget.transform.position = UpdateRigPart(27);
+        rigRightLegTarget.transform.position = UpdateRigPart(28);
+        rigSpineTarget.transform.position = (UpdateRigPart(12) + UpdateRigPart(11)) * 0.5f;
+        rigSpineHint.transform.position = (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f;
+        //rigRootTarget.transform.position = (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f;
+        //rigRootHint.transform.position = (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f;
     }
 
     Vector3 UpdateRigPart(int i)
     {
 
-        //float avatarHeight = 1.94f;
-        //float dataHeight = Mathf.Abs(conn.latestPoseList.landmarkList[0].y - conn.latestPoseList.landmarkList[27].y);
-        //float scaleY = avatarHeight / dataHeight;
-        //scaleFactor = new Vector3(scaleY, scaleY, scaleY);
+        Vector3 vector23rd = new Vector3(
+            conn.latestPoseList.landmarkList[23].x,
+            conn.latestPoseList.landmarkList[23].y,
+            conn.latestPoseList.landmarkList[23].z
+            );
+
+        Vector3 vector24th = new Vector3(
+            conn.latestPoseList.landmarkList[24].x,
+            conn.latestPoseList.landmarkList[24].y,
+            conn.latestPoseList.landmarkList[24].z
+            );
+
+        Vector3 vectorMiddle = (vector23rd +vector24th) / 2;
+
 
         Vector3 localPos = new Vector3(
                     conn.latestPoseList.landmarkList[i].x,
                     conn.latestPoseList.landmarkList[i].y,
                     conn.latestPoseList.landmarkList[i].z);
 
-        //Vector3 scaledPos = Vector3.Scale(normalizedPos, scaleFactor);
+        localPos = localPos - vectorMiddle;
 
-        //Vector3 cameraSpacePos = mainCamera.transform.TransformPoint(scaledPos);
+        localPos = new Vector3(localPos.x, -localPos.y, localPos.z);
 
-        localPos = new Vector3(localPos.x, -localPos.y, -localPos.z);
+        return transform.TransformPoint(Vector3.Scale(localPos, currentScaleFactor));
 
-        Vector3 scaledPos = Vector3.Scale(localPos, currentScaleFactor);
-        Vector3 worldPos = transform.TransformPoint(scaledPos) + locationOffset;
 
-        //Debug.LogError($"Index {i} while Landmark list count: {conn.latestPoseList.landmarkList.Count}");
+        //Vector3 worldPos = 
 
-        return worldPos;
+        //Vector3 scaledPos = Vector3.Scale(worldPos, currentScaleFactor);
 
-        //return transform.TransformPoint(Vector3.Scale(localPos, scaleFactor)) + locationOffset;
-
-        //return localPos;
+        //return scaledPos;
 
     }
 
-    
 
-    
+
+
 
 
 }

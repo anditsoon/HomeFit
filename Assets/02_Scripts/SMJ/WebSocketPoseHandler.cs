@@ -59,7 +59,7 @@ using System.Threading;
 
 public class WebSocketPoseHandler : MonoBehaviour
 {
-    [SerializeField] private string serverUrl = "ws://192.168.0.250:8765";
+    [SerializeField] private string serverUrl = "ws://localhost:8764";
     private ClientWebSocket webSocket;
     private bool isRunning = false;
 
