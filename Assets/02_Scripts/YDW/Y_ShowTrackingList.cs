@@ -19,7 +19,7 @@ public class Y_ShowTrackingList : MonoBehaviour
     //private Vector3 initialModelScale;
     private Vector3 currentScaleFactor = Vector3.one;
     private Vector3 initialModelScale;
-    public float targetHeight = 1.94f;
+    public float targetHeight;
     public float scaleSmoothing = 0.1f; 
     public float minScale = 0.1f; 
     public float maxScale = 10f; 
@@ -35,18 +35,14 @@ public class Y_ShowTrackingList : MonoBehaviour
     public GameObject rigRightLegHint;
     public GameObject rigHeadAim1;
     public GameObject rigHeadAim2;
-    public GameObject rigLeftThumb;
-    public GameObject rigLeftIndex;
-    public GameObject rigLeftPinky;
-    public GameObject rigRightThumb;
-    public GameObject rigRightIndex;
-    public GameObject rigRightPinky;
-    //public GameObject rigBody11;
-    //public GameObject rigBody12;
-    //public GameObject rigBody23;
-    //public GameObject rigBody24;
-
-
+    public GameObject rigRightHandTarget;
+    public GameObject rigRightHandHint;
+    public GameObject rigLeftHandTarget;
+    public GameObject rigLeftHandHint;
+    //public GameObject rigSpineTarget;
+    //public GameObject rigSpineHint;
+    //public GameObject rigRootTarget;
+    //public GameObject rigRootHint;
 
 
     // Start is called before the first frame update
@@ -58,6 +54,7 @@ public class Y_ShowTrackingList : MonoBehaviour
         initialModelScale = transform.localScale;
         //locationOffset = GameObject.Find("GameObject").transform.position;
         mainCamera = Camera.main;
+        targetHeight = 0.78f;
 
         rigLeftArmTarget = GameObject.Find("Rig_LeftArm_target");
         rigLeftArmHint = GameObject.Find("Rig_LeftArm_hint");
@@ -69,21 +66,17 @@ public class Y_ShowTrackingList : MonoBehaviour
         rigRightLegHint = GameObject.Find("Rig_RightLeg_hint");
         rigHeadAim1 = GameObject.Find("Aim");
         rigHeadAim2 = GameObject.Find("Aim2");
-        rigLeftThumb = GameObject.Find("Rig_LHandThumb");
-        rigLeftIndex = GameObject.Find("Rig_LHandIndex");
-        rigLeftPinky = GameObject.Find("Rig_LHandPinky");
-        rigRightThumb = GameObject.Find("Rig_RHandThumb");
-        rigRightIndex = GameObject.Find("Rig_RHandIndex");
-        rigRightPinky = GameObject.Find("Rig_RHandPinky");
-        //rigBody11 = GameObject.Find("Rig_Body11");
-        //rigBody12 = GameObject.Find("Rig_Body12");
-        //rigBody23 = GameObject.Find("Rig_Body23");
-        //rigBody24 = GameObject.Find("Rig_Body24");
-
-
+        rigRightHandTarget = GameObject.Find("RigRightHand_target");
+        rigLeftHandTarget = GameObject.Find("RigLeftHand_target");
+        rigRightHandHint = GameObject.Find("RigRightHand_hint");
+        rigLeftHandHint = GameObject.Find("RigLeftHand_hint");
+        //rigSpineTarget = GameObject.Find("Rig_Spine_target");
+        //rigSpineHint = GameObject.Find("Rig_Spine_hint");
+        //rigRootTarget = GameObject.Find("RigRoot_target");
+        //rigRootHint = GameObject.Find("RigRoot_hint");
     }
 
-    
+
 
     // Update is called once per frame
     void Update()
@@ -114,35 +107,36 @@ public class Y_ShowTrackingList : MonoBehaviour
         if (conn.latestPoseList.landmarkList.Count == 0)
             return 0f;
 
-        float topY = conn.latestPoseList.landmarkList.Min(I => I.y);
-        float bottomY = conn.latestPoseList.landmarkList.Max(l => l.y);
+        //float topY = conn.latestPoseList.landmarkList.Max(I => I.y);
+        //float bottomY = conn.latestPoseList.landmarkList.Min(l => l.y);
+
+
+        float topY = (conn.latestPoseList.landmarkList[11].y + conn.latestPoseList.landmarkList[12].y) * 0.5f;
+        float bottomY = (conn.latestPoseList.landmarkList[23].y + conn.latestPoseList.landmarkList[24].y) * 0.5f;
+
         return Mathf.Abs(bottomY - topY);
     }
 
     void UpdateRigPosition()
     {
-        rigLeftArmTarget.transform.position = UpdateRigPart(15);
-        rigLeftArmHint.transform.position = UpdateRigPart(13);
-        rigRightArmTarget.transform.position = UpdateRigPart(16);
-        rigRightArmHint.transform.position = UpdateRigPart(14);
-        rigLeftLegTarget.transform.position = UpdateRigPart(27);
-        rigLeftLegHint.transform.position = UpdateRigPart(25);
-        rigRightLegTarget.transform.position = UpdateRigPart(28);
-        rigRightLegHint.transform.position = UpdateRigPart(26);
         rigHeadAim1.transform.position = UpdateRigPart(9);
         rigHeadAim2.transform.position = UpdateRigPart(10);
-        rigLeftThumb.transform.position = UpdateRigPart(22);
-        rigLeftIndex.transform.position = UpdateRigPart(20);
-        rigLeftPinky.transform.position = UpdateRigPart(18);
-        rigRightThumb.transform.position = UpdateRigPart(21);
-        rigRightIndex.transform.position = UpdateRigPart(19);
-        rigRightPinky.transform.position = UpdateRigPart(17);
-        //rigBody11.transform.position = UpdateRigPart(11);
-        //rigBody12.transform.position = UpdateRigPart(12);
-        //rigBody23.transform.position = UpdateRigPart(23);
-        //rigBody24.transform.position = UpdateRigPart(24);
-
-
+        rigLeftArmHint.transform.position = UpdateRigPart(13);
+        rigRightArmHint.transform.position = UpdateRigPart(14);
+        rigLeftArmTarget.transform.position = UpdateRigPart(15);
+        rigLeftHandHint.transform.position = UpdateRigPart(15);
+        rigRightArmTarget.transform.position = UpdateRigPart(16);
+        rigRightHandHint.transform.position = UpdateRigPart(16);
+        rigLeftHandTarget.transform.position = UpdateRigPart(21);
+        rigRightHandTarget.transform.position = UpdateRigPart(22);
+        rigLeftLegHint.transform.position = UpdateRigPart(25);
+        rigRightLegHint.transform.position = UpdateRigPart(26);
+        rigLeftLegTarget.transform.position = UpdateRigPart(27);
+        rigRightLegTarget.transform.position = UpdateRigPart(28);
+        //rigSpineTarget.transform.position =(UpdateRigPart(12) + UpdateRigPart(11))  * 0.5f;
+        //rigSpineHint.transform.position = (UpdateRigPart(24) + UpdateRigPart(23))* 0.5f;
+        //rigRootTarget.transform.position = (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f;
+        //rigRootHint.transform.position = (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f;
     }
 
     Vector3 UpdateRigPart(int i)
@@ -160,7 +154,7 @@ public class Y_ShowTrackingList : MonoBehaviour
             conn.latestPoseList.landmarkList[24].z
             );
 
-        Vector3 vectorMiddle = (vector23rd - vector24th) / 2 + vector24th;
+        Vector3 vectorMiddle = (vector23rd +vector24th) / 2;
 
 
         Vector3 localPos = new Vector3(
@@ -171,7 +165,6 @@ public class Y_ShowTrackingList : MonoBehaviour
         localPos = localPos - vectorMiddle;
 
         localPos = new Vector3(localPos.x, -localPos.y, localPos.z);
-        localPos.z = 0;
 
         return transform.TransformPoint(Vector3.Scale(localPos, currentScaleFactor));
 
