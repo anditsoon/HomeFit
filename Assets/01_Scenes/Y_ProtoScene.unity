@@ -2015,17 +2015,17 @@ MonoBehaviour:
   - m_Rig: {fileID: 1795594427}
     m_Active: 1
   - m_Rig: {fileID: 992819481}
-    m_Active: 0
+    m_Active: 1
   - m_Rig: {fileID: 1905311455}
-    m_Active: 0
+    m_Active: 1
   - m_Rig: {fileID: 1564185736}
-    m_Active: 0
+    m_Active: 1
   - m_Rig: {fileID: 353475732}
-    m_Active: 0
+    m_Active: 1
   - m_Rig: {fileID: 1771349886}
     m_Active: 0
   - m_Rig: {fileID: 1709470103}
-    m_Active: 0
+    m_Active: 1
   - m_Rig: {fileID: 1015145512}
     m_Active: 0
   - m_Rig: {fileID: 69926032}

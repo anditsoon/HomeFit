@@ -122,22 +122,23 @@ public class Y_ShowTrackingList : MonoBehaviour
 
     void UpdateRigPosition()
     {
-        rigHeadAim1.transform.position = UpdateRigPart(9);
-        rigHeadAim2.transform.position = UpdateRigPart(10);
+        rigHeadAim1.transform.position = Vector3.Lerp(rigHeadAim1.transform.position, UpdateRigPart(9), 0.1f);
+        rigHeadAim2.transform.position = Vector3.Lerp(rigHeadAim2.transform.position, UpdateRigPart(10), 0.1f);
         rigLeftArmHint.transform.position = Vector3.Lerp(rigLeftArmHint.transform.position, UpdateRigPart(13), 0.1f);
-        rigRightArmHint.transform.position = UpdateRigPart(14);
+        rigRightArmHint.transform.position = Vector3.Lerp(rigRightArmHint.transform.position, UpdateRigPart(14), 0.1f);
         rigLeftArmTarget.transform.position = Vector3.Lerp(rigLeftArmTarget.transform.position, UpdateRigPart(15),0.1f);
-        rigLeftHandHint.transform.position = UpdateRigPart(15);
-        rigRightArmTarget.transform.position = UpdateRigPart(16);
+        rigRightArmTarget.transform.position = Vector3.Lerp(rigRightArmTarget.transform.position, UpdateRigPart(16), 0.1f);
         rigRightHandHint.transform.position = UpdateRigPart(16);
         rigLeftHandTarget.transform.position = UpdateRigPart(21);
+        rigLeftHandHint.transform.position = UpdateRigPart(15);
         rigRightHandTarget.transform.position = UpdateRigPart(22);
-        rigLeftLegHint.transform.position = UpdateRigPart(25);
-        rigRightLegHint.transform.position = UpdateRigPart(26);
-        rigLeftLegTarget.transform.position = UpdateRigPart(27);
-        rigRightLegTarget.transform.position = UpdateRigPart(28);
-        rigSpineTarget.transform.position = (UpdateRigPart(12) + UpdateRigPart(11)) * 0.5f;
-        rigSpineHint.transform.position = (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f;
+        rigRightHandHint.transform.position = UpdateRigPart(16);
+        rigLeftLegHint.transform.position = Vector3.Lerp(rigLeftLegHint.transform.position, UpdateRigPart(25), 0.1f);
+        rigRightLegHint.transform.position = Vector3.Lerp(rigRightLegHint.transform.position, UpdateRigPart(26), 0.1f);
+        rigLeftLegTarget.transform.position = Vector3.Lerp(rigLeftLegTarget.transform.position, UpdateRigPart(27), 0.1f);
+        rigRightLegTarget.transform.position = Vector3.Lerp(rigRightLegTarget.transform.position, UpdateRigPart(28), 0.1f);
+        rigSpineTarget.transform.position = Vector3.Lerp(rigSpineTarget.transform.position, (UpdateRigPart(12) + UpdateRigPart(11)) * 0.5f, 0.1f); 
+        rigSpineHint.transform.position = Vector3.Lerp(rigSpineHint.transform.position, (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f, 0.1f);
         //rigRootTarget.transform.position = (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f;
         //rigRootHint.transform.position = (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f;
     }
