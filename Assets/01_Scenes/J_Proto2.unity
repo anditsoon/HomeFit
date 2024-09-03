@@ -3755,7 +3755,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867696782}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29d9a7dd9ea5a3446954a4f47082d44f, type: 3}
   m_Name: 
@@ -7143,6 +7143,7 @@ GameObject:
   - component: {fileID: 1723638544}
   - component: {fileID: 1723638543}
   - component: {fileID: 1723638545}
+  - component: {fileID: 1723638546}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -7285,27 +7286,65 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723638537}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d923b81d3358d39498119d393e6c124d, type: 3}
+  m_Script: {fileID: 11500000, guid: 90cac313bf0daa14d83086ee1b9a7517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conn: {fileID: 0}
+  conn: {fileID: 1981259059}
   mainCamera: {fileID: 0}
   locationOffset: {x: 0, y: 0, z: 0}
   targetHeight: 1.94
   scaleSmoothing: 0.1
   minScale: 0.1
   maxScale: 10
-  rigLeftArmTarget: {fileID: 1261118714}
-  rigLeftArmHint: {fileID: 1337919217}
-  rigRightArmTarget: {fileID: 1778991263}
-  rigRightArmHint: {fileID: 1888392151}
-  rigLeftLegTarget: {fileID: 188434889}
-  rigLeftLegHint: {fileID: 1457100937}
-  rigRightLegTarget: {fileID: 112172997}
-  rigRightLegHint: {fileID: 1037835391}
-  rigHead: {fileID: 470335478}
+  rigLeftArmTarget: {fileID: 0}
+  rigLeftArmHint: {fileID: 0}
+  rigRightArmTarget: {fileID: 0}
+  rigRightArmHint: {fileID: 0}
+  rigLeftLegTarget: {fileID: 0}
+  rigLeftLegHint: {fileID: 0}
+  rigRightLegTarget: {fileID: 0}
+  rigRightLegHint: {fileID: 0}
+  rigHeadAim1: {fileID: 0}
+  rigHeadAim2: {fileID: 0}
+  rigRightHandTarget: {fileID: 0}
+  rigRightHandHint: {fileID: 0}
+  rigLeftHandTarget: {fileID: 0}
+  rigLeftHandHint: {fileID: 0}
+--- !u!114 &1723638546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723638537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d923b81d3358d39498119d393e6c124d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conn: {fileID: 1981259059}
+  mainCamera: {fileID: 0}
+  locationOffset: {x: 0, y: 0, z: 0}
+  targetHeight: 1.94
+  scaleSmoothing: 0.1
+  minScale: 0.1
+  maxScale: 10
+  rigLeftArmTarget: {fileID: 0}
+  rigLeftArmHint: {fileID: 0}
+  rigRightArmTarget: {fileID: 0}
+  rigRightArmHint: {fileID: 0}
+  rigLeftLegTarget: {fileID: 0}
+  rigLeftLegHint: {fileID: 0}
+  rigRightLegTarget: {fileID: 0}
+  rigRightLegHint: {fileID: 0}
+  rigHeadAim1: {fileID: 0}
+  rigHeadAim2: {fileID: 0}
+  rigRightHandTarget: {fileID: 0}
+  rigRightHandHint: {fileID: 0}
+  rigLeftHandTarget: {fileID: 0}
+  rigLeftHandHint: {fileID: 0}
 --- !u!1 &1744712362
 GameObject:
   m_ObjectHideFlags: 0
