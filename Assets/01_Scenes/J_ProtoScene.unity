@@ -8589,6 +8589,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1981259058}
   - component: {fileID: 1981259059}
+  - component: {fileID: 1981259060}
   m_Layer: 0
   m_Name: UDPConnector
   m_TagString: Untagged
@@ -8623,7 +8624,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b61da8fdda7fa4c9a031151fe1c089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverUrl: ws://192.168.0.250:8765/
+  serverUrl: ws://localhost:8764/
+  latestPoseList:
+    landmarkList: []
+--- !u!114 &1981259060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981259057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ab186c8903f474eb1b9f68f8267fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startReceiving: 1
+  printToConsole: 1
+  data: 
   latestPoseList:
     landmarkList: []
 --- !u!1001 &1990726636
