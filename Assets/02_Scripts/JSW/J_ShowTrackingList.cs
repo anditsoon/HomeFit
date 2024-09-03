@@ -10,7 +10,7 @@ using System;
 public class J_ShowTrackingList : MonoBehaviour
 {
 
-    public WebSocketPoseHandler conn;
+    public UDPPoseHandler conn;
     //public List<Transform> bones;
     //public Y_MeasureModelSize measureModelSize;
     public Camera mainCamera;
@@ -39,8 +39,8 @@ public class J_ShowTrackingList : MonoBehaviour
     public GameObject rigRightHandHint;
     public GameObject rigLeftHandTarget;
     public GameObject rigLeftHandHint;
-    //public GameObject rigSpineTarget;
-    //public GameObject rigSpineHint;
+    public GameObject rigSpineTarget;
+    public GameObject rigSpineHint;
     //public GameObject rigRootTarget;
     //public GameObject rigRootHint;
 
@@ -49,7 +49,7 @@ public class J_ShowTrackingList : MonoBehaviour
     void Start()
     {
 
-        conn = GameObject.Find("UDPConnector").GetComponent<WebSocketPoseHandler>();
+        conn = GameObject.Find("UDPConnector").GetComponent<UDPPoseHandler>();
         //measureModelSize = GetComponent<Y_MeasureModelSize>();
         initialModelScale = transform.localScale;
         //locationOffset = GameObject.Find("GameObject").transform.position;
@@ -70,8 +70,8 @@ public class J_ShowTrackingList : MonoBehaviour
         rigLeftHandTarget = GameObject.Find("RigLeftHand_target");
         rigRightHandHint = GameObject.Find("RigRightHand_hint");
         rigLeftHandHint = GameObject.Find("RigLeftHand_hint");
-        //rigSpineTarget = GameObject.Find("Rig_Spine_target");
-        //rigSpineHint = GameObject.Find("Rig_Spine_hint");
+        rigSpineTarget = GameObject.Find("Rig_Spine_target");
+        rigSpineHint = GameObject.Find("Rig_Spine_hint");
         //rigRootTarget = GameObject.Find("RigRoot_target");
         //rigRootHint = GameObject.Find("RigRoot_hint");
     }
@@ -97,9 +97,12 @@ public class J_ShowTrackingList : MonoBehaviour
         float fullHeight = GetFullHeight();
         if (fullHeight > 0)
         {
-            float targetScale = targetHeight / fullHeight;
+            float targetScale = targetHeight / fullHeight;// - 0.5f;
             currentScaleFactor = Vector3.one * targetScale;
+            currentScaleFactor.z = currentScaleFactor.z * 0.3f;
         }
+
+        //print("영상에서 보이는 높이 : " + fullHeight);
     }
 
     public float GetFullHeight()
@@ -121,9 +124,9 @@ public class J_ShowTrackingList : MonoBehaviour
     {
         rigHeadAim1.transform.position = UpdateRigPart(9);
         rigHeadAim2.transform.position = UpdateRigPart(10);
-        rigLeftArmHint.transform.position = UpdateRigPart(13);
+        rigLeftArmHint.transform.position = Vector3.Lerp(rigLeftArmHint.transform.position, UpdateRigPart(13), 0.1f);
         rigRightArmHint.transform.position = UpdateRigPart(14);
-        rigLeftArmTarget.transform.position = UpdateRigPart(15);
+        rigLeftArmTarget.transform.position = Vector3.Lerp(rigLeftArmTarget.transform.position, UpdateRigPart(15), 0.1f);
         rigLeftHandHint.transform.position = UpdateRigPart(15);
         rigRightArmTarget.transform.position = UpdateRigPart(16);
         rigRightHandHint.transform.position = UpdateRigPart(16);
@@ -133,8 +136,8 @@ public class J_ShowTrackingList : MonoBehaviour
         rigRightLegHint.transform.position = UpdateRigPart(26);
         rigLeftLegTarget.transform.position = UpdateRigPart(27);
         rigRightLegTarget.transform.position = UpdateRigPart(28);
-        //rigSpineTarget.transform.position =(UpdateRigPart(12) + UpdateRigPart(11))  * 0.5f;
-        //rigSpineHint.transform.position = (UpdateRigPart(24) + UpdateRigPart(23))* 0.5f;
+        rigSpineTarget.transform.position = (UpdateRigPart(12) + UpdateRigPart(11)) * 0.5f;
+        rigSpineHint.transform.position = (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f;
         //rigRootTarget.transform.position = (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f;
         //rigRootHint.transform.position = (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f;
     }
