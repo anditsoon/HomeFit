@@ -107,15 +107,15 @@ public class J_ShowTrackingList : MonoBehaviour
 
     void UpdateRigPosition()
     {
-        rigLeftArmTarget.transform.position = UpdateRigPart(15);
-        rigLeftArmHint.transform.position = UpdateRigPart(13);
-        rigRightArmTarget.transform.position = UpdateRigPart(16);
-        rigRightArmHint.transform.position = UpdateRigPart(14);
-        rigLeftLegTarget.transform.position = UpdateRigPart(27);
-        rigLeftLegHint.transform.position = UpdateRigPart(25);
-        rigRightLegTarget.transform.position = UpdateRigPart(28);
-        rigRightLegHint.transform.position = UpdateRigPart(26);
-        rigHead.transform.position = UpdateRigPart(0);
+        rigLeftArmTarget.transform.localPosition = UpdateRigPart(15);
+        rigLeftArmHint.transform.localPosition = UpdateRigPart(13);
+        rigRightArmTarget.transform.localPosition = UpdateRigPart(16);
+        rigRightArmHint.transform.localPosition = UpdateRigPart(14);
+        rigLeftLegTarget.transform.localPosition = UpdateRigPart(27);
+        rigLeftLegHint.transform.localPosition = UpdateRigPart(25);
+        rigRightLegTarget.transform.localPosition = UpdateRigPart(28);
+        rigRightLegHint.transform.localPosition = UpdateRigPart(26);
+        rigHead.transform.localPosition = UpdateRigPart(0);
     }
 
     Vector3 UpdateRigPart(int i)
@@ -135,14 +135,18 @@ public class J_ShowTrackingList : MonoBehaviour
 
         //Vector3 cameraSpacePos = mainCamera.transform.TransformPoint(scaledPos);
 
+        Vector3 middleVector = (UpdateRigPart(29) + UpdateRigPart(30))/ 2;
         localPos = new Vector3(localPos.x, -localPos.y, -localPos.z);
+
+
 
         Vector3 scaledPos = Vector3.Scale(localPos, currentScaleFactor);
         Vector3 worldPos = transform.TransformPoint(scaledPos) + locationOffset;
 
         //Debug.LogError($"Index {i} while Landmark list count: {conn.latestPoseList.landmarkList.Count}");
+        return localPos - middleVector;
 
-        return worldPos;
+        //return worldPos;
 
         //return transform.TransformPoint(Vector3.Scale(localPos, scaleFactor)) + locationOffset;
 
