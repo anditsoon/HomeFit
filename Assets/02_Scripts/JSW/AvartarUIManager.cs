@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AvartarUIManager : MonoBehaviour
 {
-    public TMP_Text text_Face;
+    public TMP_Text text_Backpacks;
+    public TMP_Text text_body;
+    public TMP_Text text_Eyebrow;
+    public TMP_Text text_Glasses;
+    public TMP_Text text_Glove;
     public TMP_Text text_Hair;
-    public TMP_Text text_UpperC;
-    public TMP_Text text_UnderC;
-    public TMP_Text text_OnepieceC;
-    public TMP_Text text_ShoesC;
-    public TMP_Text text_AckC;
-    public TMP_Text text_headC;
-    public TMP_Text text_specC;
+    public TMP_Text text_Hat;
+    public TMP_Text text_Mustache;
+    public TMP_Text text_Outwear;
+    public TMP_Text text_Pants;
+    public TMP_Text text_Shoe;
+    public GameObject player;
+
+    public int rotationSensitive;
+    private float mouseXNum = 0;
 
     public TMP_Text all;
 
@@ -23,78 +30,99 @@ public class AvartarUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        text_Face.color = Color.magenta;
+        text_Backpacks.color = Color.magenta;
         all.color = Color.magenta;
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButton(0))
+        {
+            mouseXNum = Input.GetAxis("Mouse X") * rotationSensitive * -1;
+            player.transform.Rotate(0, mouseXNum, 0);
+        }
     }
 
-    public void ChangeTextColor1()
+    public void ChangeTextColorBackPacks()
     {
         UIAllReset();
-        text_Face.color = Color.magenta;
+        text_Backpacks.color = Color.magenta;
     }
 
-    public void ChangeTextColor2()
+    public void ChangeTextColorBody()
+    {
+        UIAllReset();
+        text_body.color = Color.magenta;
+    }
+    public void ChangeTextColorEyebrow()
+    {
+        UIAllReset();
+        text_Eyebrow.color = Color.magenta;
+    }
+    public void ChangeTextColorGlasses()
+    {
+        UIAllReset();
+        text_Glasses.color = Color.magenta;
+    }
+    public void ChangeTextColorGlove()
+    {
+        UIAllReset();
+        text_Glove.color = Color.magenta;
+    }
+    public void ChangeTextColorHair()
     {
         UIAllReset();
         text_Hair.color = Color.magenta;
     }
-    public void ChangeTextColor3()
+    public void ChangeTextColorHat()
     {
         UIAllReset();
-        text_UpperC.color = Color.magenta;
+        text_Hat.color = Color.magenta;
     }
-    public void ChangeTextColor4()
+    public void ChangeTextColorMustache()
     {
         UIAllReset();
-        text_UnderC.color = Color.magenta;
+        text_Mustache.color = Color.magenta;
     }
-    public void ChangeTextColor5()
+    public void ChangeTextColorOutwear()
     {
         UIAllReset();
-        text_OnepieceC.color = Color.magenta;
+        text_Outwear.color = Color.magenta;
     }
-    public void ChangeTextColor6()
+    public void ChangeTextColorPants()
     {
         UIAllReset();
-        text_ShoesC.color = Color.magenta;
+        text_Pants.color = Color.magenta;
     }
-    public void ChangeTextColor7()
+    public void ChangeTextColorShoe()
     {
         UIAllReset();
-        text_AckC.color = Color.magenta;
-    }
-    public void ChangeTextColor8()
-    {
-        UIAllReset();
-        text_headC.color = Color.magenta;
-    }
-    public void ChangeTextColor9()
-    {
-        UIAllReset();
-        text_specC.color = Color.magenta;
+        text_Shoe.color = Color.magenta;
     }
 
-
+    
     private void UIAllReset()
     {
-        text_Face.color = Color.black;
+        text_Backpacks.color = Color.black;
+        text_body.color = Color.black;
+        text_Eyebrow.color = Color.black;
+        text_Glasses.color = Color.black;
+        text_Glove.color = Color.black;
         text_Hair.color = Color.black;
-        text_UpperC.color = Color.black;
-        text_UnderC.color = Color.black;
-        text_OnepieceC.color = Color.black;
-        text_ShoesC.color = Color.black;
-        text_AckC.color = Color.black;
-        text_headC.color = Color.black;
-        text_specC.color = Color.black;
+        text_Hat.color = Color.black;
+        text_Mustache.color = Color.black;
+        text_Outwear.color = Color.black;
+        text_Pants.color = Color.black;
+        text_Shoe.color = Color.black;
 
         all.color = Color.magenta;
-
     }
 
+
+    public void ReturnHome()
+    {
+        SceneManager.LoadScene(1);
+    }
 }

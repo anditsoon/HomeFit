@@ -12,8 +12,8 @@ namespace CharacterCustomization
         public const string BodyPartName = "Body";
 
         private const string MaterialPath = "Assets/05_Models/Characters_7/Materials/Main_Material.mat";
-        private const string PartsPath = "Assets/05_Models/Characters_7/Meshes";
-        private const string FbxPath = "Assets/05_Models/Characters_7/Meshes/Basic_Character.fbx";
+        private const string PartsPath = "Assets/Resources/Meshes";
+        private const string FbxPath = "Assets/Resources/Meshes/Basic_Character.fbx";
         private const string AnimationControllerPath = "Assets/05_Models/Characters_7/Animations/Animation controller.controller";
 
         private readonly List<List<SavedPart>> _savedCombinations = new List<List<SavedPart>>();

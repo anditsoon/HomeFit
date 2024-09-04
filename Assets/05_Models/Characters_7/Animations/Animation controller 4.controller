@@ -205,6 +205,33 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &-3913221834414269501
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Walk 0
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 2667949614841947897, guid: c4d9ba8aafc4d8547b2e194823dbfe1e,
+    type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-3765258344290940269
 AnimatorState:
   serializedVersion: 6
@@ -496,7 +523,7 @@ AnimatorStateMachine:
     m_Position: {x: 480, y: 990, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6202541855570737399}
-    m_Position: {x: 510, y: 1070, z: 0}
+    m_Position: {x: 500, y: 1060, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7642713978339399997}
     m_Position: {x: 570, y: 1120, z: 0}
@@ -524,6 +551,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -4790434595611734883}
     m_Position: {x: 1150, y: 1640, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -3913221834414269501}
+    m_Position: {x: 30, y: 190, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -533,7 +563,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -1067655370088090669}
+  m_DefaultState: {fileID: -3913221834414269501}
 --- !u!1102 &-1067655370088090669
 AnimatorState:
   serializedVersion: 6
@@ -646,7 +676,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Animation controller
+  m_Name: Animation controller 4
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:

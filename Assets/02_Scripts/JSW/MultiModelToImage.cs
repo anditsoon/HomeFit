@@ -6,19 +6,99 @@ using UnityEngine.UI;
 public class MultiModelToImage : MonoBehaviour
 {
     public Camera renderCamera; // 모델을 렌더링할 카메라
-    public RawImage[] displayImages; // 여러 모델을 표시할 UI 요소
+    //public RawImage[] displayImages; // 여러 모델을 표시할 UI 요소
     public GameObject[] models; // 렌더링할 3D 모델들
+    public GameObject CustomRawImage;
+    public Transform CustomContent;
 
     private RenderTexture[] renderTextures;
 
     void Start()
     {
-        models = Resources.LoadAll<GameObject>("Prefabs/Glove");
+        AvarUIAllReset();
+        SetAvarUI("Backpack");
+    }
+
+
+    public void ChangeAvarBackpacks()
+    {
+        AvarUIAllReset();
+        SetAvarUI("Backpack");
+    }
+
+    public void ChangeAvarColorBody()
+    {
+        AvarUIAllReset();
+        SetAvarUI("Body");
+    }
+    public void ChangeAvarColorEyebrow()
+    {
+        AvarUIAllReset();
+        SetAvarUI("Eyebrow");
+    }
+    public void ChangeAvarColorGlasses()
+    {
+        AvarUIAllReset();
+        SetAvarUI("Glasses");
+    }
+    public void ChangeAvarColorGlove()
+    {
+        AvarUIAllReset();
+        SetAvarUI("Glove");
+    }
+    public void ChangeAvarColorHair()
+    {
+        AvarUIAllReset();
+        SetAvarUI("Hair");
+    }
+    public void ChangeAvarColorHat()
+    {
+        AvarUIAllReset();
+        SetAvarUI("Hat");
+    }
+    public void ChangeAvarColorMustache()
+    {
+        AvarUIAllReset();
+        SetAvarUI("Mustache");
+    }
+    public void ChangeAvarColorOutwear()
+    {
+        AvarUIAllReset();
+        SetAvarUI("Outerwear");
+    }
+    public void ChangeAvarColorPants()
+    {
+        AvarUIAllReset();
+        SetAvarUI("Pants");
+    }
+    public void ChangeAvarColorShoe()
+    {
+        AvarUIAllReset();
+        SetAvarUI("Shoe");
+    }
+
+    private void AvarUIAllReset()
+    {
+        for (int i =0; i < CustomContent.childCount;i++)
+        {
+            Destroy(CustomContent.GetChild(i).gameObject);
+        }
+    }
+
+    private void SetAvarUI(string avar)
+    {
+        models = Resources.LoadAll<GameObject>("Prefabs/" + avar);
         renderTextures = new RenderTexture[models.Length];
+        GameObject crii = Instantiate(CustomRawImage, CustomContent);
+        crii.GetComponent<CustomRawImageScript>().SetItemPath("", avar);
 
         for (int i = 0; i < models.Length; i++)
         {
             models[i] = Instantiate(models[i]);
+            GameObject cri = Instantiate(CustomRawImage, CustomContent);
+            RawImage ri = cri.GetComponent<RawImage>();
+            cri.GetComponent<CustomRawImageScript>().SetItemPath($"Meshes/{avar}/{models[i].name.Replace("(Clone)","")}",avar);
+           
             models[i].transform.localScale = models[i].transform.localScale * 120;
 
             // 각 모델을 위한 Render Texture 생성
@@ -26,23 +106,33 @@ public class MultiModelToImage : MonoBehaviour
             renderCamera.targetTexture = renderTextures[i];
 
             // 모델 위치 조정 및 렌더링
-            PositionModel(models[i]);
+            PositionModel(models[i], avar);
             renderCamera.Render();
 
             // UI에 해당 Render Texture 할당
-            displayImages[i].texture = renderTextures[i];
+            //displayImage.texture = renderTextures[i];
+            ri.texture = renderTextures[i];
             //if (i == models.Length-1)
             //{
             //    break;
             //}
             models[i].SetActive(false);
+            Destroy(models[i]);
         }
-      
     }
 
-    void PositionModel(GameObject model)
+    void PositionModel(GameObject model, string avar)
     {
-        model.transform.position = renderCamera.transform.position + renderCamera.transform.forward * 1f - Vector3.up;
-        model.transform.LookAt(renderCamera.transform);
+        if (avar == "Shoe")
+        {
+            model.transform.position = renderCamera.transform.position + renderCamera.transform.forward * 1f;
+            model.transform.LookAt(renderCamera.transform);
+        }
+        else
+        {
+            model.transform.position = renderCamera.transform.position + renderCamera.transform.forward * 1f - Vector3.up * 1f;
+            model.transform.LookAt(renderCamera.transform);
+        }
+       
     }
 }
