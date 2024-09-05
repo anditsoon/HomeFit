@@ -10,7 +10,7 @@ using System;
 public class J_ShowTrackingList : MonoBehaviour
 {
 
-    public WebSocketPoseHandler conn;
+    public UDPPoseHandler conn;
     //public List<Transform> bones;
     //public Y_MeasureModelSize measureModelSize;
     public Camera mainCamera;
@@ -40,7 +40,7 @@ public class J_ShowTrackingList : MonoBehaviour
     void Start()
     {
 
-        conn = GameObject.Find("UDPConnector").GetComponent<WebSocketPoseHandler>();
+        conn = GameObject.Find("UDPConnector").GetComponent<UDPPoseHandler>();
         //measureModelSize = GetComponent<Y_MeasureModelSize>();
         initialModelScale = transform.localScale;
         locationOffset = transform.position;
