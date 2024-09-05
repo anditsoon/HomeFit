@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MultiModelToImage : MonoBehaviour
@@ -97,7 +95,7 @@ public class MultiModelToImage : MonoBehaviour
             models[i] = Instantiate(models[i]);
             GameObject cri = Instantiate(CustomRawImage, CustomContent);
             RawImage ri = cri.GetComponent<RawImage>();
-            cri.GetComponent<CustomRawImageScript>().SetItemPath($"Meshes/{avar}/{models[i].name.Replace("(Clone)","")}",avar);
+            cri.GetComponent<CustomRawImageScript>().SetItemPath($"Meshes/{avar}/{i+1}",avar);
            
             models[i].transform.localScale = models[i].transform.localScale * 120;
 
@@ -112,12 +110,14 @@ public class MultiModelToImage : MonoBehaviour
             // UI에 해당 Render Texture 할당
             //displayImage.texture = renderTextures[i];
             ri.texture = renderTextures[i];
-            //if (i == models.Length-1)
-            //{
-            //    break;
-            //}
+            
             models[i].SetActive(false);
             Destroy(models[i]);
+
+            if (i == models.Length - 1)
+            {
+                renderCamera.targetTexture = new RenderTexture(256, 256, 16);
+            }
         }
     }
 
@@ -128,6 +128,19 @@ public class MultiModelToImage : MonoBehaviour
             model.transform.position = renderCamera.transform.position + renderCamera.transform.forward * 1f;
             model.transform.LookAt(renderCamera.transform);
         }
+        else if (avar == "Hair" || avar == "Hat"){
+            model.transform.position = renderCamera.transform.position + renderCamera.transform.forward * 1f - Vector3.up * 2f;
+            model.transform.LookAt(renderCamera.transform);
+            model.transform.Rotate(45, 0, 0);
+        }
+        else if (avar == "Mustache" || avar == "Glasses" || avar == "Eyebrow" || avar == "Body")
+        {
+            model.transform.position = renderCamera.transform.position + renderCamera.transform.forward * 1f - Vector3.up * 1f;
+            model.transform.LookAt(renderCamera.transform);
+            model.transform.localScale = model.transform.localScale * 2;
+            model.transform.localPosition = model.transform.localPosition - Vector3.up * 1.7f - Vector3.forward*2;
+        }
+ 
         else
         {
             model.transform.position = renderCamera.transform.position + renderCamera.transform.forward * 1f - Vector3.up * 1f;

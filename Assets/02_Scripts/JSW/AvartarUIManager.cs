@@ -18,7 +18,10 @@ public class AvartarUIManager : MonoBehaviour
     public TMP_Text text_Outwear;
     public TMP_Text text_Pants;
     public TMP_Text text_Shoe;
-    public GameObject player;
+    public GameObject playerPos;
+    GameObject player;
+    Animator anim;
+    
 
     public int rotationSensitive;
     private float mouseXNum = 0;
@@ -33,6 +36,11 @@ public class AvartarUIManager : MonoBehaviour
         text_Backpacks.color = Color.magenta;
         all.color = Color.magenta;
         player = GameObject.Find("Player");
+        anim = player.GetComponent<Animator>();
+        anim.CrossFade("A_Poses", 0f);
+
+        player.transform.position = playerPos.transform.position;
+        player.transform.rotation = playerPos.transform.rotation;
     }
 
     // Update is called once per frame
