@@ -62,6 +62,6 @@ public class LoginUIManager : MonoBehaviour
     {
         //next Scene
         //print("다음 씬 꾸미기 씬");
-        SceneManager.LoadScene("avatarScene");
+        SceneManager.LoadScene("MainScene");
     }
 }
