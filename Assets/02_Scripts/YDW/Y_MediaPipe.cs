@@ -16,14 +16,18 @@ public class Y_MediaPipe : MonoBehaviour
     Vector3 startSP;
 
     public float targetHeight = 0.78f;
-    public float targetLegLength = 0.78f;
+    public float targetLegLength = 0.52f;
     float targetScaleBody;
     float targetScaleLeg;
 
     Vector3 standardPoint;
     Vector3 StartAndNowDiffLocation;
-    public Transform startTrans;
-    public Transform startDummyTrans;
+
+    public Transform spineTrans;
+    public Transform spineDummyTrans;
+    public Transform lToeTrans;
+    public Transform lToeDummyTrans;
+
 
     public GameObject[] cubes; // 관절 따라 다니게 해 보면서 정확도 맞추자
 
@@ -87,6 +91,8 @@ public class Y_MediaPipe : MonoBehaviour
         headAim2 = GameObject.Find("Aim2");
         spineTarget = GameObject.Find("Rig_Spine_target");
         spineHint = GameObject.Find("Rig_Spine_hint");
+
+        
     }
 
     // Update is called once per frame
@@ -96,6 +102,7 @@ public class Y_MediaPipe : MonoBehaviour
         {
             //처음에 시작할 때의 골반 사이 위치 저장
             startSP = getStandardPoint();
+            lToeTrans.position = UpdateRigPart(31);
         }
 
         if (conn.latestPoseList.landmarkList.Count > 0)
@@ -126,6 +133,7 @@ public class Y_MediaPipe : MonoBehaviour
         if (fullHeight > 0)
         {
             targetScaleLeg = targetLegLength / fullHeight;
+            targetScaleLeg = 0.8f;
         }
     }
 
@@ -162,10 +170,23 @@ public class Y_MediaPipe : MonoBehaviour
         spineTarget.transform.position = Vector3.Lerp(spineTarget.transform.position, (UpdateRigPart(11) + UpdateRigPart(12)) * 0.5f, 0.1f);
         spineHint.transform.position = Vector3.Lerp(spineHint.transform.position, (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f, 0.1f);
 
-        // 최종 위치 보정
-        Vector3 newPosition = transform.position - (transform.up * 0.2f) + StartAndNowDiffLocation;  // 새로운 위치 계산 : 현 위치(허리)에서, 조금 밑에서 (골반), 처음과의 달라진 위치를 더한다
-        newPosition.y = Mathf.Clamp(newPosition.y, 3f, 3.8f);  // y 값 클램프 적용 -> 땅으로 꺼지지 않게
-        startTrans.position = newPosition;
+        // 척추 위치 보정
+        Vector3 spinePos = transform.position - (transform.up * 0.2f) + StartAndNowDiffLocation;  // 새로운 위치 계산 : 현 위치(허리)에서, 조금 밑에서 (골반), 처음과의 달라진 위치를 더한다
+        spinePos.y = Mathf.Clamp(spinePos.y, 3f, 3.8f);  // y 값 클램프 적용 -> 땅으로 꺼지지 않게
+        spineTrans.position = spinePos; // 척추 위치를 강제로 옮겨준다 (애니메이터가 못 움직이게 막아놓고 있었으므로)
+
+        // 왼발 위치 보정
+        lToeTrans.position = UpdateRigPart(31) - UpdateRigPart(27);
+        Vector3 rightVector = Vector3.Cross((UpdateRigPart(31) - UpdateRigPart(27)).normalized, (UpdateRigPart(27) - UpdateRigPart(25)).normalized);
+        Vector3 forwardVector = Vector3.Cross(rightVector, (UpdateRigPart(31) - UpdateRigPart(27)).normalized);
+        Quaternion aa = Quaternion.LookRotation(forwardVector, (UpdateRigPart(31) - UpdateRigPart(27)).normalized);
+        leftLegTarget.transform.rotation = Quaternion.Lerp(leftLegTarget.transform.rotation, aa, 0.1f);
+
+        // 오른손 위치 보정
+        // 16번에서 20번/18번 사이 바라보는 벡터를 손목의 업벡터랑 맞추고
+        // 외적해서 forward 벡터 구해서
+        // 똑같이 Lerp 값 주면
+
 
         // 내려갈 때는 다리먼저 그 다음에 허리
         // 올라올 때는 허리 먼저 그 다음에 다리
@@ -183,14 +204,15 @@ public class Y_MediaPipe : MonoBehaviour
         localPos = new Vector3(localPos.x, -localPos.y, localPos.z); // y 축 좌표 반전
 
 
-
+        // 힌지랑 타겟이 다리는 안 내려간다........
 
         // 스케일 팩터 구하기
 
         // 1. 무릎 좌표일 경우
-        if (i == 25 || i == 26)
+        if (i >= 25 || i == 26) // i  >= 25 로 해야 되나????????????? -> 그런데 이렇게 하면 다리 이상하게 구부러짐....
         {
-            if (localPos.y < 3.15) // 앉아 있을 때는 유닛벡터를 기준으로 한다
+            print("!!!!!!!!!!!!!!!!!" + localPos.y);
+            if (localPos.y > -0.25f) // 앉아 있을 때는 유닛벡터를 기준으로 한다 18이었음 원래
             {
                 currentScaleFactor = Vector3.one;
             }
@@ -198,6 +220,12 @@ public class Y_MediaPipe : MonoBehaviour
             {
                 currentScaleFactor = Vector3.one * targetScaleLeg;
             }
+            print("?????????" + currentScaleFactor);
+
+            //임시
+            currentScaleFactor = Vector3.one * targetScaleBody * targetScaleLeg;
+
+            currentScaleFactor.z = currentScaleFactor.z * 0.4f;
         }
         else // 2. 그 외는 몸통 스케일 팩터를 이용한다
         {
