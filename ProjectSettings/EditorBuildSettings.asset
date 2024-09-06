@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/avatarScene.unity
     guid: b6fc2e8181763724ea6357a9defe9414
+  - enabled: 1
+    path: Assets/01_Scenes/ProfileScene.unity
+    guid: 3815538dc0a1a5a4b89243826bf790f2
   m_configObjects: {}

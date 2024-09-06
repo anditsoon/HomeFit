@@ -29,4 +29,8 @@ public class MainUIManager : MonoBehaviour
     {
         SceneManager.LoadScene("avatarScene");
     }
+    public void MoveProfileScene()
+    {
+        SceneManager.LoadScene("ProfileScene");
+    }
 }
