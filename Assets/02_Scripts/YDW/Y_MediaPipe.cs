@@ -6,6 +6,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using System.Runtime.InteropServices.WindowsRuntime;
+using static UnityEngine.GraphicsBuffer;
 
 
 public class Y_MediaPipe : MonoBehaviour
@@ -27,6 +28,8 @@ public class Y_MediaPipe : MonoBehaviour
     public Transform spineDummyTrans;
     public Transform lToeTrans;
     public Transform lToeDummyTrans;
+    public Transform rToeTrans;
+    public Transform rToeDummyTrans;
 
 
     public GameObject[] cubes; // 관절 따라 다니게 해 보면서 정확도 맞추자
@@ -177,10 +180,18 @@ public class Y_MediaPipe : MonoBehaviour
 
         // 왼발 위치 보정
         lToeTrans.position = UpdateRigPart(31) - UpdateRigPart(27);
-        Vector3 rightVector = Vector3.Cross((UpdateRigPart(31) - UpdateRigPart(27)).normalized, (UpdateRigPart(27) - UpdateRigPart(25)).normalized);
-        Vector3 forwardVector = Vector3.Cross(rightVector, (UpdateRigPart(31) - UpdateRigPart(27)).normalized);
-        Quaternion aa = Quaternion.LookRotation(forwardVector, (UpdateRigPart(31) - UpdateRigPart(27)).normalized);
-        leftLegTarget.transform.rotation = Quaternion.Lerp(leftLegTarget.transform.rotation, aa, 0.1f);
+        Vector3 rightVectorL = Vector3.Cross((UpdateRigPart(31) - UpdateRigPart(27)).normalized, (UpdateRigPart(27) - UpdateRigPart(25)).normalized);
+        Vector3 forwardVectorL = Vector3.Cross(rightVectorL, (UpdateRigPart(31) - UpdateRigPart(27)).normalized);
+        Quaternion rotationVectorL = Quaternion.LookRotation(forwardVectorL, (UpdateRigPart(31) - UpdateRigPart(27)).normalized);
+        leftLegTarget.transform.rotation = Quaternion.Lerp(leftLegTarget.transform.rotation, rotationVectorL, 0.1f);
+
+        // 오른발 위치 보정
+        rToeTrans.position = UpdateRigPart(32) - UpdateRigPart(28);
+        Vector3 rightVectorR = Vector3.Cross((UpdateRigPart(32) - UpdateRigPart(28)).normalized, (UpdateRigPart(28) - UpdateRigPart(26)).normalized);
+        Vector3 forwardVectorR = Vector3.Cross(rightVectorR, (UpdateRigPart(32) - UpdateRigPart(28)).normalized);
+        Quaternion rotationVectorR = Quaternion.LookRotation(forwardVectorR, (UpdateRigPart(32) - UpdateRigPart(28)).normalized);
+        rightLegTarget.transform.rotation = Quaternion.Lerp(rightLegTarget.transform.rotation, rotationVectorR, 0.1f);
+
 
         // 오른손 위치 보정
         // 16번에서 20번/18번 사이 바라보는 벡터를 손목의 업벡터랑 맞추고
