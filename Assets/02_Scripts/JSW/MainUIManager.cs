@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainUIManager : MonoBehaviour
 {
-    public GameObject playerPos;
-    GameObject player;
+    public GameObject player;
+    public TMP_Text nickNameText;
+
     Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
         anim = player.GetComponent<Animator>();
         anim.CrossFade("Dance",0f);
-        player.transform.position = playerPos.transform.position;
-        player.transform.rotation = playerPos.transform.rotation;
+        AvatarInfo.instance.SettingAvatar();
+        nickNameText.text = AvatarInfo.instance.NickName;
     }
 
     // Update is called once per frame
@@ -33,4 +34,5 @@ public class MainUIManager : MonoBehaviour
     {
         SceneManager.LoadScene("ProfileScene");
     }
+    
 }

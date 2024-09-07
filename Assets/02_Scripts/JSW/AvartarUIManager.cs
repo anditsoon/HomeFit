@@ -19,7 +19,7 @@ public class AvartarUIManager : MonoBehaviour
     public TMP_Text text_Pants;
     public TMP_Text text_Shoe;
     public GameObject playerPos;
-    GameObject player;
+    public GameObject player;
     Animator anim;
     
 
@@ -35,12 +35,10 @@ public class AvartarUIManager : MonoBehaviour
     {
         text_Backpacks.color = Color.magenta;
         all.color = Color.magenta;
-        player = GameObject.Find("Player");
         anim = player.GetComponent<Animator>();
         anim.CrossFade("A_Poses", 0f);
 
-        player.transform.position = playerPos.transform.position;
-        player.transform.rotation = playerPos.transform.rotation;
+        AvatarInfo.instance.SettingAvatar();
     }
 
     // Update is called once per frame

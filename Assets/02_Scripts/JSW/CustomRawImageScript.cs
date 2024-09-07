@@ -10,6 +10,8 @@ public class CustomRawImageScript : MonoBehaviour
     public Button btn_Image;
     public GameObject Player;
     public Mesh mesh;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,19 +37,66 @@ public class CustomRawImageScript : MonoBehaviour
 
     public void SettingAvar()
     {
-        print(itemPath);
         GameObject itematPlayer = GameObject.Find(avarItem);
-        //print(itematPlayer);
-        //print(itematPlayer.GetComponent<SkinnedMeshRenderer>().sharedMesh.name);
-        //print(itemPath);
+  
         if (itemPath != "")
         {
             itematPlayer.GetComponent<SkinnedMeshRenderer>().sharedMesh = Resources.Load<Mesh>(itemPath);
+            SetAvarInfo(itemPath, avarItem);
         }
         else
         {
             itematPlayer.GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+            SetAvarInfo("", avarItem);
         }
-       
     }
+
+    public void SetAvarInfo(string itemP, string avarN)
+    {
+        if (avarN == "Backpack")
+        {
+            AvatarInfo.instance.Backpack = itemP;
+        }
+        if (avarN == "Body")
+        {
+            AvatarInfo.instance.Body = itemP;
+        }
+        if (avarN == "Eyebrow")
+        {
+            AvatarInfo.instance.Eyebrow = itemP;
+        }
+        if (avarN == "Glasses")
+        {
+            AvatarInfo.instance.Glasses = itemP;
+        }
+        if (avarN == "Glove")
+        {
+            AvatarInfo.instance.Glove = itemP;
+        }
+        if (avarN == "Hair")
+        {
+            AvatarInfo.instance.Hair = itemP;
+        }
+        if (avarN == "Hat")
+        {
+            AvatarInfo.instance.Hat = itemP;
+        }
+        if (avarN == "Mustache")
+        {
+            AvatarInfo.instance.Mustache = itemP;
+        }
+        if (avarN == "Outerwear")
+        {
+            AvatarInfo.instance.Outerwear = itemP;
+        }
+        if (avarN == "Pants")
+        {
+            AvatarInfo.instance.Pants = itemP;
+        }
+        if (avarN == "Shoe")
+        {
+            AvatarInfo.instance.Shoe = itemP;
+        }
+    }
+
 }
