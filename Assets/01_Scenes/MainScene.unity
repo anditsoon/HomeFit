@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 78.098885, y: 0, z: -20.450256, w: 37.538208}
+  m_margin: {x: 78.098885, y: 0, z: -12.372543, w: 37.538208}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2426,7 +2426,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 783d31af8bdd5194bbb4a443186caaeb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a0579f7c8bedb449b18d157da69f623, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3217,7 +3217,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.9999995, y: 1.01}
+  m_AnchoredPosition: {x: -1.9999995, y: 0.73}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &341654643
@@ -15610,7 +15610,7 @@ PrefabInstance:
     - target: {fileID: 6342178004711203554, guid: 9303caf80204f6b4f9918e2b41760b0e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.99
+      value: -1.27
       objectReference: {fileID: 0}
     - target: {fileID: 6342178004711203554, guid: 9303caf80204f6b4f9918e2b41760b0e,
         type: 3}
