@@ -20,9 +20,9 @@ public class CalenderImage : MonoBehaviour
 
         CalenderDay = GameObject.Find("CalenderDay").GetComponent<TMP_Text>();
 
-        ExerciseCount = GameObject.Find("ExerciseCount").GetComponent<TMP_Text>();
-        KcalCount = GameObject.Find("KcalCount").GetComponent<TMP_Text>();
-        MinutesCount = GameObject.Find("MinutesCount").GetComponent<TMP_Text>();
+        ExerciseCount = GameObject.Find("ExerciseCount").transform.GetChild(0).GetComponent<TMP_Text>();
+        KcalCount = GameObject.Find("KcalCount").transform.GetChild(0).GetComponent<TMP_Text>();
+        MinutesCount = GameObject.Find("MinutesCount").transform.GetChild(0).GetComponent<TMP_Text>();
 
         btn_Cal = GetComponent<Button>();
         btn_Cal.onClick.AddListener(() =>
@@ -46,8 +46,8 @@ public class CalenderImage : MonoBehaviour
             CalenderDay.text = "2024-09-" + num;
         }
 
-        ExerciseCount.text = Random.Range(0, 5).ToString();
-        KcalCount.text = Random.Range(0, 200).ToString();
-        MinutesCount.text = Random.Range(0, 60).ToString();
+        ExerciseCount.text = Random.Range(1, 5).ToString();
+        KcalCount.text = Random.Range(1, 200).ToString();
+        MinutesCount.text = Random.Range(1, 60).ToString();
     }
 }
