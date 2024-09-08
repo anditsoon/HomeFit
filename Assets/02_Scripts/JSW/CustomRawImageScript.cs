@@ -10,12 +10,14 @@ public class CustomRawImageScript : MonoBehaviour
     public Button btn_Image;
     public GameObject Player;
     public Mesh mesh;
+    GameObject AvatarUiManage;
 
 
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("Player");
+        AvatarUiManage = GameObject.Find("AvartarUIManager");
         btn_Image = GetComponent<Button>();
         btn_Image.onClick.AddListener(() =>
         {
@@ -53,49 +55,52 @@ public class CustomRawImageScript : MonoBehaviour
 
     public void SetAvarInfo(string itemP, string avarN)
     {
+        AvartarUIManager AUM = AvatarUiManage.GetComponent<AvartarUIManager>();
+        AUM.isChanged = true;
+
         if (avarN == "Backpack")
         {
-            AvatarInfo.instance.Backpack = itemP;
+            AUM.Backpack = itemP;
         }
         if (avarN == "Body")
         {
-            AvatarInfo.instance.Body = itemP;
+            AUM.Body = itemP;
         }
         if (avarN == "Eyebrow")
         {
-            AvatarInfo.instance.Eyebrow = itemP;
+            AUM.Eyebrow = itemP;
         }
         if (avarN == "Glasses")
         {
-            AvatarInfo.instance.Glasses = itemP;
+            AUM.Glasses = itemP;
         }
         if (avarN == "Glove")
         {
-            AvatarInfo.instance.Glove = itemP;
+            AUM.Glove = itemP;
         }
         if (avarN == "Hair")
         {
-            AvatarInfo.instance.Hair = itemP;
+            AUM.Hair = itemP;
         }
         if (avarN == "Hat")
         {
-            AvatarInfo.instance.Hat = itemP;
+            AUM.Hat = itemP;
         }
         if (avarN == "Mustache")
         {
-            AvatarInfo.instance.Mustache = itemP;
+            AUM.Mustache = itemP;
         }
         if (avarN == "Outerwear")
         {
-            AvatarInfo.instance.Outerwear = itemP;
+            AUM.Outerwear = itemP;
         }
         if (avarN == "Pants")
         {
-            AvatarInfo.instance.Pants = itemP;
+            AUM.Pants = itemP;
         }
         if (avarN == "Shoe")
         {
-            AvatarInfo.instance.Shoe = itemP;
+            AUM.Shoe = itemP;
         }
     }
 

@@ -20,6 +20,8 @@ public class AvartarUIManager : MonoBehaviour
     public TMP_Text text_Shoe;
     public GameObject playerPos;
     public GameObject player;
+    public bool isChanged;
+    public GameObject ChangePopup;
     Animator anim;
     
 
@@ -30,15 +32,42 @@ public class AvartarUIManager : MonoBehaviour
 
 
 
+    public string Backpack = null;
+    public string Body = "Meshes/Body/1";
+    public string Eyebrow = null;
+    public string Glasses = null;
+    public string Glove = null;
+    public string Hair = null;
+    public string Hat = null;
+    public string Mustache = null;
+    public string Outerwear = null;
+    public string Pants = null;
+    public string Shoe = null;
+
+
     // Start is called before the first frame update
     void Start()
     {
+
+
         text_Backpacks.color = Color.magenta;
         all.color = Color.magenta;
         anim = player.GetComponent<Animator>();
         anim.CrossFade("A_Poses", 0f);
 
         AvatarInfo.instance.SettingAvatar();
+
+        Backpack = AvatarInfo.instance.Backpack;
+        Body = AvatarInfo.instance.Body;
+        Eyebrow = AvatarInfo.instance.Eyebrow;
+        Glasses = AvatarInfo.instance.Glasses; ;
+        Glove = AvatarInfo.instance.Glove;
+        Hair = AvatarInfo.instance.Hair;
+        Hat = AvatarInfo.instance.Hat;
+        Mustache = AvatarInfo.instance.Mustache;
+        Outerwear = AvatarInfo.instance.Outerwear;
+        Pants = AvatarInfo.instance.Pants;
+        Shoe = AvatarInfo.instance.Shoe;
     }
 
     // Update is called once per frame
@@ -126,9 +155,43 @@ public class AvartarUIManager : MonoBehaviour
         all.color = Color.magenta;
     }
 
+    public void AlamIsChanged()
+    {
+        if (!isChanged)
+        {
+            ReturnHome();
+        }
+        else
+        {
+            ChangePopup.SetActive(true);
+        }
+
+    }
 
     public void ReturnHome()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void RetunHomeYes()
+    {
+        SettingtoAvar();
+        SceneManager.LoadScene(1);
+    }
+
+    public void SettingtoAvar()
+    {
+        AvatarInfo.instance.Backpack = Backpack;
+        AvatarInfo.instance.Body = Body;
+        AvatarInfo.instance.Eyebrow = Eyebrow;
+        AvatarInfo.instance.Glasses = Glasses;
+        AvatarInfo.instance.Glove = Glove;
+        AvatarInfo.instance.Hair = Hair;
+        AvatarInfo.instance.Hat = Hat;
+        AvatarInfo.instance.Mustache = Mustache;
+        AvatarInfo.instance.Outerwear = Outerwear;
+        AvatarInfo.instance.Pants = Pants;
+        AvatarInfo.instance.Shoe = Shoe;
+        isChanged = false;
     }
 }
