@@ -70,4 +70,33 @@ public class AvatarInfo : MonoBehaviour
         
     }
 
+    public void SettingAvatarInPlay()
+    {
+        string[] itemN = new string[11];
+        itemN[0] = Backpack;
+        itemN[1] = Body;
+        itemN[2] = Eyebrow;
+        itemN[3] = Glasses;
+        itemN[4] = Glove;
+        itemN[5] = Hair;
+        itemN[6] = Hat;
+        itemN[7] = Mustache;
+        itemN[8] = Outerwear;
+        itemN[9] = Pants;
+        itemN[10] = Shoe;
+
+        player = GameObject.Find("Player");
+        for (int i = 0; i < 11; i++)
+        {
+            if (itemN[i] != null)
+            {
+                player.transform.GetChild(0).GetChild(i).GetComponent<SkinnedMeshRenderer>().sharedMesh = Resources.Load<Mesh>(itemN[i]);
+            }
+            else
+            {
+                player.transform.GetChild(0).GetChild(i).GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+            }
+        }
+
+    }
 }

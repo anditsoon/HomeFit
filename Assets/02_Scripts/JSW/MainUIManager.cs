@@ -34,5 +34,10 @@ public class MainUIManager : MonoBehaviour
     {
         SceneManager.LoadScene("ProfileScene");
     }
-    
+
+    public void MovePlayScene()
+    {
+        SceneManager.LoadScene("Y_ProtoScene 1");
+    }
+
 }
