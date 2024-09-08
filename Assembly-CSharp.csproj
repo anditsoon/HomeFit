@@ -115,6 +115,7 @@
     <Compile Include="Assets\02_Scripts\SimpleJSON-master\SimpleJSON.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\02_Scripts\JSW\MainUIManager.cs" />
+    <Compile Include="Assets\02_Scripts\JSW\CalenderImage.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\UDPPoseHandler.cs" />
     <Compile Include="Assets\02_Scripts\JSW\Billboard.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />

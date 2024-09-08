@@ -12,6 +12,7 @@ public class ProfileUIManager : MonoBehaviour
     public RawImage chaRawImage;
     public GameObject player;
     public TMP_Text nickNameText;
+    public GameObject CalenderUI;
  
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,14 @@ public class ProfileUIManager : MonoBehaviour
     public void MoveMainScene()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void CalenderReset()
+    {
+        for (int i =0;i < CalenderUI.transform.childCount;i++)
+        {
+            CalenderUI.transform.GetChild(i).GetComponent<TMP_Text>().fontStyle = FontStyles.Normal; 
+        }
     }
 
     void SetProfilePic()
