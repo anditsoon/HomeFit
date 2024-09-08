@@ -27,13 +27,13 @@ public class Y_MediaPipe : MonoBehaviour
     public Transform spineTrans;
     public Transform spineDummyTrans;
     public Transform lToeTrans;
-    public Transform lToeDummyTrans;
+    //public Transform lToeDummyTrans;
     public Transform rToeTrans;
-    public Transform rToeDummyTrans;
+    //public Transform rToeDummyTrans;
     public Transform lHandTrans;
-    public Transform lHandDummyTrans;
+    //public Transform lHandDummyTrans;
     public Transform rHandTrans;
-    public Transform rHandDummyTrans;
+    //public Transform rHandDummyTrans;
 
 
     public GameObject[] cubes; // 관절 따라 다니게 해 보면서 정확도 맞추자
@@ -94,7 +94,7 @@ public class Y_MediaPipe : MonoBehaviour
         leftLegHint = GameObject.Find("Rig_LeftLeg_hint");
         rightLegTarget = GameObject.Find("Rig_RightLeg_target");
         rightLegHint = GameObject.Find("Rig_RightLeg_hint");
-        headAim1 = GameObject.Find("Aim");
+        headAim1 = GameObject.Find("Aim1");
         headAim2 = GameObject.Find("Aim2");
         spineTarget = GameObject.Find("Rig_Spine_target");
         spineHint = GameObject.Find("Rig_Spine_hint");
