@@ -109,6 +109,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\02_Scripts\JSW\J_ShowTrackingList.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
+    <Compile Include="Assets\02_Scripts\YDW\Y_MediaPipeTest.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\02_Scripts\YDW\Y_ShowTrackingList.cs" />
     <Compile Include="Assets\02_Scripts\YDW\Y_PlayerMoveTest.cs" />
