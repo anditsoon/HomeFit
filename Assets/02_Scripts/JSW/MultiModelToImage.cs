@@ -112,7 +112,6 @@ public class MultiModelToImage : MonoBehaviour
             
             models[i].SetActive(false);
             Destroy(models[i]);
-
             if (i == models.Length - 1)
             {
                 renderCamera.targetTexture = new RenderTexture(256, 256, 16);

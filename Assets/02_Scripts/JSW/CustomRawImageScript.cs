@@ -25,12 +25,6 @@ public class CustomRawImageScript : MonoBehaviour
         });
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void SetItemPath(string path, string item)
     {
         itemPath = path;

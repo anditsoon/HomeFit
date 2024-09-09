@@ -41,43 +41,34 @@ public class LoginUIManager : MonoBehaviour
         transform.GetChild(2).gameObject.SetActive(false);
         transform.GetChild(3).gameObject.SetActive(true);
     }
-    public void Number4ButtonGL()
+    public void Number4ButtonKKL()
     {
-        // 구글 로그인
+        // 카카오 로그인
         transform.GetChild(3).gameObject.SetActive(false);
         transform.GetChild(4).gameObject.SetActive(true);
     }
-    public void Number5_1ButtoL()
+    public void Number5ButtoL()
     {
         AvatarInfo.instance.NickName = playerNameInput.GetComponent<TMP_InputField>().text;
+        AvatarInfo.instance.Birthday = playerBirthInput.GetComponent<TMP_InputField>().text;
+        AvatarInfo.instance.Height = float.Parse(playerHeightInput.GetComponent<TMP_InputField>().text);
+        AvatarInfo.instance.Weight = float.Parse(playerWeightInput.GetComponent<TMP_InputField>().text);
         transform.GetChild(4).gameObject.SetActive(false);
         transform.GetChild(5).gameObject.SetActive(true);
     }
-    public void Number5_2Button()
+
+    public void Number6Button()
     {
-        AvatarInfo.instance.Birthday = playerBirthInput.GetComponent<TMP_InputField>().text;
+
         transform.GetChild(5).gameObject.SetActive(false);
         transform.GetChild(6).gameObject.SetActive(true);
     }
-    public void Number6Button()
+    public void Number7Button()
     {
-        AvatarInfo.instance.Height = float.Parse(playerHeightInput.GetComponent<TMP_InputField>().text);
-        AvatarInfo.instance.Weight = float.Parse(playerWeightInput.GetComponent<TMP_InputField>().text);
-
         transform.GetChild(6).gameObject.SetActive(false);
         transform.GetChild(7).gameObject.SetActive(true);
     }
-    public void Number7Button()
-    {
-        transform.GetChild(7).gameObject.SetActive(false);
-        transform.GetChild(8).gameObject.SetActive(true);
-    }
     public void Number8Button()
-    {
-        transform.GetChild(8).gameObject.SetActive(false);
-        transform.GetChild(9).gameObject.SetActive(true);
-    }
-    public void Number9Button()
     {
         //next Scene
         //print("다음 씬 꾸미기 씬");
