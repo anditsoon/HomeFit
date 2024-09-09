@@ -9,7 +9,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using static UnityEngine.GraphicsBuffer;
 
 
-public class Y_MediaPipe : MonoBehaviour
+public class Y_MediaPipeTest : MonoBehaviour
 {
     public UDPPoseHandler conn;
 
@@ -107,9 +107,8 @@ public class Y_MediaPipe : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            //처음에 시작할 때의 골반 사이 위치 저장
+            //Q를 눌렀을 때의 골반 사이 위치 저장
             startSP = getStandardPoint();
-            lToeTrans.position = UpdateRigPart(31);
         }
 
         if (conn.latestPoseList.landmarkList.Count > 0)
@@ -280,6 +279,8 @@ public class Y_MediaPipe : MonoBehaviour
         {
             finalVector = finalVector - (transform.up * 0.05f);
         }
+
+        //finalVector += new Vector3(0, 1, 0); ////////////////////////////////////////
 
         return finalVector;
     }

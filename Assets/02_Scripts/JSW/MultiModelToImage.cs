@@ -96,7 +96,6 @@ public class MultiModelToImage : MonoBehaviour
             GameObject cri = Instantiate(CustomRawImage, CustomContent);
             RawImage ri = cri.GetComponent<RawImage>();
             cri.GetComponent<CustomRawImageScript>().SetItemPath($"Meshes/{avar}/{i+1}",avar);
-           
             models[i].transform.localScale = models[i].transform.localScale * 120;
 
             // 각 모델을 위한 Render Texture 생성
@@ -148,4 +147,6 @@ public class MultiModelToImage : MonoBehaviour
         }
        
     }
+
+   
 }
