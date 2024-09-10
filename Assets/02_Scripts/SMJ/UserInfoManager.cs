@@ -17,9 +17,10 @@ public class UserInfoManager : MonoBehaviour
     private static extern IntPtr GetActiveWindow();
 
     public Button confirmButton;
-    public int id = 8;
-    private const string TokenUrl = "http://192.168.0.183:8080/api/auth/kakao/login";
-    private const string UserInfoUrl = "$http://192.168.0.183:8080/api/user/{id}";
+    private const int id = 8;
+    //TODO : 고정 IP 나오면 변경
+    private readonly string TokenUrl = "http://192.168.0.183:8080/api/auth/kakao/login";
+    private readonly string UserInfoUrl = $"http://192.168.0.183:8080/api/user/{id}";
 
     void Start()
     {
@@ -28,10 +29,11 @@ public class UserInfoManager : MonoBehaviour
 
     void OnConfirmButtonClick()
     {
-        StartCoroutine(GetTokenAndSendUserInfo());
+        //StartCoroutine(GetTokenAndSendUserInfo());
+        GetTokenAndSendUserInfo();
     }
 
-    IEnumerator GetTokenAndSendUserInfo()
+    /*IEnumerator GetTokenAndSendUserInfo()
     {
         // 1. GET 요청으로 토큰 받아오기
         using (UnityWebRequest tokenRequest = UnityWebRequest.Get(TokenUrl))
@@ -48,10 +50,28 @@ public class UserInfoManager : MonoBehaviour
                 string token = tokenRequest.downloadHandler.text;
                 Debug.Log("받은 토큰: " + token);
                 // 클라 상에서 playerprefab으로 저장
+                PlayerPrefs.SetString("jwtToken", token);
                 // 2. 받은 토큰과 사용자 정보를 함께 POST로 전송
                 yield return StartCoroutine(SendUserInfo(token));
             }
         }
+    }*/
+    public void GetTokenAndSendUserInfo()
+    {
+        StartCoroutine(HttpClient.Instance.Get(TokenUrl,
+            onSuccess: (result) =>
+            {
+                string token = result;
+                // 클라 상에서 playerprefab으로 저장
+                PlayerPrefs.SetString("jwtToken", token);
+                // 2. 받은 토큰과 사용자 정보를 함께 POST로 전송
+                SendUserInfo(token);
+            },
+            onError: (error) =>
+            {
+                Debug.LogError("GET 실패: " + error);
+            }
+         ));
     }
 
     public void OnFullWindow()
@@ -60,7 +80,7 @@ public class UserInfoManager : MonoBehaviour
         ShowWindow(GetActiveWindow(), 3);
     }
 
-    IEnumerator SendUserInfo(string token)
+    /*IEnumerator SendUserInfo(string token)
     {
         print(token);
         WWWForm form = new WWWForm();
@@ -87,5 +107,30 @@ public class UserInfoManager : MonoBehaviour
                 SceneManager.LoadScene("avatarScene");
             }
         }
+    }*/
+
+    IEnumerator SendUserInfo(string token)
+    {
+        print(token);
+        WWWForm form = new WWWForm();
+        form.AddField("jwtToken", token);
+        form.AddField("nickname", AvatarInfo.instance.NickName);
+        form.AddField("height", AvatarInfo.instance.Height.ToString());
+        form.AddField("weight", AvatarInfo.instance.Weight.ToString());
+        form.AddField("birthday", AvatarInfo.instance.Birthday.ToString());
+
+        yield return StartCoroutine(HttpClient.Instance.Post(UserInfoUrl, form,
+            onSuccess: (result) =>
+            {
+                Debug.Log("사용자 정보 전송 성공. 서버 응답: " + result);
+                // 씬이동
+                OnFullWindow();
+                SceneManager.LoadScene("avatarScene");
+            },
+            onError: (error) =>
+            {
+                Debug.LogError("사용자 정보 전송 실패: " + error);
+            }
+        ));
     }
 }

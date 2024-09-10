@@ -92,6 +92,7 @@
     <Compile Include="Assets\02_Scripts\YDW\Y_PlayerMoveTest.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\02_Scripts\JSW\CalenderImage.cs" />
+    <Compile Include="Assets\02_Scripts\SMJ\HttpClient.cs" />
     <Compile Include="Assets\02_Scripts\JSW\CustomRawImageScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
