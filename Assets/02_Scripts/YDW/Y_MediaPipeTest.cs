@@ -31,9 +31,10 @@ public class Y_MediaPipeTest : MonoBehaviour
     public Transform lHandTrans;
     public Transform rHandTrans;
 
-    public GameObject ground;
-    float groundLevel = 0f;
+    //public GameObject ground;
+    //float groundLevel = 0f;
 
+    Y_CountSquatt countSquatt;
 
     public GameObject[] cubes; // 관절 따라 다니게 해 보면서 정확도 맞추자
 
@@ -76,13 +77,19 @@ public class Y_MediaPipeTest : MonoBehaviour
         return vectorFinal;
     }
 
+    private void Awake()
+    {
+        InitializeRigParts();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         conn = GameObject.Find("UDPConnector").GetComponent<UDPPoseHandler>();
-        ground = GameObject.Find("Ground_01");
-        groundLevel = ground.transform.position.y;
-        InitializeRigParts();
+        //ground = GameObject.Find("Ground_01");
+        //groundLevel = ground.transform.position.y;
+
+        countSquatt = GetComponent<Y_CountSquatt>();
     }
 
     private void InitializeRigParts()
@@ -100,7 +107,6 @@ public class Y_MediaPipeTest : MonoBehaviour
         spineTarget = GameObject.Find("Rig_Spine_target");
         spineHint = GameObject.Find("Rig_Spine_hint");
 
-        
     }
 
     // Update is called once per frame
@@ -110,6 +116,7 @@ public class Y_MediaPipeTest : MonoBehaviour
         {
             //Q를 눌렀을 때의 골반 사이 위치 저장
             startSP = getStandardPoint();
+            countSquatt.startGame = true;
         }
 
         if (conn.latestPoseList.landmarkList.Count > 0)
@@ -173,7 +180,7 @@ public class Y_MediaPipeTest : MonoBehaviour
         leftArmTarget.transform.position = Vector3.Lerp(leftArmTarget.transform.position, UpdateRigPart(15), 0.1f);
         rightArmTarget.transform.position = Vector3.Lerp(rightArmTarget.transform.position, UpdateRigPart(16), 0.1f);
         leftLegHint.transform.position = Vector3.Lerp(leftLegHint.transform.position, UpdateRigPart(25), 0.1f);
-        print("!!!!!!!!!!????????" + leftLegHint.transform.position);
+        //print("!!!!!!!!!!????????" + leftLegHint.transform.position);
         rightLegHint.transform.position = Vector3.Lerp(rightLegHint.transform.position, UpdateRigPart(26), 0.1f);
         // 다리가 자꾸 꺼지니까, 다리 위치를 그라운드 레벨과 맞춰준다
         //rightLegHint.transform.position = new Vector3(
@@ -213,15 +220,15 @@ public class Y_MediaPipeTest : MonoBehaviour
         rightLegTarget.transform.rotation = Quaternion.Lerp(rightLegTarget.transform.rotation, rotationVectorR, 0.1f);
 
         // 척추 위치 보정
-        spinePos = transform.position - (transform.up * 0.2f) + StartAndNowDiffLocation;  // 새로운 위치 계산 : 현 위치(허리)에서, 조금 밑에서 (골반), 처음과의 달라진 위치를 더한다
-        if (leftLegHint.transform.position.y > 3 && leftLegHint.transform.position.y < 3.30) // 스쿼트 자세일 때 3.25?
-        {
-            spinePos.y = Mathf.Clamp(spinePos.y, 3f, 3.5f);  // y 값 클램프 적용 -> 땅으로 꺼지지 않게
-        }
-        else
-        {
+        spinePos = transform.position  + StartAndNowDiffLocation;  // - (transform.up * 0.2f) // 새로운 위치 계산 : 현 위치(허리)에서, 조금 밑에서 (골반), 처음과의 달라진 위치를 더한다
+        //if (leftLegHint.transform.position.y > 3 && leftLegHint.transform.position.y < 3.30) // 스쿼트 자세일 때 3.25?
+        //{
+        //    spinePos.y = Mathf.Clamp(spinePos.y, 3f, 3.5f);  // y 값 클램프 적용 -> 땅으로 꺼지지 않게
+        //}
+        //else
+        //{
             spinePos.y = Mathf.Clamp(spinePos.y, 3.2f, 3.5f);
-        }
+        //}
         
         spineTrans.position = spinePos; // 척추 위치를 강제로 옮겨준다 (애니메이터가 못 움직이게 막아놓고 있었으므로)
 
@@ -320,4 +327,5 @@ public class Y_MediaPipeTest : MonoBehaviour
 
 
     #endregion
+
 }
