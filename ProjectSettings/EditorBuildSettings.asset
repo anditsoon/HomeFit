@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/Y_ProtoScene 1.unity
     guid: 850856d3139a3af4987eeaeb3481c840
+  - enabled: 1
+    path: Assets/01_Scenes/BadgeScene.unity
+    guid: bdf849e866ce29a48aa239bd791f3dfd
   m_configObjects: {}

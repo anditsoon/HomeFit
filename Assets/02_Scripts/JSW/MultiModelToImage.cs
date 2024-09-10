@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class MultiModelToImage : MonoBehaviour
@@ -9,113 +10,134 @@ public class MultiModelToImage : MonoBehaviour
     public GameObject CustomRawImage;
     public Transform CustomContent;
 
+    private Coroutine coroutine;
+
     private RenderTexture[] renderTextures;
+    bool ClickOkay = true;
 
     void Start()
     {
         AvarUIAllReset();
-        SetAvarUI("Backpack");
+        StartCoroutine(SetAvarUI("Backpack"));
     }
 
 
     public void ChangeAvarBackpacks()
     {
         AvarUIAllReset();
-        SetAvarUI("Backpack");
+        coroutine = StartCoroutine(SetAvarUI("Backpack"));
     }
 
     public void ChangeAvarColorBody()
     {
         AvarUIAllReset();
-        SetAvarUI("Body");
+        coroutine = StartCoroutine(SetAvarUI("Body"));
     }
     public void ChangeAvarColorEyebrow()
     {
         AvarUIAllReset();
-        SetAvarUI("Eyebrow");
+        coroutine = StartCoroutine(SetAvarUI("Eyebrow"));
     }
     public void ChangeAvarColorGlasses()
     {
         AvarUIAllReset();
-        SetAvarUI("Glasses");
+        coroutine = StartCoroutine(SetAvarUI("Glasses"));
     }
     public void ChangeAvarColorGlove()
     {
         AvarUIAllReset();
-        SetAvarUI("Glove");
+        coroutine = StartCoroutine(SetAvarUI("Glove"));
     }
     public void ChangeAvarColorHair()
     {
         AvarUIAllReset();
-        SetAvarUI("Hair");
+        coroutine = StartCoroutine(SetAvarUI("Hair"));
     }
     public void ChangeAvarColorHat()
     {
         AvarUIAllReset();
-        SetAvarUI("Hat");
+        coroutine = StartCoroutine(SetAvarUI("Hat"));
     }
     public void ChangeAvarColorMustache()
     {
         AvarUIAllReset();
-        SetAvarUI("Mustache");
+        coroutine = StartCoroutine(SetAvarUI("Mustache"));
     }
     public void ChangeAvarColorOutwear()
     {
         AvarUIAllReset();
-        SetAvarUI("Outerwear");
+        coroutine = StartCoroutine(SetAvarUI("Outerwear"));
     }
     public void ChangeAvarColorPants()
     {
         AvarUIAllReset();
-        SetAvarUI("Pants");
+        coroutine = StartCoroutine(SetAvarUI("Pants"));
     }
     public void ChangeAvarColorShoe()
     {
         AvarUIAllReset();
-        SetAvarUI("Shoe");
+        coroutine = StartCoroutine(SetAvarUI("Shoe"));
     }
 
     private void AvarUIAllReset()
     {
+        if (coroutine != null) StopCoroutine(coroutine);
         for (int i =0; i < CustomContent.childCount;i++)
         {
             Destroy(CustomContent.GetChild(i).gameObject);
         }
+        ClickOkay = true;
     }
 
-    private void SetAvarUI(string avar)
+    IEnumerator SetAvarUI(string avar)
     {
-        models = Resources.LoadAll<GameObject>("Prefabs/" + avar);
-        renderTextures = new RenderTexture[models.Length];
-        GameObject crii = Instantiate(CustomRawImage, CustomContent);
-        crii.GetComponent<CustomRawImageScript>().SetItemPath("", avar);
-
-        for (int i = 0; i < models.Length; i++)
+        if (ClickOkay == true)
         {
-            models[i] = Instantiate(models[i]);
-            GameObject cri = Instantiate(CustomRawImage, CustomContent);
-            RawImage ri = cri.GetComponent<RawImage>();
-            cri.GetComponent<CustomRawImageScript>().SetItemPath($"Meshes/{avar}/{i+1}",avar);
-            models[i].transform.localScale = models[i].transform.localScale * 120;
+            ClickOkay = false;
+            models = Resources.LoadAll<GameObject>("Prefabs/" + avar);
+            renderTextures = new RenderTexture[models.Length];
+            GameObject crii = Instantiate(CustomRawImage, CustomContent);
+            crii.GetComponent<CustomRawImageScript>().SetItemPath("", avar);
 
-            // 각 모델을 위한 Render Texture 생성
-            renderTextures[i] = new RenderTexture(256, 256, 16);
-            renderCamera.targetTexture = renderTextures[i];
-
-            // 모델 위치 조정 및 렌더링
-            PositionModel(models[i], avar);
-            renderCamera.Render();
-
-            // UI에 해당 Render Texture 할당
-            //displayImage.texture = renderTextures[i];
-            ri.texture = renderTextures[i];
-            
-            models[i].SetActive(false);
-            Destroy(models[i]);
-            if (i == models.Length - 1)
+            for (int i = 0; i < models.Length; i++)
             {
-                renderCamera.targetTexture = new RenderTexture(256, 256, 16);
+                if (models[i] != null)
+                {
+                    models[i] = Instantiate(models[i]);
+
+                    GameObject cri = Instantiate(CustomRawImage, CustomContent);
+                    RawImage ri = cri.GetComponent<RawImage>();
+                    cri.GetComponent<CustomRawImageScript>().SetItemPath($"Meshes/{avar}/{i + 1}", avar);
+                    models[i].transform.localScale = models[i].transform.localScale * 120;
+
+                    // 각 모델을 위한 Render Texture 생성
+                    renderTextures[i] = new RenderTexture(256, 256, 16);
+                    renderCamera.targetTexture = renderTextures[i];
+
+                    // 모델 위치 조정 및 렌더링
+                    PositionModel(models[i], avar);
+                    renderCamera.Render();
+
+                    // UI에 해당 Render Texture 할당
+                    ri.texture = renderTextures[i];
+
+                    models[i].SetActive(false);
+                    Destroy(models[i]);
+
+                    if (i == models.Length - 1)
+                    {
+                        renderCamera.targetTexture = new RenderTexture(256, 256, 16);
+                    }
+
+                    if (i % 22 == 0 && i != 0)
+                    {
+                        renderCamera.targetTexture = new RenderTexture(256, 256, 16);
+                        yield return new WaitForSeconds(1f);
+                    }
+                }
+                
             }
+            ClickOkay = true;
         }
     }
 

@@ -44,7 +44,6 @@ public class AvartarUIManager : MonoBehaviour
     public string Pants = null;
     public string Shoe = null;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +52,7 @@ public class AvartarUIManager : MonoBehaviour
         text_Backpacks.color = Color.magenta;
         all.color = Color.magenta;
         anim = player.GetComponent<Animator>();
-        anim.CrossFade("A_Poses", 0f);
+        anim.CrossFade("Idle", 0f);
 
         AvatarInfo.instance.SettingAvatar();
 

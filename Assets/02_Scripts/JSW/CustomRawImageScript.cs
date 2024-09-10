@@ -10,14 +10,18 @@ public class CustomRawImageScript : MonoBehaviour
     public Button btn_Image;
     public GameObject Player;
     public Mesh mesh;
+    Animator anim;
     GameObject AvatarUiManage;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        
         Player = GameObject.Find("Player");
         AvatarUiManage = GameObject.Find("AvartarUIManager");
+        anim = Player.GetComponent<Animator>();
+        anim.SetBool("Wearing", true);
         btn_Image = GetComponent<Button>();
         btn_Image.onClick.AddListener(() =>
         {
@@ -34,7 +38,7 @@ public class CustomRawImageScript : MonoBehaviour
     public void SettingAvar()
     {
         GameObject itematPlayer = GameObject.Find(avarItem);
-  
+        anim.CrossFade("Jumping", 0f);
         if (itemPath != "")
         {
             itematPlayer.GetComponent<SkinnedMeshRenderer>().sharedMesh = Resources.Load<Mesh>(itemPath);
