@@ -12,20 +12,22 @@ public class LoginUIManager : MonoBehaviour
     public GameObject playerWeightInput;
     public GameObject playerHeightInput;
 
+    public GameObject webView;
+    public GameObject userInfoManager;
+
+    private WebViewTest web;
+    private UserInfoManager user;
+
     private string playerName = null;
 
     // Start is called before the first frame update
     void Start()
     {
         transform.GetChild(0).gameObject.SetActive(true);
+        web = webView.GetComponent<WebViewTest>();
+        user = userInfoManager.GetComponent<UserInfoManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     public void Number1Button()
     {
         transform.GetChild(0).gameObject.SetActive(false);
@@ -41,9 +43,15 @@ public class LoginUIManager : MonoBehaviour
         transform.GetChild(2).gameObject.SetActive(false);
         transform.GetChild(3).gameObject.SetActive(true);
     }
-    public void Number4ButtonKKL()
+    public void Number4ButtonGL()
     {
-        // 카카오 로그인
+        // 구글 로그인
+        web.OnLoginButtonClick();
+        StartCoroutine(Delay());
+    }
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(0.2f);
         transform.GetChild(3).gameObject.SetActive(false);
         transform.GetChild(4).gameObject.SetActive(true);
     }
@@ -72,6 +80,6 @@ public class LoginUIManager : MonoBehaviour
     {
         //next Scene
         //print("다음 씬 꾸미기 씬");
-        SceneManager.LoadScene("avatarScene");
+        //민제_씬 이동 코드는 UserInfoManager의 SendUserInfo 메서드의 전송 성공시점으로 이동
     }
 }

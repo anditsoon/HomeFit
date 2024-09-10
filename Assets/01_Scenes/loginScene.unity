@@ -7880,7 +7880,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b034c140f461db419fdc5b8ccdaeb51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  confirmButton: {fileID: 9965114}
+  confirmButton: {fileID: 4596625}
+  id: 8
 --- !u!1 &1530785076
 GameObject:
   m_ObjectHideFlags: 0
@@ -9727,8 +9728,6 @@ MonoBehaviour:
   playerBirthInput: {fileID: 2144438440}
   playerWeightInput: {fileID: 1979356100}
   playerHeightInput: {fileID: 137054079}
-  webView: {fileID: 1522619302}
-  userInfoManager: {fileID: 1522619302}
 --- !u!1 &1800416186
 GameObject:
   m_ObjectHideFlags: 0
