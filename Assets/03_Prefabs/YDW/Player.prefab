@@ -803,6 +803,7 @@ MonoBehaviour:
   rToeTrans: {fileID: 0}
   lHandTrans: {fileID: 0}
   rHandTrans: {fileID: 0}
+  ground: {fileID: 0}
   cubes: []
   leftArmTarget: {fileID: 0}
   leftArmHint: {fileID: 0}
