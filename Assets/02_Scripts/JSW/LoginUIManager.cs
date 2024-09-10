@@ -11,19 +11,19 @@ public class LoginUIManager : MonoBehaviour
     public GameObject playerBirthInput;
     public GameObject playerWeightInput;
     public GameObject playerHeightInput;
+    public GameObject webView;
+    public GameObject userInfoManager;
+
+    private WebViewTest web;
+    private UserInfoManager user;
 
     private string playerName = null;
 
-    // Start is called before the first frame update
     void Start()
     {
         transform.GetChild(0).gameObject.SetActive(true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        web = webView.GetComponent<WebViewTest>();
+        user = userInfoManager.GetComponent<UserInfoManager>();
     }
     
     public void Number1Button()
@@ -44,6 +44,12 @@ public class LoginUIManager : MonoBehaviour
     public void Number4ButtonGL()
     {
         // 구글 로그인
+        web.OnLoginButtonClick();
+        StartCoroutine(Delay());
+    }
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(0.2f);
         transform.GetChild(3).gameObject.SetActive(false);
         transform.GetChild(4).gameObject.SetActive(true);
     }
@@ -80,7 +86,6 @@ public class LoginUIManager : MonoBehaviour
     public void Number9Button()
     {
         //next Scene
-        //print("다음 씬 꾸미기 씬");
-        SceneManager.LoadScene("avatarScene");
+
     }
 }
