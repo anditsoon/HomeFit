@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
@@ -13,13 +10,17 @@ public class ProfileUIManager : MonoBehaviour
     public GameObject player;
     public TMP_Text nickNameText;
     public GameObject CalenderUI;
+    Animator anim;
  
     // Start is called before the first frame update
     void Start()
     {
         AvatarInfo.instance.SettingAvatar();
+        anim = player.GetComponent<Animator>();
+        anim.CrossFade("Idle", 0f);
         SetProfilePic();
         nickNameText.text = AvatarInfo.instance.NickName;
+
     }
 
     // Update is called once per frame

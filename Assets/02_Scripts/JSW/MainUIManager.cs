@@ -40,4 +40,9 @@ public class MainUIManager : MonoBehaviour
         SceneManager.LoadScene("Y_ProtoScene 1");
     }
 
+    public void MoveBadgeScene()
+    {
+        SceneManager.LoadScene("BadgeScene");
+    }
+
 }
