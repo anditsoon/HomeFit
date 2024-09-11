@@ -101,6 +101,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
+    <Compile Include="Assets\02_Scripts\YDW\Y_CountJumpingJack.cs" />
     <Compile Include="Assets\02_Scripts\JSW\PlaySceneManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\02_Scripts\YDW\Y_MediaPipe.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Assets\02_Scripts\YDW\Y_PlayerMoveTest.cs" />
     <Compile Include="Assets\02_Scripts\SimpleJSON-master\SimpleJSON.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+    <Compile Include="Assets\02_Scripts\YDW\Y_WebCam.cs" />
     <Compile Include="Assets\02_Scripts\JSW\MainUIManager.cs" />
     <Compile Include="Assets\02_Scripts\JSW\CalenderImage.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\UDPPoseHandler.cs" />

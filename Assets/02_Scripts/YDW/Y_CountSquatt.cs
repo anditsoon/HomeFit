@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Y_CountSquatt : MonoBehaviour
@@ -9,6 +10,8 @@ public class Y_CountSquatt : MonoBehaviour
     public float squattCount;
     Y_MediaPipeTest mediapipe;
     Transform pelvisPos;
+    Transform leftHandPos;
+    Transform rightHandPos;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +20,8 @@ public class Y_CountSquatt : MonoBehaviour
         squattCount = 0;
         mediapipe = GetComponent<Y_MediaPipeTest>();
         pelvisPos = mediapipe.spineTrans;
+        leftHandPos = mediapipe.leftArmTarget.transform;
+        rightHandPos = mediapipe.rightArmTarget.transform;
     }
 
     // Update is called once per frame
@@ -25,13 +30,13 @@ public class Y_CountSquatt : MonoBehaviour
         if(startGame)
         {
             print("y 좌표 : " + pelvisPos.position.y);
-            if (pelvisPos.position.y < 3.25f && !isSquatting)
+            if (pelvisPos.position.y < 3.35f && !isSquatting) // 3.25
             {
                 squattCount++;
                 isSquatting = true;
             }
         
-            if(pelvisPos.position.y > 3.35f && isSquatting)
+            if(pelvisPos.position.y > 3.6f && isSquatting) // 3.35
             {
                 isSquatting = false;
             }

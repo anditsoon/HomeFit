@@ -31,8 +31,8 @@ public class Y_MediaPipeTest : MonoBehaviour
     public Transform lHandTrans;
     public Transform rHandTrans;
 
-    //public GameObject ground;
-    //float groundLevel = 0f;
+    public GameObject ground;
+    float groundLevel = 0f;
 
     Y_CountSquatt countSquatt;
 
@@ -82,12 +82,13 @@ public class Y_MediaPipeTest : MonoBehaviour
         InitializeRigParts();
     }
 
-    // Start is called before the first frame update
+              // Start is called before the first frame update
     void Start()
     {
         conn = GameObject.Find("UDPConnector").GetComponent<UDPPoseHandler>();
-        //ground = GameObject.Find("Ground_01");
-        //groundLevel = ground.transform.position.y;
+        ground = GameObject.Find("Ground_01");
+        groundLevel = ground.transform.position.y;
+        print("groundLevel: " + groundLevel);
 
         countSquatt = GetComponent<Y_CountSquatt>();
     }
@@ -180,16 +181,23 @@ public class Y_MediaPipeTest : MonoBehaviour
         leftArmTarget.transform.position = Vector3.Lerp(leftArmTarget.transform.position, UpdateRigPart(15), 0.1f);
         rightArmTarget.transform.position = Vector3.Lerp(rightArmTarget.transform.position, UpdateRigPart(16), 0.1f);
         leftLegHint.transform.position = Vector3.Lerp(leftLegHint.transform.position, UpdateRigPart(25), 0.1f);
-        //print("!!!!!!!!!!????????" + leftLegHint.transform.position);
+        
         rightLegHint.transform.position = Vector3.Lerp(rightLegHint.transform.position, UpdateRigPart(26), 0.1f);
-        // 다리가 자꾸 꺼지니까, 다리 위치를 그라운드 레벨과 맞춰준다
-        //rightLegHint.transform.position = new Vector3(
-        //    rightLegHint.transform.position.x,
-        //    Mathf.Max(UpdateRigPart(26).y, groundLevel + 0.2f),  // 지면 레벨보다 아래로 내려가지 않도록
-        //    rightLegHint.transform.position.z
-        //);
+        
         leftLegTarget.transform.position = Vector3.Lerp(leftLegTarget.transform.position, UpdateRigPart(27), 0.1f);
+        //다리가 자꾸 꺼지니까, 다리 위치를 그라운드 레벨과 맞춰준다
+        leftLegTarget.transform.position = new Vector3(
+            leftLegTarget.transform.position.x,
+            Mathf.Max(UpdateRigPart(27).y, groundLevel + 0.2f),  // 지면 레벨보다 아래로 내려가지 않도록
+            leftLegTarget.transform.position.z
+        );
         rightLegTarget.transform.position = Vector3.Lerp(rightLegTarget.transform.position, UpdateRigPart(28), 0.1f);
+        //다리가 자꾸 꺼지니까, 다리 위치를 그라운드 레벨과 맞춰준다
+        rightLegTarget.transform.position = new Vector3(
+            rightLegTarget.transform.position.x,
+            Mathf.Max(UpdateRigPart(28).y, groundLevel + 0.2f),  // 지면 레벨보다 아래로 내려가지 않도록
+            rightLegTarget.transform.position.z
+        );
         spineTarget.transform.position = Vector3.Lerp(spineTarget.transform.position, (UpdateRigPart(11) + UpdateRigPart(12)) * 0.5f, 0.1f);
         spineHint.transform.position = Vector3.Lerp(spineHint.transform.position, (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f, 0.1f);
 
@@ -220,16 +228,16 @@ public class Y_MediaPipeTest : MonoBehaviour
         rightLegTarget.transform.rotation = Quaternion.Lerp(rightLegTarget.transform.rotation, rotationVectorR, 0.1f);
 
         // 척추 위치 보정
-        spinePos = transform.position  + StartAndNowDiffLocation;  // - (transform.up * 0.2f) // 새로운 위치 계산 : 현 위치(허리)에서, 조금 밑에서 (골반), 처음과의 달라진 위치를 더한다
+        spinePos = transform.position + StartAndNowDiffLocation;  // - (transform.up * 0.2f) // 새로운 위치 계산 : 현 위치(허리)에서, 조금 밑에서 (골반), 처음과의 달라진 위치를 더한다
         //if (leftLegHint.transform.position.y > 3 && leftLegHint.transform.position.y < 3.30) // 스쿼트 자세일 때 3.25?
         //{
         //    spinePos.y = Mathf.Clamp(spinePos.y, 3f, 3.5f);  // y 값 클램프 적용 -> 땅으로 꺼지지 않게
         //}
         //else
         //{
-            spinePos.y = Mathf.Clamp(spinePos.y, 3.2f, 3.5f);
-        //}
-        
+            //spinePos.y = Mathf.Clamp(spinePos.y, 3.4f, 3.7f); // 3.2f, 3.5f ////////////////////////////////////////////////////
+                                                              //}
+
         spineTrans.position = spinePos; // 척추 위치를 강제로 옮겨준다 (애니메이터가 못 움직이게 막아놓고 있었으므로)
 
         // 왼손 위치 보정
@@ -278,7 +286,6 @@ public class Y_MediaPipeTest : MonoBehaviour
         // 1. 무릎 좌표일 경우
         if (i >= 25 || i == 26) // i  >= 25 로 해야 되나????????????? -> 그런데 이렇게 하면 다리 이상하게 구부러짐....
         {
-            //print("!!!!!!!!!!!!!!!!!" + localPos.y);
             if (localPos.y > -0.25f) // 앉아 있을 때는 유닛벡터를 기준으로 한다 18이었음 원래
             {
                 currentScaleFactor = Vector3.one;
@@ -290,7 +297,7 @@ public class Y_MediaPipeTest : MonoBehaviour
             //print("?????????" + currentScaleFactor);
 
             //임시
-            currentScaleFactor = Vector3.one * targetScaleBody * targetScaleLeg;
+            currentScaleFactor = Vector3.one * targetScaleBody * targetScaleLeg * 0.7f;
 
             currentScaleFactor.z = currentScaleFactor.z * 0.4f;
         }
@@ -306,7 +313,7 @@ public class Y_MediaPipeTest : MonoBehaviour
 
             StartAndNowDiffLocation.y = -StartAndNowDiffLocation.y; // y 값 반전
 
-            StartAndNowDiffLocation = Vector3.Scale(StartAndNowDiffLocation, currentScaleFactor); // 스케일 팩터 보정
+           // StartAndNowDiffLocation = Vector3.Scale(StartAndNowDiffLocation, currentScaleFactor); // 스케일 팩터 보정
 
             StartAndNowDiffLocation = transform.TransformDirection(StartAndNowDiffLocation); // 월드 좌표로 변환
         }
