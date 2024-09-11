@@ -35,6 +35,7 @@ public class Y_MediaPipeTest : MonoBehaviour
     float groundLevel = 0f;
 
     Y_CountSquatt countSquatt;
+    Y_CountJumpingJack countJumpingJack;
 
     public GameObject[] cubes; // 관절 따라 다니게 해 보면서 정확도 맞추자
 
@@ -91,6 +92,7 @@ public class Y_MediaPipeTest : MonoBehaviour
         print("groundLevel: " + groundLevel);
 
         countSquatt = GetComponent<Y_CountSquatt>();
+        countJumpingJack = GetComponent<Y_CountJumpingJack>();
     }
 
     private void InitializeRigParts()
@@ -118,6 +120,7 @@ public class Y_MediaPipeTest : MonoBehaviour
             //Q를 눌렀을 때의 골반 사이 위치 저장
             startSP = getStandardPoint();
             countSquatt.startGame = true;
+            countJumpingJack.startGame = true;
         }
 
         if (conn.latestPoseList.landmarkList.Count > 0)

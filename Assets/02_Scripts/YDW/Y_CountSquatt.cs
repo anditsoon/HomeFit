@@ -20,8 +20,6 @@ public class Y_CountSquatt : MonoBehaviour
         squattCount = 0;
         mediapipe = GetComponent<Y_MediaPipeTest>();
         pelvisPos = mediapipe.spineTrans;
-        leftHandPos = mediapipe.leftArmTarget.transform;
-        rightHandPos = mediapipe.rightArmTarget.transform;
     }
 
     // Update is called once per frame
@@ -29,14 +27,14 @@ public class Y_CountSquatt : MonoBehaviour
     {
         if(startGame)
         {
-            print("y 좌표 : " + pelvisPos.position.y);
+            //print("y 좌표 : " + pelvisPos.position.y);
             if (pelvisPos.position.y < 3.35f && !isSquatting) // 3.25
             {
                 squattCount++;
                 isSquatting = true;
             }
         
-            if(pelvisPos.position.y > 3.6f && isSquatting) // 3.35
+            if(pelvisPos.position.y > 3.45f && isSquatting) // 3.35
             {
                 isSquatting = false;
             }

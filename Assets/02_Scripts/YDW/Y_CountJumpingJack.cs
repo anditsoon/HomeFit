@@ -26,16 +26,18 @@ public class Y_CountJumpingJack : MonoBehaviour
     {
         if (startGame)
         {
-            print("손 좌표 : " + leftHandPos.position.y + " 오른손도!! : " + rightHandPos.position.y);
-            if (leftHandPos.position.y < 3.35f && rightHandPos.position.y < 3.35f && !isJumpingJack) // 3.25
+            //print("손 좌표 : " + leftHandPos.position.y + " 오른손도!! : " + rightHandPos.position.y);
+            if (leftHandPos.position.y > 4.8f && rightHandPos.position.y > 4.8f && !isJumpingJack)
             {
                 jumpingJackCount++;
                 isJumpingJack = true;
+                print("!!!!!!!! 손 좌표 : " + leftHandPos.position.y + " 오른손도!! : " + rightHandPos.position.y);
             }
 
-            if (leftHandPos.position.y > 3.6f && rightHandPos.position.y < 3.35f && isJumpingJack) // 3.35
+            if (leftHandPos.position.y < 3.7f && rightHandPos.position.y < 3.7f && isJumpingJack)
             {
                 isJumpingJack = false;
+                print("?????????/ 손 좌표 : " + leftHandPos.position.y + " 오른손도!! : " + rightHandPos.position.y);
             }
 
             print("점핑잭 횟수: " + jumpingJackCount);

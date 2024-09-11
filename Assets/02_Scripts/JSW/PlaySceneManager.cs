@@ -7,7 +7,7 @@ public class PlaySceneManager : MonoBehaviour
 {
     void Start()
     {
-        AvatarInfo.instance.SettingAvatarInPlay();
+        //AvatarInfo.instance.SettingAvatarInPlay();
     }
 
     void Update()
