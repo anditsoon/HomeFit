@@ -4457,7 +4457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1016151592
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6054,7 +6054,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   confirmButton: {fileID: 4596625}
-  id: 8
 --- !u!1 &1539780925
 GameObject:
   m_ObjectHideFlags: 0
@@ -7052,8 +7051,9 @@ MonoBehaviour:
   playerBirthInput: {fileID: 2144438440}
   playerWeightInput: {fileID: 1979356100}
   playerHeightInput: {fileID: 137054079}
-  webView: {fileID: 0}
-  userInfoManager: {fileID: 0}
+  makeAvaterButton: {fileID: 0}
+  webView: {fileID: 1522619302}
+  userInfoManager: {fileID: 1522619302}
 --- !u!1 &1813215821
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,20 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Networking;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using System.Runtime.InteropServices;
-using System;
 
 public class UserInfoManager : MonoBehaviour
 {
-    //창 속성 정의
-    [DllImport("user32.dll")]
-    private static extern bool ShowWindow(IntPtr hwnd, int nCmdShow);
 
-    //현재 활성화된 창의 IntPtr을 가져오는 함수
-    [DllImport("user32.dll")]
-    private static extern IntPtr GetActiveWindow();
 
     public Button confirmButton;
     private const int id = 8;
@@ -74,11 +65,7 @@ public class UserInfoManager : MonoBehaviour
          ));
     }
 
-    public void OnFullWindow()
-    {
-        //현재 활성화된 창을 최대화
-        ShowWindow(GetActiveWindow(), 3);
-    }
+    
 
     /*IEnumerator SendUserInfo(string token)
     {
@@ -124,7 +111,6 @@ public class UserInfoManager : MonoBehaviour
             {
                 Debug.Log("사용자 정보 전송 성공. 서버 응답: " + result);
                 // 씬이동
-                OnFullWindow();
                 SceneManager.LoadScene("avatarScene");
             },
             onError: (error) =>
