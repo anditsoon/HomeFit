@@ -45,4 +45,13 @@ public class MainUIManager : MonoBehaviour
         SceneManager.LoadScene("BadgeScene");
     }
 
+    public void MoveGameLobbyScene()
+    {
+        SceneManager.LoadScene("GameLobbyScene");
+    }
+
+    public void MoveConsultingScene()
+    {
+        SceneManager.LoadScene("ConsultingScene");
+    }
 }

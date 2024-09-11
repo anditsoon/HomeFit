@@ -33,6 +33,10 @@ public class ProfileUIManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
+    public void GameLobbyScene()
+    {
+        SceneManager.LoadScene("GameLobbyScene");
+    }
 
     public void CalenderReset()
     {

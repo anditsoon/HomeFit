@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameLobbyUIManager : MonoBehaviour
 {
@@ -54,5 +55,14 @@ public class GameLobbyUIManager : MonoBehaviour
     public void ButtonEnterRoom()
     {
 
+    }
+
+    public void MoveMainScene()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
+    public void ProfileScene()
+    {
+        SceneManager.LoadScene("ProfileScene");
     }
 }
