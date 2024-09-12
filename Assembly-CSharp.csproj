@@ -78,6 +78,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\02_Scripts\YDW\Y_SphereTest.cs" />
+    <Compile Include="Assets\02_Scripts\YDW\Y_CountSquatt.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\02_Scripts\SimpleJSON-master\SimpleJSONDotNetTypes.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
+    <Compile Include="Assets\02_Scripts\YDW\Y_WebCamStream.cs" />
     <Compile Include="Assets\TestScript.cs" />
     <Compile Include="Assets\02_Scripts\JSW\UIManager\BadgeUIManager.cs" />
     <Compile Include="Assets\02_Scripts\JSW\UIManager\GameLobbyUIManager.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="Assets\02_Scripts\JSW\AvatarInfo.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
+    <Compile Include="Assets\02_Scripts\YDW\Y_CountJumpingJack.cs" />
     <Compile Include="Assets\02_Scripts\JSW\PlaySceneManager.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\UserInfoManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
@@ -137,6 +140,7 @@
     <Compile Include="Assets\02_Scripts\JSW\UIManager\ConsultingUIManager.cs" />
     <Compile Include="Assets\02_Scripts\SimpleJSON-master\SimpleJSON.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
+    <Compile Include="Assets\02_Scripts\YDW\Y_WebCam.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\UDPPoseHandler.cs" />
