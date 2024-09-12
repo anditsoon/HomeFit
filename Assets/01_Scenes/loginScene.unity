@@ -6057,8 +6057,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1522619303}
-  - component: {fileID: 1522619304}
   - component: {fileID: 1522619305}
+  - component: {fileID: 1522619306}
+  - component: {fileID: 1522619307}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -6081,18 +6082,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1522619304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522619302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96d087d86a5df784f99533b600134ecd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1522619305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6106,6 +6095,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   confirmButton: {fileID: 4596625}
+--- !u!114 &1522619306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522619302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46913734be682ba4580c48b28a108525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomPrefab: {fileID: 0}
+  scrollContent: {fileID: 0}
+--- !u!114 &1522619307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522619302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf16c54b2dbbc424d908933deb19131d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1539780925
 GameObject:
   m_ObjectHideFlags: 0
@@ -7142,9 +7157,9 @@ MonoBehaviour:
   playerBirthInput: {fileID: 2144438440}
   playerWeightInput: {fileID: 1979356100}
   playerHeightInput: {fileID: 137054079}
-  makeAvaterButton: {fileID: 0}
-  webView: {fileID: 1522619302}
-  userInfoManager: {fileID: 1522619302}
+  makeAvaterButton: {fileID: 4596625}
+  kakao: {fileID: 1522619302}
+  user: {fileID: 1522619302}
 --- !u!1 &1813215821
 GameObject:
   m_ObjectHideFlags: 0
