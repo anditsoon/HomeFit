@@ -23,6 +23,7 @@ public class AvartarUIManager : MonoBehaviour
     public bool isChanged;
     public GameObject ChangePopup;
     Animator anim;
+    public Animator animUI;
     
 
     public int rotationSensitive;
@@ -43,6 +44,15 @@ public class AvartarUIManager : MonoBehaviour
     public string Outerwear = null;
     public string Pants = null;
     public string Shoe = null;
+
+    public GameObject CamPosOpening;
+    public GameObject CamPosEnding;
+    public GameObject endingDestroyUI1;
+    public GameObject endingDestroyUI2;
+    Color SelectingColor = Color.blue;
+
+    bool Ending = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +77,7 @@ public class AvartarUIManager : MonoBehaviour
         Outerwear = AvatarInfo.instance.Outerwear;
         Pants = AvatarInfo.instance.Pants;
         Shoe = AvatarInfo.instance.Shoe;
+
     }
 
     // Update is called once per frame
@@ -77,63 +88,77 @@ public class AvartarUIManager : MonoBehaviour
             mouseXNum = Input.GetAxis("Mouse X") * rotationSensitive * -1;
             player.transform.Rotate(0, mouseXNum, 0);
         }
+
+        if (!Ending)
+        {
+            // -0.5, 2, -10
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, CamPosOpening.transform.position, Time.deltaTime * 10);
+        }
+        else
+        {
+            // -2 -0.2 -4
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, CamPosEnding.transform.position, Time.deltaTime * 10);
+        }
+
+
+
     }
 
     public void ChangeTextColorBackPacks()
     {
         UIAllReset();
-        text_Backpacks.color = Color.magenta;
+        text_Backpacks.color = SelectingColor;
     }
 
     public void ChangeTextColorBody()
     {
         UIAllReset();
-        text_body.color = Color.magenta;
+        text_body.color = SelectingColor;
     }
     public void ChangeTextColorEyebrow()
     {
         UIAllReset();
-        text_Eyebrow.color = Color.magenta;
+        text_Eyebrow.color = SelectingColor;
     }
     public void ChangeTextColorGlasses()
     {
         UIAllReset();
-        text_Glasses.color = Color.magenta;
+        text_Glasses.color = SelectingColor;
     }
     public void ChangeTextColorGlove()
     {
         UIAllReset();
-        text_Glove.color = Color.magenta;
+        text_Glove.color = SelectingColor;
     }
     public void ChangeTextColorHair()
     {
         UIAllReset();
-        text_Hair.color = Color.magenta;
+        text_Hair.color = SelectingColor;
     }
     public void ChangeTextColorHat()
     {
         UIAllReset();
-        text_Hat.color = Color.magenta;
+        text_Hat.color = SelectingColor;
     }
     public void ChangeTextColorMustache()
     {
         UIAllReset();
-        text_Mustache.color = Color.magenta;
+        text_Mustache.color = SelectingColor;
     }
     public void ChangeTextColorOutwear()
     {
         UIAllReset();
-        text_Outwear.color = Color.magenta;
+        text_Outwear.color = SelectingColor;
     }
     public void ChangeTextColorPants()
     {
         UIAllReset();
-        text_Pants.color = Color.magenta;
+        text_Pants.color = SelectingColor;
     }
     public void ChangeTextColorShoe()
     {
         UIAllReset();
-        text_Shoe.color = Color.magenta;
+        text_Shoe.color = SelectingColor;
     }
 
     
@@ -169,13 +194,27 @@ public class AvartarUIManager : MonoBehaviour
 
     public void ReturnHome()
     {
-        SceneManager.LoadScene(1);
+        StartCoroutine(ending());
     }
 
     public void RetunHomeYes()
     {
         SettingtoAvar();
-        SceneManager.LoadScene(1);
+        StartCoroutine(ending());
+    }
+
+    IEnumerator ending()
+    {
+        endingDestroyUI1.SetActive(false);
+        endingDestroyUI2.SetActive(false);
+        player.transform.forward = Camera.main.transform.forward * -1;
+        ChangePopup.SetActive(false);
+        anim.CrossFade("Win", 0f);
+        animUI.SetBool("isEnd", true);
+        Ending = true;
+        yield return new WaitForSeconds(1.3f);
+        //SceneManager.LoadScene(1);
+        SceneManager.LoadSceneAsync(1);
     }
 
     public void SettingtoAvar()

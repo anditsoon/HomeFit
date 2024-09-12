@@ -5,20 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class BadgeUIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject BadgeUI;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
     public void LoadMainScene()
     {
-        SceneManager.LoadScene("MainScene");
+        //
+        iTween.MoveTo(BadgeUI, iTween.Hash("islocal", false,
+
+                                                       "x", -960,
+
+                                                       "time", 1.0f,
+
+                                                       "easetype", iTween.EaseType.easeOutBounce,
+
+                                                       "oncomplete", "",
+
+                                                       "oncompletetarget", this.gameObject
+
+        ));
+        //SceneManager.LoadScene("MainScene");
     }
 }

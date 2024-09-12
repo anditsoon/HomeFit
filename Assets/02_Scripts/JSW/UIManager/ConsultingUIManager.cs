@@ -5,9 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class ConsultingUIManager : MonoBehaviour
 {
+    public GameObject ConsultingUI;
+
     public void MoveMainScene()
     {
-        SceneManager.LoadScene("MainScene");
+        //
+        iTween.MoveTo(ConsultingUI, iTween.Hash("islocal", false,
+
+                                                       "y", -540,
+
+                                                       "time", 1.0f,
+
+                                                       "easetype", iTween.EaseType.easeOutBounce,
+
+                                                       "oncomplete", "",
+
+                                                       "oncompletetarget", this.gameObject
+
+        ));
     }   
 
 }
