@@ -5,7 +5,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public struct PoseData
@@ -15,10 +17,12 @@ public struct PoseData
     public float z;
 }
 
+
 [System.Serializable]
-public struct PoseList
+public struct Data
 {
     public List<PoseData> landmarkList;
+    public byte[] image;
 }
 
 public enum PoseName
@@ -66,7 +70,11 @@ public class UDPPoseHandler : MonoBehaviour
     public bool printToConsole = false;
     public string data;
 
-    public PoseList latestPoseList;
+    public List<PoseData> latestPoseList;
+    public Texture2D latestImageTexture;
+    private byte[] imageToProcess = null;
+
+    public RawImage displayWebCam;
 
     private void Start()
     {
@@ -79,8 +87,10 @@ public class UDPPoseHandler : MonoBehaviour
         receiveThread = new Thread(new ThreadStart(ReceiveData));
         receiveThread.IsBackground = true;
         receiveThread.Start();
+        
     }
 
+    Data _data;
     private void ReceiveData()
     {
         while (startReceiving)
@@ -89,26 +99,54 @@ public class UDPPoseHandler : MonoBehaviour
             {
                 IPEndPoint ip = new IPEndPoint(IPAddress.Any, 0);
                 byte[] dataByte = client.Receive(ref ip);
-                data = Encoding.UTF8.GetString(dataByte);
-                if (data.StartsWith("[") && data.EndsWith("]"))
+                string jsonData = Encoding.UTF8.GetString(dataByte);
+                _data = JsonUtility.FromJson<Data>(jsonData);
+
+                lock (this)
                 {
-                    data = "{\"landmarkList\":" + data + "}";
-                    latestPoseList = JsonUtility.FromJson<PoseList>(data);
+                    latestPoseList = _data.landmarkList;
+                    imageToProcess = _data.image; // 나중에 처리할 이미지들 저장 // 이거 Add 로 해야 되나?!?!
+                    print("image to process : " + (imageToProcess == null));
+                    print(imageToProcess[0]);
                 }
-                else
-                {
-                    Debug.LogWarning($"Unrecognized message format: {data}");
-                }
-                if (printToConsole)
-                {
-                    print(data);
-                }
+
             }
-            catch(Exception ex)
+
+            catch (Exception ex)
             {
-                print(ex.ToString());
+                Debug.LogError(ex.ToString());
             }
         }
+
+        
+    }
+
+    private void Update()
+    {
+        if (imageToProcess != null)
+        {
+            lock (this)
+            {
+                latestImageTexture = DecodeImage(imageToProcess);
+                //imageToProcess = null; // 처리 끝난 이후 초기화
+
+                displayWebCam.texture = latestImageTexture;
+            }
+        }
+
+    }
+
+    private Texture2D DecodeImage(byte[] imageData)
+    {
+        Texture2D texture = new Texture2D(1100, 700);
+        //print("DecodeImage imageData : " + imageData[0].ToString());
+        //imageData = texture.EncodeToJPG();
+        if (imageData != null && imageData.Length > 0)
+        {
+            //print("뜨나요?????");
+            texture.LoadImage(imageData);
+        }
+        return texture;
     }
 
     public void UDPClose()
@@ -127,4 +165,12 @@ public class UDPPoseHandler : MonoBehaviour
     {
         UDPClose();
     }
+
+    //private void OnGUI()
+    //{
+    //    if (latestImageTexture != null)
+    //    {
+    //        GUI.DrawTexture(new Rect(10, 10, 320, 240), latestImageTexture);
+    //    }
+    //}
 }

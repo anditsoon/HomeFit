@@ -63,7 +63,7 @@ public class WebSocketPoseHandler : MonoBehaviour
     private ClientWebSocket webSocket;
     private bool isRunning = false;
 
-    public PoseList latestPoseList;
+    public PoseData latestPoseList;
 
     private void Start()
     {
@@ -129,7 +129,7 @@ public class WebSocketPoseHandler : MonoBehaviour
             if (message.StartsWith("[") && message.EndsWith("]"))
             {
                 message = "{\"landmarkList\":" + message + "}";
-                latestPoseList = JsonUtility.FromJson<PoseList>(message);
+                latestPoseList = JsonUtility.FromJson<PoseData>(message);
                 //Debug.Log($"Processed PoseList with {latestPoseList.landmarkList.Count} landmarks");
             }
             else

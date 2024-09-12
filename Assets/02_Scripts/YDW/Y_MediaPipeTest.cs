@@ -59,9 +59,9 @@ public class Y_MediaPipeTest : MonoBehaviour
     Vector3 getV3FromLandmark(int i)
     {
         Vector3 localPos = new Vector3(
-                    conn.latestPoseList.landmarkList[i].x,
-                    conn.latestPoseList.landmarkList[i].y,
-                    conn.latestPoseList.landmarkList[i].z);
+                    conn.latestPoseList[i].x,
+                    conn.latestPoseList[i].y,
+                    conn.latestPoseList[i].z);
         localPos.z *= 0.3f;
         return localPos;
     }
@@ -123,7 +123,7 @@ public class Y_MediaPipeTest : MonoBehaviour
             countJumpingJack.startGame = true;
         }
 
-        if (conn.latestPoseList.landmarkList.Count > 0)
+        if (conn.latestPoseList.Count > 0)
         {
             UpdateScaleFactor();
             UpdateScaleFactorLeg();
@@ -158,7 +158,7 @@ public class Y_MediaPipeTest : MonoBehaviour
     // a-b, c-d 벡터 사이의 거리
     public float GetFullHeight(int a, int b, int c, int d)
     {
-        if (conn.latestPoseList.landmarkList.Count == 0)
+        if (conn.latestPoseList.Count == 0)
             return 0f;
 
         Vector3 top = (getV3FromLandmark(a) + getV3FromLandmark(b)) * 0.5f;

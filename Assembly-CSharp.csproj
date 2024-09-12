@@ -90,7 +90,6 @@
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextToggleIsOnTransition.cs" />
     <Compile Include="Assets\02_Scripts\YDW\Y_MediaPipe.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\FriendItem.cs" />
-    <Compile Include="Assets\02_Scripts\JSW\J_ShowTrackingList.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\WebView\WebView.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\02_Scripts\JSW\BadgeUIManager.cs" />
