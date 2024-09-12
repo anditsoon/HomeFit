@@ -15,11 +15,11 @@ public class LoginUIManager : MonoBehaviour
     public GameObject playerHeightInput;
     public Button makeAvaterButton;
 
-    public GameObject webView;
-    public GameObject userInfoManager;
+    public GameObject kakao;
+    public GameObject user;
 
-    private WebViewTest web;
-    private UserInfoManager user;
+    private KakaoLoginManager kakaoManager;
+    private UserInfoManager userInfoManager;
 
     private string playerName = null;
 
@@ -40,8 +40,8 @@ public class LoginUIManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(FadeIn(transform.GetChild(0).gameObject));
-        web = webView.GetComponent<WebViewTest>();
-        user = userInfoManager.GetComponent<UserInfoManager>();
+        kakaoManager = kakao.GetComponent<KakaoLoginManager>();
+        userInfoManager = user.GetComponent<UserInfoManager>();
     }
 
     public void Number1Button()
@@ -62,7 +62,8 @@ public class LoginUIManager : MonoBehaviour
     public void Number4ButtonGL()
     {
         // 구글 로그인
-        web.OnLoginButtonClick();
+        //web.OnLoginButtonClick();
+        kakaoManager.StartKakaoLogin();
         StartCoroutine(Delay());
     }
     IEnumerator Delay()
@@ -94,7 +95,8 @@ public class LoginUIManager : MonoBehaviour
     }
     public void Number8Button()
     {
-        SceneManager.LoadScene("AvatarScene");
+        kakaoManager.SendMessage();
+        //SceneManager.LoadScene("AvatarScene");
         //next Scene
         //print("다음 씬 꾸미기 씬");
         //민제_씬 이동 코드는 UserInfoManager의 SendUserInfo 메서드의 전송 성공시점으로 이동

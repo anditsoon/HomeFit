@@ -13,18 +13,12 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
 {
     public GameObject roomPrefab;
     public Transform scrollContent;
-    public GameObject[] panelList;
 
     List<RoomInfo> cachedRoomList = new List<RoomInfo>();
 
     void Start()
     {
         Screen.SetResolution(640, 480, FullScreenMode.Windowed);
-    }
-
-    void Update()
-    {
-
     }
 
     public void StartLogin()
@@ -104,30 +98,12 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public void JoinRoom()
-    {
-        // Join 관련 패널을 활성화한다.
-        ChangePanel(1, 2);
-    }
-
-    /// <summary>
-    /// 패널의 변경을 하기 위한 함수
-    /// </summary>
-    /// <param name="offIndex">꺼야될 패널 인덱스</param>
-    /// <param name="onIndex">켜야될 패널 인덱스</param>
-    void ChangePanel(int offIndex, int onIndex)
-    {
-        panelList[offIndex].SetActive(false);
-        panelList[onIndex].SetActive(true);
-    }
-
     public override void OnCreatedRoom()
     {
         base.OnCreatedRoom();
 
         // 성공적으로 방이 개설되었음을 알려준다.
         print(MethodInfo.GetCurrentMethod().Name + " is Call!");
-        LobbyUIController.lobbyUI.PrintLog("방 만들어짐!");
     }
 
     public override void OnJoinedRoom()
@@ -136,7 +112,6 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
 
         // 성공적으로 방에 입장되었음을 알려준다.
         print(MethodInfo.GetCurrentMethod().Name + " is Call!");
-        LobbyUIController.lobbyUI.PrintLog("방에 입장 성공!");
 
         // 방에 입장한 친구들은 모두 1번 씬으로 이동하자!
         PhotonNetwork.LoadLevel(1);
@@ -148,8 +123,6 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
 
         // 룸에 입장이 실패한 이유를 출력한다.
         Debug.LogError(message);
-        LobbyUIController.lobbyUI.PrintLog("입장 실패..." + message);
-
     }
 
     // 룸에 다른 플레이어가 입장했을 때의 콜백 함수
@@ -158,7 +131,6 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         base.OnPlayerEnteredRoom(newPlayer);
 
         string playerMsg = $"{newPlayer.NickName}님이 입장하셨습니다.";
-        LobbyUIController.lobbyUI.PrintLog(playerMsg);
     }
 
     // 룸에 있던 다른 플레이어가 퇴장했을 때의 콜백 함수
@@ -167,7 +139,6 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         base.OnPlayerLeftRoom(otherPlayer);
 
         string playerMsg = $"{otherPlayer.NickName}님이 퇴장하셨습니다.";
-        LobbyUIController.lobbyUI.PrintLog(playerMsg);
     }
 
     // 현재 로비에서 룸의 변경사항을 알려주는 콜백 함수
