@@ -21,8 +21,10 @@ public struct PoseData
 [System.Serializable]
 public struct Data
 {
-    public List<PoseData> landmarkList;
-    public byte[] image;
+    public List<PoseData> pose_landmarks;
+    //보내는 데이터가 Base64래 그래서 byte[]에는 안들어온거래 일단 문자열로 받고 ReceiveData에서 Base64로 바꿈
+    public string image;
+
 }
 
 public enum PoseName
@@ -91,6 +93,7 @@ public class UDPPoseHandler : MonoBehaviour
     }
 
     Data _data;
+
     private void ReceiveData()
     {
         while (startReceiving)
@@ -100,14 +103,17 @@ public class UDPPoseHandler : MonoBehaviour
                 IPEndPoint ip = new IPEndPoint(IPAddress.Any, 0);
                 byte[] dataByte = client.Receive(ref ip);
                 string jsonData = Encoding.UTF8.GetString(dataByte);
-                _data = JsonUtility.FromJson<Data>(jsonData);
 
+                _data = JsonUtility.FromJson<Data>(jsonData);
+                print(_data.image.Length + "");
                 lock (this)
                 {
-                    latestPoseList = _data.landmarkList;
-                    imageToProcess = _data.image; // 나중에 처리할 이미지들 저장 // 이거 Add 로 해야 되나?!?!
-                    print("image to process : " + (imageToProcess == null));
-                    print(imageToProcess[0]);
+                    
+                    latestPoseList = _data.pose_landmarks;
+                    //string을 Base64로바꿈
+                    imageToProcess = Convert.FromBase64String(_data.image); ; // 나중에 처리할 이미지들 저장 // 이거 Add 로 해야 되나?!?!
+                    //print("image to process : " + (imageToProcess == null));
+                    //print(imageToProcess[0]);
                 }
 
             }
@@ -129,7 +135,7 @@ public class UDPPoseHandler : MonoBehaviour
             {
                 latestImageTexture = DecodeImage(imageToProcess);
                 //imageToProcess = null; // 처리 끝난 이후 초기화
-
+                
                 displayWebCam.texture = latestImageTexture;
             }
         }
