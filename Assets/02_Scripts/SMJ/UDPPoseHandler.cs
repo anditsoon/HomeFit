@@ -22,7 +22,7 @@ public struct PoseData
 public struct Data
 {
     public List<PoseData> pose_landmarks;
-    //보내는 데이터가 Base64래 그래서 byte[]에는 안들어온거래 일단 문자열로 받고 ReceiveData에서 Base64로 바꿈
+    //보내는 데이터가 Base64 -> 문자열로 받고 ReceiveData에서 Base64로 바꿈
     public string image;
 
 }
@@ -103,17 +103,15 @@ public class UDPPoseHandler : MonoBehaviour
                 IPEndPoint ip = new IPEndPoint(IPAddress.Any, 0);
                 byte[] dataByte = client.Receive(ref ip);
                 string jsonData = Encoding.UTF8.GetString(dataByte);
+               // print(jsonData);
 
                 _data = JsonUtility.FromJson<Data>(jsonData);
-                print(_data.image.Length + "");
                 lock (this)
                 {
                     
                     latestPoseList = _data.pose_landmarks;
                     //string을 Base64로바꿈
-                    imageToProcess = Convert.FromBase64String(_data.image); ; // 나중에 처리할 이미지들 저장 // 이거 Add 로 해야 되나?!?!
-                    //print("image to process : " + (imageToProcess == null));
-                    //print(imageToProcess[0]);
+                    imageToProcess = Convert.FromBase64String(_data.image); ; // 나중에 처리할 이미지들 저장 
                 }
 
             }
@@ -134,7 +132,7 @@ public class UDPPoseHandler : MonoBehaviour
             lock (this)
             {
                 latestImageTexture = DecodeImage(imageToProcess);
-                //imageToProcess = null; // 처리 끝난 이후 초기화
+                imageToProcess = null; // 처리 끝난 이후 초기화
                 
                 displayWebCam.texture = latestImageTexture;
             }
@@ -145,11 +143,9 @@ public class UDPPoseHandler : MonoBehaviour
     private Texture2D DecodeImage(byte[] imageData)
     {
         Texture2D texture = new Texture2D(1100, 700);
-        //print("DecodeImage imageData : " + imageData[0].ToString());
-        //imageData = texture.EncodeToJPG();
+
         if (imageData != null && imageData.Length > 0)
         {
-            //print("뜨나요?????");
             texture.LoadImage(imageData);
         }
         return texture;
@@ -172,11 +168,4 @@ public class UDPPoseHandler : MonoBehaviour
         UDPClose();
     }
 
-    //private void OnGUI()
-    //{
-    //    if (latestImageTexture != null)
-    //    {
-    //        GUI.DrawTexture(new Rect(10, 10, 320, 240), latestImageTexture);
-    //    }
-    //}
 }
