@@ -59,8 +59,8 @@ public class AvartarUIManager : MonoBehaviour
     {
 
 
-        text_Backpacks.color = Color.magenta;
-        all.color = Color.magenta;
+        text_Backpacks.color = SelectingColor;
+        all.color = SelectingColor;
         anim = player.GetComponent<Animator>();
         anim.CrossFade("Idle", 0f);
 

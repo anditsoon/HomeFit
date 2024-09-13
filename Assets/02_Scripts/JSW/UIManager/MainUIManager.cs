@@ -32,7 +32,7 @@ public class MainUIManager : MonoBehaviour
         anim.CrossFade("Dance", 0f);
         AvatarInfo.instance.SettingAvatar();
         nickNameText.text = AvatarInfo.instance.NickName;
-        easingMove(backGround);
+        //easingMove(backGround);
 
     }
 
@@ -62,8 +62,8 @@ public class MainUIManager : MonoBehaviour
 
     public void MoveBadgeScene()
     {
-        easingMoveBadge(badgeScene);
-        //SceneManager.LoadScene("BadgeScene");
+        //easingMoveBadge(badgeScene);
+        SceneManager.LoadScene("BadgeScene");
     }
 
     public void MoveGameLobbyScene()
@@ -73,8 +73,8 @@ public class MainUIManager : MonoBehaviour
 
     public void MoveConsultingScene()
     {
-        easingMoveConsulting(cousultingScene);
-        //SceneManager.LoadScene("ConsultingScene");
+        //easingMoveConsulting(cousultingScene);
+        SceneManager.LoadScene("ConsultingScene");
     }
 
     void UpDownImage()
@@ -120,7 +120,7 @@ public class MainUIManager : MonoBehaviour
     {
         iTween.MoveTo(gameObjectUI, iTween.Hash("islocal", false,
 
-                                                       "x", 960,
+                                                       "x", 0,
 
                                                        "time", 1.0f,
 
@@ -138,7 +138,7 @@ public class MainUIManager : MonoBehaviour
     {
         iTween.MoveTo(gameObjectUI, iTween.Hash("islocal", false,
 
-                                                       "y", 540,
+                                                       "y", 0,
 
                                                        "time", 1.0f,
 

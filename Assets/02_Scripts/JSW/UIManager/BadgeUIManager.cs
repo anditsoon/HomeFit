@@ -6,24 +6,29 @@ using UnityEngine.SceneManagement;
 public class BadgeUIManager : MonoBehaviour
 {
     public GameObject BadgeUI;
+    public float FistX;
 
-    
+    public void Start()
+    {
+        FistX = gameObject.transform.position.x;
+    }
+
     public void LoadMainScene()
     {
-        //
-        iTween.MoveTo(BadgeUI, iTween.Hash("islocal", false,
+        ////
+        //iTween.MoveTo(BadgeUI, iTween.Hash("islocal", false,
 
-                                                       "x", -960,
+        //                                               "x",  FistX,
 
-                                                       "time", 1.0f,
+        //                                               "time", 1.0f,
 
-                                                       "easetype", iTween.EaseType.easeOutBounce,
+        //                                               "easetype", iTween.EaseType.easeOutBounce,
 
-                                                       "oncomplete", "",
+        //                                               "oncomplete", "",
 
-                                                       "oncompletetarget", this.gameObject
+        //                                               "oncompletetarget", this.gameObject
 
-        ));
-        //SceneManager.LoadScene("MainScene");
+        //));
+        SceneManager.LoadScene("MainScene");
     }
 }

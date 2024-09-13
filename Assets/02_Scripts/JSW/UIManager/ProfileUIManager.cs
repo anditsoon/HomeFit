@@ -10,6 +10,9 @@ public class ProfileUIManager : MonoBehaviour
     public GameObject player;
     public TMP_Text nickNameText;
     public GameObject CalenderUI;
+    public GameObject Profile;
+    public GameObject Calender;
+
     Animator anim;
  
     // Start is called before the first frame update
@@ -20,7 +23,7 @@ public class ProfileUIManager : MonoBehaviour
         anim.CrossFade("Idle", 0f);
         SetProfilePic();
         nickNameText.text = AvatarInfo.instance.NickName;
-
+        easingProfile();
     }
 
     // Update is called once per frame
@@ -53,6 +56,17 @@ public class ProfileUIManager : MonoBehaviour
         renderCamera.Render();
         chaRawImage.texture = renderTexture;
         renderCamera.targetTexture = new RenderTexture(256, 256, 16);
+    }
+
+    void easingProfile()
+    {
+        iTween.ScaleTo(Profile, iTween.Hash("scale", new Vector3(1,1,1),
+
+                                                       "time", 0.5f,
+
+                                                       "easetype", iTween.EaseType.easeOutBounce
+
+        ));
     }
 }
 
