@@ -7,7 +7,6 @@ using UnityEngine.Networking;
 public class HttpClient : MonoBehaviour
 {
     private static HttpClient instance;
-
     public static HttpClient Instance
     {
         get
@@ -22,39 +21,63 @@ public class HttpClient : MonoBehaviour
         }
     }
 
-    public IEnumerator Get(string url, Action<string> onSuccess, Action<string> onError)
+    public IEnumerator Get(string url, Action<string> onSuccess, Action<string> onError, Dictionary<string, string> headers = null)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
         {
+            AddHeaders(webRequest, headers);
             yield return webRequest.SendWebRequest();
+            HandleResponse(webRequest, onSuccess, onError);
+        }
+    }
 
-            if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
-                webRequest.result == UnityWebRequest.Result.ProtocolError)
+    public IEnumerator Post(string url, WWWForm form, Action<string> onSuccess, Action<string> onError, Dictionary<string, string> headers = null)
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(url, form))
+        {
+            AddHeaders(webRequest, headers);
+            yield return webRequest.SendWebRequest();
+            HandleResponse(webRequest, onSuccess, onError);
+        }
+    }
+
+    public IEnumerator PostJson(string url, string jsonBody, Action<string> onSuccess, Action<string> onError, Dictionary<string, string> headers = null)
+    {
+        using (UnityWebRequest webRequest = new UnityWebRequest(url, "POST"))
+        {
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonBody);
+            webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            webRequest.downloadHandler = new DownloadHandlerBuffer();
+
+            AddHeaders(webRequest, headers);
+            webRequest.SetRequestHeader("Content-Type", "application/json");
+
+            yield return webRequest.SendWebRequest();
+            HandleResponse(webRequest, onSuccess, onError);
+        }
+    }
+
+    private void AddHeaders(UnityWebRequest webRequest, Dictionary<string, string> headers)
+    {
+        if (headers != null)
+        {
+            foreach (var header in headers)
             {
-                onError?.Invoke(webRequest.error);
-            }
-            else
-            {
-                onSuccess?.Invoke(webRequest.downloadHandler.text);
+                webRequest.SetRequestHeader(header.Key, header.Value);
             }
         }
     }
 
-    public IEnumerator Post(string url, WWWForm form, Action<string> onSuccess, Action<string> onError)
+    private void HandleResponse(UnityWebRequest webRequest, Action<string> onSuccess, Action<string> onError)
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(url, form))
+        if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
+            webRequest.result == UnityWebRequest.Result.ProtocolError)
         {
-            yield return webRequest.SendWebRequest();
-
-            if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
-                webRequest.result == UnityWebRequest.Result.ProtocolError)
-            {
-                onError?.Invoke(webRequest.error);
-            }
-            else
-            {
-                onSuccess?.Invoke(webRequest.downloadHandler.text);
-            }
+            onError?.Invoke(webRequest.error);
+        }
+        else
+        {
+            onSuccess?.Invoke(webRequest.downloadHandler.text);
         }
     }
 }

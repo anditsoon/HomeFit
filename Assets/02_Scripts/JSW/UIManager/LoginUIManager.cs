@@ -13,16 +13,20 @@ public class LoginUIManager : MonoBehaviour
     public GameObject playerWeightInput;
     public GameObject playerHeightInput;
     public Button makeAvaterButton;
+    public TMP_InputField usernameInput;
+    public TMP_InputField passwordInput;
 
-    public GameObject webView;
-    public GameObject userInfoManager;
+    public GameObject user;
 
-    private WebViewTest web;
-    private UserInfoManager user;
+    private UserInfoManager userManager;
 
     private string playerName = null;
 
     public static LoginUIManager instance;
+
+    public bool isLogin = false;
+
+    private Coroutine curCor;
 
     private void Awake()
     {
@@ -38,74 +42,112 @@ public class LoginUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(FadeIn(transform.GetChild(0).gameObject));
-        web = webView.GetComponent<WebViewTest>();
-        user = userInfoManager.GetComponent<UserInfoManager>();
+        userManager = user.GetComponent<UserInfoManager>();
+        curCor = StartCoroutine(FadeIn(transform.GetChild(0).gameObject));
+        userManager.OnLoginStatusChanged += HandleLoginStatusChanged;
+    }
+    void OnDestroy()
+    {
+        // 이벤트 구독 해제
+        userManager.OnLoginStatusChanged -= HandleLoginStatusChanged;
+    }
+
+    void HandleLoginStatusChanged(bool isLoggedIn)
+    {
+        if (isLoggedIn)
+        {
+            isLogin = true;
+        }
+        else
+        {
+            isLogin = false;
+        }
     }
 
     public void Number1Button()
     {
-        transform.GetChild(0).gameObject.SetActive(false);
-        StartCoroutine(FadeIn(transform.GetChild(1).gameObject));
+        ChangePanel(0);
     }
     public void Number2Button()
     {
-        transform.GetChild(1).gameObject.SetActive(false);
-        StartCoroutine(FadeIn(transform.GetChild(2).gameObject));
+        ChangePanel(1);
     }
     public void Number3Button()
     {
-        transform.GetChild(2).gameObject.SetActive(false);
-        StartCoroutine(FadeIn(transform.GetChild(3).gameObject));
+        ChangePanel(2);
     }
     public void Number4ButtonGL()
     {
-        // 구글 로그인
-        web.OnLoginButtonClick();
-        StartCoroutine(Delay());
+        ChangePanel(3);
     }
-    IEnumerator Delay()
+
+    public void Login()
     {
-        yield return new WaitForSeconds(0.2f);
-        transform.GetChild(3).gameObject.SetActive(false);
-        StartCoroutine(FadeIn(transform.GetChild(4).gameObject));
+        StartCoroutine(RoopCheck());
     }
+
+    IEnumerator RoopCheck()
+    {
+        while (true)
+        {
+            if (isLogin == true)
+            {
+                ChangePanel(4);
+                break;
+            }
+            else
+            {
+                yield return new WaitForSeconds(1.0f);
+            }
+        }
+    }
+
     public void Number5ButtoL()
     {
         AvatarInfo.instance.NickName = playerNameInput.GetComponent<TMP_InputField>().text;
         AvatarInfo.instance.Birthday = playerBirthInput.GetComponent<TMP_InputField>().text;
         AvatarInfo.instance.Height = float.Parse(playerHeightInput.GetComponent<TMP_InputField>().text);
         AvatarInfo.instance.Weight = float.Parse(playerWeightInput.GetComponent<TMP_InputField>().text);
-        transform.GetChild(4).gameObject.SetActive(false);
-        StartCoroutine(FadeIn(transform.GetChild(5).gameObject));
+        ChangePanel(5);
     }
 
     public void Number6Button()
     {
-
-        transform.GetChild(5).gameObject.SetActive(false);
-        StartCoroutine(FadeIn(transform.GetChild(6).gameObject));
+        ChangePanel(6);
     }
     public void Number7Button()
     {
-        transform.GetChild(6).gameObject.SetActive(false);
-        StartCoroutine(FadeIn(transform.GetChild(7).gameObject));
+        ChangePanel(7);
     }
     public void Number8Button()
     {
-        SceneManager.LoadScene("AvatarScene");
+        //SceneManager.LoadScene("AvatarScene");
         //next Scene
         //print("다음 씬 꾸미기 씬");
-        //민제_씬 이동 코드는 UserInfoManager의 SendUserInfo 메서드의 전송 성공시점으로 이동
+    }
+
+    public void ChangePanel(int idx)
+    {
+        if (curCor != null)
+        {
+            StopCoroutine(curCor);
+        }
+        transform.GetChild(idx).gameObject.SetActive(false);
+        StartCoroutine(FadeIn(transform.GetChild(idx + 1).gameObject));
     }
     IEnumerator FadeIn(GameObject Scene2)
     {
         Scene2.SetActive(true);
+        Scene2.GetComponent<CanvasGroup>().alpha = 0;
         float endTime = 20f;
         float startTime = 0f;
         while (startTime <= endTime)
         {
             Scene2.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(Scene2.GetComponent<CanvasGroup>().alpha, 1, startTime/endTime);
+            if (Scene2.GetComponent<CanvasGroup>().alpha > 0.99f)
+            {
+                Scene2.GetComponent<CanvasGroup>().alpha = 1;
+            }
             startTime += Time.deltaTime;
             yield return null;
         }
