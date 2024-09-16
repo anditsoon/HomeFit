@@ -176,7 +176,7 @@ public class AvartarUIManager : MonoBehaviour
         text_Pants.color = Color.black;
         text_Shoe.color = Color.black;
 
-        all.color = Color.magenta;
+        all.color = SelectingColor;
     }
 
     public void AlamIsChanged()

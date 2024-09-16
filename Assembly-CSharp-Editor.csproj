@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{824C7EE2-8030-1FA5-B45E-C4B18D3E2344}</ProjectGuid>
+    <ProjectGuid>{6311E6C6-0A20-383B-320B-694068DE37A5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -409,10 +409,6 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.38f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEditor.Android.Extensions">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.38f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.38f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
       <Private>False</Private>
@@ -467,18 +463,6 @@
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.38f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.38f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Android.GradleProject">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.38f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.GradleProject.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="mscorlib">
@@ -1164,67 +1148,67 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{061CC7C0-0A83-D6AF-AFEB-259E9ED6AC65}</Project>
+      <Project>{2662B409-6332-1E56-D797-C9025C53BDD6}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{0070EA22-9130-034D-C4DB-B3EE4D432561}</Project>
+      <Project>{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
     <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
-      <Project>{92CEE4AD-4C33-DF80-1F97-F0976A06C344}</Project>
+      <Project>{F534D6C4-3368-032B-289C-A943CC171719}</Project>
       <Name>Assembly-CSharp-Editor-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Editor.csproj">
-      <Project>{538B7D1E-197F-2DF3-A221-0484BB763A5F}</Project>
+      <Project>{EB0C2DAA-1B0D-422D-4043-E18B5BD01DAB}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
-      <Project>{5FCE9F98-C2B3-AB44-CC12-2988846C46FF}</Project>
+      <Project>{CE13EAB9-5EC5-2FC9-0E32-0EBA8D038822}</Project>
       <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="gpm_common.csproj">
-      <Project>{441A1913-5A39-8FEE-A7BA-B0D2CC5C5000}</Project>
+      <Project>{EF6B8E22-62AF-A6AF-8905-0A1DE80CD9EB}</Project>
       <Name>gpm_common</Name>
     </ProjectReference>
     <ProjectReference Include="PunDemos.DemoSlotcarEditor.csproj">
-      <Project>{8FCACED7-53AE-7F82-B51C-25AC59F5CFFA}</Project>
+      <Project>{8AB4389A-1B3A-626F-3CE2-489B7AD29E72}</Project>
       <Name>PunDemos.DemoSlotcarEditor</Name>
     </ProjectReference>
     <ProjectReference Include="gpm_webview.csproj">
-      <Project>{9E1274DC-8DF8-1FC2-528B-752D407ECAC0}</Project>
+      <Project>{D9025F85-577C-4F0F-1893-1E755C0B0E63}</Project>
       <Name>gpm_webview</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonRealtime.csproj">
-      <Project>{DF471852-8DA1-5ED2-1D39-1E6614EDC23E}</Project>
+      <Project>{FAEB06E4-FF01-DFFD-C354-89E519F95FDB}</Project>
       <Name>PhotonRealtime</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonChat.csproj">
-      <Project>{D58D277D-C650-2390-DC0C-4A8A023F4EA1}</Project>
+      <Project>{92F606F5-7D76-1782-33CE-1AB54C3B221F}</Project>
       <Name>PhotonChat</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.csproj">
-      <Project>{AAAB6006-9828-7FCE-2D05-81F86B65127A}</Project>
+      <Project>{D9468CFF-77D4-2CCF-B372-F7E5C8369E7C}</Project>
       <Name>PhotonUnityNetworking</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
-      <Project>{B3CD590F-DD05-1CFA-5E48-305584B9B456}</Project>
+      <Project>{28A8A4B7-ED68-0304-55F0-9AAE7AA48A16}</Project>
       <Name>PhotonUnityNetworking.Utilities.Culling.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Demos.csproj">
-      <Project>{6F509FD2-31A9-83DD-D1F6-F963368B143B}</Project>
+      <Project>{91373B03-D5A1-CE98-5341-E9664A64C870}</Project>
       <Name>PhotonUnityNetworking.Demos</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
-      <Project>{5056B6B7-A193-95D6-EC71-E4FFD6D62FC7}</Project>
+      <Project>{D45C659B-A7C1-8CFA-2FFD-0A7D74AC5F70}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="gpm_communicator.csproj">
-      <Project>{CB073D91-3A1B-5966-8957-0A69A0EF68A7}</Project>
+      <Project>{7A502746-8BFF-2ABF-7AAF-1529D5A7CEBB}</Project>
       <Name>gpm_communicator</Name>
     </ProjectReference>
     <ProjectReference Include="PunDemos.DemoHubEditor.csproj">
-      <Project>{87D0022E-C964-10B1-746E-86E82DCABC61}</Project>
+      <Project>{5E2075E4-E473-1BFB-A9BB-E3BE10FBA146}</Project>
       <Name>PunDemos.DemoHubEditor</Name>
     </ProjectReference>
   </ItemGroup>
