@@ -116,8 +116,6 @@ public class Y_MediaPipeRotation : MonoBehaviour
         {
             //Q를 눌렀을 때의 골반 사이 위치 저장
             startSP = getStandardPoint();
-            //countSquatt.startGame = true;
-            //countJumpingJack.startGame = true;
         }
 
         if (conn.latestPoseList.Count > 0)
@@ -180,8 +178,23 @@ public class Y_MediaPipeRotation : MonoBehaviour
         rightArmHint.transform.position = Vector3.Lerp(rightArmHint.transform.position, UpdateRigPart(14), 0.1f);
         leftArmTarget.transform.position = Vector3.Lerp(leftArmTarget.transform.position, UpdateRigPart(15), 0.1f);
         rightArmTarget.transform.position = Vector3.Lerp(rightArmTarget.transform.position, UpdateRigPart(16), 0.1f);
+
+        // 다리도 로테이션으로 바꿔주자
         leftLegHint.transform.position = Vector3.Lerp(leftLegHint.transform.position, UpdateRigPart(25), 0.1f);
+       // Vector3 rightVectorLLH = Vector3.Cross((UpdateRigPart(31) - UpdateRigPart(27)).normalized, (UpdateRigPart(27) - UpdateRigPart(25)).normalized);
+        Vector3 forwardVectorLLH = Vector3.Cross((UpdateRigPart(24) - UpdateRigPart(23)).normalized, (UpdateRigPart(25) - UpdateRigPart(23)).normalized);
+        Quaternion rotationVectorLLH = Quaternion.LookRotation(forwardVectorLLH, (UpdateRigPart(23) - UpdateRigPart(25)).normalized);
+        leftLegTarget.transform.rotation = Quaternion.Lerp(leftLegTarget.transform.rotation, rotationVectorLLH, 0.1f);
+
+
+
+
         rightLegHint.transform.position = Vector3.Lerp(rightLegHint.transform.position, UpdateRigPart(26), 0.1f);
+
+
+
+
+
         leftLegTarget.transform.position = Vector3.Lerp(leftLegTarget.transform.position, UpdateRigPart(27), 0.1f);
         //다리가 자꾸 꺼지니까, 다리 위치를 그라운드 레벨과 맞춰준다
         leftLegTarget.transform.position = new Vector3(

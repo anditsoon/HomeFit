@@ -4992,6 +4992,43 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1953436105489119838}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1762186833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762186820}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63a8d4de3ec21c4ebf97227a57e601a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conn: {fileID: 0}
+  currentScaleFactor: {x: 1, y: 1, z: 1}
+  startSP: {x: 0, y: 0, z: 0}
+  targetHeight: 1.03
+  targetLegLength: 0.62
+  spineTrans: {fileID: 1202059513}
+  spineDummyTrans: {fileID: 1596204893}
+  lToeTrans: {fileID: 2035562079}
+  rToeTrans: {fileID: 2035562079}
+  lHandTrans: {fileID: 2144407476}
+  rHandTrans: {fileID: 1473613417}
+  ground: {fileID: 0}
+  cubes: []
+  leftArmTarget: {fileID: 0}
+  leftArmHint: {fileID: 0}
+  rightArmTarget: {fileID: 0}
+  rightArmHint: {fileID: 0}
+  leftLegTarget: {fileID: 0}
+  leftLegHint: {fileID: 0}
+  rightLegTarget: {fileID: 0}
+  rightLegHint: {fileID: 0}
+  headAim1: {fileID: 0}
+  headAim2: {fileID: 0}
+  spineTarget: {fileID: 0}
+  spineHint: {fileID: 0}
 --- !u!1 &1770758814
 GameObject:
   m_ObjectHideFlags: 0
@@ -6600,6 +6637,11 @@ PrefabInstance:
       objectReference: {fileID: 2035562079}
     - target: {fileID: 1283638654564722955, guid: 144a3fa0b44ac974e8e55edd33994d33,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283638654564722955, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
       propertyPath: rToeTrans
       value: 
       objectReference: {fileID: 1834065010}
@@ -6728,6 +6770,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1762186829}
+    - targetCorrespondingSourceObject: {fileID: 6514969496642273152, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1762186833}
   m_SourcePrefab: {fileID: 100100000, guid: 144a3fa0b44ac974e8e55edd33994d33, type: 3}
 --- !u!1001 &4400618459091919521
 PrefabInstance:

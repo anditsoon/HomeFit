@@ -62,7 +62,6 @@
   <ItemGroup>
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\02_Scripts\SimpleJSON-master\SimpleJSONBinary.cs" />
-    <Compile Include="Assets\02_Scripts\JSW\AvartarUIManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\02_Scripts\YDW\Y_UIManager.cs" />
     <Compile Include="Assets\02_Scripts\SimpleJSON-master\SimpleJSONUnity.cs" />
@@ -75,8 +74,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
-    <Compile Include="Assets\02_Scripts\JSW\ProfileUIManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
+    <Compile Include="Assets\02_Scripts\JSW\UIManager\AvartarUIManager.cs" />
     <Compile Include="Assets\02_Scripts\YDW\Y_MediapipeRotation.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -94,15 +93,16 @@
     <Compile Include="Assets\02_Scripts\YDW\NoUse\Y_MediaPipe.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\FriendItem.cs" />
     <Compile Include="Assets\02_Scripts\YDW\NoUse\Y_PlayerMoveTest.cs" />
+    <Compile Include="Assets\02_Scripts\JSW\ForPhoton\JSWRoomPanel.cs" />
     <Compile Include="Assets\02_Scripts\YDW\NoUse\Y_SphereTest.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\WebView\WebView.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
-    <Compile Include="Assets\02_Scripts\JSW\BadgeUIManager.cs" />
     <Compile Include="Assets\02_Scripts\YDW\NoUse\Y_WebCamStream.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
     <Compile Include="Assets\02_Scripts\YDW\NoUse\Y_MeasureModelSize.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\Photon\ConnectionManager.cs" />
+    <Compile Include="Assets\02_Scripts\SMJ\Photon\RoomPanel.cs" />
     <Compile Include="Assets\02_Scripts\JSW\CalenderImage.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\HttpClient.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
@@ -110,17 +110,19 @@
     <Compile Include="Assets\02_Scripts\JSW\CustomRawImageScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
-    <Compile Include="Assets\02_Scripts\SMJ\OpenURL.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
-    <Compile Include="Assets\02_Scripts\JSW\LoginUIManager.cs" />
     <Compile Include="Assets\TestScript.cs" />
+    <Compile Include="Assets\02_Scripts\JSW\UIManager\BadgeUIManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatGui.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+    <Compile Include="Assets\02_Scripts\JSW\UIManager\LoginUIManager.cs" />
+    <Compile Include="Assets\02_Scripts\JSW\ForPhoton\JSWConnectionManager.cs" />
+    <Compile Include="Assets\02_Scripts\JSW\UIManager\ProfileUIManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatAppIdCheckerUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
@@ -137,18 +139,19 @@
     <Compile Include="Assets\02_Scripts\JSW\MultiModelToImage.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
-    <Compile Include="Assets\02_Scripts\JSW\GameLobbyUIManager.cs" />
+    <Compile Include="Assets\02_Scripts\JSW\UIManager\MainUIManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\02_Scripts\YDW\Y_MediaPipeTest.cs" />
+    <Compile Include="Assets\02_Scripts\JSW\UIManager\ConsultingUIManager.cs" />
     <Compile Include="Assets\02_Scripts\SimpleJSON-master\SimpleJSON.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
-    <Compile Include="Assets\02_Scripts\JSW\MainUIManager.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\UDPPoseHandler.cs" />
     <Compile Include="Assets\02_Scripts\JSW\Billboard.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\WebView\WebViewTest.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+    <Compile Include="Assets\02_Scripts\JSW\ForPhoton\LobbyUIController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -537,6 +540,10 @@
     </Reference>
     <Reference Include="Photon3Unity3D">
       <HintPath>Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
