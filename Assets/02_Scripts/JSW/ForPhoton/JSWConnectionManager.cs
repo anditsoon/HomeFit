@@ -6,12 +6,12 @@ using Photon.Realtime;
 using System.Reflection;
 using System;
 using Unity.VisualScripting;
-using ExitGames.Client.Photon;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
+//using ExitGames.Client.Photon;
+//using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class JSWConnectionManager : MonoBehaviourPunCallbacks
 {
-    //public GameObject roomPrefab;
+    public GameObject roomPrefab;
     public Transform scrollContent;
     public GameObject[] panelList;
 
@@ -109,7 +109,7 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
 
         int playerCount = Convert.ToInt32(LobbyUIController.lobbyUI.roomSetting[1].text);
 
-
+        print(roomName + " " + playerCount);
         if (roomName.Length > 0 && playerCount > 1)
         {
             // 나의 룸을 만든다.
@@ -121,13 +121,13 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
             // 룸의 커스텀 정보를 추가한다.
             // - 선택한 맵 번호를 룸 정보에 추가한다.
             // 키값 추가하기.
-            roomOpt.CustomRoomPropertiesForLobby = new string[] { "MASTER_NAME", "PASSWORD" };
+            //roomOpt.CustomRoomPropertiesForLobby = new string[] { "MASTER_NAME", "PASSWORD" };
 
-            // 키에 맞는 해시테이블 추가하기
-            Hashtable roomTable = new Hashtable();
-            roomTable.Add("MASTER_NAME", PhotonNetwork.NickName);
-            roomTable.Add("PASSWORD", 1234);
-            roomOpt.CustomRoomProperties = roomTable;
+            //키에 맞는 해시테이블 추가하기
+            //Hashtable roomTable = new Hashtable();
+            //roomTable.Add("MASTER_NAME", PhotonNetwork.NickName);
+            //roomTable.Add("PASSWORD", 1234);
+//            roomOpt.CustomRoomProperties = roomTable;
 
             PhotonNetwork.CreateRoom(roomName, roomOpt, TypedLobby.Default);
         }
@@ -158,7 +158,7 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
 
         // 성공적으로 방이 개설되었음을 알려준다.
         print(MethodInfo.GetCurrentMethod().Name + " is Call!");
-        LobbyUIController.lobbyUI.PrintLog("방 만들어짐!");
+        //LobbyUIController.lobbyUI.PrintLog("방 만들어짐!");
     }
 
     public override void OnJoinedRoom()
@@ -167,10 +167,10 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
 
         // 성공적으로 방에 입장되었음을 알려준다.
         print(MethodInfo.GetCurrentMethod().Name + " is Call!");
-        LobbyUIController.lobbyUI.PrintLog("방에 입장 성공!");
+        //LobbyUIController.lobbyUI.PrintLog("방에 입장 성공!");
 
-        // 방에 입장한 친구들은 모두 1번 씬으로 이동하자!
-        PhotonNetwork.LoadLevel(1);
+        // 방에 입장한 친구들은 모두 8번 씬으로 이동하자! (테스트 중인 씬이 8번임)
+        PhotonNetwork.LoadLevel(8);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
@@ -203,52 +203,52 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
         LobbyUIController.lobbyUI.PrintLog(playerMsg);
     }
 
-    // 현재 로비에서 룸의 변경사항을 알려주는 콜백 함수
-    //public override void OnRoomListUpdate(List<RoomInfo> roomList)
-    //{
-    //    base.OnRoomListUpdate(roomList);
+    //현재 로비에서 룸의 변경사항을 알려주는 콜백 함수
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        base.OnRoomListUpdate(roomList);
 
-    //    foreach (RoomInfo room in roomList)
-    //    {
-    //        // 만일 갱신된 룸 정보가 제거 리스트에 있다면...
-    //        if (room.RemovedFromList)
-    //        {
-    //            // cachedRoomList에서 해당 룸을 제거한다.
-    //            cachedRoomList.Remove(room);
-    //        }
-    //        // 그렇지않다면...
-    //        else
-    //        {
+        foreach (RoomInfo room in roomList)
+        {
+            // 만일 갱신된 룸 정보가 제거 리스트에 있다면...
+            if (room.RemovedFromList)
+            {
+                // cachedRoomList에서 해당 룸을 제거한다.
+                cachedRoomList.Remove(room);
+            }
+            // 그렇지않다면...
+            else
+            {
 
-    //            // 만일, 이미 cachedRoomList에 있는 방이라면
-    //            if (cachedRoomList.Contains(room))
-    //            {
-    //                // 기존 룸 정보를 제거하고
-    //                cachedRoomList.Remove(room);
-    //            }
-    //            // 새 룸을 cachedRoomList에 추가한다.
-    //            cachedRoomList.Add(room);
-    //        }
-    //    }
+                // 만일, 이미 cachedRoomList에 있는 방이라면
+                if (cachedRoomList.Contains(room))
+                {
+                    // 기존 룸 정보를 제거하고
+                    cachedRoomList.Remove(room);
+                }
+                // 새 룸을 cachedRoomList에 추가한다.
+                cachedRoomList.Add(room);
+            }
+        }
 
-    //    // 기존의 모든 방 정보를 삭제한다.
-    //    for (int i = 0; i < scrollContent.childCount; i++)
-    //    {
-    //        Destroy(scrollContent.GetChild(i).gameObject);
-    //    }
+        // 기존의 모든 방 정보를 삭제한다.
+        for (int i = 0; i < scrollContent.childCount; i++)
+        {
+            Destroy(scrollContent.GetChild(i).gameObject);
+        }
 
-    //    foreach (RoomInfo room in cachedRoomList)
-    //    {
-    //        // cachedRoomList에 있는 모든 방을 만들어서 스크롤뷰에 추가한다.
-    //        GameObject go = Instantiate(roomPrefab, scrollContent);
-    //        RoomPanel roomPanel = go.GetComponent<RoomPanel>();
-    //        roomPanel.SetRoomInfo(room);
-    //        // 버튼에 방 입장기능 연결g
-    //        roomPanel.btn_join.onClick.AddListener(() =>
-    //        {
-    //            PhotonNetwork.JoinRoom(room.Name);
-    //        });
-    //    }
-    //}
+        foreach (RoomInfo room in cachedRoomList)
+        {
+            // cachedRoomList에 있는 모든 방을 만들어서 스크롤뷰에 추가한다.
+            GameObject go = Instantiate(roomPrefab, scrollContent);
+            JSWRoomPanel roomPanel = go.GetComponent<JSWRoomPanel>();
+            roomPanel.SetRoomInfo(room);
+            // 버튼에 방 입장기능 연결g
+            roomPanel.btn_join.onClick.AddListener(() =>
+            {
+                PhotonNetwork.JoinRoom(room.Name);
+            });
+        }
+    }
 }
 

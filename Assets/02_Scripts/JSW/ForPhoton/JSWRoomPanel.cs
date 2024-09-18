@@ -4,18 +4,18 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Photon.Realtime;
+using UnityEditor.Rendering;
 
 public class JSWRoomPanel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public TMP_Text[] roomTexts = new TMP_Text[2];
+    public Button btn_join;
 
-    // Update is called once per frame
-    void Update()
+    public void SetRoomInfo(RoomInfo room)
     {
-        
+        roomTexts[0].text = room.Name;
+        roomTexts[1].text = $"({room.PlayerCount}/{room.MaxPlayers})";
+        //string masterName = room.CustomProperties["MASTER_NAME"].ToString();
+        //roomTexts[2].text = masterName;
     }
 }

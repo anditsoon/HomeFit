@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/ConsultingScene.unity
     guid: fcb9600270ac95c41ab5dd433b7c17c9
+  - enabled: 1
+    path: Assets/01_Scenes/J_AlphaScene_Photon.unity
+    guid: 039a9600b21f2ed40b06aa6dd8b9970e
   m_configObjects: {}
