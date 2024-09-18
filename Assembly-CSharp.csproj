@@ -64,6 +64,7 @@
     <Compile Include="Assets\02_Scripts\SimpleJSON-master\SimpleJSONBinary.cs" />
     <Compile Include="Assets\02_Scripts\JSW\AvartarUIManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
+    <Compile Include="Assets\02_Scripts\YDW\Y_UIManager.cs" />
     <Compile Include="Assets\02_Scripts\SimpleJSON-master\SimpleJSONUnity.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\AppSettingsExtensions.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\02_Scripts\JSW\ProfileUIManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
+    <Compile Include="Assets\02_Scripts\YDW\Y_MediapipeRotation.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\02_Scripts\YDW\Y_CountSquatt.cs" />

@@ -10,7 +10,7 @@ public class Y_SetStandardPos : MonoBehaviour
 
     GameObject directionCanvas;
 
-    float duration;
+    public float duration;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +40,7 @@ public class Y_SetStandardPos : MonoBehaviour
             countSquatt.startGame = true;
             countJumpingJack.startGame = true;
 
-            directionCanvas.SetActive(false);
+            //directionCanvas.SetActive(false);
         }
     }
 }

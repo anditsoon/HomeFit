@@ -89,7 +89,7 @@ public class Y_MediaPipeTest : MonoBehaviour
         conn = GameObject.Find("UDPConnector").GetComponent<UDPPoseHandler>();
         ground = GameObject.Find("Ground_01");
         groundLevel = ground.transform.position.y;
-        print("groundLevel: " + groundLevel);
+        //print("groundLevel: " + groundLevel); // 2.655265
 
         //countSquatt = GetComponent<Y_CountSquatt>();
         //countJumpingJack = GetComponent<Y_CountJumpingJack>();
