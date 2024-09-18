@@ -13,6 +13,7 @@ public class Y_CountSquatt : MonoBehaviour
     Transform leftHandPos;
     Transform rightHandPos;
 
+
     // Start is called before the first frame update
     void Start()
     {

@@ -14,7 +14,7 @@ public class Y_MediaPipeTest : MonoBehaviour
     public UDPPoseHandler conn;
 
     public Vector3 currentScaleFactor = Vector3.one;
-    Vector3 startSP;
+    public Vector3 startSP;
 
     public float targetHeight = 0.78f;
     public float targetLegLength = 0.52f;
@@ -34,8 +34,8 @@ public class Y_MediaPipeTest : MonoBehaviour
     public GameObject ground;
     float groundLevel = 0f;
 
-    Y_CountSquatt countSquatt;
-    Y_CountJumpingJack countJumpingJack;
+    //Y_CountSquatt countSquatt;
+    //Y_CountJumpingJack countJumpingJack;
 
     public GameObject[] cubes; // 관절 따라 다니게 해 보면서 정확도 맞추자
 
@@ -56,18 +56,18 @@ public class Y_MediaPipeTest : MonoBehaviour
 
 
     // conn 의 랜드마크리스트에서 특정 인덱스를 이용, 벡터로 만들어서 가져온다
-    Vector3 getV3FromLandmark(int i)
+    public Vector3 getV3FromLandmark(int i)
     {
         Vector3 localPos = new Vector3(
-                    conn.latestPoseList.landmarkList[i].x,
-                    conn.latestPoseList.landmarkList[i].y,
-                    conn.latestPoseList.landmarkList[i].z);
+                    conn.latestPoseList[i].x,
+                    conn.latestPoseList[i].y,
+                    conn.latestPoseList[i].z);
         localPos.z *= 0.3f;
         return localPos;
     }
 
     // 골반 사이 위치 잡아줌
-    Vector3 getStandardPoint()
+    public Vector3 getStandardPoint()
     {
         Vector3 vector23rd = getV3FromLandmark(23);
         Vector3 vector24th = getV3FromLandmark(24);
@@ -89,10 +89,10 @@ public class Y_MediaPipeTest : MonoBehaviour
         conn = GameObject.Find("UDPConnector").GetComponent<UDPPoseHandler>();
         ground = GameObject.Find("Ground_01");
         groundLevel = ground.transform.position.y;
-        print("groundLevel: " + groundLevel);
+        //print("groundLevel: " + groundLevel); // 2.655265
 
-        countSquatt = GetComponent<Y_CountSquatt>();
-        countJumpingJack = GetComponent<Y_CountJumpingJack>();
+        //countSquatt = GetComponent<Y_CountSquatt>();
+        //countJumpingJack = GetComponent<Y_CountJumpingJack>();
     }
 
     private void InitializeRigParts()
@@ -119,11 +119,11 @@ public class Y_MediaPipeTest : MonoBehaviour
         {
             //Q를 눌렀을 때의 골반 사이 위치 저장
             startSP = getStandardPoint();
-            countSquatt.startGame = true;
-            countJumpingJack.startGame = true;
+            //countSquatt.startGame = true;
+            //countJumpingJack.startGame = true;
         }
 
-        if (conn.latestPoseList.landmarkList.Count > 0)
+        if (conn.latestPoseList.Count > 0)
         {
             UpdateScaleFactor();
             UpdateScaleFactorLeg();
@@ -158,7 +158,7 @@ public class Y_MediaPipeTest : MonoBehaviour
     // a-b, c-d 벡터 사이의 거리
     public float GetFullHeight(int a, int b, int c, int d)
     {
-        if (conn.latestPoseList.landmarkList.Count == 0)
+        if (conn.latestPoseList.Count == 0)
             return 0f;
 
         Vector3 top = (getV3FromLandmark(a) + getV3FromLandmark(b)) * 0.5f;
@@ -184,9 +184,7 @@ public class Y_MediaPipeTest : MonoBehaviour
         leftArmTarget.transform.position = Vector3.Lerp(leftArmTarget.transform.position, UpdateRigPart(15), 0.1f);
         rightArmTarget.transform.position = Vector3.Lerp(rightArmTarget.transform.position, UpdateRigPart(16), 0.1f);
         leftLegHint.transform.position = Vector3.Lerp(leftLegHint.transform.position, UpdateRigPart(25), 0.1f);
-        
         rightLegHint.transform.position = Vector3.Lerp(rightLegHint.transform.position, UpdateRigPart(26), 0.1f);
-        
         leftLegTarget.transform.position = Vector3.Lerp(leftLegTarget.transform.position, UpdateRigPart(27), 0.1f);
         //다리가 자꾸 꺼지니까, 다리 위치를 그라운드 레벨과 맞춰준다
         leftLegTarget.transform.position = new Vector3(
@@ -207,12 +205,6 @@ public class Y_MediaPipeTest : MonoBehaviour
 
         // 왼발 위치와 각도 보정
         lToeTrans.position = UpdateRigPart(31) - UpdateRigPart(27);
-        // 다리가 자꾸 꺼지니까, 다리 위치를 그라운드 레벨과 맞춰준다
-        //lToeTrans.position = new Vector3(
-        //    lToeTrans.position.x,
-        //    Mathf.Max(UpdateRigPart(31).y - UpdateRigPart(27).y, groundLevel),  // 지면 레벨보다 아래로 내려가지 않도록
-        //    lToeTrans.position.z
-        //);
         Vector3 rightVectorL = Vector3.Cross((UpdateRigPart(31) - UpdateRigPart(27)).normalized, (UpdateRigPart(27) - UpdateRigPart(25)).normalized);
         Vector3 forwardVectorL = Vector3.Cross(rightVectorL, (UpdateRigPart(31) - UpdateRigPart(27)).normalized);
         Quaternion rotationVectorL = Quaternion.LookRotation(forwardVectorL, (UpdateRigPart(31) - UpdateRigPart(27)).normalized);
@@ -220,26 +212,14 @@ public class Y_MediaPipeTest : MonoBehaviour
 
         // 오른발 위치와 각도 보정
         rToeTrans.position = UpdateRigPart(32) - UpdateRigPart(28);
-        //rToeTrans.position = new Vector3(
-        //    rToeTrans.position.x,
-        //    Mathf.Max(UpdateRigPart(32).y - UpdateRigPart(28).y, groundLevel),  // 지면 레벨보다 아래로 내려가지 않도록
-        //    rToeTrans.position.z
-        //);
         Vector3 rightVectorR = Vector3.Cross((UpdateRigPart(32) - UpdateRigPart(28)).normalized, (UpdateRigPart(28) - UpdateRigPart(26)).normalized);
         Vector3 forwardVectorR = Vector3.Cross(rightVectorR, (UpdateRigPart(32) - UpdateRigPart(28)).normalized);
         Quaternion rotationVectorR = Quaternion.LookRotation(forwardVectorR, (UpdateRigPart(32) - UpdateRigPart(28)).normalized);
         rightLegTarget.transform.rotation = Quaternion.Lerp(rightLegTarget.transform.rotation, rotationVectorR, 0.1f);
 
         // 척추 위치 보정
-        spinePos = transform.position + StartAndNowDiffLocation;  // - (transform.up * 0.2f) // 새로운 위치 계산 : 현 위치(허리)에서, 조금 밑에서 (골반), 처음과의 달라진 위치를 더한다
-        //if (leftLegHint.transform.position.y > 3 && leftLegHint.transform.position.y < 3.30) // 스쿼트 자세일 때 3.25?
-        //{
-        //    spinePos.y = Mathf.Clamp(spinePos.y, 3f, 3.5f);  // y 값 클램프 적용 -> 땅으로 꺼지지 않게
-        //}
-        //else
-        //{
-            //spinePos.y = Mathf.Clamp(spinePos.y, 3.4f, 3.7f); // 3.2f, 3.5f ////////////////////////////////////////////////////
-                                                              //}
+        spinePos = transform.position + StartAndNowDiffLocation; // 새로운 위치 계산 : 현 위치(허리)에서 처음과의 달라진 위치를 더한다
+
 
         spineTrans.position = spinePos; // 척추 위치를 강제로 옮겨준다 (애니메이터가 못 움직이게 막아놓고 있었으므로)
 
@@ -263,8 +243,6 @@ public class Y_MediaPipeTest : MonoBehaviour
         // 똑같이 Lerp 값 주면
         rightArmTarget.transform.rotation = Quaternion.Lerp(rightArmTarget.transform.rotation, rotationVectorHR, 0.1f);
 
-        
-
 
         // 내려갈 때는 다리먼저 그 다음에 허리
         // 올라올 때는 허리 먼저 그 다음에 다리
@@ -282,14 +260,10 @@ public class Y_MediaPipeTest : MonoBehaviour
         localPos = new Vector3(localPos.x, -localPos.y, localPos.z); // y 축 좌표 반전
 
 
-        // 힌지랑 타겟이 다리는 안 내려간다........
-
-        // 스케일 팩터 구하기
-
         // 1. 무릎 좌표일 경우
-        if (i >= 25 || i == 26) // i  >= 25 로 해야 되나????????????? -> 그런데 이렇게 하면 다리 이상하게 구부러짐....
+        if (i >= 25 || i == 26) 
         {
-            if (localPos.y > -0.25f) // 앉아 있을 때는 유닛벡터를 기준으로 한다 18이었음 원래
+            if (localPos.y > -0.25f) // 앉아 있을 때는 유닛벡터를 기준으로 한다
             {
                 currentScaleFactor = Vector3.one;
             }
@@ -297,10 +271,11 @@ public class Y_MediaPipeTest : MonoBehaviour
             {
                 currentScaleFactor = Vector3.one * targetScaleLeg;
             }
-            //print("?????????" + currentScaleFactor);
 
             //임시
             currentScaleFactor = Vector3.one * targetScaleBody * targetScaleLeg * 0.7f;
+
+            currentScaleFactor.x = currentScaleFactor.x * (1f / 0.7f);
 
             currentScaleFactor.z = currentScaleFactor.z * 0.4f;
         }
@@ -316,8 +291,6 @@ public class Y_MediaPipeTest : MonoBehaviour
 
             StartAndNowDiffLocation.y = -StartAndNowDiffLocation.y; // y 값 반전
 
-           // StartAndNowDiffLocation = Vector3.Scale(StartAndNowDiffLocation, currentScaleFactor); // 스케일 팩터 보정
-
             StartAndNowDiffLocation = transform.TransformDirection(StartAndNowDiffLocation); // 월드 좌표로 변환
         }
 
@@ -328,8 +301,6 @@ public class Y_MediaPipeTest : MonoBehaviour
         {
             finalVector = finalVector - (transform.up * 0.05f);
         }
-
-        //finalVector += new Vector3(0, 1, 0); ////////////////////////////////////////
 
         return finalVector;
     }
