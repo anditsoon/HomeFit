@@ -11,7 +11,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class JSWConnectionManager : MonoBehaviourPunCallbacks
 {
-    public GameObject roomPrefab;
+    //public GameObject roomPrefab;
     public Transform scrollContent;
     public GameObject[] panelList;
 
@@ -22,6 +22,7 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     void Start()
     {
         Screen.SetResolution(640, 480, FullScreenMode.Windowed);
+        StartLogin();
     }
 
 
