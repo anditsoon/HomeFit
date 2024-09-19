@@ -6,6 +6,7 @@ using Photon.Realtime;
 using System.Reflection;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 //using ExitGames.Client.Photon;
 //using Hashtable = ExitGames.Client.Photon.Hashtable;
 
@@ -42,7 +43,7 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
 
             // 접속을 서버에 요청하기
             PhotonNetwork.ConnectUsingSettings();
-            LobbyUIController.lobbyUI.btn_login.interactable = false;
+            //LobbyUIController.lobbyUI.btn_login.interactable = false;
         }
     }
 
@@ -250,5 +251,14 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
             });
         }
     }
-}
 
+    public void MoveMainScene()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
+
+    public void MoveProfileScene()
+    {
+        SceneManager.LoadScene("ProfileScene");
+    }
+}
