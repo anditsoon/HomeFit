@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 
 public class LoginUIManager : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class LoginUIManager : MonoBehaviour
     public static LoginUIManager instance;
 
     public bool isLogin = false;
+    public bool isRegist = false;
+    public bool isInfoChange = false;
 
     private Coroutine curCor;
 
@@ -45,11 +48,15 @@ public class LoginUIManager : MonoBehaviour
         userManager = user.GetComponent<UserInfoManager>();
         curCor = StartCoroutine(FadeIn(transform.GetChild(0).gameObject));
         userManager.OnLoginStatusChanged += HandleLoginStatusChanged;
+        userManager.OnRegisterStatusChanged += HandleRegisterStatusChanged;
+        userManager.OnUpdateInfoStatusChanged += HandleUpdateInfoStatusChanged;
     }
     void OnDestroy()
     {
         // 이벤트 구독 해제
         userManager.OnLoginStatusChanged -= HandleLoginStatusChanged;
+        userManager.OnRegisterStatusChanged -= HandleRegisterStatusChanged;
+        userManager.OnUpdateInfoStatusChanged -= HandleUpdateInfoStatusChanged;
     }
 
     void HandleLoginStatusChanged(bool isLoggedIn)
@@ -61,6 +68,30 @@ public class LoginUIManager : MonoBehaviour
         else
         {
             isLogin = false;
+        }
+    }
+
+    void HandleRegisterStatusChanged(bool isRegister)
+    {
+        if (isRegister)
+        {
+            isRegist = true;
+        }
+        else
+        {
+            isRegist = false;
+        }
+    }
+
+    void HandleUpdateInfoStatusChanged(bool isInfoChanged)
+    {
+        if (isInfoChanged)
+        {
+            isInfoChange = true;
+        }
+        else
+        {
+            isInfoChange = false;
         }
     }
 
@@ -81,9 +112,20 @@ public class LoginUIManager : MonoBehaviour
         ChangePanel(3);
     }
 
+    public void Number4ButtonRE()
+    {
+        transform.GetChild(3).gameObject.SetActive(false);
+        ChangePanel(4);
+    }
+
     public void Login()
     {
         StartCoroutine(RoopCheck());
+    }
+
+    public void Register()
+    {
+        StartCoroutine(RoopCheckRegister());
     }
 
     IEnumerator RoopCheck()
@@ -92,12 +134,31 @@ public class LoginUIManager : MonoBehaviour
         {
             if (isLogin == true)
             {
-                ChangePanel(4);
+                //ChangePanel(5);
+                //로그인 성공!
+                //씬이동
                 break;
             }
             else
             {
                 yield return new WaitForSeconds(1.0f);
+                //n초 후 로그인 안되면 실패 ui
+            }
+        }
+    }
+    IEnumerator RoopCheckRegister()
+    {
+        while (true)
+        {
+            if (isRegist == true)
+            {
+                ChangePanel(5);
+                break;
+            }
+            else
+            {
+                yield return new WaitForSeconds(1.0f);
+                //n초 후 가입 안되면 실패 ui
             }
         }
     }
@@ -108,16 +169,16 @@ public class LoginUIManager : MonoBehaviour
         AvatarInfo.instance.Birthday = playerBirthInput.GetComponent<TMP_InputField>().text;
         AvatarInfo.instance.Height = float.Parse(playerHeightInput.GetComponent<TMP_InputField>().text);
         AvatarInfo.instance.Weight = float.Parse(playerWeightInput.GetComponent<TMP_InputField>().text);
-        ChangePanel(5);
+        ChangePanel(6);
     }
 
     public void Number6Button()
     {
-        ChangePanel(6);
+        ChangePanel(7);
     }
     public void Number7Button()
     {
-        ChangePanel(7);
+        ChangePanel(8);
     }
     public void Number8Button()
     {
