@@ -15,15 +15,11 @@ public class Y_UIManager : MonoBehaviour
     public bool canActive = true;
 
     Y_SetStandardPos setStandardPos;
-    Y_CountSquatt cntSquatScript;
-    float prevSquatNum = 0;
-    float squatNum = 0;
-    public TMP_Text squatCnt;
+    
 
 
     void Start()
     {
-        cntSquatScript = GameObject.Find("Player").GetComponent<Y_CountSquatt>();
         setStandardPos = GameObject.Find("Player").GetComponent<Y_SetStandardPos>();
     }
 
@@ -39,12 +35,7 @@ public class Y_UIManager : MonoBehaviour
             currTime = 0;
         }
 
-        squatNum = cntSquatScript.squattCount;
-        if(prevSquatNum <= squatNum)
-        {
-            squatCnt.text = squatNum.ToString();
-            prevSquatNum = squatNum;
-        }
+        
     }
 
     void Countdown()

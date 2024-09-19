@@ -26,6 +26,13 @@ public class Y_CountJumpingJack : MonoBehaviour
     {
         if (startGame)
         {
+            /////////////////////
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                jumpingJackCount++;
+            }
+            /////////////////////
+
             //print("손 좌표 : " + leftHandPos.position.y + " 오른손도!! : " + rightHandPos.position.y);
             if (leftHandPos.position.y > 4.8f && rightHandPos.position.y > 4.8f && !isJumpingJack)
             {

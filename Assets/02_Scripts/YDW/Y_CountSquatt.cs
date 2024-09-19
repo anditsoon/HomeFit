@@ -7,7 +7,7 @@ public class Y_CountSquatt : MonoBehaviour
 {
     public bool startGame;
     public bool isSquatting;
-    public float squattCount;
+    public float squatCount;
     Y_MediaPipeTest mediapipe;
     Transform pelvisPos;
     Transform leftHandPos;
@@ -18,7 +18,7 @@ public class Y_CountSquatt : MonoBehaviour
     void Start()
     {
         isSquatting = false;
-        squattCount = 0;
+        squatCount = 0;
         mediapipe = GetComponent<Y_MediaPipeTest>();
         pelvisPos = mediapipe.spineTrans;
     }
@@ -28,10 +28,19 @@ public class Y_CountSquatt : MonoBehaviour
     {
         if(startGame)
         {
+
+            /////////////////
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                squatCount++;
+            }
+
+            ////////////////
+            ///
             //print("y 좌표 : " + pelvisPos.position.y);
             if (pelvisPos.position.y < 3.35f && !isSquatting) // 3.25
             {
-                squattCount++;
+                squatCount++;
                 isSquatting = true;
             }
         
@@ -40,7 +49,10 @@ public class Y_CountSquatt : MonoBehaviour
                 isSquatting = false;
             }
 
-            print("스쿼트 횟수: " + squattCount);
+            
+
+
+            print("스쿼트 횟수: " + squatCount);
 
         }
     }
