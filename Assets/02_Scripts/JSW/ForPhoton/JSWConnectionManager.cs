@@ -27,11 +27,6 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     }
 
 
-    void Update()
-    {
-
-    }
-
     public void StartLogin()
     {
         // 접속을 위한 설정
@@ -94,6 +89,11 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
         //roomOpt.IsOpen = true;
         //roomOpt.IsVisible = true;
 
+        string[] avatarInfo = AvatarInfo.instance.ReturnAvatarInfo();
+        print(avatarInfo);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new ExitGames.Client.Photon.Hashtable { { "Backpack", avatarInfo[0]}, { "Body", avatarInfo[1] }, { "Eyebrow", avatarInfo[2] }, { "Glasses", avatarInfo[3] },
+                { "Glove", avatarInfo[4] }, { "Hair", avatarInfo[5] }, { "Hat", avatarInfo[6] },
+                { "Mustache", avatarInfo[7] }, { "Outerwear", avatarInfo[8]}, { "Pants", avatarInfo[9] }, { "Shoe", avatarInfo[10] }, });
 
 
         //PhotonNetwork.CreateRoom("MTVS Room", roomOpt,TypedLobby.Default);
@@ -128,7 +128,8 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
             //Hashtable roomTable = new Hashtable();
             //roomTable.Add("MASTER_NAME", PhotonNetwork.NickName);
             //roomTable.Add("PASSWORD", 1234);
-//            roomOpt.CustomRoomProperties = roomTable;
+            //            roomOpt.CustomRoomProperties = roomTable;
+      
 
             PhotonNetwork.CreateRoom(roomName, roomOpt, TypedLobby.Default);
         }
@@ -149,6 +150,7 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
 
     public void JoinRoom()
     {
+        
         // Join 관련 패널을 활성화한다.
         ChangePanel(1, 2);
     }
@@ -165,6 +167,8 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
+
+       
 
         // 성공적으로 방에 입장되었음을 알려준다.
         print(MethodInfo.GetCurrentMethod().Name + " is Call!");

@@ -791,6 +791,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6514969496642273152, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -808,6 +813,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 571679188}
   m_SourcePrefab: {fileID: 100100000, guid: 144a3fa0b44ac974e8e55edd33994d33, type: 3}
+--- !u!4 &98084160 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1008635641060963374, guid: 144a3fa0b44ac974e8e55edd33994d33,
+    type: 3}
+  m_PrefabInstance: {fileID: 98084159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &98513829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2927,6 +2938,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6514969496642273152, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2944,6 +2960,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1720571373}
   m_SourcePrefab: {fileID: 100100000, guid: 144a3fa0b44ac974e8e55edd33994d33, type: 3}
+--- !u!4 &583306362 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1008635641060963374, guid: 144a3fa0b44ac974e8e55edd33994d33,
+    type: 3}
+  m_PrefabInstance: {fileID: 583306361}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &593656380
 GameObject:
   m_ObjectHideFlags: 0
@@ -3277,6 +3299,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPlayer: {fileID: 0}
+  playerPositions:
+  - {fileID: 5017023715880119549}
+  - {fileID: 583306362}
+  - {fileID: 98084160}
+  - {fileID: 1105910964}
 --- !u!4 &655344016 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5709196878635170325, guid: 67943b26a8cb5084291613c7c6e130ba,
@@ -4900,6 +4927,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6514969496642273152, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4917,6 +4949,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 749552795}
   m_SourcePrefab: {fileID: 100100000, guid: 144a3fa0b44ac974e8e55edd33994d33, type: 3}
+--- !u!4 &1105910964 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1008635641060963374, guid: 144a3fa0b44ac974e8e55edd33994d33,
+    type: 3}
+  m_PrefabInstance: {fileID: 1105910963}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1111055263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6804454059417997726, guid: 67943b26a8cb5084291613c7c6e130ba,
@@ -5297,7 +5335,7 @@ MonoBehaviour:
   interestGroup: 0
   useTargetPlayers: 0
   targetPlayers: 
-  debugEchoMode: 1
+  debugEchoMode: 0
   reliableMode: 0
   encrypt: 0
   transmitEnabled: 1
@@ -11352,11 +11390,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8256563721053772167, guid: 67943b26a8cb5084291613c7c6e130ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67943b26a8cb5084291613c7c6e130ba, type: 3}
+--- !u!4 &5017023715880119549 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5714970408904370967, guid: 67943b26a8cb5084291613c7c6e130ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 5017023715880119548}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
