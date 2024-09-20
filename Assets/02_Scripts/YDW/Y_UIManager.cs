@@ -45,8 +45,6 @@ public class Y_UIManager : MonoBehaviour
                 currTime = 0;
             }
         }
-
-        
     }
 
     CanvasRenderer[] canvasRenderers;
@@ -64,8 +62,7 @@ public class Y_UIManager : MonoBehaviour
         {
             countdownText.SetActive(true);
             PoseRecCountdown.text = showTime.ToString();
-        }
-        
+        } 
     }
 
     //IEnumerator deactivateCntUI()
@@ -74,7 +71,7 @@ public class Y_UIManager : MonoBehaviour
     //    directionCanvas.SetActive(false);
     //}
 
-    IEnumerator decreaseAlpha(CanvasRenderer[] canvasRenderes)
+    IEnumerator decreaseAlpha(CanvasRenderer[] canvasRenderers)
     {
         while(true)
         {
@@ -121,7 +118,7 @@ public class Y_UIManager : MonoBehaviour
         isSelected = true;
         canvasRenderers = chooseWorkOutCanvas.GetComponentsInChildren<CanvasRenderer>();
         StartCoroutine(decreaseAlpha(canvasRenderers));
-        chooseWorkOut.SetActive(false);
+        StartCoroutine(deactiveChooseWorkOut());
     }
 
     public void SelectJumpingJack()
@@ -130,6 +127,13 @@ public class Y_UIManager : MonoBehaviour
         isSelected = true;
         canvasRenderers = chooseWorkOutCanvas.GetComponentsInChildren<CanvasRenderer>();
         StartCoroutine(decreaseAlpha(canvasRenderers));
+        StartCoroutine(deactiveChooseWorkOut());
+    }
+
+    IEnumerator deactiveChooseWorkOut()
+    {
+        yield return new WaitForSeconds(1f);
         chooseWorkOut.SetActive(false);
     }
+
 }

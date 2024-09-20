@@ -221,8 +221,6 @@ public class Y_MediaPipeTest : MonoBehaviour
 
         // 척추 위치 보정
         spinePos = transform.position + StartAndNowDiffLocation; // 새로운 위치 계산 : 현 위치(허리)에서 처음과의 달라진 위치를 더한다
-
-
         spineTrans.position = spinePos; // 척추 위치를 강제로 옮겨준다 (애니메이터가 못 움직이게 막아놓고 있었으므로)
 
         // 왼손 위치 보정
