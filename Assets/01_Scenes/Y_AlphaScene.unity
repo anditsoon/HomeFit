@@ -7578,7 +7578,7 @@ PrefabInstance:
     - target: {fileID: 3352204870466635465, guid: 65943aec8ef2fd74889fc45eacbc2762,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3387205929106461075, guid: 65943aec8ef2fd74889fc45eacbc2762,
         type: 3}
@@ -7748,7 +7748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasStart: 0
-  timerText: {fileID: 0}
+  timerText: {fileID: 2077603029}
   duration: 0
 --- !u!114 &7418506682327287956 stripped
 MonoBehaviour:

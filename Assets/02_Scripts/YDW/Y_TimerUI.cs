@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Y_TimerUI : MonoBehaviour
@@ -15,7 +16,8 @@ public class Y_TimerUI : MonoBehaviour
 
     void Start()
     {
-        duration = 5;
+        duration = 60;
+        print(timerText.text);
     }
 
     void Update()
@@ -28,11 +30,20 @@ public class Y_TimerUI : MonoBehaviour
             TimeSpan timeSpan = TimeSpan.FromSeconds(elapsedTime);
             string timeText = string.Format("{0:00}:{1:00}",
                 timeSpan.Minutes, timeSpan.Seconds);
-
+            print("!!!!!!!!" + timeText);
             // UI 텍스트 업데이트
+            //if(timerText != null)
+            //{
+            //    timerText = GameObject.Find("TimerText").GetComponent<TMP_Text>();
+            //    print(1111);
+            //}
+
             timerText.text = timeText;
 
-            if(elapsedTime > duration)
+            // timerText.text= "Hello";
+
+
+            if (elapsedTime > duration)
             {
                 gameObject.SetActive(false);
             }
