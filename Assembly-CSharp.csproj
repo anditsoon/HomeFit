@@ -200,7 +200,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\GPM\LICENSE.txt" />
     <None Include="Assets\Photon\PhotonVoice\PhotonVoiceLibs\WSA\x86\opus_egpv.dll" />
-    <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Extended.shader" />
+    <None Include="Assets\04_Textures\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Extended.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
     <None Include="Assets\Photon\PhotonVoice\PhotonVoiceLibs\x86\AudioIn.dll" />
     <None Include="Assets\Photon\PhotonVoice\changes-voice.txt" />
@@ -217,7 +217,7 @@
     <None Include="Assets\Photon\PhotonVoice\Demos\Resources\readme.txt" />
     <None Include="Assets\Photon\PhotonVoice\PhotonVoiceLibs\x86_64\opus_egpv.dll" />
     <None Include="Assets\02_Scripts\SimpleJSON-master\Changelog.txt" />
-    <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Blend.shader" />
+    <None Include="Assets\04_Textures\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Blend.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -1278,10 +1278,6 @@
       <Project>{EB0C2DAA-1B0D-422D-4043-E18B5BD01DAB}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Boxophobic.Utils.Scripts.csproj">
-      <Project>{121BA13A-7418-6722-43C5-0B5C826BC668}</Project>
-      <Name>Boxophobic.Utils.Scripts</Name>
-    </ProjectReference>
     <ProjectReference Include="PhotonVoice.API.csproj">
       <Project>{6259F234-78EA-8767-A142-D610A1E704D4}</Project>
       <Name>PhotonVoice.API</Name>
@@ -1305,10 +1301,6 @@
     <ProjectReference Include="PhotonVoice.PUN.csproj">
       <Project>{BF6B6EC4-DE81-8A0E-BA22-7755E019433C}</Project>
       <Name>PhotonVoice.PUN</Name>
-    </ProjectReference>
-    <ProjectReference Include="Boxophobic.SkyboxCubemapExtended.Editor.csproj">
-      <Project>{1BAFDB99-B5A6-68D9-B76D-7685A1949966}</Project>
-      <Name>Boxophobic.SkyboxCubemapExtended.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="MicAmplifierEditor.Editor.csproj">
       <Project>{9D4FC19F-15F7-BCA5-7E48-68EA3F906453}</Project>
@@ -1338,6 +1330,10 @@
       <Project>{D45C659B-A7C1-8CFA-2FFD-0A7D74AC5F70}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="Boxophobic.SkyboxCubemapExtended.Editor.csproj">
+      <Project>{1BAFDB99-B5A6-68D9-B76D-7685A1949966}</Project>
+      <Name>Boxophobic.SkyboxCubemapExtended.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonVoice.Editor.csproj">
       <Project>{C94C2FBD-C6B5-C729-9C3E-8ADF2EA5F31F}</Project>
       <Name>PhotonVoice.Editor</Name>
@@ -1345,6 +1341,10 @@
     <ProjectReference Include="gpm_webview.csproj">
       <Project>{D9025F85-577C-4F0F-1893-1E755C0B0E63}</Project>
       <Name>gpm_webview</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.Utils.Scripts.csproj">
+      <Project>{121BA13A-7418-6722-43C5-0B5C826BC668}</Project>
+      <Name>Boxophobic.Utils.Scripts</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonVoice.Utilities.Editor.csproj">
       <Project>{65336579-2AE1-B7E5-6C15-807B955992DA}</Project>
