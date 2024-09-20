@@ -329,22 +329,22 @@ public class Y_MediaPipeTest : MonoBehaviour, IPunObservable
         if (stream.IsWriting)
         {
 
-            //// iterable 데이터를 보낸다.
-            //for (int i = 0; i < 33; i++)
-            //{
-
-            //    stream.SendNext(new Vector3(
-            //        conn.latestPoseList[i].x,
-            //        conn.latestPoseList[i].y,
-            //        conn.latestPoseList[i].z));
-            //}
-
-            if (stream.IsWriting)
+            // iterable 데이터를 보낸다.
+            for (int i = 0; i < 33; i++)
             {
-                Vector3 dataToSend = new Vector3(conn.latestPoseList[0].x, conn.latestPoseList[0].y, conn.latestPoseList[0].z);
-                Debug.Log("Sending data: " + dataToSend);
-                stream.SendNext(dataToSend);
+
+                stream.SendNext(new Vector3(
+                    conn.latestPoseList[i].x,
+                    conn.latestPoseList[i].y,
+                    conn.latestPoseList[i].z));
             }
+
+            //if (stream.IsWriting)
+            //{
+            //    Vector3 dataToSend = new Vector3(conn.latestPoseList[0].x, conn.latestPoseList[0].y, conn.latestPoseList[0].z);
+            //    Debug.Log("Sending data: " + dataToSend);
+            //    stream.SendNext(dataToSend);
+            //}
             
             //stream.SendNext(new Vector3(conn.latestPoseList[1].x, conn.latestPoseList[1].y, conn.latestPoseList[1].z));
             //stream.SendNext(new Vector3(conn.latestPoseList[2].x, conn.latestPoseList[2].y, conn.latestPoseList[2].z));
@@ -385,13 +385,10 @@ public class Y_MediaPipeTest : MonoBehaviour, IPunObservable
         else if (stream.IsReading)
         {
 
-            PD[0] = (Vector3)stream.ReceiveNext();
-            Debug.Log("Received data: " + PD[0]);
-            //for (int i = 0; i < 33; i++)
-            //{
-            //    PD[i] = (Vector3)stream.ReceiveNext();
-            //    print(PD[i]);
-            //}
+            for (int i = 0; i < 33; i++)
+            {
+                PD[i] = (Vector3)stream.ReceiveNext();
+            }
             // print((float)stream.ReceiveNext() + "dd");
 
             //PD[1] = (Vector3)stream.ReceiveNext();
