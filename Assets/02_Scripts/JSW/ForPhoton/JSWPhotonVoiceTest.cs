@@ -54,8 +54,8 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     public void SettingAvatar_RPC(string[] avatarsetting)
     {
-
-        pv.RPC(nameof(SettingAvatar), RpcTarget.All, avatarsetting);
+        pv = GetComponent<PhotonView>();
+        pv.RPC(nameof(SettingAvatar), RpcTarget.AllBuffered, avatarsetting);
     }
 
     [PunRPC]
@@ -81,7 +81,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         
         if (pv.IsMine && avatarSettings != null)
         {
-            pv.RPC("SettingAvatar", RpcTarget.AllBuffered, avatarSettings);
+            pv.RPC(nameof(SettingAvatar), RpcTarget.AllBuffered, avatarSettings);
         }
     }
 }

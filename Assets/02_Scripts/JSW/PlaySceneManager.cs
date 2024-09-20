@@ -75,7 +75,4 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
         avatarsetting[10] = (string)CP["Shoe"];
         myPlayer.GetComponent<JSWPhotonVoiceTest>().SettingAvatar_RPC(avatarsetting);
     }
-
-
-   
 }
