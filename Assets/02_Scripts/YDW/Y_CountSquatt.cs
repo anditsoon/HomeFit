@@ -34,10 +34,9 @@ public class Y_CountSquatt : MonoBehaviour
             {
                 squatCount++;
             }
-
             ////////////////
-            ///
-            //print("y 좌표 : " + pelvisPos.position.y);
+            
+            print("y 좌표 : " + pelvisPos.position.y);
             if (pelvisPos.position.y < 3.35f && !isSquatting) // 3.25
             {
                 squatCount++;
@@ -48,9 +47,6 @@ public class Y_CountSquatt : MonoBehaviour
             {
                 isSquatting = false;
             }
-
-            
-
 
             print("스쿼트 횟수: " + squatCount);
 

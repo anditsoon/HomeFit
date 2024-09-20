@@ -83,16 +83,12 @@ public class Y_MediaPipeTest : MonoBehaviour
         InitializeRigParts();
     }
 
-              // Start is called before the first frame update
     void Start()
     {
         conn = GameObject.Find("UDPConnector").GetComponent<UDPPoseHandler>();
         ground = GameObject.Find("Ground_01");
         groundLevel = ground.transform.position.y;
         //print("groundLevel: " + groundLevel); // 2.655265
-
-        //countSquatt = GetComponent<Y_CountSquatt>();
-        //countJumpingJack = GetComponent<Y_CountJumpingJack>();
     }
 
     private void InitializeRigParts()
@@ -119,8 +115,6 @@ public class Y_MediaPipeTest : MonoBehaviour
         {
             //Q를 눌렀을 때의 골반 사이 위치 저장
             startSP = getStandardPoint();
-            //countSquatt.startGame = true;
-            //countJumpingJack.startGame = true;
         }
 
         if (conn.latestPoseList.Count > 0)
