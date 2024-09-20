@@ -12,7 +12,7 @@ public class Y_PlayerUIManager : MonoBehaviour
 
     float prevSquatNum = 0;
     float squatNum = 0;
-    float preveJumpingJackNum = 0;
+    float prevJumpingJackNum = 0;
     float jumpingJackNum;
     public TMP_Text squatCntUI;
     public TMP_Text jumpingJackCntUI;
@@ -46,12 +46,12 @@ public class Y_PlayerUIManager : MonoBehaviour
         }
 
         jumpingJackNum = cntJumpingJackScript.jumpingJackCount;
-        if (preveJumpingJackNum < jumpingJackNum)
+        if (prevJumpingJackNum < jumpingJackNum)
         {
             jumpingJackCntUIgo.SetActive(true);
             jumpingJackCntUI.text = jumpingJackNum.ToString();
             jumpingJackReset = true;
-            preveJumpingJackNum = jumpingJackNum;
+            prevJumpingJackNum = jumpingJackNum;
         }
     }
 
