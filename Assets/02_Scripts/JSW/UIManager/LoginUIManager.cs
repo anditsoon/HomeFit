@@ -1,10 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 //using UnityEditor.SearchService;
 
 public class LoginUIManager : MonoBehaviour
@@ -139,7 +137,8 @@ public class LoginUIManager : MonoBehaviour
                 //ChangePanel(5);
                 //로그인 성공!
                 //씬이동
-                SceneManager.LoadScene("avatarScene");
+                SceneManager.LoadScene("MainScene");
+                //TODO: 아이템 동기화 로직 구현
                 break;
             }
             else
