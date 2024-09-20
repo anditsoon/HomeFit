@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 
@@ -12,6 +13,7 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
 {
     public GameObject myPlayer;
     public Transform[] playerPositions;
+    public UDPPoseHandler UDPPoseH;
 
     public static PlaySceneManager instance;
 
@@ -61,6 +63,7 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
         Vector3 initPosition = new Vector3(randomPos.x, 0, randomPos.y);
 
         myPlayer = PhotonNetwork.Instantiate("Player", initPosition, Quaternion.identity);
+        UDPPoseH.displayWebCam = myPlayer.transform.GetChild(3).GetChild(0).GetChild(0).GetChild(1).GetComponent<RawImage>();
         string[] avatarsetting = new string[11];
         avatarsetting[0] = (string)CP["Backpack"];
         avatarsetting[1] = (string)CP["Body"];
