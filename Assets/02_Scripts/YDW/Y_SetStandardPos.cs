@@ -13,6 +13,7 @@ public class Y_SetStandardPos : MonoBehaviour
     public float duration;
 
     public Y_UIManager uiManager;
+    public Y_PlayerScreenUIManager playerScreenUIManager;
 
     bool hasStartPointSet;
 
@@ -35,7 +36,7 @@ public class Y_SetStandardPos : MonoBehaviour
         if(mediapipe.getV3FromLandmark(27).y < 1f && mediapipe.getV3FromLandmark(28).y < 1f 
             && mediapipe.getV3FromLandmark(11).y > 0.05f && mediapipe.getV3FromLandmark(12).y > 0.05f)
         {
-            if(uiManager.isSelected) duration += Time.deltaTime;
+            if(playerScreenUIManager.isSelected) duration += Time.deltaTime;
         }
 
         if(duration > 5f && !hasStartPointSet) // 업데이트에서 하니까 계속 되지 않게 hasStartPointSet bool 값 넣어줌
