@@ -21,6 +21,8 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
 
     public TMP_Text PoseRecCountdown;
 
+    bool startWorkOut = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,12 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
                 currTime = 0;
             }
         }
+
+        if(startWorkOut)
+        {
+
+            startWorkOut = false;
+        }
     }
 
     CanvasRenderer[] canvasRenderers;
@@ -53,15 +61,14 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
             canvasRenderers = directionCanvas.GetComponentsInChildren<CanvasRenderer>();
             StartCoroutine(uiManager.decreaseAlpha(canvasRenderers)); // 투명도 조절 후
             directionCanvas.SetActive(false); // UI 비활성화
-            print("deactivated?????");
             canActive = false;
             isSelected = false;
+            startWorkOut = true;
         }
         else if (showTime < 6)
         {
             countdownText.SetActive(true);
             PoseRecCountdown.text = showTime.ToString();
-
         }
     }
 }

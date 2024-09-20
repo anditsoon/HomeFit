@@ -21,7 +21,6 @@ public class Y_UIManager : MonoBehaviour
         
     }
 
-
     void Update()
     {
         
