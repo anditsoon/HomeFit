@@ -8,6 +8,7 @@ using System.Text;
 using System.Net;
 using System.Globalization;
 using TMPro;
+using UnityEditor.PackageManager.Requests;
 
 public class UserInfoManager : MonoBehaviour
 {
@@ -139,6 +140,7 @@ public class UserInfoManager : MonoBehaviour
 
                         Debug.Log($"로그인 성공. 사용자 ID: {response.userId}, 토큰: {response.jwtToken}");
                         OnLoginStatusChanged?.Invoke(true);
+                        StartCoroutine(GetUserInfoCoroutine(response.jwtToken, response.userId));
                     }
                     else
                     {
@@ -190,21 +192,55 @@ public class UserInfoManager : MonoBehaviour
         }
     }
 
-    IEnumerator UpdateUserInfoCoroutine(string nickname, string birthday, string height, string weight)
+    IEnumerator GetUserInfoCoroutine(string jwtToken, int _userId)
+    {
+        using (UnityWebRequest www = UnityWebRequest.Get(UserInfoUrl + _userId))
+        {
+            www.SetRequestHeader("Authorization", "Bearer " + jwtToken);
+            www.certificateHandler = new BypassCertificate();
+
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError($"사용자 정보 가져오기 실패: {www.error}");
+            }
+            else
+            {
+                string responseBody = www.downloadHandler.text;
+                Debug.Log($"사용자 정보 응답: {responseBody}");
+
+                try
+                {
+                    UpdateUserData userInfo = JsonUtility.FromJson<UpdateUserData>(responseBody);
+                    AvatarInfo.instance.NickName = userInfo.nickName;
+                    AvatarInfo.instance.Birthday = userInfo.birthday;
+                    AvatarInfo.instance.Height = userInfo.height;
+                    AvatarInfo.instance.Weight = userInfo.weight;
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"JSON 파싱 오류: {e.Message}");
+                }
+            }
+        }
+    }
+
+    IEnumerator UpdateUserInfoCoroutine(string _nickname, string _birthday, string _height, string _weight)
     {
         yield return new WaitForSeconds(0.1f);
 
         string jwtToken = PlayerPrefs.GetString("jwtToken");
         int userId = PlayerPrefs.GetInt("userId");
         string url = UserInfoUrl + userId;
-        string formattedBirthday = FormatDate(birthday);
+        string formattedBirthday = FormatDate(_birthday);
 
         string jsonBody = JsonUtility.ToJson(new UpdateUserData
         {
-            nickName = nickname,
+            nickName = _nickname,
             birthday = formattedBirthday,
-            height = float.Parse(height),
-            weight = float.Parse(weight)
+            height = float.Parse(_height),
+            weight = float.Parse(_weight)
         });
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonBody);
 
