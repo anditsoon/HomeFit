@@ -1164,10 +1164,6 @@
       <Project>{EB0C2DAA-1B0D-422D-4043-E18B5BD01DAB}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Boxophobic.Utils.Scripts.csproj">
-      <Project>{121BA13A-7418-6722-43C5-0B5C826BC668}</Project>
-      <Name>Boxophobic.Utils.Scripts</Name>
-    </ProjectReference>
     <ProjectReference Include="PhotonVoice.API.csproj">
       <Project>{6259F234-78EA-8767-A142-D610A1E704D4}</Project>
       <Name>PhotonVoice.API</Name>
@@ -1191,10 +1187,6 @@
     <ProjectReference Include="PhotonVoice.PUN.csproj">
       <Project>{BF6B6EC4-DE81-8A0E-BA22-7755E019433C}</Project>
       <Name>PhotonVoice.PUN</Name>
-    </ProjectReference>
-    <ProjectReference Include="Boxophobic.SkyboxCubemapExtended.Editor.csproj">
-      <Project>{1BAFDB99-B5A6-68D9-B76D-7685A1949966}</Project>
-      <Name>Boxophobic.SkyboxCubemapExtended.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="MicAmplifierEditor.Editor.csproj">
       <Project>{9D4FC19F-15F7-BCA5-7E48-68EA3F906453}</Project>
@@ -1224,6 +1216,10 @@
       <Project>{D45C659B-A7C1-8CFA-2FFD-0A7D74AC5F70}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="Boxophobic.SkyboxCubemapExtended.Editor.csproj">
+      <Project>{1BAFDB99-B5A6-68D9-B76D-7685A1949966}</Project>
+      <Name>Boxophobic.SkyboxCubemapExtended.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonVoice.Editor.csproj">
       <Project>{C94C2FBD-C6B5-C729-9C3E-8ADF2EA5F31F}</Project>
       <Name>PhotonVoice.Editor</Name>
@@ -1231,6 +1227,10 @@
     <ProjectReference Include="gpm_webview.csproj">
       <Project>{D9025F85-577C-4F0F-1893-1E755C0B0E63}</Project>
       <Name>gpm_webview</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.Utils.Scripts.csproj">
+      <Project>{121BA13A-7418-6722-43C5-0B5C826BC668}</Project>
+      <Name>Boxophobic.Utils.Scripts</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonVoice.Utilities.Editor.csproj">
       <Project>{65336579-2AE1-B7E5-6C15-807B955992DA}</Project>
