@@ -21,25 +21,12 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
         
         if (stream.IsWriting)
         {
-
-            // iterable 데이터를 보낸다.
-            for (int i = 0; i < 33; i++)
-            {
-                stream.SendNext(squatCount);
-            }
-
-
-
+             stream.SendNext(squatCount);
         }
         // 그렇지 않고, 만일 데이터를 서버로부터 읽어오는 상태라면...
         else if (stream.IsReading)
         {
-
-            for (int i = 0; i < 33; i++)
-            {
                 squatCountOther = (float)stream.ReceiveNext();
-            }
-
         }
     }
 
@@ -88,11 +75,6 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
             {
                 squatCount = squatCountOther;
             }
-
-
-
-            print("스쿼트 횟수: " + squatCount);
-
         }
     }
 }

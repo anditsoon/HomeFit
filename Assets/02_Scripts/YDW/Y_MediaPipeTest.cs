@@ -339,45 +339,6 @@ public class Y_MediaPipeTest : MonoBehaviour, IPunObservable
                     conn.latestPoseList[i].z));
             }
 
-            //if (stream.IsWriting)
-            //{
-            //    Vector3 dataToSend = new Vector3(conn.latestPoseList[0].x, conn.latestPoseList[0].y, conn.latestPoseList[0].z);
-            //    Debug.Log("Sending data: " + dataToSend);
-            //    stream.SendNext(dataToSend);
-            //}
-            
-            //stream.SendNext(new Vector3(conn.latestPoseList[1].x, conn.latestPoseList[1].y, conn.latestPoseList[1].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[2].x, conn.latestPoseList[2].y, conn.latestPoseList[2].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[3].x, conn.latestPoseList[3].y, conn.latestPoseList[3].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[4].x, conn.latestPoseList[4].y, conn.latestPoseList[4].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[5].x, conn.latestPoseList[5].y, conn.latestPoseList[5].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[6].x, conn.latestPoseList[6].y, conn.latestPoseList[6].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[7].x, conn.latestPoseList[7].y, conn.latestPoseList[7].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[8].x, conn.latestPoseList[8].y, conn.latestPoseList[8].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[9].x, conn.latestPoseList[9].y, conn.latestPoseList[9].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[10].x, conn.latestPoseList[10].y, conn.latestPoseList[10].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[11].x, conn.latestPoseList[11].y, conn.latestPoseList[11].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[12].x, conn.latestPoseList[12].y, conn.latestPoseList[12].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[13].x, conn.latestPoseList[13].y, conn.latestPoseList[13].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[14].x, conn.latestPoseList[14].y, conn.latestPoseList[14].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[15].x, conn.latestPoseList[15].y, conn.latestPoseList[15].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[16].x, conn.latestPoseList[16].y, conn.latestPoseList[16].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[17].x, conn.latestPoseList[17].y, conn.latestPoseList[17].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[18].x, conn.latestPoseList[18].y, conn.latestPoseList[18].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[19].x, conn.latestPoseList[19].y, conn.latestPoseList[19].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[20].x, conn.latestPoseList[20].y, conn.latestPoseList[20].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[21].x, conn.latestPoseList[21].y, conn.latestPoseList[21].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[22].x, conn.latestPoseList[22].y, conn.latestPoseList[22].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[23].x, conn.latestPoseList[23].y, conn.latestPoseList[23].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[24].x, conn.latestPoseList[24].y, conn.latestPoseList[24].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[25].x, conn.latestPoseList[25].y, conn.latestPoseList[25].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[26].x, conn.latestPoseList[26].y, conn.latestPoseList[26].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[27].x, conn.latestPoseList[27].y, conn.latestPoseList[27].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[28].x, conn.latestPoseList[28].y, conn.latestPoseList[28].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[29].x, conn.latestPoseList[29].y, conn.latestPoseList[29].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[30].x, conn.latestPoseList[30].y, conn.latestPoseList[30].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[31].x, conn.latestPoseList[31].y, conn.latestPoseList[31].z));
-            //stream.SendNext(new Vector3(conn.latestPoseList[32].x, conn.latestPoseList[32].y, conn.latestPoseList[32].z));
 
 
         }
@@ -389,40 +350,7 @@ public class Y_MediaPipeTest : MonoBehaviour, IPunObservable
             {
                 PD[i] = (Vector3)stream.ReceiveNext();
             }
-            // print((float)stream.ReceiveNext() + "dd");
 
-            //PD[1] = (Vector3)stream.ReceiveNext();
-            //PD[2] = (Vector3)stream.ReceiveNext();
-            //PD[3] = (Vector3)stream.ReceiveNext();
-            //PD[4] = (Vector3)stream.ReceiveNext();
-            //PD[5] = (Vector3)stream.ReceiveNext();
-            //PD[6] = (Vector3)stream.ReceiveNext();
-            //PD[7] = (Vector3)stream.ReceiveNext();
-            //PD[8] = (Vector3)stream.ReceiveNext();
-            //PD[9] = (Vector3)stream.ReceiveNext();
-            //PD[10] = (Vector3)stream.ReceiveNext();
-            //PD[11] = (Vector3)stream.ReceiveNext();
-            //PD[12] = (Vector3)stream.ReceiveNext();
-            //PD[13] = (Vector3)stream.ReceiveNext();
-            //PD[14] = (Vector3)stream.ReceiveNext();
-            //PD[15] = (Vector3)stream.ReceiveNext();
-            //PD[16] = (Vector3)stream.ReceiveNext();
-            //PD[17] = (Vector3)stream.ReceiveNext();
-            //PD[18] = (Vector3)stream.ReceiveNext();
-            //PD[19] = (Vector3)stream.ReceiveNext();
-            //PD[20] = (Vector3)stream.ReceiveNext();
-            //PD[21] = (Vector3)stream.ReceiveNext();
-            //PD[22] = (Vector3)stream.ReceiveNext();
-            //PD[23] = (Vector3)stream.ReceiveNext();
-            //PD[24] = (Vector3)stream.ReceiveNext();
-            //PD[25] = (Vector3)stream.ReceiveNext();
-            //PD[26] = (Vector3)stream.ReceiveNext();
-            //PD[27] = (Vector3)stream.ReceiveNext();
-            //PD[28] = (Vector3)stream.ReceiveNext();
-            //PD[29] = (Vector3)stream.ReceiveNext();
-            //PD[30] = (Vector3)stream.ReceiveNext();
-            //PD[31] = (Vector3)stream.ReceiveNext();
-            //PD[32] = (Vector3)stream.ReceiveNext();
         }
     }
 
