@@ -171,28 +171,36 @@ public class Y_MediaPipeTest : MonoBehaviour
     {
 
         // 각자 IK 에 따라 움직이게 하기
+
+        // 머리
         headAim1.transform.position = Vector3.Lerp(headAim1.transform.position, UpdateRigPart(9), 0.1f);
         headAim2.transform.position = Vector3.Lerp(headAim2.transform.position, UpdateRigPart(10), 0.1f);
+
+        // 팔
         leftArmHint.transform.position = Vector3.Lerp(leftArmHint.transform.position, UpdateRigPart(13), 0.1f);
         rightArmHint.transform.position = Vector3.Lerp(rightArmHint.transform.position, UpdateRigPart(14), 0.1f);
         leftArmTarget.transform.position = Vector3.Lerp(leftArmTarget.transform.position, UpdateRigPart(15), 0.1f);
         rightArmTarget.transform.position = Vector3.Lerp(rightArmTarget.transform.position, UpdateRigPart(16), 0.1f);
-        leftLegHint.transform.position = Vector3.Lerp(leftLegHint.transform.position, UpdateRigPart(25), 0.1f);
-        rightLegHint.transform.position = Vector3.Lerp(rightLegHint.transform.position, UpdateRigPart(26), 0.1f);
+
+        // 다리
+        leftLegHint.transform.position = Vector3.Lerp(leftLegHint.transform.position, UpdateRigPart(25), 0.05f);
+        rightLegHint.transform.position = Vector3.Lerp(rightLegHint.transform.position, UpdateRigPart(26), 0.05f);
         leftLegTarget.transform.position = Vector3.Lerp(leftLegTarget.transform.position, UpdateRigPart(27), 0.1f);
         //다리가 자꾸 꺼지니까, 다리 위치를 그라운드 레벨과 맞춰준다
         leftLegTarget.transform.position = new Vector3(
             leftLegTarget.transform.position.x,
-            Mathf.Max(UpdateRigPart(27).y, groundLevel + 0.2f),  // 지면 레벨보다 아래로 내려가지 않도록
+            Mathf.Max(UpdateRigPart(27).y, groundLevel),  // 지면 레벨보다 아래로 내려가지 않도록
             leftLegTarget.transform.position.z
         );
         rightLegTarget.transform.position = Vector3.Lerp(rightLegTarget.transform.position, UpdateRigPart(28), 0.1f);
         //다리가 자꾸 꺼지니까, 다리 위치를 그라운드 레벨과 맞춰준다
         rightLegTarget.transform.position = new Vector3(
             rightLegTarget.transform.position.x,
-            Mathf.Max(UpdateRigPart(28).y, groundLevel + 0.2f),  // 지면 레벨보다 아래로 내려가지 않도록
+            Mathf.Max(UpdateRigPart(28).y, groundLevel),  // 지면 레벨보다 아래로 내려가지 않도록
             rightLegTarget.transform.position.z
         );
+
+        // 몸통
         spineTarget.transform.position = Vector3.Lerp(spineTarget.transform.position, (UpdateRigPart(11) + UpdateRigPart(12)) * 0.5f, 0.1f);
         spineHint.transform.position = Vector3.Lerp(spineHint.transform.position, (UpdateRigPart(24) + UpdateRigPart(23)) * 0.5f, 0.1f);
 
