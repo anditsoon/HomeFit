@@ -1012,6 +1012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conn: {fileID: 0}
   currentScaleFactor: {x: 1, y: 1, z: 1}
+  startSP: {x: 0, y: 0, z: 0}
   targetHeight: 1.03
   targetLegLength: 0.62
   spineTrans: {fileID: 0}
@@ -1048,7 +1049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startGame: 0
   isSquatting: 0
-  squattCount: 0
+  squatCount: 0
 --- !u!114 &9023030758096160187
 MonoBehaviour:
   m_ObjectHideFlags: 0
