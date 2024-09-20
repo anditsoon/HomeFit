@@ -93,18 +93,20 @@ public class Y_MediaPipeTest : MonoBehaviour
 
     private void InitializeRigParts()
     {
-        leftArmTarget = GameObject.Find("Rig_LeftArm_target");
-        leftArmHint = GameObject.Find("Rig_LeftArm_hint");
-        rightArmTarget = GameObject.Find("Rig_RightArm_target");
-        rightArmHint = GameObject.Find("Rig_RightArm_hint");
-        leftLegTarget = GameObject.Find("Rig_LeftLeg_target");
-        leftLegHint = GameObject.Find("Rig_LeftLeg_hint");
-        rightLegTarget = GameObject.Find("Rig_RightLeg_target");
-        rightLegHint = GameObject.Find("Rig_RightLeg_hint");
-        headAim1 = GameObject.Find("Aim1");
-        headAim2 = GameObject.Find("Aim2");
-        spineTarget = GameObject.Find("Rig_Spine_target");
-        spineHint = GameObject.Find("Rig_Spine_hint");
+        //leftArmTarget = GameObject.Find("Rig_LeftArm_target");
+        //leftArmHint = GameObject.Find("Rig_LeftArm_hint");
+        //rightArmTarget = GameObject.Find("Rig_RightArm_target");
+        //rightArmHint = GameObject.Find("Rig_RightArm_hint");
+        //leftLegTarget = GameObject.Find("Rig_LeftLeg_target");
+        //leftLegHint = GameObject.Find("Rig_LeftLeg_hint");
+        //rightLegTarget = GameObject.Find("Rig_RightLeg_target");
+        //rightLegHint = GameObject.Find("Rig_RightLeg_hint");
+        //headAim1 = GameObject.Find("Aim1");
+        //headAim2 = GameObject.Find("Aim2");
+        //spineTarget = GameObject.Find("Rig_Spine_target");
+        //spineHint = GameObject.Find("Rig_Spine_hint");
+
+
 
     }
 
