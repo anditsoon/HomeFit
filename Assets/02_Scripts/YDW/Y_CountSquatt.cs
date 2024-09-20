@@ -9,7 +9,6 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
     public bool startGame;
     public bool isSquatting;
     public float squatCount;
-    public float squatCountOther;
     PhotonView pv;
     Y_MediaPipeTest mediapipe;
     Transform pelvisPos;
@@ -26,7 +25,7 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
         // 그렇지 않고, 만일 데이터를 서버로부터 읽어오는 상태라면...
         else if (stream.IsReading)
         {
-                squatCountOther = (float)stream.ReceiveNext();
+            squatCount = (float)stream.ReceiveNext();
         }
     }
 
@@ -70,10 +69,6 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
                 {
                     isSquatting = false;
                 }
-            }
-            if (!pv.IsMine)
-            {
-                squatCount = squatCountOther;
             }
         }
     }
