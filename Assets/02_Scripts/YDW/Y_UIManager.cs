@@ -14,6 +14,7 @@ public class Y_UIManager : MonoBehaviour
     public Y_CountJumpingJack cntJumpingJack;
     public Y_CountSquatt cntSquat;
     public GameObject chooseWorkOutCanvas;
+    public PlaySceneManager PSM;
     GameObject playerScreenCanvas;
     
 
@@ -55,6 +56,7 @@ public class Y_UIManager : MonoBehaviour
     // 스쿼트 / 팔벌려뛰기 버튼 선택 시 호출되는 함수들
     public void SelectSquat()
     {
+        cntSquat = PSM.myPlayer.GetComponent<Y_CountSquatt>();
         cntSquat.enabled = true;
         playerScreenCanvas = GameObject.Find("PlayerScreenCanvas");
         playerScreenCanvas.GetComponent<Y_PlayerScreenUIManager>().isSelected = true;
@@ -65,6 +67,7 @@ public class Y_UIManager : MonoBehaviour
 
     public void SelectJumpingJack()
     {
+        cntJumpingJack = PSM.myPlayer.GetComponent<Y_CountJumpingJack>();
         cntJumpingJack.enabled = true;
         playerScreenCanvas = GameObject.Find("PlayerScreenCanvas");
         playerScreenCanvas.GetComponent<Y_PlayerScreenUIManager>().isSelected = true;

@@ -26,8 +26,8 @@ public class Y_PlayerUIManager : MonoBehaviour
     // Start is called before the first frame update
     void LateStart()
     {
-        //cntSquatScript = GameObject.Find("Player").GetComponent<Y_CountSquatt>();
-        //cntJumpingJackScript = GameObject.Find("Player").GetComponent<Y_CountJumpingJack>();
+    //    cntSquatScript = GameObject.Find("Player").GetComponent<Y_CountSquatt>();
+    //    cntJumpingJackScript = GameObject.Find("Player").GetComponent<Y_CountJumpingJack>();
         squatCntUIScript = GetComponentInChildren<Y_SquatCntUI>();
         jumpingJackCntUIScript = GetComponentInChildren<Y_JumpingJackCntUI>();
 

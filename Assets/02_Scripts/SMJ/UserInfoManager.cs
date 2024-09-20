@@ -8,7 +8,7 @@ using System.Text;
 using System.Net;
 using System.Globalization;
 using TMPro;
-using UnityEditor.PackageManager.Requests;
+//using UnityEditor.PackageManager.Requests;
 
 public class UserInfoManager : MonoBehaviour
 {
@@ -134,7 +134,7 @@ public class UserInfoManager : MonoBehaviour
 
                     if (response != null && !string.IsNullOrEmpty(response.jwtToken))
                     {
-                        PlayerPrefs.SetInt("userId", response.userId);
+                        PlayerPrefs.SetString("userId", response.userId.ToString());
                         PlayerPrefs.SetString("jwtToken", response.jwtToken);
                         PlayerPrefs.Save();
 
@@ -192,7 +192,7 @@ public class UserInfoManager : MonoBehaviour
         }
     }
 
-    IEnumerator GetUserInfoCoroutine(string jwtToken, int _userId)
+    IEnumerator GetUserInfoCoroutine(string jwtToken, string _userId)
     {
         using (UnityWebRequest www = UnityWebRequest.Get(UserInfoUrl + _userId))
         {
@@ -231,7 +231,7 @@ public class UserInfoManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         string jwtToken = PlayerPrefs.GetString("jwtToken");
-        int userId = PlayerPrefs.GetInt("userId");
+        string userId = PlayerPrefs.GetString("userId");
         string url = UserInfoUrl + userId;
         string formattedBirthday = FormatDate(_birthday);
 
@@ -322,7 +322,7 @@ public class UpdateUserData
 [Serializable]
 public class LoginResponse
 {
-    public int userId;
+    public string userId;
     public string jwtToken;
 }
 

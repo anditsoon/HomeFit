@@ -3,6 +3,7 @@ using Photon.Pun.UtilityScripts;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Y_PlayerScreenUIManager : MonoBehaviour
@@ -22,12 +23,12 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
     public TMP_Text PoseRecCountdown;
 
     bool startWorkOut = false;
-    public GameObject timerUI;
 
     // Start is called before the first frame update
     void LateStart()
     {
         //setStandardPos = GameObject.Find("Player").GetComponent<Y_SetStandardPos>();
+       
     }
 
     // Update is called once per frame
@@ -48,8 +49,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
 
         if(startWorkOut)
         {
-            timerUI.SetActive(true);
-            timerUI.GetComponent<Y_TimerUI>().hasStart = true;
+
             startWorkOut = false;
         }
     }
@@ -59,6 +59,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
     {
         if (showTime <= 0)
         {
+            uiManager = GameObject.Find("Canvas").GetComponent<Y_UIManager>();
             PoseRecCountdown.text = "시작!";
             canvasRenderers = directionCanvas.GetComponentsInChildren<CanvasRenderer>();
             StartCoroutine(uiManager.decreaseAlpha(canvasRenderers)); // 투명도 조절 후
@@ -66,7 +67,6 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
             canActive = false;
             isSelected = false;
             startWorkOut = true;
-
         }
         else if (showTime < 6)
         {
