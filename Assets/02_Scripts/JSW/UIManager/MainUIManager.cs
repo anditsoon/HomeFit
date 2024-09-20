@@ -57,7 +57,8 @@ public class MainUIManager : MonoBehaviour
 
     public void MovePlayScene()
     {
-        SceneManager.LoadScene("Y_ProtoScene 1");
+        //SceneManager.LoadScene("Y_ProtoScene 1");
+        SceneManager.LoadScene("J_AlphaScene_Photon");
     }
 
     public void MoveBadgeScene()
