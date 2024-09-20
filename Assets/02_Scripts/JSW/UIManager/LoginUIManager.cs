@@ -182,7 +182,7 @@ public class LoginUIManager : MonoBehaviour
     }
     public void Number8Button()
     {
-        //SceneManager.LoadScene("AvatarScene");
+        SceneManager.LoadScene("AvatarScene");
         //next Scene
         //print("다음 씬 꾸미기 씬");
     }

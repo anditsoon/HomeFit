@@ -1571,7 +1571,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1794146671}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
-        m_MethodName: Number1Button
+        m_MethodName: Number8Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

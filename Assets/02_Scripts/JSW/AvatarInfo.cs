@@ -42,18 +42,7 @@ public class AvatarInfo : MonoBehaviour
 
     public void SettingAvatar()
     {
-        string[] itemN = new string[11];
-        itemN[0] = Backpack;
-        itemN[1] = Body;
-        itemN[2] = Eyebrow;
-        itemN[3] = Glasses;
-        itemN[4] = Glove;
-        itemN[5] = Hair;
-        itemN[6] = Hat;
-        itemN[7] = Mustache;
-        itemN[8] = Outerwear;
-        itemN[9] = Pants;
-        itemN[10] = Shoe;
+        string[] itemN = ReturnAvatarInfo();
 
         player = GameObject.Find("Player");
         for (int i= 0; i < 11;i++)
@@ -69,8 +58,7 @@ public class AvatarInfo : MonoBehaviour
         }
         
     }
-
-    public void SettingAvatarInPlay()
+    public string[] ReturnAvatarInfo()
     {
         string[] itemN = new string[11];
         itemN[0] = Backpack;
@@ -84,8 +72,14 @@ public class AvatarInfo : MonoBehaviour
         itemN[8] = Outerwear;
         itemN[9] = Pants;
         itemN[10] = Shoe;
+        return itemN;
+    }
 
-        player = GameObject.Find("Player");
+    public void SettingAvatarInPlay(GameObject realPlayer)
+    {
+        string[] itemN = ReturnAvatarInfo();
+
+        player = realPlayer;
         for (int i = 0; i < 11; i++)
         {
             if (itemN[i] != null)
