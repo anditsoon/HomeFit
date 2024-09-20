@@ -15,6 +15,7 @@ public class Y_UIManager : MonoBehaviour
     public Y_CountSquatt cntSquat;
     public GameObject chooseWorkOutCanvas;
     GameObject playerScreenCanvas;
+    
 
     void Start()
     {
@@ -76,6 +77,7 @@ public class Y_UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         chooseWorkOut.SetActive(false);
+        
     }
 
 }

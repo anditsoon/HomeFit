@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Y_PlayerScreenUIManager : MonoBehaviour
 {
-    Y_SetStandardPos setStandardPos;
+    public Y_SetStandardPos setStandardPos;
     public Y_UIManager uiManager;
     public GameObject directionCanvas;
     public GameObject countdownText;
@@ -22,11 +22,12 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
     public TMP_Text PoseRecCountdown;
 
     bool startWorkOut = false;
+    public GameObject timerUI;
 
     // Start is called before the first frame update
     void LateStart()
     {
-        setStandardPos = GameObject.Find("Player").GetComponent<Y_SetStandardPos>();
+        //setStandardPos = GameObject.Find("Player").GetComponent<Y_SetStandardPos>();
     }
 
     // Update is called once per frame
@@ -47,7 +48,8 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
 
         if(startWorkOut)
         {
-
+            timerUI.SetActive(true);
+            timerUI.GetComponent<Y_TimerUI>().hasStart = true;
             startWorkOut = false;
         }
     }
@@ -64,6 +66,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
             canActive = false;
             isSelected = false;
             startWorkOut = true;
+
         }
         else if (showTime < 6)
         {
