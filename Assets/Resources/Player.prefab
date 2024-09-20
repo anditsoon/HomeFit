@@ -2168,7 +2168,6 @@ MonoBehaviour:
   startGame: 0
   isSquatting: 0
   squatCount: 0
-  squatCountOther: 0
 --- !u!114 &8198723576876859283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2221,6 +2220,7 @@ MonoBehaviour:
   - {fileID: 1283638654564722955}
   - {fileID: 5641490948959948880}
   - {fileID: 8603493246259551764}
+  - {fileID: 8198723576876859283}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
