@@ -5,10 +5,14 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Reflection;
 using System;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
-//using ExitGames.Client.Photon;
-//using Hashtable = ExitGames.Client.Photon.Hashtable;
+using System.Text;
+using UnityEngine.Networking;
+using static Gpm.Common.Util.XmlHelper;
 
 public class JSWConnectionManager : MonoBehaviourPunCallbacks
 {
@@ -16,132 +20,90 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     public Transform scrollContent;
     public GameObject[] panelList;
 
+    private readonly string CreateRoomUrl = "https://125.132.216.190:12502/api/room";
+    private readonly string RemoveRoomUrl = "https://125.132.216.190:12502/api/room";
 
     List<RoomInfo> cachedRoomList = new List<RoomInfo>();
 
-
     void Start()
     {
+        // 모든 인증서 무시 설정
+        ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+
         Screen.SetResolution(640, 480, FullScreenMode.Windowed);
         StartLogin();
     }
 
+    // 모든 인증서를 신뢰하는 메서드
+    private bool TrustAllCertificates(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+    {
+        return true;
+    }
 
     public void StartLogin()
     {
-        // 접속을 위한 설정
         if (AvatarInfo.instance.NickName.Length >= 0)
         {
             PhotonNetwork.GameVersion = "1.0.0";
             PhotonNetwork.NickName = AvatarInfo.instance.NickName;
             PhotonNetwork.AutomaticallySyncScene = true;
-
-            // 접속을 서버에 요청하기
             PhotonNetwork.ConnectUsingSettings();
-            //LobbyUIController.lobbyUI.btn_login.interactable = false;
         }
     }
 
     public override void OnConnected()
     {
         base.OnConnected();
-
-        // 네임 서버에 접속이 완료되었음을 알려준다.
         print(MethodInfo.GetCurrentMethod().Name + " is Call!");
-
     }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
         base.OnDisconnected(cause);
-        // 실패 원인을 출력한다.
         Debug.LogError("Disconnected from Server - " + cause);
         LobbyUIController.lobbyUI.btn_login.interactable = true;
     }
 
-
-
     public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
-
-        // 마스터 서버에 접속이 완료되었음을 알려준다.
         print(MethodInfo.GetCurrentMethod().Name + " is Call!");
-
-        // 서버의 로비로 들어간다.
         PhotonNetwork.JoinLobby();
-
     }
-
 
     public override void OnJoinedLobby()
     {
         base.OnJoinedLobby();
-
-        // 서버 로비에 들어갔음을 알려준다.
         print(MethodInfo.GetCurrentMethod().Name + " is Call!");
         LobbyUIController.lobbyUI.ShowRoomPanel();
 
-
-        //// 나의 룸을 만든다.
-        //RoomOptions roomOpt = new RoomOptions();
-        //roomOpt.MaxPlayers = 10;
-        //roomOpt.IsOpen = true;
-        //roomOpt.IsVisible = true;
-
         string[] avatarInfo = AvatarInfo.instance.ReturnAvatarInfo();
         print(avatarInfo);
-        PhotonNetwork.LocalPlayer.SetCustomProperties(new ExitGames.Client.Photon.Hashtable { { "Backpack", avatarInfo[0]}, { "Body", avatarInfo[1] }, { "Eyebrow", avatarInfo[2] }, { "Glasses", avatarInfo[3] },
-                { "Glove", avatarInfo[4] }, { "Hair", avatarInfo[5] }, { "Hat", avatarInfo[6] },
-                { "Mustache", avatarInfo[7] }, { "Outerwear", avatarInfo[8]}, { "Pants", avatarInfo[9] }, { "Shoe", avatarInfo[10] }, });
-
-
-        //PhotonNetwork.CreateRoom("MTVS Room", roomOpt,TypedLobby.Default);
-
-        //PhotonNetwork.JoinRoom("MTVS Room");
-
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
+            { "Backpack", avatarInfo[0]}, { "Body", avatarInfo[1] }, { "Eyebrow", avatarInfo[2] },
+            { "Glasses", avatarInfo[3] }, { "Glove", avatarInfo[4] }, { "Hair", avatarInfo[5] },
+            { "Hat", avatarInfo[6] }, { "Mustache", avatarInfo[7] }, { "Outerwear", avatarInfo[8]},
+            { "Pants", avatarInfo[9] }, { "Shoe", avatarInfo[10] }
+        });
     }
-
-
 
     public void CreateRoom()
     {
         string roomName = LobbyUIController.lobbyUI.roomSetting[0].text;
-
         int playerCount = Convert.ToInt32(LobbyUIController.lobbyUI.roomSetting[1].text);
 
         print(roomName + " " + playerCount);
         if (roomName.Length > 0 && playerCount > 1)
         {
-            // 나의 룸을 만든다.
             RoomOptions roomOpt = new RoomOptions();
             roomOpt.MaxPlayers = playerCount;
             roomOpt.IsOpen = true;
             roomOpt.IsVisible = true;
 
-            // 룸의 커스텀 정보를 추가한다.
-            // - 선택한 맵 번호를 룸 정보에 추가한다.
-            // 키값 추가하기.
-            //roomOpt.CustomRoomPropertiesForLobby = new string[] { "MASTER_NAME", "PASSWORD" };
-
-            //키에 맞는 해시테이블 추가하기
-            //Hashtable roomTable = new Hashtable();
-            //roomTable.Add("MASTER_NAME", PhotonNetwork.NickName);
-            //roomTable.Add("PASSWORD", 1234);
-            //            roomOpt.CustomRoomProperties = roomTable;
-      
-
             PhotonNetwork.CreateRoom(roomName, roomOpt, TypedLobby.Default);
         }
-
     }
 
-
-    /// <summary>
-    /// 패널의 변경을 하기위한 함수
-    /// </summary>
-    /// <param>offIndex</param> 꺼야할 인덱스
-    /// <param>onIndex</param> 켜야할 인덱스
     void ChangePanel(int offIndex, int onIndex)
     {
         panelList[offIndex].SetActive(false);
@@ -150,93 +112,69 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
 
     public void JoinRoom()
     {
-        
-        // Join 관련 패널을 활성화한다.
         ChangePanel(1, 2);
     }
 
     public override void OnCreatedRoom()
     {
         base.OnCreatedRoom();
-
-        // 성공적으로 방이 개설되었음을 알려준다.
         print(MethodInfo.GetCurrentMethod().Name + " is Call!");
-        //LobbyUIController.lobbyUI.PrintLog("방 만들어짐!");
+        StartCoroutine(SendRoomInfo("POST", PhotonNetwork.CurrentRoom.Name, PlayerPrefs.GetString("userId")));
     }
 
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-
-       
-
-        // 성공적으로 방에 입장되었음을 알려준다.
         print(MethodInfo.GetCurrentMethod().Name + " is Call!");
-        //LobbyUIController.lobbyUI.PrintLog("방에 입장 성공!");
-
-        // 방에 입장한 친구들은 모두 8번 씬으로 이동하자! (테스트 중인 씬이 8번임)
         PhotonNetwork.LoadLevel(8);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         base.OnJoinRandomFailed(returnCode, message);
-
-        // 룸에 입장이 실패한 이유를 출력한다.
         Debug.LogError(message);
         LobbyUIController.lobbyUI.PrintLog("입장 실패..." + message);
-
-
     }
 
-    // 룸에 다른 플레이가 입장했을 때의 콜백 함수
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
-
         string playerMsg = $"{newPlayer.NickName}님이 입장하셨습니다.";
         LobbyUIController.lobbyUI.PrintLog(playerMsg);
     }
 
-    // 룸에 다른 플레이가 퇴장했을 때의 콜백 함수
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-
         base.OnPlayerLeftRoom(otherPlayer);
-
         string playerMsg = $"{otherPlayer.NickName}님이 퇴장하셨습니다.";
         LobbyUIController.lobbyUI.PrintLog(playerMsg);
+
+        if (PhotonNetwork.CountOfPlayersInRooms == 0)
+        {
+            StartCoroutine(SendRoomInfo("DELETE", PhotonNetwork.CurrentRoom.Name));
+        }
     }
 
-    //현재 로비에서 룸의 변경사항을 알려주는 콜백 함수
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         base.OnRoomListUpdate(roomList);
 
         foreach (RoomInfo room in roomList)
         {
-            // 만일 갱신된 룸 정보가 제거 리스트에 있다면...
             if (room.RemovedFromList)
             {
-                // cachedRoomList에서 해당 룸을 제거한다.
                 cachedRoomList.Remove(room);
             }
-            // 그렇지않다면...
             else
             {
-
-                // 만일, 이미 cachedRoomList에 있는 방이라면
                 if (cachedRoomList.Contains(room))
                 {
-                    // 기존 룸 정보를 제거하고
                     cachedRoomList.Remove(room);
                 }
-                // 새 룸을 cachedRoomList에 추가한다.
                 cachedRoomList.Add(room);
             }
         }
 
-        // 기존의 모든 방 정보를 삭제한다.
         for (int i = 0; i < scrollContent.childCount; i++)
         {
             Destroy(scrollContent.GetChild(i).gameObject);
@@ -244,11 +182,9 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
 
         foreach (RoomInfo room in cachedRoomList)
         {
-            // cachedRoomList에 있는 모든 방을 만들어서 스크롤뷰에 추가한다.
             GameObject go = Instantiate(roomPrefab, scrollContent);
             JSWRoomPanel roomPanel = go.GetComponent<JSWRoomPanel>();
             roomPanel.SetRoomInfo(room);
-            // 버튼에 방 입장기능 연결g
             roomPanel.btn_join.onClick.AddListener(() =>
             {
                 PhotonNetwork.JoinRoom(room.Name);
@@ -265,4 +201,93 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     {
         SceneManager.LoadScene("ProfileScene");
     }
+
+    private IEnumerator SendRoomInfo(string method, string roomId, string ownerId = null)
+    {
+        string url;
+        if (method == "POST")
+        {
+            url = CreateRoomUrl;
+        }
+        else if (method == "DELETE")
+        {
+            url = $"{RemoveRoomUrl}/{roomId}";
+        }
+        else
+        {
+            Debug.LogError("Invalid HTTP method");
+            yield break;
+        }
+
+        // JWT 토큰 가져오기
+        string jwtToken = PlayerPrefs.GetString("jwtToken");
+        if (string.IsNullOrEmpty(jwtToken))
+        {
+            Debug.LogError("JWT token is missing or empty");
+            yield break;
+        }
+
+        UnityWebRequest www;
+        if (method == "POST")
+        {
+            CreateRoomData roomData = new CreateRoomData
+            {
+                roomId = long.Parse(roomId),
+                ownerId = long.Parse(ownerId)
+            };
+            string jsonData = JsonUtility.ToJson(roomData);
+            www = UnityWebRequest.Put(url, jsonData);
+            www.method = "POST"; // 메서드를 POST로 변경
+            www.SetRequestHeader("Content-Type", "application/json");
+        }
+        else // DELETE
+        {
+            www = UnityWebRequest.Delete(url);
+        }
+
+        // JWT 토큰을 Authorization 헤더에 추가
+        www.SetRequestHeader("Authorization", "Bearer " + jwtToken);
+
+        www.certificateHandler = new BypassCertificate1();
+
+        Debug.Log($"Sending {method} request to {url}");
+        Debug.Log($"Authorization: Bearer {jwtToken.Substring(0, Math.Min(jwtToken.Length, 10))}..."); // 토큰의 일부만 로그에 출력
+        if (method == "POST")
+        {
+            Debug.Log($"Request body: {www.uploadHandler.data}");
+        }
+
+        yield return www.SendWebRequest();
+
+        Debug.Log($"Response Code: {www.responseCode}");
+        Debug.Log($"Response Headers: {www.GetResponseHeaders()}");
+        Debug.Log($"Response Body: {www.downloadHandler.text}");
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"{method} request to {url} failed. Error: {www.error}");
+            Debug.LogError($"Full response: {www.downloadHandler.text}");
+        }
+        else
+        {
+            Debug.Log($"{method} request to {url} successful!");
+        }
+
+        www.certificateHandler.Dispose();
+    }
+}
+
+public class BypassCertificate1 : CertificateHandler
+{
+    protected override bool ValidateCertificate(byte[] certificateData)
+    {
+        return true;
+    }
+}
+
+[Serializable]
+public class CreateRoomData
+{
+    public long roomId;
+    public long ownerId;
 }
