@@ -16,6 +16,7 @@ public class Y_UIManager : MonoBehaviour
     public GameObject chooseWorkOutCanvas;
     public PlaySceneManager PSM;
     GameObject playerScreenCanvas;
+    
 
     void Start()
     {
@@ -79,6 +80,7 @@ public class Y_UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         chooseWorkOut.SetActive(false);
+        
     }
 
 }

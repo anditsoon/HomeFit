@@ -73,6 +73,7 @@
     <Compile Include="Assets\02_Scripts\YDW\Y_SquatCntUI.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\Fusion\DemoNetworkObject\PrefabSpawner.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoiceUI\Scripts\SidebarToggle.cs" />
+    <Compile Include="Assets\02_Scripts\YDW\Y_TimerUI.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\NetworkPost.cs" />
     <Compile Include="Assets\02_Scripts\JSW\DontDestroyObject.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
