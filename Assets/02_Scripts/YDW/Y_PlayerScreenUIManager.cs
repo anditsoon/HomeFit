@@ -24,7 +24,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
     bool startWorkOut = false;
 
     // Start is called before the first frame update
-    void Start()
+    void LateStart()
     {
         setStandardPos = GameObject.Find("Player").GetComponent<Y_SetStandardPos>();
     }
