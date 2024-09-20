@@ -16,6 +16,8 @@ public class LoginUIManager : MonoBehaviour
     public Button makeAvaterButton;
     public TMP_InputField usernameInput;
     public TMP_InputField passwordInput;
+    public TMP_InputField usernameRegitsterInput;
+    public TMP_InputField passwordRegitsterInput;
 
     public GameObject user;
 
@@ -137,6 +139,7 @@ public class LoginUIManager : MonoBehaviour
                 //ChangePanel(5);
                 //로그인 성공!
                 //씬이동
+                SceneManager.LoadScene("avatarScene");
                 break;
             }
             else
@@ -163,13 +166,30 @@ public class LoginUIManager : MonoBehaviour
         }
     }
 
+    IEnumerator RoopCheckUpdateInfo()
+    {
+        while (true)
+        {
+            if (isInfoChange == true)
+            {
+                ChangePanel(6);
+                break;
+            }
+            else
+            {
+                yield return new WaitForSeconds(1.0f);
+                //n초 후 가입 안되면 실패 ui
+            }
+        }
+    }
+
     public void Number5ButtoL()
     {
         AvatarInfo.instance.NickName = playerNameInput.GetComponent<TMP_InputField>().text;
         AvatarInfo.instance.Birthday = playerBirthInput.GetComponent<TMP_InputField>().text;
         AvatarInfo.instance.Height = float.Parse(playerHeightInput.GetComponent<TMP_InputField>().text);
         AvatarInfo.instance.Weight = float.Parse(playerWeightInput.GetComponent<TMP_InputField>().text);
-        ChangePanel(6);
+        StartCoroutine(RoopCheckUpdateInfo());
     }
 
     public void Number6Button()

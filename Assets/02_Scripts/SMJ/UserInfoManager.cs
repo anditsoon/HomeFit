@@ -4,10 +4,9 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Net.Security;
+using System.Text;
 using System.Net;
+using System.Globalization;
 using TMPro;
 
 public class UserInfoManager : MonoBehaviour
@@ -15,6 +14,8 @@ public class UserInfoManager : MonoBehaviour
     public Button loginButton;
     public Button registerButton;
     public Button updateInfoButton;
+    private TMP_InputField usernameRegisterInput;
+    private TMP_InputField passwordRegisterInput;
     private TMP_InputField usernameInput;
     private TMP_InputField passwordInput;
     private TMP_InputField nicknameInput;
@@ -25,11 +26,6 @@ public class UserInfoManager : MonoBehaviour
     private readonly string RegisterUrl = "https://125.132.216.190:12502/api/register";
     private readonly string UserInfoUrl = "https://125.132.216.190:12502/api/user/";
 
-    private bool isLoginSuccessful = false;
-    private bool isWaitingForResponse = false;
-    private float responseCheckInterval = 1f;
-    private float responseTimeout = 10f;
-
     public delegate void StatusChanged(bool status);
     public event StatusChanged OnLoginStatusChanged;
     public event StatusChanged OnRegisterStatusChanged;
@@ -39,6 +35,8 @@ public class UserInfoManager : MonoBehaviour
     {
         usernameInput = LoginUIManager.instance.usernameInput;
         passwordInput = LoginUIManager.instance.passwordInput;
+        usernameRegisterInput = LoginUIManager.instance.usernameRegitsterInput;
+        passwordRegisterInput = LoginUIManager.instance.passwordRegitsterInput;
         nicknameInput = LoginUIManager.instance.playerNameInput.GetComponent<TMP_InputField>();
         birthdayInput = LoginUIManager.instance.playerBirthInput.GetComponent<TMP_InputField>();
         heightInput = LoginUIManager.instance.playerHeightInput.GetComponent<TMP_InputField>();
@@ -48,280 +46,227 @@ public class UserInfoManager : MonoBehaviour
         registerButton.onClick.AddListener(OnRegisterButtonClick);
         updateInfoButton.onClick.AddListener(OnUpdateInfoButtonClick);
 
-        ServicePointManager.ServerCertificateValidationCallback = TrustAllCertificates;
-    }
-
-    private bool TrustAllCertificates(object sender, X509Certificate cert, X509Chain chain, SslPolicyErrors errors)
-    {
-        return true;
+        // SSL 인증서 검증 우회 설정
+        ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
     }
 
     void OnLoginButtonClick()
     {
-        if (!isWaitingForResponse)
+        string username = usernameInput.text;
+        string password = passwordInput.text;
+
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
-            string username = usernameInput.text;
-            string password = passwordInput.text;
-            StartCoroutine(LoginAndWaitForResponse(username, password));
+            Debug.LogError("모든 필드를 입력해주세요.");
+            // UI에 에러 메시지 표시
+            return;
         }
         else
         {
-            Debug.Log("이미 로그인 시도 중입니다. 잠시 기다려주세요.");
+            StartCoroutine(LoginCoroutine(username, password));
         }
     }
 
     void OnRegisterButtonClick()
     {
-        if (!isWaitingForResponse)
+        string username = usernameRegisterInput.text;
+        string password = passwordRegisterInput.text;
+
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
-            string username = usernameInput.text;
-            string password = passwordInput.text;
-            StartCoroutine(RegisterAndWaitForResponse(username, password));
+            Debug.LogError("모든 필드를 입력해주세요.");
+            // UI에 에러 메시지 표시
+            return;
         }
         else
         {
-            Debug.Log("이미 회원가입 시도 중입니다. 잠시 기다려주세요.");
+            StartCoroutine(RegisterCoroutine(username, password));
         }
     }
 
     void OnUpdateInfoButtonClick()
     {
-        if (!isWaitingForResponse)
+        string nickname = nicknameInput.text;
+        string birthday = birthdayInput.text;
+        string height = heightInput.text;
+        string weight = weightInput.text;
+        if (string.IsNullOrEmpty(nickname) || string.IsNullOrEmpty(birthday) || 
+            string.IsNullOrEmpty(height) || string.IsNullOrEmpty(weight))
         {
-            string nickname = nicknameInput.text;
-            string birthday = birthdayInput.text;
-            string height = heightInput.text;
-            string weight = weightInput.text;
-            StartCoroutine(UpdateUserInfoAndWaitForResponse(nickname, birthday, height, weight));
+            Debug.LogError("모든 필드를 입력해주세요.");
+            // UI에 에러 메시지 표시
+            return;
         }
         else
         {
-            Debug.Log("이미 정보 수정 시도 중입니다. 잠시 기다려주세요.");
+            StartCoroutine(UpdateUserInfoCoroutine(nickname, birthday, height, weight));
         }
     }
 
-    IEnumerator LoginAndWaitForResponse(string username, string password)
+    IEnumerator LoginCoroutine(string username, string password)
     {
-        isWaitingForResponse = true;
-        SetLoginStatus(false);
+        string jsonBody = JsonUtility.ToJson(new LoginData { userName = username, password = password });
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonBody);
 
-        LoginAndGetUserInfo(username, password);
-
-        yield return StartCoroutine(WaitForResponse(() => isLoginSuccessful));
-
-        if (isLoginSuccessful)
+        using (UnityWebRequest www = new UnityWebRequest(LoginUrl, "POST"))
         {
-            Debug.Log("로그인 성공!");
-            SceneManager.LoadScene("avatarScene");
-        }
-        else
-        {
-            Debug.Log("로그인 실패 또는 시간 초과");
-            SetLoginStatus(false);
-        }
+            www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+            www.certificateHandler = new BypassCertificate();
 
-        isWaitingForResponse = false;
-    }
+            yield return www.SendWebRequest();
 
-    IEnumerator RegisterAndWaitForResponse(string username, string password)
-    {
-        isWaitingForResponse = true;
-        bool isRegistrationSuccessful = false;
-
-        RegisterUser(username, password);
-
-        yield return StartCoroutine(WaitForResponse(() => isRegistrationSuccessful));
-
-        if (isRegistrationSuccessful)
-        {
-            Debug.Log("회원가입 성공!");
-            SetRegisterStatus(true);
-        }
-        else
-        {
-            Debug.Log("회원가입 실패 또는 시간 초과");
-            SetRegisterStatus(false);
-        }
-
-        isWaitingForResponse = false;
-    }
-
-    IEnumerator UpdateUserInfoAndWaitForResponse(string nickname, string birthday, string height, string weight)
-    {
-        isWaitingForResponse = true;
-        bool isUpdateSuccessful = false;
-
-        UpdateUserInfo(nickname, birthday, height, weight);
-
-        yield return StartCoroutine(WaitForResponse(() => isUpdateSuccessful));
-
-        if (isUpdateSuccessful)
-        {
-            Debug.Log("사용자 정보 수정 성공!");
-            SetUpdateInfoStatus(true);
-        }
-        else
-        {
-            Debug.Log("사용자 정보 수정 실패 또는 시간 초과");
-            SetUpdateInfoStatus(false);
-        }
-
-        isWaitingForResponse = false;
-    }
-
-    IEnumerator WaitForResponse(Func<bool> condition)
-    {
-        float elapsedTime = 0f;
-        while (!condition() && elapsedTime < responseTimeout)
-        {
-            yield return new WaitForSeconds(responseCheckInterval);
-            elapsedTime += responseCheckInterval;
-        }
-    }
-
-    void LoginAndGetUserInfo(string username, string password)
-    {
-        string jsonData = JsonUtility.ToJson(new LoginData { userName = username, password = password });
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
-
-        UnityWebRequest www = new UnityWebRequest(LoginUrl, "POST");
-        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        www.downloadHandler = new DownloadHandlerBuffer();
-        www.SetRequestHeader("Content-Type", "application/json");
-        www.certificateHandler = new BypassCertificate();
-
-        StartCoroutine(SendRequest(www,
-            onSuccess: (result) =>
+            if (www.result != UnityWebRequest.Result.Success)
             {
-                LoginResponse response = JsonUtility.FromJson<LoginResponse>(result);//무슨 문제?
-                string token = response.token;
-                //int id = response.id;
-                PlayerPrefs.SetString("token", token);
-                //PlayerPrefs.SetInt("id", id);
-                PlayerPrefs.Save();
-                Debug.Log("로그인 성공. 토큰과 ID가 저장되었습니다.");
-                SetLoginStatus(true);
-            },
-            onError: (error) =>
-            {
-                Debug.LogError("로그인 실패: " + error);
-                SetLoginStatus(false);
+                Debug.LogError("로그인 실패: " + www.error);
+                OnLoginStatusChanged?.Invoke(false);
             }
-        ));
-    }
-
-    void RegisterUser(string username, string password)
-    {
-        string jsonData = JsonUtility.ToJson(new RegisterData { userName = username, password = password, role = "USER" });
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
-
-        UnityWebRequest www = new UnityWebRequest(RegisterUrl, "POST");
-        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        www.downloadHandler = new DownloadHandlerBuffer();
-        www.SetRequestHeader("Content-Type", "application/json");
-        www.certificateHandler = new BypassCertificate();
-
-        StartCoroutine(SendRequest(www,
-            onSuccess: (result) =>
+            else
             {
-                Debug.Log("회원가입 성공. 서버 응답: " + result);
-                SetRegisterStatus(true);
-            },
-            onError: (error) =>
-            {
-                Debug.LogError("회원가입 실패: " + error);
-                SetRegisterStatus(false);
+                string responseBody = www.downloadHandler.text;
+                Debug.Log($"로그인 응답: {responseBody}");
+
+                try
+                {
+                    LoginResponse response = JsonUtility.FromJson<LoginResponse>(responseBody);
+
+                    if (response != null && !string.IsNullOrEmpty(response.jwtToken))
+                    {
+                        PlayerPrefs.SetInt("userId", response.userId);
+                        PlayerPrefs.SetString("jwtToken", response.jwtToken);
+                        PlayerPrefs.Save();
+
+                        Debug.Log($"로그인 성공. 사용자 ID: {response.userId}, 토큰: {response.jwtToken}");
+                        OnLoginStatusChanged?.Invoke(true);
+                    }
+                    else
+                    {
+                        Debug.LogError("유효하지 않은 로그인 응답");
+                        OnLoginStatusChanged?.Invoke(false);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"JSON 파싱 오류: {e.Message}");
+                    OnLoginStatusChanged?.Invoke(false);
+                }
             }
-        ));
+        }
     }
 
-    void UpdateUserInfo(string nickname, string birthday, string height, string weight)
+    IEnumerator RegisterCoroutine(string username, string password)
     {
-        string token = PlayerPrefs.GetString("token");
-        int id = PlayerPrefs.GetInt("id");
-        string url = UserInfoUrl + id;
+        RegisterData registerData = new RegisterData { userName = username, password = password, role = "USER" };
+        string jsonBody = JsonUtility.ToJson(registerData);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonBody);
 
-        string jsonData = JsonUtility.ToJson(new UpdateUserData
+        Debug.Log("회원가입 요청 데이터: " + jsonBody);
+
+        using (UnityWebRequest www = new UnityWebRequest(RegisterUrl, "POST"))
+        {
+            www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+            www.certificateHandler = new BypassCertificate();
+
+            yield return www.SendWebRequest();
+
+            Debug.Log("회원가입 응답 코드: " + www.responseCode);
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("회원가입 실패: " + www.error);
+                Debug.LogError("에러 응답: " + www.downloadHandler.text);
+                OnRegisterStatusChanged?.Invoke(false);
+            }
+            else
+            {
+                string responseBody = www.downloadHandler.text;
+                Debug.Log("회원가입 성공. 서버 응답: " + responseBody);
+                OnRegisterStatusChanged?.Invoke(true);
+                StartCoroutine(LoginCoroutine(username, password));
+            }
+        }
+    }
+
+    IEnumerator UpdateUserInfoCoroutine(string nickname, string birthday, string height, string weight)
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        string jwtToken = PlayerPrefs.GetString("jwtToken");
+        int userId = PlayerPrefs.GetInt("userId");
+        string url = UserInfoUrl + userId;
+        string formattedBirthday = FormatDate(birthday);
+
+        string jsonBody = JsonUtility.ToJson(new UpdateUserData
         {
             nickName = nickname,
-            birthday = birthday,
+            birthday = formattedBirthday,
             height = float.Parse(height),
             weight = float.Parse(weight)
         });
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonBody);
 
-        UnityWebRequest www = new UnityWebRequest(url, "PUT");
-        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        www.downloadHandler = new DownloadHandlerBuffer();
-        www.SetRequestHeader("Content-Type", "application/json");
-        www.SetRequestHeader("Authorization", "Bearer " + token);
-        www.certificateHandler = new BypassCertificate();
+        using (UnityWebRequest www = new UnityWebRequest(url, "PUT"))
+        {
+            www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+            www.SetRequestHeader("Authorization", "Bearer " + jwtToken);
+            www.certificateHandler = new BypassCertificate();
 
-        StartCoroutine(SendRequest(www,
-            onSuccess: (result) =>
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.Log("사용자 정보 수정 성공. 서버 응답: " + result);
-                SetUpdateInfoStatus(true);
-            },
-            onError: (error) =>
-            {
-                Debug.LogError("사용자 정보 수정 실패: " + error);
-                SetUpdateInfoStatus(false);
+                Debug.LogError("사용자 정보 수정 실패: " + www.error);
+                OnUpdateInfoStatusChanged?.Invoke(false);
             }
-        ));
-    }
-
-    IEnumerator SendRequest(UnityWebRequest www, Action<string> onSuccess, Action<string> onError)
-    {
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            onError(www.error);
-        }
-        else
-        {
-            onSuccess(www.downloadHandler.text);
+            else
+            {
+                string responseBody = www.downloadHandler.text;
+                Debug.Log("사용자 정보 수정 성공. 서버 응답: " + responseBody);
+                OnUpdateInfoStatusChanged?.Invoke(true);
+            }
         }
     }
-
-    public bool IsLoggedIn()
+    private string FormatDate(string inputDate)
     {
-        return isLoginSuccessful;
-    }
+        if (string.IsNullOrEmpty(inputDate) || inputDate.Length != 8)
+        {
+            Debug.LogError("잘못된 날짜 형식입니다.");
+            return inputDate; // 오류 시 원본 반환
+        }
 
-    private void SetLoginStatus(bool status)
-    {
-        isLoginSuccessful = status;
-        OnLoginStatusChanged?.Invoke(status);
-    }
-
-    private void SetRegisterStatus(bool status)
-    {
-        OnRegisterStatusChanged?.Invoke(status);
-    }
-
-    private void SetUpdateInfoStatus(bool status)
-    {
-        OnUpdateInfoStatusChanged?.Invoke(status);
+        try
+        {
+            DateTime date = DateTime.ParseExact(inputDate, "yyyyMMdd", CultureInfo.InvariantCulture);
+            return date.ToString("yyyy-MM-dd");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"날짜 변환 중 오류 발생: {e.Message}");
+            return inputDate; // 오류 시 원본 반환
+        }
     }
 
     public void Logout()
     {
         PlayerPrefs.DeleteKey("token");
         PlayerPrefs.DeleteKey("id");
-        SetLoginStatus(false);
+        OnLoginStatusChanged?.Invoke(false);
     }
 }
 
-[System.Serializable]
+[Serializable]
 public class LoginData
 {
     public string userName;
     public string password;
 }
 
-[System.Serializable]
+[Serializable]
 public class RegisterData
 {
     public string userName;
@@ -329,7 +274,7 @@ public class RegisterData
     public string role;
 }
 
-[System.Serializable]
+[Serializable]
 public class UpdateUserData
 {
     public string nickName;
@@ -341,8 +286,8 @@ public class UpdateUserData
 [Serializable]
 public class LoginResponse
 {
-    public string token;
-    public int id;
+    public int userId;
+    public string jwtToken;
 }
 
 public class BypassCertificate : CertificateHandler
