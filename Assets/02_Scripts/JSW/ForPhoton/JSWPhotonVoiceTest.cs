@@ -65,11 +65,11 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (avatarsetting[i] != null)
             {
-                gameObject.transform.GetChild(0).GetChild(i).GetComponent<SkinnedMeshRenderer>().sharedMesh = Resources.Load<Mesh>(avatarsetting[i]);
+                gameObject.transform.GetChild(1).GetChild(i).GetComponent<SkinnedMeshRenderer>().sharedMesh = Resources.Load<Mesh>(avatarsetting[i]);
             }
             else
             {
-                gameObject.transform.GetChild(0).GetChild(i).GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+                gameObject.transform.GetChild(1).GetChild(i).GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
             }
         }
         avatarSettings = avatarsetting;

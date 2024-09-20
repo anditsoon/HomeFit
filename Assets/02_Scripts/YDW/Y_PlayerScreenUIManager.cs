@@ -22,7 +22,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
     public TMP_Text PoseRecCountdown;
 
     // Start is called before the first frame update
-    void Start()
+    void LateStart()
     {
         setStandardPos = GameObject.Find("Player").GetComponent<Y_SetStandardPos>();
     }
