@@ -31,6 +31,7 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
         ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
         Screen.SetResolution(640, 480, FullScreenMode.Windowed);
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_SCENEMOVE2);
         StartLogin();
     }
 

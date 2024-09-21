@@ -49,5 +49,6 @@ public class CalenderImage : MonoBehaviour
         ExerciseCount.text = Random.Range(1, 5).ToString();
         KcalCount.text = Random.Range(1, 200).ToString();
         MinutesCount.text = Random.Range(1, 60).ToString();
+        GameObject.Find("Profile").GetComponent<Animator>().CrossFade("ProfileUIUI",0);
     }
 }

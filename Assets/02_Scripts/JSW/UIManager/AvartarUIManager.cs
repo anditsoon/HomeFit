@@ -57,12 +57,14 @@ public class AvartarUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
 
         text_Backpacks.color = SelectingColor;
         all.color = SelectingColor;
         anim = player.GetComponent<Animator>();
         anim.CrossFade("Idle", 0f);
+        JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_AVAR);
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_SCENEMOVE);
 
         AvatarInfo.instance.SettingAvatar();
 
@@ -79,6 +81,7 @@ public class AvartarUIManager : MonoBehaviour
         Shoe = AvatarInfo.instance.Shoe;
 
     }
+
 
     // Update is called once per frame
     void Update()
@@ -164,6 +167,7 @@ public class AvartarUIManager : MonoBehaviour
     
     private void UIAllReset()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_BTN);
         text_Backpacks.color = Color.black;
         text_body.color = Color.black;
         text_Eyebrow.color = Color.black;
@@ -205,6 +209,7 @@ public class AvartarUIManager : MonoBehaviour
 
     IEnumerator ending()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_DECOEND);
         endingDestroyUI1.SetActive(false);
         endingDestroyUI2.SetActive(false);
         player.transform.forward = Camera.main.transform.forward * -1;

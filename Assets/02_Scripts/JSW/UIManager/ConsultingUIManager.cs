@@ -8,9 +8,11 @@ public class ConsultingUIManager : MonoBehaviour
     public GameObject ConsultingUI;
     public float FirstPos;
 
+
     private void Start()
     {
         FirstPos = gameObject.transform.position.y;
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_SCENEMOVE);
     }
 
     public void MoveMainScene()

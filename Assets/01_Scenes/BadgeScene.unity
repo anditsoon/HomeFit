@@ -2509,7 +2509,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b034c140f461db419fdc5b8ccdaeb51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  confirmButton: {fileID: 0}
+  loginButton: {fileID: 0}
+  registerButton: {fileID: 0}
+  updateInfoButton: {fileID: 0}
 --- !u!1 &1539696316
 GameObject:
   m_ObjectHideFlags: 0
