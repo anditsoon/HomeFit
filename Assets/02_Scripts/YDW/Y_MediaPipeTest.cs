@@ -285,21 +285,21 @@ public class Y_MediaPipeTest : MonoBehaviour, IPunObservable
         // 1. 무릎 좌표일 경우
         if (i >= 25 || i == 26) 
         {
-            if (localPos.y > -0.25f) // 앉아 있을 때는 유닛벡터를 기준으로 한다
-            {
-                currentScaleFactor = Vector3.one;
-            }
-            else // 아닐 때는 다리용 스케일 팩터 줌
-            {
-                currentScaleFactor = Vector3.one * targetScaleLeg;
-            }
+            //if (localPos.y > -0.25f) // 앉아 있을 때는 유닛벡터를 기준으로 한다
+            //{
+            //    currentScaleFactor = Vector3.one;
+            //}
+            //else // 아닐 때는 다리용 스케일 팩터 줌
+            //{
+            //    currentScaleFactor = Vector3.one * targetScaleLeg;
+            //}
 
             //임시
             currentScaleFactor = Vector3.one * targetScaleBody * targetScaleLeg * 0.7f;
 
             currentScaleFactor.x = currentScaleFactor.x * (1f / 0.7f);
 
-            currentScaleFactor.z = currentScaleFactor.z * 0.4f;
+            currentScaleFactor.z = currentScaleFactor.z * 0.8f; // 0.4f
         }
         else // 2. 그 외는 몸통 스케일 팩터를 이용한다
         {
