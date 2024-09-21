@@ -72,7 +72,7 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
                 }
             }
 
-            print("점핑잭 횟수: " + jumpingJackCount);
+            //print("점핑잭 횟수: " + jumpingJackCount);
 
         }
     }

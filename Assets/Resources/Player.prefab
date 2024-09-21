@@ -2140,6 +2140,7 @@ MonoBehaviour:
   lHandTrans: {fileID: 8366572463969896009}
   rHandTrans: {fileID: 166335128771719461}
   ground: {fileID: 0}
+  groundLevel: 0
   cubes: []
   leftArmTarget: {fileID: 414687340108065582}
   leftArmHint: {fileID: 5583657621474563807}

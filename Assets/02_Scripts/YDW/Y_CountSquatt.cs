@@ -1,6 +1,7 @@
 ﻿using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Compression;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,8 +13,8 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
     PhotonView pv;
     Y_MediaPipeTest mediapipe;
     Transform pelvisPos;
-    Transform leftHandPos;
-    Transform rightHandPos;
+
+    float startPelvisPos;
 
     public Y_TimerUI timerUI;
 
@@ -36,7 +37,7 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
     void Start()
     {
         isSquatting = false;
-        squatCount = 0;
+        squatCount = -1;
         mediapipe = GetComponent<Y_MediaPipeTest>();
         pelvisPos = mediapipe.spineTrans;
         pv = GetComponent<PhotonView>();
@@ -46,27 +47,30 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        if(startGame && timerUI.hasStart)
+        
+        if (startGame && timerUI.hasStart)
         {
-
+            startPelvisPos = mediapipe.startSP.y;
             /////////////////
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 squatCount++;
             }
             ////////////////
-            
-            //print("y 좌표 : " + pelvisPos.position.y);
-            if (pelvisPos.position.y < 3.35f && !isSquatting) // 3.25
+
+            //print("y 좌표 : " + (pelvisPos.position.y - startPelvisPos));
+            if (pelvisPos.position.y - startPelvisPos < 3.58f && !isSquatting) // 3.35
             {
                     squatCount++;
                     isSquatting = true;         
             }
         
-            if(pelvisPos.position.y > 3.45f && isSquatting) // 3.35
+            if(pelvisPos.position.y - startPelvisPos > 3.67f && isSquatting) // 3.45
             {
                     isSquatting = false;
             }
+
+            //Debug.LogError("스쿼트 개수 : " + squatCount);
         }
     }
 }

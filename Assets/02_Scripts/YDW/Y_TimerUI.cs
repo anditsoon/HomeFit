@@ -22,7 +22,7 @@ public class Y_TimerUI : MonoBehaviour
 
     void Start()
     {
-        duration = 5;
+        duration = 60;
     }
 
     void Update()
