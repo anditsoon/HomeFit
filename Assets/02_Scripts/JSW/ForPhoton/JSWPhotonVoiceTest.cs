@@ -13,6 +13,8 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
     public TMP_Text names;
     public bool isMaster;
 
+    Y_UIManager y_uiManager;
+
     PhotonVoiceView voiceView;
     PhotonView pv;
 
@@ -29,15 +31,26 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         voiceView = GetComponent<PhotonVoiceView>();
         gameObject.transform.position = PlaySceneManager.instance.playerPositions[photonView.Owner.ActorNumber - 1].position + Vector3.up * 1.4f;
         //AvatarInfo.instance.SettingAvatarInPlay(gameObject);
-        if (PhotonNetwork.IsMasterClient && pv.IsMine && currentPlayers == maxPlayers)
-        {
-            isMaster = true;
-        }
+        y_uiManager = GameObject.Find("Canvas").GetComponent<Y_UIManager>();
+
+       
     }
 
+    bool isStart;
     // Update is called once per frame
     void Update()
     {
+        currentPlayers = PhotonNetwork.CurrentRoom.PlayerCount;
+        maxPlayers = PhotonNetwork.CurrentRoom.MaxPlayers;
+
+
+        if (PhotonNetwork.IsMasterClient && pv.IsMine && currentPlayers == maxPlayers && !isStart)
+        {
+            isMaster = true;
+            isStart = true;
+        }
+
+
         if (pv.IsMine)
         {
             // 현재 말을 하고 있다면 보이스 아이콘을 활성화한다.
@@ -87,6 +100,27 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         names.text = nickname;
         avatarSettings = avatarsetting;
         nickName = nickname;
+    }
+
+
+    public void ChooseSquateOrJump_RPC(int chooseNum)
+    {
+        pv = GetComponent<PhotonView>();
+        pv.RPC(nameof(SettingAvatar), RpcTarget.AllBuffered, chooseNum);
+    }
+
+    [PunRPC]
+    public void ChooseSquateOrJump(int chooseNum)
+    {
+        if (chooseNum == 1)
+        {
+            y_uiManager.SelectSquat2();
+        }
+        else if (chooseNum == 2)
+        {
+
+            y_uiManager.SelectJumpingJack2();
+        }
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)

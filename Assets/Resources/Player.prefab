@@ -2453,7 +2453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   voiceIcon: {fileID: 3042708451332815074}
-  names: {fileID: 0}
+  names: {fileID: 713473885088527979}
   isMaster: 0
   currentPlayers: 0
   maxPlayers: 0

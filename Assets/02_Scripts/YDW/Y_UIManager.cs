@@ -28,7 +28,6 @@ public class Y_UIManager : MonoBehaviour
     {
         if (!isnextPanel && PSM.myPlayer != null && PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().isMaster)
         {
-            print("dddddddddddddddddddddddd");
             chooseWorkOut.SetActive(true);
             isnextPanel = true;
         }
@@ -84,6 +83,10 @@ public class Y_UIManager : MonoBehaviour
     // 스쿼트 / 팔벌려뛰기 버튼 선택 시 호출되는 함수들
     public void SelectSquat()
     {
+        PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().ChooseSquateOrJump_RPC(1);
+    }
+    public void SelectSquat2()
+    {
         cntSquat = PSM.myPlayer.GetComponent<Y_CountSquatt>();
         cntSquat.enabled = true;
         playerScreenCanvas = PSM.myPlayer.transform.GetChild(3).gameObject;
@@ -92,8 +95,12 @@ public class Y_UIManager : MonoBehaviour
         StartCoroutine(decreaseAlpha(canvasRenderers));
         StartCoroutine(deactiveChooseWorkOut());
     }
-
     public void SelectJumpingJack()
+    {
+        PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().ChooseSquateOrJump_RPC(1);
+    }
+
+    public void SelectJumpingJack2()
     {
         cntJumpingJack = PSM.myPlayer.GetComponent<Y_CountJumpingJack>();
         cntJumpingJack.enabled = true;
