@@ -15,6 +15,7 @@ public class Y_UIManager : MonoBehaviour
     public Y_CountSquatt cntSquat;
     public GameObject chooseWorkOutCanvas;
     public PlaySceneManager PSM;
+    bool isnextPanel;
     GameObject playerScreenCanvas;
     
 
@@ -25,7 +26,12 @@ public class Y_UIManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (!isnextPanel && PSM.myPlayer != null && PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().isMaster)
+        {
+            print("dddddddddddddddddddddddd");
+            chooseWorkOut.SetActive(true);
+            isnextPanel = true;
+        }
     }
 
     CanvasRenderer[] canvasRenderers;
@@ -102,7 +108,6 @@ public class Y_UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         chooseWorkOut.SetActive(false);
-        
     }
 
 }

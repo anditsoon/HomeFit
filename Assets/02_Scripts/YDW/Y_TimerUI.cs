@@ -52,3 +52,6 @@ public class Y_TimerUI : MonoBehaviour
     }
 
 }
+
+
+// 클릭시 함수를 rpc로 쏘기

@@ -10,10 +10,15 @@ using TMPro;
 public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 {
     public RawImage voiceIcon;
-    public TMP_Text name;
+    public TMP_Text names;
+    public bool isMaster;
+
     PhotonVoiceView voiceView;
     PhotonView pv;
-    
+
+    public int currentPlayers;
+    public int maxPlayers;
+
     bool isTalking = false;
     private string[] avatarSettings;
     string nickName;
@@ -24,7 +29,10 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         voiceView = GetComponent<PhotonVoiceView>();
         gameObject.transform.position = PlaySceneManager.instance.playerPositions[photonView.Owner.ActorNumber - 1].position + Vector3.up * 1.4f;
         //AvatarInfo.instance.SettingAvatarInPlay(gameObject);
-
+        if (PhotonNetwork.IsMasterClient && pv.IsMine && currentPlayers == maxPlayers)
+        {
+            isMaster = true;
+        }
     }
 
     // Update is called once per frame
@@ -76,7 +84,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
                 gameObject.transform.GetChild(1).GetChild(i).GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
             }
         }
-        name.text = nickname;
+        names.text = nickname;
         avatarSettings = avatarsetting;
         nickName = nickname;
     }
