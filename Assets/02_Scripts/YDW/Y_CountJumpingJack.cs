@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
     Transform rightHandPos;
 
     public Y_TimerUI timerUI;
+
+    public List<PhotonView> players = new List<PhotonView>();
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -53,17 +56,17 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
             /////////////////////
 
             //print("손 좌표 : " + leftHandPos.position.y + " 오른손도!! : " + rightHandPos.position.y);
-            if (leftHandPos.position.y > 4.8f && rightHandPos.position.y > 4.8f && !isJumpingJack)
+            if (leftHandPos.position.y > 5.7f && rightHandPos.position.y > 5.7f && !isJumpingJack)
             {
                 if (pv.IsMine)
                 {
                     jumpingJackCount++;
                     isJumpingJack = true;
+                    //print("!!!!!!!! 손 좌표 : " + leftHandPos.position.y + " 오른손도!! : " + rightHandPos.position.y);
                 }
-                //print("!!!!!!!! 손 좌표 : " + leftHandPos.position.y + " 오른손도!! : " + rightHandPos.position.y);
             }
 
-            if (leftHandPos.position.y < 3.7f && rightHandPos.position.y < 3.7f && isJumpingJack)
+            if (leftHandPos.position.y < 5.3f && rightHandPos.position.y < 5.3f && isJumpingJack)
             {
                 if (pv.IsMine)
                 {
@@ -72,7 +75,7 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
                 }
             }
 
-            print("점핑잭 횟수: " + jumpingJackCount);
+            //Debug.LogError("점핑잭 횟수: " + jumpingJackCount);
 
         }
     }

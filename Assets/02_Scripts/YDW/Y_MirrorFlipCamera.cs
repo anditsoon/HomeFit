@@ -4,7 +4,7 @@ using UnityEditor;
 
 [RequireComponent(typeof(Camera))]
 [ExecuteInEditMode]
-public class MirrorFlipCamera : MonoBehaviour
+public class Y_MirrorFlipCamera : MonoBehaviour
 {
     Camera _camera;
     public Camera Camera

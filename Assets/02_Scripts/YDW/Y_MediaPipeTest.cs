@@ -35,7 +35,7 @@ public class Y_MediaPipeTest : MonoBehaviour, IPunObservable
     public Transform rHandTrans;
 
     public GameObject ground;
-    float groundLevel = 0f;
+    public float groundLevel = 0f;
 
     //Y_CountSquatt countSquatt;
     //Y_CountJumpingJack countJumpingJack;
@@ -97,10 +97,6 @@ public class Y_MediaPipeTest : MonoBehaviour, IPunObservable
         return vectorFinal;
     }
 
-    private void Awake()
-    {
-        InitializeRigParts();
-    }
 
     void Start()
     {
@@ -109,25 +105,6 @@ public class Y_MediaPipeTest : MonoBehaviour, IPunObservable
         ground = GameObject.Find("Ground_01");
         groundLevel = ground.transform.position.y;
         //print("groundLevel: " + groundLevel); // 2.655265
-    }
-
-    private void InitializeRigParts()
-    {
-        //leftArmTarget = GameObject.Find("Rig_LeftArm_target");
-        //leftArmHint = GameObject.Find("Rig_LeftArm_hint");
-        //rightArmTarget = GameObject.Find("Rig_RightArm_target");
-        //rightArmHint = GameObject.Find("Rig_RightArm_hint");
-        //leftLegTarget = GameObject.Find("Rig_LeftLeg_target");
-        //leftLegHint = GameObject.Find("Rig_LeftLeg_hint");
-        //rightLegTarget = GameObject.Find("Rig_RightLeg_target");
-        //rightLegHint = GameObject.Find("Rig_RightLeg_hint");
-        //headAim1 = GameObject.Find("Aim1");
-        //headAim2 = GameObject.Find("Aim2");
-        //spineTarget = GameObject.Find("Rig_Spine_target");
-        //spineHint = GameObject.Find("Rig_Spine_hint");
-
-
-
     }
 
     // Update is called once per frame
