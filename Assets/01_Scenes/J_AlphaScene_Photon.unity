@@ -5201,6 +5201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc6718931193e04892eb9a12b94c324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetRawImage: {fileID: 0}
+  serverIp: localhost
+  serverPort: 8764
 --- !u!1001 &1625761952
 PrefabInstance:
   m_ObjectHideFlags: 0

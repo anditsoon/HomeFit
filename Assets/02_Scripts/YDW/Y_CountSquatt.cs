@@ -15,6 +15,8 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
     Transform leftHandPos;
     Transform rightHandPos;
 
+    public Y_TimerUI timerUI;
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         
@@ -38,12 +40,13 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
         mediapipe = GetComponent<Y_MediaPipeTest>();
         pelvisPos = mediapipe.spineTrans;
         pv = GetComponent<PhotonView>();
+        timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(startGame)
+        if(startGame && timerUI.hasStart)
         {
 
             /////////////////

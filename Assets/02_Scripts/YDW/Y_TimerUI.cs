@@ -14,10 +14,15 @@ public class Y_TimerUI : MonoBehaviour
 
     public float duration;
 
+    public GameObject timerPanel;
+    public GameObject resultPanel;
+
+    public Y_UIManager uiManager;
+    CanvasRenderer[] canvasRenderers;
+
     void Start()
     {
-        duration = 60;
-        print(timerText.text);
+        duration = 5;
     }
 
     void Update()
@@ -26,27 +31,24 @@ public class Y_TimerUI : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
 
-            // 경과 시간을 시:분:초 형식으로 변환
+            // 경과 시간을 분:초 형식으로 변환
             TimeSpan timeSpan = TimeSpan.FromSeconds(elapsedTime);
             string timeText = string.Format("{0:00}:{1:00}",
                 timeSpan.Minutes, timeSpan.Seconds);
-            print("!!!!!!!!" + timeText);
-            // UI 텍스트 업데이트
-            //if(timerText != null)
-            //{
-            //    timerText = GameObject.Find("TimerText").GetComponent<TMP_Text>();
-            //    print(1111);
-            //}
 
             timerText.text = timeText;
 
-            // timerText.text= "Hello";
-
-
             if (elapsedTime > duration)
             {
-                gameObject.SetActive(false);
+                timerPanel.SetActive(false); // 타이머 없애고
+                resultPanel.SetActive(true); // 결과창 서서히 띄운다
+                canvasRenderers = resultPanel.GetComponentsInChildren<CanvasRenderer>();
+                StartCoroutine(uiManager.IncreaseAlpha(canvasRenderers));
+
+                // 이 변수를 스쿼트/점핑잭 세는 스크립트에서 호출하고 해당 스크립트에서 더 이상 횟수 세지 못하게 한다
+                hasStart = false; 
             }
         }
     }
+
 }

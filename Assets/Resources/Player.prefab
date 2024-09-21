@@ -2168,6 +2168,7 @@ MonoBehaviour:
   startGame: 0
   isSquatting: 0
   squatCount: 0
+  timerUI: {fileID: 0}
 --- !u!114 &8198723576876859283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2183,6 +2184,7 @@ MonoBehaviour:
   startGame: 0
   isJumpingJack: 0
   jumpingJackCount: 0
+  timerUI: {fileID: 0}
 --- !u!114 &5881271143326230952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2196,8 +2198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 0
-  uiManager: {fileID: 0}
   playerScreenUIManager: {fileID: 6413083777289360274}
+  timerUI: {fileID: 0}
 --- !u!114 &-4540332146331041711
 MonoBehaviour:
   m_ObjectHideFlags: 0

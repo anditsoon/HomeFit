@@ -137,6 +137,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\02_Scripts\JSW\ForPhoton\JSWPhotonVoiceTest.cs" />
+    <Compile Include="Assets\Y_RankUI.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Standard Assets\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
     <Compile Include="Assets\TestScript.cs" />
     <Compile Include="Assets\02_Scripts\JSW\UIManager\BadgeUIManager.cs" />

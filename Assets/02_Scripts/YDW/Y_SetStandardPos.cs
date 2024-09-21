@@ -12,8 +12,9 @@ public class Y_SetStandardPos : MonoBehaviour
 
     public float duration;
 
-    public Y_UIManager uiManager;
     public Y_PlayerScreenUIManager playerScreenUIManager;
+    public Y_TimerUI timerUI;
+
 
     bool hasStartPointSet;
 
@@ -27,7 +28,7 @@ public class Y_SetStandardPos : MonoBehaviour
         countJumpingJack = GetComponent<Y_CountJumpingJack>();
         directionCanvas = GameObject.Find("DirectionCanvas");
         hasStartPointSet = false;
-        //uiManager = directionCanvas.GetComponentInParent<Y_UIManager>();
+        timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
     }
 
     // Update is called once per frame
@@ -48,6 +49,8 @@ public class Y_SetStandardPos : MonoBehaviour
             countJumpingJack.startGame = true;
 
             hasStartPointSet = true;
+
+            timerUI.hasStart = true;
 
             //directionCanvas.SetActive(false);
         }
