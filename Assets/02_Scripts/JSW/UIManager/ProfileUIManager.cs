@@ -23,6 +23,7 @@ public class ProfileUIManager : MonoBehaviour
         anim.CrossFade("Idle", 0f);
         SetProfilePic();
         nickNameText.text = AvatarInfo.instance.NickName;
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_SCENEMOVE2);
         easingProfile();
     }
 

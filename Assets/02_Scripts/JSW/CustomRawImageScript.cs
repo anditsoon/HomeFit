@@ -53,6 +53,7 @@ public class CustomRawImageScript : MonoBehaviour
 
     public void SetAvarInfo(string itemP, string avarN)
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_AVATARDECO);
         AvartarUIManager AUM = AvatarUiManage.GetComponent<AvartarUIManager>();
         AUM.isChanged = true;
 

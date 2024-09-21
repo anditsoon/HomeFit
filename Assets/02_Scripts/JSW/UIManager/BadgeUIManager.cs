@@ -10,6 +10,7 @@ public class BadgeUIManager : MonoBehaviour
 
     public void Start()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_SCENEMOVE);
         FistX = gameObject.transform.position.x;
     }
 

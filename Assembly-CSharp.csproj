@@ -76,6 +76,7 @@
     <Compile Include="Assets\02_Scripts\YDW\Y_TimerUI.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\NetworkPost.cs" />
     <Compile Include="Assets\02_Scripts\JSW\DontDestroyObject.cs" />
+    <Compile Include="Assets\02_Scripts\JSW\ForPhoton\JSWSoundManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\WebSocketPoseHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />

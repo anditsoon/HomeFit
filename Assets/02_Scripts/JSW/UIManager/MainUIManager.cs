@@ -28,12 +28,18 @@ public class MainUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         anim = player.GetComponent<Animator>();
         anim.CrossFade("Dance", 0f);
         AvatarInfo.instance.SettingAvatar();
         nickNameText.text = AvatarInfo.instance.NickName;
         //easingMove(backGround);
 
+        if (!JSWSoundManager.Get().MoveMainBgmSound())
+        {
+            JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_MAIN);
+        }
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_SCENEMOVE);
     }
 
     // Update is called once per frame
