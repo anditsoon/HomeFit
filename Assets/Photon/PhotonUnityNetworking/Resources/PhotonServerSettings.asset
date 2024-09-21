@@ -45,6 +45,7 @@ MonoBehaviour:
   - settingAvatar
   - SettingAvatar
   - ChooseSquateOrJump
+  - AllReadyGo
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

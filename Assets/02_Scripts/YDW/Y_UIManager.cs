@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Y_UIManager : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class Y_UIManager : MonoBehaviour
     public Y_CountSquatt cntSquat;
     public GameObject chooseWorkOutCanvas;
     public PlaySceneManager PSM;
+    public GameObject StartButton;
     bool isnextPanel;
+
     GameObject playerScreenCanvas;
     
 
@@ -29,11 +32,17 @@ public class Y_UIManager : MonoBehaviour
         if (!isnextPanel && PSM.myPlayer != null && PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().isMaster)
         {
             chooseWorkOut.SetActive(true);
+            StartButton.SetActive(true);
             isnextPanel = true;
         }
     }
 
     CanvasRenderer[] canvasRenderers;
+
+    public void GameStartMaster()
+    {
+        PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().AllReadyGO_RPC();
+    }
 
     public IEnumerator decreaseAlpha(CanvasRenderer[] canvasRenderers)
     {

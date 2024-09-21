@@ -8,6 +8,7 @@ using UnityEngine;
 public class Y_TimerUI : MonoBehaviour
 {
     public bool hasStart;
+    public PlaySceneManager PSM;
 
     public TMP_Text timerText;
     private float elapsedTime = 0f;
@@ -27,7 +28,7 @@ public class Y_TimerUI : MonoBehaviour
 
     void Update()
     {
-        if(hasStart)
+        if(hasStart && PSM.myPlayer.gameObject.GetComponent<JSWPhotonVoiceTest>().allReadyGo == true)
         {
             elapsedTime += Time.deltaTime;
 

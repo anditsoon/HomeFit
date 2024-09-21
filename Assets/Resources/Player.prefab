@@ -2457,6 +2457,7 @@ MonoBehaviour:
   isMaster: 0
   currentPlayers: 0
   maxPlayers: 0
+  allReadyGo: 0
 --- !u!114 &2387866554625896886
 MonoBehaviour:
   m_ObjectHideFlags: 0

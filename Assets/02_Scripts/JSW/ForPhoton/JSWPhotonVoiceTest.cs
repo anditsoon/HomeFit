@@ -24,6 +24,8 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
     bool isTalking = false;
     private string[] avatarSettings;
     string nickName;
+
+    public bool allReadyGo;
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +85,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         pv.RPC(nameof(SettingAvatar), RpcTarget.AllBuffered, avatarsetting, nickname);
     }
 
+
     [PunRPC]
     public void SettingAvatar(string[] avatarsetting, string nickname)
     {
@@ -106,7 +109,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
     public void ChooseSquateOrJump_RPC(int chooseNum)
     {
         pv = GetComponent<PhotonView>();
-        pv.RPC(nameof(SettingAvatar), RpcTarget.AllBuffered, chooseNum);
+        pv.RPC(nameof(ChooseSquateOrJump), RpcTarget.AllBuffered, chooseNum);
     }
 
     [PunRPC]
@@ -122,6 +125,19 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
             y_uiManager.SelectJumpingJack2();
         }
     }
+
+    public void AllReadyGO_RPC()
+    {
+        pv = GetComponent<PhotonView>();
+        pv.RPC(nameof(AllReadyGo), RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
+    public void AllReadyGo()
+    {
+        allReadyGo = true;
+    }
+
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
