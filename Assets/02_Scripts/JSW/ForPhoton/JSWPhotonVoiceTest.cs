@@ -5,14 +5,18 @@ using Photon.Voice.PUN;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 {
     public RawImage voiceIcon;
+    public TMP_Text name;
     PhotonVoiceView voiceView;
-    PhotonView pv; 
+    PhotonView pv;
+    
     bool isTalking = false;
     private string[] avatarSettings;
+    string nickName;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,14 +56,14 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    public void SettingAvatar_RPC(string[] avatarsetting)
+    public void SettingAvatar_RPC(string[] avatarsetting, string nickname)
     {
         pv = GetComponent<PhotonView>();
-        pv.RPC(nameof(SettingAvatar), RpcTarget.AllBuffered, avatarsetting);
+        pv.RPC(nameof(SettingAvatar), RpcTarget.AllBuffered, avatarsetting, nickname);
     }
 
     [PunRPC]
-    public void SettingAvatar(string[] avatarsetting)
+    public void SettingAvatar(string[] avatarsetting, string nickname)
     {
         for (int i = 0; i < 11; i++)
         {
@@ -72,7 +76,9 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
                 gameObject.transform.GetChild(1).GetChild(i).GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
             }
         }
+        name.text = nickname;
         avatarSettings = avatarsetting;
+        nickName = nickname;
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -81,7 +87,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         
         if (pv.IsMine && avatarSettings != null)
         {
-            pv.RPC(nameof(SettingAvatar), RpcTarget.AllBuffered, avatarSettings);
+            pv.RPC(nameof(SettingAvatar), RpcTarget.AllBuffered, avatarSettings,nickName);
         }
     }
 }
