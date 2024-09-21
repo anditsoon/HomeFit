@@ -87,6 +87,7 @@
     <Compile Include="Assets\02_Scripts\JSW\UIManager\AvartarUIManager.cs" />
     <Compile Include="Assets\02_Scripts\YDW\Y_MediapipeRotation.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoiceProximityChat\Scripts\ChangeColor.cs" />
+    <Compile Include="Assets\02_Scripts\YDW\MirrorFlipCamera.cs" />
     <Compile Include="Assets\02_Scripts\YDW\Y_RankUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
