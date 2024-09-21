@@ -20,6 +20,7 @@ public class Y_TimerUI : MonoBehaviour
 
     public Y_UIManager uiManager;
     CanvasRenderer[] canvasRenderers;
+    public bool allReadyGo;
 
     void Start()
     {
@@ -28,7 +29,8 @@ public class Y_TimerUI : MonoBehaviour
 
     void Update()
     {
-        if(hasStart && PSM.myPlayer.gameObject.GetComponent<JSWPhotonVoiceTest>().allReadyGo == true)
+
+        if(hasStart && allReadyGo)
         {
             elapsedTime += Time.deltaTime;
 
@@ -51,6 +53,7 @@ public class Y_TimerUI : MonoBehaviour
             }
         }
     }
+
 
 }
 

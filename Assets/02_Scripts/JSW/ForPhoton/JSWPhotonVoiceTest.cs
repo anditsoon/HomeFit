@@ -14,6 +14,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
     public bool isMaster;
 
     Y_UIManager y_uiManager;
+    Y_TimerUI y_timerUI;
 
     PhotonVoiceView voiceView;
     PhotonView pv;
@@ -25,7 +26,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
     private string[] avatarSettings;
     string nickName;
 
-    public bool allReadyGo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,8 +35,8 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         gameObject.transform.position = PlaySceneManager.instance.playerPositions[photonView.Owner.ActorNumber - 1].position + Vector3.up * 1.4f;
         //AvatarInfo.instance.SettingAvatarInPlay(gameObject);
         y_uiManager = GameObject.Find("Canvas").GetComponent<Y_UIManager>();
+        y_timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
 
-       
     }
 
     bool isStart;
@@ -135,7 +136,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void AllReadyGo()
     {
-        allReadyGo = true;
+        y_timerUI.allReadyGo = true;
     }
 
 
