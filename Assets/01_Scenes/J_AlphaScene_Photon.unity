@@ -2491,9 +2491,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPlayer: {fileID: 0}
   playerPositions:
-  - {fileID: 1202059513}
   - {fileID: 695086227}
   - {fileID: 1816557262}
+  - {fileID: 1202059513}
   - {fileID: 1814298773}
   UDPPoseH: {fileID: 1981259059}
 --- !u!1 &674420512
@@ -3278,6 +3278,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1865802829740600935, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 653898896}
+    - target: {fileID: 1865802829740600935, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MoveMainScene
+      objectReference: {fileID: 0}
     - target: {fileID: 3191159979354738153, guid: 65943aec8ef2fd74889fc45eacbc2762,
         type: 3}
       propertyPath: m_Name
@@ -5318,9 +5328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc6718931193e04892eb9a12b94c324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRawImage: {fileID: 0}
-  serverIp: localhost
-  serverPort: 8764
 --- !u!1001 &1625761952
 PrefabInstance:
   m_ObjectHideFlags: 0
