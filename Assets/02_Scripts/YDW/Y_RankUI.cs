@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using Photon.Realtime;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -21,12 +24,26 @@ public class Y_RankUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //player1 = 
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void CalculateRanking()
+    {
+        var rankings = PhotonNetwork.PlayerList
+            .Select(player =>
+        {
+            PhotonView photonView = PhotonView.Find(player.ActorNumber);
+            return new
+            {
+                Player = photonView,
+                //SquatCount = 
+            };
+        });
     }
 }
