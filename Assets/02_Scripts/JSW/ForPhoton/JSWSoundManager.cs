@@ -58,7 +58,9 @@ public class JSWSoundManager : MonoBehaviour
         // 아바타 브금
         BGM_AVAR,
         // 메인 브금
-        BGM_MAIN
+        BGM_MAIN,
+        // Play 브금
+        BGM_Play
     }
 
 

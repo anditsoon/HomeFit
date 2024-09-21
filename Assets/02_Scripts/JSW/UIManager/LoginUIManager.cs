@@ -97,34 +97,41 @@ public class LoginUIManager : MonoBehaviour
 
     public void Number1Button()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
         ChangePanel(0);
     }
     public void Number2Button()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
         ChangePanel(1);
     }
     public void Number3Button()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
         ChangePanel(2);
     }
     public void Number4ButtonGL()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
         ChangePanel(3);
     }
 
     public void Number4ButtonRE()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
         transform.GetChild(3).gameObject.SetActive(false);
         ChangePanel(4);
     }
 
     public void Login()
     {
+        
         StartCoroutine(RoopCheck());
     }
 
     public void Register()
     {
+        
         StartCoroutine(RoopCheckRegister());
     }
 
@@ -184,6 +191,7 @@ public class LoginUIManager : MonoBehaviour
 
     public void Number5ButtoL()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
         AvatarInfo.instance.NickName = playerNameInput.GetComponent<TMP_InputField>().text;
         AvatarInfo.instance.Birthday = playerBirthInput.GetComponent<TMP_InputField>().text;
         AvatarInfo.instance.Height = float.Parse(playerHeightInput.GetComponent<TMP_InputField>().text);
@@ -193,14 +201,17 @@ public class LoginUIManager : MonoBehaviour
 
     public void Number6Button()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
         ChangePanel(7);
     }
     public void Number7Button()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
         ChangePanel(8);
     }
     public void Number8Button()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
         SceneManager.LoadScene("AvatarScene");
         //next Scene
         //print("다음 씬 꾸미기 씬");

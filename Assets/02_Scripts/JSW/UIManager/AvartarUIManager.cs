@@ -185,6 +185,7 @@ public class AvartarUIManager : MonoBehaviour
 
     public void AlamIsChanged()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_BTN);
         if (!isChanged)
         {
             ReturnHome();
@@ -224,6 +225,7 @@ public class AvartarUIManager : MonoBehaviour
 
     public void SettingtoAvar()
     {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_BTN);
         AvatarInfo.instance.Backpack = Backpack;
         AvatarInfo.instance.Body = Body;
         AvatarInfo.instance.Eyebrow = Eyebrow;

@@ -36,7 +36,9 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
 
     public void MoveMainScene()
     {
-        SceneManager.LoadScene("MainScene");
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LoadLevel(1);
+        //SceneManager.LoadScene("MainScene");
     }
 
     void Start()
@@ -50,7 +52,7 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
 
         GameObject playerListUI = GameObject.Find("text_PlayerList");
         CP = PhotonNetwork.LocalPlayer.CustomProperties;
-        
+        JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_Play);
     }
 
     IEnumerator SpawnPlayer()

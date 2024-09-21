@@ -46,7 +46,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -306,10 +306,12 @@ MonoBehaviour:
   bgmAudio: {fileID: 4205856593486583557}
   eftAudios:
   - {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
-  - {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
+  - {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
   - {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
   - {fileID: 8300000, guid: c987b952b8910594798172752800ef1c, type: 3}
   - {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
+  - {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
   bgmAudios:
   - {fileID: 8300000, guid: c05722a6e31563f41aecf4ba228e1a8c, type: 3}
   - {fileID: 8300000, guid: 7b598b14b2319974d8d04f426260d9fd, type: 3}
+  - {fileID: 8300000, guid: 9ce38f33d2d438645b123cc449074563, type: 3}

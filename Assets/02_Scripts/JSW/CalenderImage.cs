@@ -34,8 +34,11 @@ public class CalenderImage : MonoBehaviour
 
     public void SetBoldText()
     {
+
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
         profileManager.GetComponent<ProfileUIManager>().CalenderReset();
         GetComponent<TMP_Text>().fontStyle = FontStyles.Bold;
+        GetComponent<TMP_Text>().fontSize = 45;
         string num = GetComponent<TMP_Text>().text;
         if (num.Length == 1)
         {
@@ -49,6 +52,7 @@ public class CalenderImage : MonoBehaviour
         ExerciseCount.text = Random.Range(1, 5).ToString();
         KcalCount.text = Random.Range(1, 200).ToString();
         MinutesCount.text = Random.Range(1, 60).ToString();
+        GameObject.Find("Profile").GetComponent<Animator>().enabled = true;
         GameObject.Find("Profile").GetComponent<Animator>().CrossFade("ProfileUIUI",0);
     }
 }

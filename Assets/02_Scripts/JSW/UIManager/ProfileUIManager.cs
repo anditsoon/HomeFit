@@ -46,7 +46,8 @@ public class ProfileUIManager : MonoBehaviour
     {
         for (int i =0;i < CalenderUI.transform.childCount;i++)
         {
-            CalenderUI.transform.GetChild(i).GetComponent<TMP_Text>().fontStyle = FontStyles.Normal; 
+            CalenderUI.transform.GetChild(i).GetComponent<TMP_Text>().fontStyle = FontStyles.Normal;
+            CalenderUI.transform.GetChild(i).GetComponent<TMP_Text>().fontSize = 30;
         }
     }
 
@@ -61,6 +62,7 @@ public class ProfileUIManager : MonoBehaviour
 
     void easingProfile()
     {
+        print("1");
         iTween.ScaleTo(Profile, iTween.Hash("scale", new Vector3(1,1,1),
 
                                                        "time", 0.5f,
@@ -70,5 +72,3 @@ public class ProfileUIManager : MonoBehaviour
         ));
     }
 }
-
-//
