@@ -52,6 +52,28 @@ public class Y_UIManager : MonoBehaviour
         }
     }
 
+    public IEnumerator IncreaseAlpha(CanvasRenderer[] canvasRenderers)
+    {
+        while (true)
+        {
+            canvasAlphaTime += Time.deltaTime;
+            if (canvasAlphaTime > 1)
+            {
+                canvasAlphaTime = 0;
+                break;
+            }
+
+            foreach (CanvasRenderer canvasRenderer in canvasRenderers)
+            {
+                Color originalColor = canvasRenderer.GetColor();
+                originalColor.a = canvasAlphaTime;
+                canvasRenderer.SetColor(originalColor);
+            }
+
+            yield return null;
+        }
+    }
+
 
     // 스쿼트 / 팔벌려뛰기 버튼 선택 시 호출되는 함수들
     public void SelectSquat()

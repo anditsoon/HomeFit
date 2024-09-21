@@ -13,6 +13,8 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
     Transform leftHandPos;
     Transform rightHandPos;
 
+    public Y_TimerUI timerUI;
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -35,12 +37,13 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
         leftHandPos = mediapipe.leftArmTarget.transform;
         rightHandPos = mediapipe.rightArmTarget.transform;
         pv = GetComponent<PhotonView>();
+        timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (startGame)
+        if (startGame && timerUI.hasStart)
         {
             /////////////////////
             if (Input.GetKeyDown(KeyCode.Alpha2))
