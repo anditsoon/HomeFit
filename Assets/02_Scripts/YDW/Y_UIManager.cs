@@ -126,7 +126,7 @@ public class Y_UIManager : MonoBehaviour
     }
     public void SelectJumpingJack()
     {
-        PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().ChooseSquateOrJump_RPC(1);
+        PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().ChooseSquateOrJump_RPC(2);
     }
 
     public void SelectJumpingJack2()

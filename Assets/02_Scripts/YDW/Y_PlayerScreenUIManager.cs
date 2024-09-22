@@ -48,12 +48,12 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
             startWorkOut = false;
         }
 
-        if(timerUI.elapsedTime > timerUI.duration && resultPanel.activeSelf)
-        {
-            // 카메라 위치 변화 
-            StartCoroutine(MoveCamera());
-            resultPanel.SetActive(false);
-        }
+        //if(timerUI.elapsedTime > timerUI.duration && resultPanel.activeSelf)
+        //{
+        //    // 카메라 위치 변화 
+        //    StartCoroutine(MoveCamera());
+        //    resultPanel.SetActive(false);
+        //}
     }
 
     public GameObject newCamPos;
