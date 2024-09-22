@@ -37,8 +37,15 @@ public class Y_RankUI : MonoBehaviour
         var rankings = PhotonNetwork.PlayerList
             .Select(player =>
             {
-                PhotonView photonView = PhotonView.Find(player.ActorNumber);
-                if (photonView == null) print("null 입니당");
+                PhotonView photonView = null;
+                foreach (var view in PhotonNetwork.PhotonViewCollection)
+                {
+                    if (view.Owner == player)
+                    {
+                        photonView = view;
+                        break;
+                    }
+                }
 
                 Y_CountSquatt countSquatt = photonView.gameObject.GetComponent<Y_CountSquatt>();
                 float squatCount = countSquatt != null ? countSquatt.squatCount : 0;
