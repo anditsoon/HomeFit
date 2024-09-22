@@ -58,10 +58,10 @@ public class Y_UIManager : MonoBehaviour
 
     CanvasRenderer[] canvasRenderers;
 
-    public void GameStartMaster()
-    {
-        PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().AllReadyGO_RPC();
-    }
+    //public void GameStartMaster()
+    //{
+    //    PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().AllReadyGO_RPC();
+    //}
 
     public IEnumerator decreaseAlpha(CanvasRenderer[] canvasRenderers)
     {
