@@ -44,7 +44,6 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         //AvatarInfo.instance.SettingAvatarInPlay(gameObject);
         y_uiManager = GameObject.Find("Canvas").GetComponent<Y_UIManager>();
         y_timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
-
     }
 
     bool isStart;
@@ -103,20 +102,20 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
                     }
                 }
 
-                bool okay = photonView.gameObject.GetComponent<JSWPhotonVoiceTest>().voiceIcon.gameObject.activeSelf;
+                bool okay = photonView.gameObject.GetComponent<JSWPhotonVoiceTest>().GameStartReady.gameObject.activeSelf;
                 return okay;
             })
             .ToList();
 
         bool isAllGo = true;
-        if (AllReadyList.Count >= 1)
-        {
-            isAllGo = true;
-        }
-        else
-        {
-            isAllGo = false;
-        }
+        //if (AllReadyList.Count >= 1)
+        //{
+        //    isAllGo = true;
+        //}
+        //else
+        //{
+        //    isAllGo = false;
+        //}
 
 
         for (int i = 0; i < AllReadyList.Count; i++)
