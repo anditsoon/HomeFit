@@ -23,6 +23,8 @@ public class Y_TimerUI : MonoBehaviour
     CanvasRenderer[] canvasRenderers;
     public bool allReadyGo;
 
+
+
     void Start()
     {
         duration = 30;
@@ -44,14 +46,16 @@ public class Y_TimerUI : MonoBehaviour
 
             if (elapsedTime > duration)
             {
+                
                 timerPanel.SetActive(false); // 타이머 없애고
                 resultPanel.SetActive(true); // 결과창 서서히 띄운다
                 win.PerformWinnerCloseup();
                 canvasRenderers = resultPanel.GetComponentsInChildren<CanvasRenderer>();
                 StartCoroutine(uiManager.IncreaseAlpha(canvasRenderers));
-
+                JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_end);
                 // 이 변수를 스쿼트/점핑잭 세는 스크립트에서 호출하고 해당 스크립트에서 더 이상 횟수 세지 못하게 한다
-                hasStart = false; 
+                hasStart = false;
+                JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_end);
             }
         }
     }

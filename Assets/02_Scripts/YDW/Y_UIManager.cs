@@ -26,8 +26,8 @@ public class Y_UIManager : MonoBehaviour
     bool endSelect;
 
     GameObject playerScreenCanvas;
-    
 
+    public GameObject CD;
     void Start()
     {
         

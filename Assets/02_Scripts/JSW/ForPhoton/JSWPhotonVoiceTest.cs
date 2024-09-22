@@ -31,7 +31,9 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject GameStartReady;
     public bool mineHasStart;
     public bool otherHasStart;
-    
+
+    public GameObject playUI;
+    public Vector3[] array;
 
     bool allStart;
 
@@ -44,6 +46,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         //AvatarInfo.instance.SettingAvatarInPlay(gameObject);
         y_uiManager = GameObject.Find("Canvas").GetComponent<Y_UIManager>();
         y_timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
+        playUI.GetComponent<RectTransform>().localPosition = array[photonView.Owner.ActorNumber - 1];
     }
 
     bool isStart;
@@ -217,6 +220,21 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         y_timerUI.allReadyGo = true;
     }
 
+    IEnumerator Readygo()
+    {
+        y_uiManager.CD.SetActive(true);
+        y_uiManager.GetComponent<TMP_Text>().text = "2";
+        yield return new WaitForSeconds(1f);
+        y_uiManager.GetComponent<TMP_Text>().text = "1";
+        yield return new WaitForSeconds(1f);
+        y_uiManager.GetComponent<TMP_Text>().text = "0";
+        yield return new WaitForSeconds(1f);
+        y_uiManager.GetComponent<TMP_Text>().text = "GameStart!";
+        y_uiManager.CD.SetActive(false);
+        y_timerUI.allReadyGo = true;
+        JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_Playing);
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_START);
+    }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
