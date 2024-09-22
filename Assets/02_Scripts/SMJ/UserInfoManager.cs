@@ -8,6 +8,7 @@ using System.Text;
 using System.Net;
 using System.Globalization;
 using TMPro;
+using static UnityEditor.Progress;
 //using UnityEditor.PackageManager.Requests;
 
 public class UserInfoManager : MonoBehaviour
@@ -26,6 +27,8 @@ public class UserInfoManager : MonoBehaviour
     private readonly string LoginUrl = "https://125.132.216.190:12502/api/login";
     private readonly string RegisterUrl = "https://125.132.216.190:12502/api/register";
     private readonly string UserInfoUrl = "https://125.132.216.190:12502/api/user/";
+    private readonly string GetItemUrl = "https://125.132.216.190:12502/api/character/";
+    
 
     public delegate void StatusChanged(bool status);
     public event StatusChanged OnLoginStatusChanged;
@@ -139,8 +142,9 @@ public class UserInfoManager : MonoBehaviour
                         PlayerPrefs.Save();
 
                         Debug.Log($"로그인 성공. 사용자 ID: {response.userId}, 토큰: {response.jwtToken}");
-                        OnLoginStatusChanged?.Invoke(true);
                         StartCoroutine(GetUserInfoCoroutine(response.jwtToken, response.userId));
+                        StartCoroutine(GetItemCoroutine(response.jwtToken, response.userId));
+                        OnLoginStatusChanged?.Invoke(true);
                     }
                     else
                     {
@@ -226,6 +230,47 @@ public class UserInfoManager : MonoBehaviour
         }
     }
 
+    IEnumerator GetItemCoroutine(string jwtToken, string _userId)
+    {
+        using (UnityWebRequest www = UnityWebRequest.Get(GetItemUrl + _userId))
+        {
+            www.SetRequestHeader("Authorization", "Bearer " + jwtToken);
+            www.certificateHandler = new BypassCertificate();
+
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError($"아이템 가져오기 실패: {www.error}");
+            }
+            else
+            {
+                string responseBody = www.downloadHandler.text;
+                Debug.Log($"아이템 응답: {responseBody}");
+
+                try
+                {
+                    UpdateItemData item = JsonUtility.FromJson<UpdateItemData>(responseBody);
+                    AvatarInfo.instance.Backpack = "Meshes/Backpack/" + item.backpack.ToString();
+                    AvatarInfo.instance.Body = "Meshes/Body/" + item.body.ToString();
+                    AvatarInfo.instance.Eyebrow = "Meshes/Eyebrow/" + item.eyebrow.ToString();
+                    AvatarInfo.instance.Glasses = "Meshes/Glasses/" + item.glasses.ToString();
+                    AvatarInfo.instance.Glove = "Meshes/Glove/" + item.glove.ToString();
+                    AvatarInfo.instance.Hair = "Meshes/Hair/" + item.hair.ToString();
+                    AvatarInfo.instance.Hat = "Meshes/Hat/" + item.hat.ToString();
+                    AvatarInfo.instance.Mustache = "Meshes/Mustache/" + item.mustache.ToString();
+                    AvatarInfo.instance.Outerwear = "Meshes/Outerwear/" + item.outerwear.ToString();
+                    AvatarInfo.instance.Pants = "Meshes/Pants/" + item.pants.ToString();
+                    AvatarInfo.instance.Shoe = "Meshes/Shoe/" + item.shoe.ToString();
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"JSON 파싱 오류: {e.Message}");
+                }
+            }
+        }
+    }
+
     IEnumerator UpdateUserInfoCoroutine(string _nickname, string _birthday, string _height, string _weight)
     {
         yield return new WaitForSeconds(0.1f);
@@ -267,6 +312,7 @@ public class UserInfoManager : MonoBehaviour
             }
         }
     }
+
     private string FormatDate(string inputDate)
     {
         if (string.IsNullOrEmpty(inputDate) || inputDate.Length != 8)
@@ -317,6 +363,21 @@ public class UpdateUserData
     public string birthday;
     public float height;
     public float weight;
+}
+
+public class UpdateItemData
+{
+    public long backpack;
+    public long body;
+    public long eyebrow;
+    public long glasses;
+    public long glove;
+    public long hair;
+    public long hat;
+    public long mustache;
+    public long outerwear;
+    public long pants;
+    public long shoe;
 }
 
 [Serializable]
