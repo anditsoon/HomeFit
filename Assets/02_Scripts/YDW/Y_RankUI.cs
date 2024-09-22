@@ -16,18 +16,9 @@ public class Y_RankUI : MonoBehaviour
     public TMP_Text cnt2st;
     public TMP_Text cnt3st;
 
-    public GameObject player1;
-    public GameObject player2;
-    public GameObject player3;
-    public GameObject player4;
+    Y_TimerUI timerUI;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -39,11 +30,35 @@ public class Y_RankUI : MonoBehaviour
             .Select(player =>
         {
             PhotonView photonView = PhotonView.Find(player.ActorNumber);
+
+            Y_CountSquatt countSquatt = photonView.GetComponent<Y_CountSquatt>();
+            float squatCount = countSquatt != null ? countSquatt.squatCount : 0;
+
             return new
             {
-                Player = photonView,
-                //SquatCount = 
+                Player = player.NickName,
+                SquatCount = squatCount
             };
-        });
+        })
+            .OrderByDescending(p => p.SquatCount)
+            .ToList();
+
+        if (rankings.Count > 0)
+        {
+            name1st.text = rankings[0].Player;
+            cnt1st.text = rankings[0].SquatCount.ToString();
+        }
+
+        if (rankings.Count > 1)
+        {
+            name2st.text = rankings[1].Player;
+            cnt2st.text = rankings[1].SquatCount.ToString();
+        }
+
+        if (rankings.Count > 2)
+        {
+            name3st.text = rankings[2].Player;
+            cnt3st.text = rankings[2].SquatCount.ToString();
+        }
     }
 }
