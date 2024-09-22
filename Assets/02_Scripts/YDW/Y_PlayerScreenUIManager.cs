@@ -48,9 +48,23 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
             startWorkOut = false;
         }
 
-        if(timerUI.elapsedTime > timerUI.duration)
+        if(timerUI.elapsedTime > timerUI.duration && resultPanel.activeSelf)
         {
+            // 카메라 위치 변화 
+            StartCoroutine(MoveCamera());
             resultPanel.SetActive(false);
+        }
+    }
+
+    public GameObject newCamPos;
+
+    IEnumerator MoveCamera()
+    {
+        while (true)
+        {
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, newCamPos.transform.position, Time.deltaTime * 10);
+            if (Vector3.Distance(Camera.main.transform.position, newCamPos.transform.position) < 0.2f) break;
+            yield return null;
         }
     }
 
