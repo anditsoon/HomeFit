@@ -2926,7 +2926,6 @@ MonoBehaviour:
   isJumpingJack: 0
   jumpingJackCount: 0
   timerUI: {fileID: 0}
-  players: []
 --- !u!114 &5881271143326230952
 MonoBehaviour:
   m_ObjectHideFlags: 0
