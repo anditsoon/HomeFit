@@ -19,6 +19,8 @@ public class Y_RankUI : MonoBehaviour
     Y_TimerUI timerUI;
     public GameObject rankPanel;
 
+    public GameObject img3rd;
+
     private void Start()
     {
         timerUI = GetComponent<Y_TimerUI>();
@@ -75,6 +77,10 @@ public class Y_RankUI : MonoBehaviour
         {
             name3st.text = rankings[2].Player;
             cnt3st.text = rankings[2].SquatCount.ToString() + "회";
+        }
+        else // 어차피 두 명 이상이어야 방을 만들 수 있음
+        {
+            img3rd.SetActive(false);
         }
     }
 }
