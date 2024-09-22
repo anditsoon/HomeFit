@@ -54,7 +54,9 @@ public class Y_RankUI : MonoBehaviour
 
                 Y_CountSquatt countSquatt = photonView.gameObject.GetComponent<Y_CountSquatt>();
                 Y_CountJumpingJack countJumpingJack = photonView.gameObject.GetComponent<Y_CountJumpingJack>();
-                float workOutCount = countSquatt != null ? countSquatt.squatCount : countJumpingJack.jumpingJackCount;
+                print(countSquatt == null);
+                float workOutCount = countSquatt.squatCount < 1 ? countJumpingJack.jumpingJackCount : countSquatt.squatCount;
+                //float workOutCount = countSquatt != null ? countSquatt.squatCount : countJumpingJack.jumpingJackCount;
 
                 return new
                 {
