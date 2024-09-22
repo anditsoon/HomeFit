@@ -18,6 +18,8 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
 
     public List<PhotonView> players = new List<PhotonView>();
 
+    float startPelvisPos;
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -48,6 +50,8 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
     {
         if (startGame && timerUI.hasStart)
         {
+            startPelvisPos = mediapipe.startSP.y;
+
             /////////////////////
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
@@ -55,8 +59,8 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
             }
             /////////////////////
 
-            //print("손 좌표 : " + leftHandPos.position.y + " 오른손도!! : " + rightHandPos.position.y);
-            if (leftHandPos.position.y > 5.7f && rightHandPos.position.y > 5.7f && !isJumpingJack)
+            print("손 좌표 : " + (leftHandPos.position.y - startPelvisPos) + " 오른손도!! : " + (rightHandPos.position.y - startPelvisPos));
+            if (leftHandPos.position.y - startPelvisPos > 5f && rightHandPos.position.y - startPelvisPos > 5f && !isJumpingJack)
             {
                 if (pv.IsMine)
                 {
@@ -66,7 +70,7 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
                 }
             }
 
-            if (leftHandPos.position.y < 5.3f && rightHandPos.position.y < 5.3f && isJumpingJack)
+            if (leftHandPos.position.y - startPelvisPos < 3.5f && rightHandPos.position.y - startPelvisPos < 3.5f && isJumpingJack)
             {
                 if (pv.IsMine)
                 {
