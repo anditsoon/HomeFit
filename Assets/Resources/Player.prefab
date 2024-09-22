@@ -2319,7 +2319,6 @@ MonoBehaviour:
   uiManager: {fileID: 0}
   directionCanvas: {fileID: 3554525800069856597}
   countdownText: {fileID: 2086384891653300572}
-  resultPanel: {fileID: 2804025904846587174}
   isSelected: 0
   canActive: 1
   showTime: 0

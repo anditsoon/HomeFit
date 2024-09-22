@@ -68,6 +68,8 @@ public class Y_RankUI : MonoBehaviour
 
         if (rankings.Count > 1)
         {
+            print(rankings[0].WorkOutCount.ToString());
+            print(rankings[1].WorkOutCount.ToString());
             name1st.text = rankings[0].Player;
             cnt1st.text = rankings[0].WorkOutCount.ToString() + "회";
             name2st.text = rankings[1].Player;
