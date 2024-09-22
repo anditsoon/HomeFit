@@ -29,7 +29,9 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
     string nickName;
 
     public GameObject GameStartReady;
+    public bool mineHasStart;
     bool otherHasStart;
+    
 
     bool allStart;
 
@@ -53,6 +55,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
     {
         currentPlayers = PhotonNetwork.CurrentRoom.PlayerCount;
         maxPlayers = PhotonNetwork.CurrentRoom.MaxPlayers;
+        mineHasStart = y_timerUI.hasStart;
 
         if (currentPlayers == maxPlayers)
         {
@@ -80,6 +83,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
         if (y_timerUI.hasStart && !allStart && IsAllGoOkay())
         {
+            print("kkk");
             allStart = true;
             AllReadyGO_RPC();
         }
@@ -87,6 +91,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     public bool IsAllGoOkay()
     {
+        print("ddd");
         var AllReadyList = PhotonNetwork.PlayerList
             .Select(player =>
             {
@@ -100,10 +105,8 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
                     }
                 }
 
-                Y_TimerUI YT = photonView.gameObject.GetComponent<JSWPhotonVoiceTest>().y_timerUI;
-                bool squatCount = YT != null ? YT.hasStart : false;
-
-                return squatCount;
+                bool okay = photonView.gameObject.GetComponent<JSWPhotonVoiceTest>().mineHasStart;
+                return okay;
             })
             .ToList();
 
