@@ -30,7 +30,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     public GameObject GameStartReady;
     public bool mineHasStart;
-    bool otherHasStart;
+    public bool otherHasStart;
     
 
     bool allStart;
@@ -83,7 +83,6 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
         if (y_timerUI.hasStart && !allStart && IsAllGoOkay())
         {
-            print("kkk");
             allStart = true;
             AllReadyGO_RPC();
         }
@@ -104,20 +103,20 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
                     }
                 }
 
-                bool okay = photonView.gameObject.GetComponent<JSWPhotonVoiceTest>().otherHasStart;
+                bool okay = photonView.gameObject.GetComponent<JSWPhotonVoiceTest>().voiceIcon.gameObject.activeSelf;
                 return okay;
             })
             .ToList();
 
-        bool isAllGo;
-        if (AllReadyList.Count >= 2)
-        {
-            isAllGo = true;
-        }
-        else
-        {
-            isAllGo = false;
-        }
+        bool isAllGo = true;
+        //if (AllReadyList.Count >= 1)
+        //{
+        //    isAllGo = true;
+        //}
+        //else
+        //{
+        //    isAllGo = false;
+        //}
 
 
         for (int i = 0; i < AllReadyList.Count; i++)
