@@ -309,29 +309,44 @@ public class Y_MediaPipeTest : MonoBehaviour, IPunObservable
         //throw new NotImplementedException();
         if (stream.IsWriting)
         {
-
-            // iterable 데이터를 보낸다.
-            for (int i = 0; i < 33; i++)
+            if (conn != null && conn.latestPoseList != null && conn.latestPoseList.Count >= 33)
             {
-
-                stream.SendNext(new Vector3(
-                    conn.latestPoseList[i].x,
-                    conn.latestPoseList[i].y,
-                    conn.latestPoseList[i].z));
+                for (int i = 0; i < 33; i++)
+                {
+                    stream.SendNext(new Vector3(
+                        conn.latestPoseList[i].x,
+                        conn.latestPoseList[i].y,
+                        conn.latestPoseList[i].z));
+                }
             }
-
-
-
+            else
+            {
+                // conn이나 latestPoseList가 null이거나 충분한 데이터가 없는 경우
+                for (int i = 0; i < 33; i++)
+                {
+                    stream.SendNext(Vector3.zero);
+                }
+            }
         }
         // 그렇지 않고, 만일 데이터를 서버로부터 읽어오는 상태라면...
         else if (stream.IsReading)
         {
+            if (PD == null)
+            {
+                PD = new Vector3[33];
+            }
 
             for (int i = 0; i < 33; i++)
             {
-                PD[i] = (Vector3)stream.ReceiveNext();
+                if (stream.Count > 0)
+                {
+                    PD[i] = (Vector3)stream.ReceiveNext();
+                }
+                else
+                {
+                    PD[i] = Vector3.zero;
+                }
             }
-
         }
     }
 
