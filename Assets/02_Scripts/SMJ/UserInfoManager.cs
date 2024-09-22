@@ -8,6 +8,7 @@ using System.Text;
 using System.Net;
 using System.Globalization;
 using TMPro;
+using static UnityEditor.Progress;
 //using UnityEditor.PackageManager.Requests;
 
 public class UserInfoManager : MonoBehaviour
@@ -27,6 +28,7 @@ public class UserInfoManager : MonoBehaviour
     private readonly string RegisterUrl = "https://125.132.216.190:12502/api/register";
     private readonly string UserInfoUrl = "https://125.132.216.190:12502/api/user/";
     private readonly string GetItemUrl = "https://125.132.216.190:12502/api/";//연락오면 수정
+    private readonly string UpdateItemUrl = "https://125.132.216.190:12502/api/";//연락오면 수정
 
     public delegate void StatusChanged(bool status);
     public event StatusChanged OnLoginStatusChanged;
@@ -140,8 +142,9 @@ public class UserInfoManager : MonoBehaviour
                         PlayerPrefs.Save();
 
                         Debug.Log($"로그인 성공. 사용자 ID: {response.userId}, 토큰: {response.jwtToken}");
-                        //OnLoginStatusChanged?.Invoke(true);
                         StartCoroutine(GetUserInfoCoroutine(response.jwtToken, response.userId));
+                        StartCoroutine(GetItemCoroutine(response.jwtToken, response.userId));
+                        OnLoginStatusChanged?.Invoke(true);
                     }
                     else
                     {
@@ -247,11 +250,18 @@ public class UserInfoManager : MonoBehaviour
 
                 try
                 {
-                    UpdateUserData userInfo = JsonUtility.FromJson<UpdateUserData>(responseBody);
-                    AvatarInfo.instance.NickName = userInfo.nickName;
-                    AvatarInfo.instance.Birthday = userInfo.birthday;
-                    AvatarInfo.instance.Height = userInfo.height;
-                    AvatarInfo.instance.Weight = userInfo.weight;
+                    UpdateItemData item = JsonUtility.FromJson<UpdateItemData>(responseBody);
+                    AvatarInfo.instance.Backpack = item.backpack;
+                    AvatarInfo.instance.Body = item.body;
+                    AvatarInfo.instance.Eyebrow = item.eyebrow;
+                    AvatarInfo.instance.Glasses = item.glasses;
+                    AvatarInfo.instance.Glove = item.glove;
+                    AvatarInfo.instance.Hair = item.hair;
+                    AvatarInfo.instance.Hat = item.hat;
+                    AvatarInfo.instance.Mustache = item.mustache;
+                    AvatarInfo.instance.Outerwear = item.outerwear;
+                    AvatarInfo.instance.Pants = item.pants;
+                    AvatarInfo.instance.Shoe = item.shoe;
                 }
                 catch (Exception e)
                 {
@@ -302,6 +312,56 @@ public class UserInfoManager : MonoBehaviour
             }
         }
     }
+
+    IEnumerator UpdateItemCoroutine(string _backpack, string _body, string _eyebrow, string _glasses, string _glove, 
+        string _hair, string _hat, string _mustache, string _outerwear, string _pants, string _shoe)
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        string jwtToken = PlayerPrefs.GetString("jwtToken");
+        string userId = PlayerPrefs.GetString("userId");
+        string url = UpdateItemUrl + userId;
+
+        string jsonBody = JsonUtility.ToJson(new UpdateItemData
+        {
+            backpack = _backpack,
+            body = _body,
+            eyebrow = _eyebrow,
+            glasses = _glasses,
+            glove = _glove,
+            hair = _hair,
+            hat = _hat,
+            mustache = _mustache,
+            outerwear = _outerwear,
+            pants = _pants,
+            shoe = _shoe,
+        });
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonBody);
+
+        using (UnityWebRequest www = new UnityWebRequest(url, "PUT"))
+        {
+            www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+            www.SetRequestHeader("Authorization", "Bearer " + jwtToken);
+            www.certificateHandler = new BypassCertificate();
+
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("아이템 업데이트 실패: " + www.error);
+                OnUpdateInfoStatusChanged?.Invoke(false);
+            }
+            else
+            {
+                string responseBody = www.downloadHandler.text;
+                Debug.Log("아이템 업데이트 성공. 서버 응답: " + responseBody);
+                OnUpdateInfoStatusChanged?.Invoke(true);
+            }
+        }
+    }
+
     private string FormatDate(string inputDate)
     {
         if (string.IsNullOrEmpty(inputDate) || inputDate.Length != 8)
@@ -352,6 +412,21 @@ public class UpdateUserData
     public string birthday;
     public float height;
     public float weight;
+}
+
+public class UpdateItemData
+{
+    public string backpack;
+    public string body;
+    public string eyebrow;
+    public string glasses;
+    public string glove;
+    public string hair;
+    public string hat;
+    public string mustache;
+    public string outerwear;
+    public string pants;
+    public string shoe;
 }
 
 [Serializable]
