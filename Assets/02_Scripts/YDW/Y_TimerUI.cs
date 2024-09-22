@@ -11,7 +11,7 @@ public class Y_TimerUI : MonoBehaviour
     public PlaySceneManager PSM;
 
     public TMP_Text timerText;
-    private float elapsedTime = 0f;
+    public float elapsedTime = 0f;
 
     public float duration;
 

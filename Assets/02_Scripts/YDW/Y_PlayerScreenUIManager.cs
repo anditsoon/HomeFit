@@ -12,6 +12,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
     public Y_UIManager uiManager;
     public GameObject directionCanvas;
     public GameObject countdownText;
+    public GameObject resultPanel;
 
     public bool isSelected = false;
     public bool canActive = true;
@@ -24,12 +25,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
 
     bool startWorkOut = false;
 
-    // Start is called before the first frame update
-    void LateStart()
-    {
-        //setStandardPos = GameObject.Find("Player").GetComponent<Y_SetStandardPos>();
-       
-    }
+    public Y_TimerUI timerUI;
 
     // Update is called once per frame
     void Update()
@@ -49,21 +45,35 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
 
         if(startWorkOut)
         {
-
             startWorkOut = false;
+        }
+
+        if(timerUI.elapsedTime > timerUI.duration)
+        {
+            resultPanel.SetActive(false);
         }
     }
 
     CanvasRenderer[] canvasRenderers;
+    CanvasRenderer[] canvasRenderers2;
+
     void Countdown()
     {
         if (showTime <= 0)
         {
             uiManager = GameObject.Find("Canvas").GetComponent<Y_UIManager>();
             PoseRecCountdown.text = "시작!";
+
+            // directionCanvas 비활성화
             canvasRenderers = directionCanvas.GetComponentsInChildren<CanvasRenderer>();
             StartCoroutine(uiManager.decreaseAlpha(canvasRenderers)); // 투명도 조절 후
-            directionCanvas.SetActive(false); // UI 비활성화
+            directionCanvas.SetActive(false);
+
+            // resultPanel 활성화
+            resultPanel.SetActive(true);
+            canvasRenderers2 = resultPanel.GetComponentsInChildren<CanvasRenderer>();
+            StartCoroutine(uiManager.IncreaseAlpha(canvasRenderers2));
+
             canActive = false;
             isSelected = false;
             startWorkOut = true;

@@ -23,12 +23,12 @@ public class Y_RankUI : MonoBehaviour
 
     private void Start()
     {
-        timerUI = GetComponent<Y_TimerUI>();
+        timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
     }
 
     void Update()
     {
-        if(!timerUI.hasStart && rankPanel.activeSelf)
+        if(rankPanel.activeSelf) // !timerUI.hasStart && 
         {
             CalculateRanking();
         }
@@ -55,20 +55,17 @@ public class Y_RankUI : MonoBehaviour
                 return new
                 {
                     Player = player.NickName,
-                    SquatCount = squatCount
+                    SquatCount = Mathf.Clamp(squatCount, 0, 9999)
                 };
             })
             .OrderByDescending(p => p.SquatCount)
             .ToList();
 
-        if (rankings.Count > 0)
-        {
-            name1st.text = rankings[0].Player;
-            cnt1st.text = rankings[0].SquatCount.ToString() + "회";
-        }
 
         if (rankings.Count > 1)
         {
+            name1st.text = rankings[0].Player;
+            cnt1st.text = rankings[0].SquatCount.ToString() + "회";
             name2st.text = rankings[1].Player;
             cnt2st.text = rankings[1].SquatCount.ToString() + "회";
         }
