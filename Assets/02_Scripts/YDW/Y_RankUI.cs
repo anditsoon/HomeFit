@@ -18,6 +18,10 @@ public class Y_RankUI : MonoBehaviour
 
     Y_TimerUI timerUI;
 
+    private void Start()
+    {
+        timerUI = GetComponent<Y_TimerUI>();
+    }
 
     void Update()
     {
@@ -28,18 +32,18 @@ public class Y_RankUI : MonoBehaviour
     {
         var rankings = PhotonNetwork.PlayerList
             .Select(player =>
-        {
-            PhotonView photonView = PhotonView.Find(player.ActorNumber);
-
-            Y_CountSquatt countSquatt = photonView.GetComponent<Y_CountSquatt>();
-            float squatCount = countSquatt != null ? countSquatt.squatCount : 0;
-
-            return new
             {
-                Player = player.NickName,
-                SquatCount = squatCount
-            };
-        })
+                PhotonView photonView = PhotonView.Find(player.ActorNumber);
+
+                Y_CountSquatt countSquatt = photonView.GetComponent<Y_CountSquatt>();
+                float squatCount = countSquatt != null ? countSquatt.squatCount : 0;
+
+                return new
+                {
+                    Player = player.NickName,
+                    SquatCount = squatCount
+                };
+            })
             .OrderByDescending(p => p.SquatCount)
             .ToList();
 
