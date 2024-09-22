@@ -104,7 +104,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
                     }
                 }
 
-                bool okay = photonView.gameObject.GetComponent<JSWPhotonVoiceTest>().mineHasStart;
+                bool okay = photonView.gameObject.GetComponent<JSWPhotonVoiceTest>().otherHasStart;
                 return okay;
             })
             .ToList();
