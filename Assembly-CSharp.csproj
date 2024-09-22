@@ -93,6 +93,7 @@
     <Compile Include="Assets\02_Scripts\YDW\Y_CountSquatt.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\02_Scripts\SMJ\UserItemManager.cs" />
     <Compile Include="Assets\02_Scripts\SimpleJSON-master\SimpleJSONDotNetTypes.cs" />
     <Compile Include="Assets\02_Scripts\SMJ\WebView\WebViewRenderer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
