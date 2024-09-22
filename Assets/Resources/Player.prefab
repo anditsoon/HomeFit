@@ -2982,9 +2982,11 @@ MonoBehaviour:
   voiceIcon: {fileID: 3042708451332815074}
   names: {fileID: 713473885088527979}
   isMaster: 0
+  y_timerUI: {fileID: 0}
   currentPlayers: 0
   maxPlayers: 0
   GameStartReady: {fileID: 6604553783051261841}
+  mineHasStart: 0
   AllplayerInRoom: 0
 --- !u!114 &2387866554625896886
 MonoBehaviour:
