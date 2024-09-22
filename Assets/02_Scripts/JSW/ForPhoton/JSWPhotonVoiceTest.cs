@@ -91,7 +91,6 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     public bool IsAllGoOkay()
     {
-        print("ddd");
         var AllReadyList = PhotonNetwork.PlayerList
             .Select(player =>
             {
