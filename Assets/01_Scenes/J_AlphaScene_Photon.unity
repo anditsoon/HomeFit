@@ -3829,6 +3829,16 @@ PrefabInstance:
       propertyPath: name3st
       value: 
       objectReference: {fileID: 915870711}
+    - target: {fileID: 6591152264541373684, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: rankPanel
+      value: 
+      objectReference: {fileID: 1307999629}
+    - target: {fileID: 6612900637517700682, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7417609932998429092, guid: 65943aec8ef2fd74889fc45eacbc2762,
         type: 3}
       propertyPath: PSM
@@ -5012,6 +5022,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1931480507}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1307999629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6612900637517700682, guid: 65943aec8ef2fd74889fc45eacbc2762,
+    type: 3}
+  m_PrefabInstance: {fileID: 915870707}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1373210646
 GameObject:
   m_ObjectHideFlags: 0
@@ -5747,6 +5763,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc6718931193e04892eb9a12b94c324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetRawImage: {fileID: 0}
+  serverIp: localhost
+  serverPort: 8764
 --- !u!1001 &1625761952
 PrefabInstance:
   m_ObjectHideFlags: 0

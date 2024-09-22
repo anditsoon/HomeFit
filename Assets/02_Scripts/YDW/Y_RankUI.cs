@@ -17,6 +17,7 @@ public class Y_RankUI : MonoBehaviour
     public TMP_Text cnt3st;
 
     Y_TimerUI timerUI;
+    public GameObject rankPanel;
 
     private void Start()
     {
@@ -25,7 +26,10 @@ public class Y_RankUI : MonoBehaviour
 
     void Update()
     {
-        
+        if(!timerUI.hasStart && rankPanel.activeSelf)
+        {
+            CalculateRanking();
+        }
     }
 
     public void CalculateRanking()
@@ -50,19 +54,19 @@ public class Y_RankUI : MonoBehaviour
         if (rankings.Count > 0)
         {
             name1st.text = rankings[0].Player;
-            cnt1st.text = rankings[0].SquatCount.ToString();
+            cnt1st.text = rankings[0].SquatCount.ToString() + "회";
         }
 
         if (rankings.Count > 1)
         {
             name2st.text = rankings[1].Player;
-            cnt2st.text = rankings[1].SquatCount.ToString();
+            cnt2st.text = rankings[1].SquatCount.ToString() + "회";
         }
 
         if (rankings.Count > 2)
         {
             name3st.text = rankings[2].Player;
-            cnt3st.text = rankings[2].SquatCount.ToString();
+            cnt3st.text = rankings[2].SquatCount.ToString() + "회";
         }
     }
 }
