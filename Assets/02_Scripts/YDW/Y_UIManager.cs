@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.Loading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,9 @@ public class Y_UIManager : MonoBehaviour
     public GameObject chooseWorkOutCanvas;
     public PlaySceneManager PSM;
     public GameObject StartButton;
+
+    public GameObject LoadingPanel;
+
     bool isnextPanel;
 
     GameObject playerScreenCanvas;
@@ -34,6 +38,10 @@ public class Y_UIManager : MonoBehaviour
             chooseWorkOut.SetActive(true);
             StartButton.SetActive(true);
             isnextPanel = true;
+        }
+        if (PSM.myPlayer != null && PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().AllplayerInRoom)
+        {
+            LoadingPanel.SetActive(false);
         }
     }
 

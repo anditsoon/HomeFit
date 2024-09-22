@@ -26,6 +26,8 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
     private string[] avatarSettings;
     string nickName;
 
+    public GameObject GameStartReady;
+    bool otherHasStart;
 
     // Start is called before the first frame update
     void Start()
@@ -40,12 +42,18 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
     }
 
     bool isStart;
+    public bool AllplayerInRoom;
+
     // Update is called once per frame
     void Update()
     {
         currentPlayers = PhotonNetwork.CurrentRoom.PlayerCount;
         maxPlayers = PhotonNetwork.CurrentRoom.MaxPlayers;
 
+        if (currentPlayers == maxPlayers)
+        {
+            AllplayerInRoom = true;
+        }
 
         if (PhotonNetwork.IsMasterClient && pv.IsMine && currentPlayers == maxPlayers && !isStart)
         {
@@ -58,10 +66,12 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         {
             // 현재 말을 하고 있다면 보이스 아이콘을 활성화한다.
             voiceIcon.gameObject.SetActive(voiceView.IsRecording);
+            GameStartReady.SetActive(y_timerUI.hasStart); // Pose에서 받아온 값
         }
         else
         {
             voiceIcon.gameObject.SetActive(isTalking);
+            GameStartReady.SetActive(otherHasStart); // 에서 받아온 값
         }
         
     }
@@ -72,11 +82,13 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         if (stream.IsWriting && voiceView != null)
         {
             stream.SendNext(voiceView.IsRecording);
+            stream.SendNext(y_timerUI.hasStart);
         }
         // 그렇지 않고, 만일 데이터를 서버로부터 읽어오는 상태라면...
         else if (stream.IsReading)
         {
             isTalking = (bool)stream.ReceiveNext();
+            otherHasStart = (bool)stream.ReceiveNext();
         }
     }
 
