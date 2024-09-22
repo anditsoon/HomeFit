@@ -12,7 +12,6 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
     public Y_UIManager uiManager;
     public GameObject directionCanvas;
     public GameObject countdownText;
-    public GameObject resultPanel;
 
     public bool isSelected = false;
     public bool canActive = true;
@@ -82,11 +81,6 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
             canvasRenderers = directionCanvas.GetComponentsInChildren<CanvasRenderer>();
             StartCoroutine(uiManager.decreaseAlpha(canvasRenderers)); // 투명도 조절 후
             directionCanvas.SetActive(false);
-
-            // resultPanel 활성화
-            resultPanel.SetActive(true);
-            canvasRenderers2 = resultPanel.GetComponentsInChildren<CanvasRenderer>();
-            StartCoroutine(uiManager.IncreaseAlpha(canvasRenderers2));
 
             canActive = false;
             isSelected = false;

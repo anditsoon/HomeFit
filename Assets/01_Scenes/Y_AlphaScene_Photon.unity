@@ -5718,18 +5718,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3642497527583409605, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: cnt1st
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642497527583409605, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: cnt2st
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642497527583409605, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: cnt3st
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642497527583409605, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: img3rd
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642497527583409605, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: name1st
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642497527583409605, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: name2st
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642497527583409605, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: name3st
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642497527583409605, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: rankPanel
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6413083777289360274, guid: 144a3fa0b44ac974e8e55edd33994d33,
         type: 3}
       propertyPath: timerUI
       value: 
       objectReference: {fileID: 915870708}
+    - target: {fileID: 6413083777289360274, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: resultPanel
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6514969496642273152, guid: 144a3fa0b44ac974e8e55edd33994d33,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 3642497527583409605, guid: 144a3fa0b44ac974e8e55edd33994d33, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 2804025904846587174, guid: 144a3fa0b44ac974e8e55edd33994d33, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1008635641060963374, guid: 144a3fa0b44ac974e8e55edd33994d33,
         type: 3}
