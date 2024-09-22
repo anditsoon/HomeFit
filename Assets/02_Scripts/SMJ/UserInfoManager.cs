@@ -26,6 +26,7 @@ public class UserInfoManager : MonoBehaviour
     private readonly string LoginUrl = "https://125.132.216.190:12502/api/login";
     private readonly string RegisterUrl = "https://125.132.216.190:12502/api/register";
     private readonly string UserInfoUrl = "https://125.132.216.190:12502/api/user/";
+    private readonly string GetItemUrl = "https://125.132.216.190:12502/api/";//연락오면 수정
 
     public delegate void StatusChanged(bool status);
     public event StatusChanged OnLoginStatusChanged;
@@ -139,7 +140,7 @@ public class UserInfoManager : MonoBehaviour
                         PlayerPrefs.Save();
 
                         Debug.Log($"로그인 성공. 사용자 ID: {response.userId}, 토큰: {response.jwtToken}");
-                        OnLoginStatusChanged?.Invoke(true);
+                        //OnLoginStatusChanged?.Invoke(true);
                         StartCoroutine(GetUserInfoCoroutine(response.jwtToken, response.userId));
                     }
                     else
@@ -209,6 +210,40 @@ public class UserInfoManager : MonoBehaviour
             {
                 string responseBody = www.downloadHandler.text;
                 Debug.Log($"사용자 정보 응답: {responseBody}");
+
+                try
+                {
+                    UpdateUserData userInfo = JsonUtility.FromJson<UpdateUserData>(responseBody);
+                    AvatarInfo.instance.NickName = userInfo.nickName;
+                    AvatarInfo.instance.Birthday = userInfo.birthday;
+                    AvatarInfo.instance.Height = userInfo.height;
+                    AvatarInfo.instance.Weight = userInfo.weight;
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"JSON 파싱 오류: {e.Message}");
+                }
+            }
+        }
+    }
+
+    IEnumerator GetItemCoroutine(string jwtToken, string _userId)
+    {
+        using (UnityWebRequest www = UnityWebRequest.Get(GetItemUrl + _userId))
+        {
+            www.SetRequestHeader("Authorization", "Bearer " + jwtToken);
+            www.certificateHandler = new BypassCertificate();
+
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError($"아이템 가져오기 실패: {www.error}");
+            }
+            else
+            {
+                string responseBody = www.downloadHandler.text;
+                Debug.Log($"아이템 응답: {responseBody}");
 
                 try
                 {
