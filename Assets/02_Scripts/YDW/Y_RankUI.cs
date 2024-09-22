@@ -21,6 +21,9 @@ public class Y_RankUI : MonoBehaviour
 
     public GameObject img3rd;
 
+    public Y_CountJumpingJack cntJJ;
+    public Y_CountSquatt cntS;
+
     private void Start()
     {
         timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
@@ -50,30 +53,31 @@ public class Y_RankUI : MonoBehaviour
                 }
 
                 Y_CountSquatt countSquatt = photonView.gameObject.GetComponent<Y_CountSquatt>();
-                float squatCount = countSquatt != null ? countSquatt.squatCount : 0;
+                Y_CountJumpingJack countJumpingJack = photonView.gameObject.GetComponent<Y_CountJumpingJack>();
+                float workOutCount = countSquatt != null ? countSquatt.squatCount : countJumpingJack.jumpingJackCount;
 
                 return new
                 {
                     Player = player.NickName,
-                    SquatCount = Mathf.Clamp(squatCount, 0, 9999)
+                    WorkOutCount = Mathf.Clamp(workOutCount, 0, 9999)
                 };
             })
-            .OrderByDescending(p => p.SquatCount)
+            .OrderByDescending(p => p.WorkOutCount)
             .ToList();
 
 
         if (rankings.Count > 1)
         {
             name1st.text = rankings[0].Player;
-            cnt1st.text = rankings[0].SquatCount.ToString() + "회";
+            cnt1st.text = rankings[0].WorkOutCount.ToString() + "회";
             name2st.text = rankings[1].Player;
-            cnt2st.text = rankings[1].SquatCount.ToString() + "회";
+            cnt2st.text = rankings[1].WorkOutCount.ToString() + "회";
         }
 
         if (rankings.Count > 2)
         {
             name3st.text = rankings[2].Player;
-            cnt3st.text = rankings[2].SquatCount.ToString() + "회";
+            cnt3st.text = rankings[2].WorkOutCount.ToString() + "회";
         }
         else // 어차피 두 명 이상이어야 방을 만들 수 있음
         {

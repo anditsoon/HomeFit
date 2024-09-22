@@ -59,7 +59,7 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
             }
             /////////////////////
 
-            print("손 좌표 : " + (leftHandPos.position.y - startPelvisPos) + " 오른손도!! : " + (rightHandPos.position.y - startPelvisPos));
+            //print("손 좌표 : " + (leftHandPos.position.y - startPelvisPos) + " 오른손도!! : " + (rightHandPos.position.y - startPelvisPos));
             if (leftHandPos.position.y - startPelvisPos > 4.8f && rightHandPos.position.y - startPelvisPos > 4.8f && !isJumpingJack) // 4.6f
             {
                 if (pv.IsMine)
@@ -79,7 +79,7 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
                 }
             }
 
-            Debug.LogError("점핑잭 횟수: " + jumpingJackCount);
+            //Debug.LogError("점핑잭 횟수: " + jumpingJackCount);
 
         }
     }

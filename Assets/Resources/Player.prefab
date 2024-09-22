@@ -2346,6 +2346,8 @@ MonoBehaviour:
   cnt3st: {fileID: 4504546248331792761}
   rankPanel: {fileID: 2804025904846587174}
   img3rd: {fileID: 8400662788111387953}
+  cntJJ: {fileID: 0}
+  cntS: {fileID: 0}
 --- !u!1 &4990504245167843506
 GameObject:
   m_ObjectHideFlags: 0
