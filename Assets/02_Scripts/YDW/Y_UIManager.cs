@@ -17,7 +17,6 @@ public class Y_UIManager : MonoBehaviour
     public Y_CountSquatt cntSquat;
     public GameObject chooseWorkOutCanvas;
     public PlaySceneManager PSM;
-    public GameObject StartButton;
     
 
     public GameObject LoadingPanel;
@@ -39,7 +38,6 @@ public class Y_UIManager : MonoBehaviour
         if (!isnextPanel && PSM.myPlayer != null && PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().isMaster)
         {
             chooseWorkOut.SetActive(true);
-            StartButton.SetActive(true);
             isnextPanel = true;
         }
         if (PSM.myPlayer != null && PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().AllplayerInRoom)
@@ -58,9 +56,17 @@ public class Y_UIManager : MonoBehaviour
 
     CanvasRenderer[] canvasRenderers;
 
-    //public void GameStartMaster()
+    //public void CountDownUpdateCoroutine()
     //{
+        
     //    PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().AllReadyGO_RPC();
+    //}
+    //IEnumerator CountDownUpdate()
+    //{
+    //    while (true)
+    //    {
+
+    //    }
     //}
 
     public IEnumerator decreaseAlpha(CanvasRenderer[] canvasRenderers)
