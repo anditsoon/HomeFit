@@ -109,16 +109,24 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
             })
             .ToList();
 
-        bool isAllGo = true ;
+        bool isAllGo;
+        if (AllReadyList.Count >= 2)
+        {
+            isAllGo = true;
+        }
+        else
+        {
+            isAllGo = false;
+        }
 
-        for (int i = 0;i < AllReadyList.Count;i++)
+
+        for (int i = 0; i < AllReadyList.Count; i++)
         {
             if (AllReadyList[i] == false)
             {
                 isAllGo = false;
             }
         }
-
         return isAllGo;
     }
 
