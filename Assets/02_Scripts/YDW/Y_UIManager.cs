@@ -18,8 +18,10 @@ public class Y_UIManager : MonoBehaviour
     public GameObject chooseWorkOutCanvas;
     public PlaySceneManager PSM;
     public GameObject StartButton;
+    
 
     public GameObject LoadingPanel;
+    public GameObject LoadingPanelNotMaster;
 
     bool isnextPanel;
 
@@ -42,6 +44,10 @@ public class Y_UIManager : MonoBehaviour
         if (PSM.myPlayer != null && PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().AllplayerInRoom)
         {
             LoadingPanel.SetActive(false);
+            if (!PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().isMaster)
+            {
+                LoadingPanelNotMaster.SetActive(true);
+            }
         }
     }
 
@@ -104,6 +110,7 @@ public class Y_UIManager : MonoBehaviour
     }
     public void SelectSquat2()
     {
+        LoadingPanelNotMaster.SetActive(false);
         cntSquat = PSM.myPlayer.GetComponent<Y_CountSquatt>();
         cntSquat.enabled = true;
         playerScreenCanvas = PSM.myPlayer.transform.GetChild(3).gameObject;
@@ -119,6 +126,7 @@ public class Y_UIManager : MonoBehaviour
 
     public void SelectJumpingJack2()
     {
+        LoadingPanelNotMaster.SetActive(false);
         cntJumpingJack = PSM.myPlayer.GetComponent<Y_CountJumpingJack>();
         cntJumpingJack.enabled = true;
         playerScreenCanvas = PSM.myPlayer.transform.GetChild(3).gameObject;

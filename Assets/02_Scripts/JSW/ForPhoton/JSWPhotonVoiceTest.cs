@@ -5,7 +5,9 @@ using Photon.Voice.PUN;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Linq;
 using TMPro;
+using UnityEditor.Build;
 
 public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -14,7 +16,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
     public bool isMaster;
 
     Y_UIManager y_uiManager;
-    Y_TimerUI y_timerUI;
+    public Y_TimerUI y_timerUI;
 
     PhotonVoiceView voiceView;
     PhotonView pv;
@@ -28,6 +30,8 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     public GameObject GameStartReady;
     bool otherHasStart;
+
+    bool allStart;
 
     // Start is called before the first frame update
     void Start()
@@ -73,8 +77,49 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
             voiceIcon.gameObject.SetActive(isTalking);
             GameStartReady.SetActive(otherHasStart); // 에서 받아온 값
         }
-        
+
+        if (y_timerUI.hasStart && !allStart && IsAllGoOkay())
+        {
+            allStart = true;
+            AllReadyGO_RPC();
+        }
     }
+
+    public bool IsAllGoOkay()
+    {
+        var AllReadyList = PhotonNetwork.PlayerList
+            .Select(player =>
+            {
+                PhotonView photonView = null;
+                foreach (var view in PhotonNetwork.PhotonViewCollection)
+                {
+                    if (view.Owner == player)
+                    {
+                        photonView = view;
+                        break;
+                    }
+                }
+
+                Y_TimerUI YT = photonView.gameObject.GetComponent<JSWPhotonVoiceTest>().y_timerUI;
+                bool squatCount = YT != null ? YT.hasStart : false;
+
+                return squatCount;
+            })
+            .ToList();
+
+        bool isAllGo = true ;
+
+        for (int i = 0;i < AllReadyList.Count;i++)
+        {
+            if (AllReadyList[i] == false)
+            {
+                isAllGo = false;
+            }
+        }
+
+        return isAllGo;
+    }
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
