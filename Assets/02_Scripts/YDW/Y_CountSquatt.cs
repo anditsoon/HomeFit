@@ -28,7 +28,22 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
         // 그렇지 않고, 만일 데이터를 서버로부터 읽어오는 상태라면...
         else if (stream.IsReading)
         {
-            squatCount = (float)stream.ReceiveNext();
+            if (stream.Count > 0)
+            {
+                object receivedValue = stream.ReceiveNext();
+                if (receivedValue is float)
+                {
+                    squatCount = (float)receivedValue;
+                }
+                else
+                {
+                    Debug.LogWarning("Received unexpected data type for squatCount");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Received empty stream in OnPhotonSerializeView");
+            }
         }
     }
 

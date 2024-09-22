@@ -79,16 +79,29 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         // 만일, 데이터를 서버에 전송(Photonview.IsMine == true)하는 상태라면...
-        if (stream.IsWriting && voiceView != null)
+        if (stream.IsWriting)
         {
-            stream.SendNext(voiceView.IsRecording);
-            stream.SendNext(y_timerUI.hasStart);
+            stream.SendNext(voiceView != null ? voiceView.IsRecording : false);
+            stream.SendNext(y_timerUI != null ? y_timerUI.hasStart : false);
         }
         // 그렇지 않고, 만일 데이터를 서버로부터 읽어오는 상태라면...
-        else if (stream.IsReading)
+        else
         {
-            isTalking = (bool)stream.ReceiveNext();
-            otherHasStart = (bool)stream.ReceiveNext();
+            // 타입 체크를 추가하여 안전하게 캐스팅
+            if (stream.Count >= 2)
+            {
+                object nextItem = stream.ReceiveNext();
+                if (nextItem is bool)
+                {
+                    isTalking = (bool)nextItem;
+                }
+
+                nextItem = stream.ReceiveNext();
+                if (nextItem is bool)
+                {
+                    otherHasStart = (bool)nextItem;
+                }
+            }
         }
     }
 
