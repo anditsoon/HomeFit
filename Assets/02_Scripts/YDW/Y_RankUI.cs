@@ -31,7 +31,7 @@ public class Y_RankUI : MonoBehaviour
 
     void Update()
     {
-        if(rankPanel.activeSelf) // !timerUI.hasStart && 
+        if(!timerUI.hasStart && rankPanel.activeSelf) // !timerUI.hasStart && 
         {
             CalculateRanking();
         }
