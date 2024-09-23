@@ -23,7 +23,7 @@ public class Y_TimerUI : MonoBehaviour
     CanvasRenderer[] canvasRenderers;
     public bool allReadyGo;
 
-
+    private bool isFlashing = false;
 
     void Start()
     {
@@ -44,6 +44,15 @@ public class Y_TimerUI : MonoBehaviour
 
             timerText.text = timeText;
 
+            // 시간이 5초 이하일 때 글씨 깜박이고 빨간색으로 변경
+            if (elapsedTime >= duration - 5 && elapsedTime < duration)
+            {
+                if (!isFlashing)
+                {
+                    StartCoroutine(FlashTimerText());
+                }
+            }
+
             if (elapsedTime > duration)
             {
                 
@@ -57,6 +66,24 @@ public class Y_TimerUI : MonoBehaviour
                 hasStart = false;
                 JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_end);
             }
+        }
+
+        // 타이머 텍스트 깜박이기
+        IEnumerator FlashTimerText()
+        {
+            isFlashing = true;
+            Color originalColor = timerText.color;
+
+            while (elapsedTime < duration)
+            {
+                timerText.color = Color.red;
+                yield return new WaitForSeconds(0.5f);
+                timerText.color = originalColor;
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            timerText.color = originalColor; // 타이머 종료 후 원래 색으로 복구
+            isFlashing = false;
         }
     }
 
