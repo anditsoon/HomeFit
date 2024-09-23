@@ -28,6 +28,7 @@ public class Y_UIManager : MonoBehaviour
     GameObject playerScreenCanvas;
 
     public GameObject CD;
+
     void Start()
     {
         
