@@ -24,7 +24,8 @@ public class JSWSoundManager : MonoBehaviour
         EFT_COUNTDONW,
         EFT_GETCOIN,
         EFT_CLOCKING,
-        EFT_GAMEOVER
+        EFT_GAMEOVER,
+        EFT_SHOUTING
 
 
         //EFT_GUN1,

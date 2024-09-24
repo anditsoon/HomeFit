@@ -96,6 +96,7 @@ public class Y_TimerUI : MonoBehaviour
 
             JSWSoundManager.Get().AudioSourceEtc(1f);
             JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_end);
+            JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_SHOUTING);
             timerText.color = originalColor; // 타이머 종료 후 원래 색으로 복구
             isFlashing = false;
         }

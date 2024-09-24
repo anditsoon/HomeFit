@@ -248,7 +248,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         yield return new WaitForSeconds(1f);
         CD.GetComponent<TMP_Text>().text = "1";
         yield return new WaitForSeconds(1f);
-        CD.GetComponent<TMP_Text>().text = "시작!";
+ //       CD.GetComponent<TMP_Text>().text = "시작!";
         if (y_uiManager.PSM.myPlayer.GetComponent<Y_CountSquatt>().isActiveAndEnabled)
         {
             y_uiManager.squatPanel.SetActive(false);
@@ -257,10 +257,15 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         else
         {
             y_uiManager.jumpingJackPanel.SetActive(false);
+            StartCoroutine(y_uiManager.MoveUI("게임 시작!"));
+        
         }
-        y_timerUI.allReadyGo = true;
         JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_Playing);
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_START);
+        yield return new WaitForSeconds(1f);
+        y_timerUI.allReadyGo = true;
+
+
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)

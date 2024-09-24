@@ -134,7 +134,49 @@ public class Y_UIManager : MonoBehaviour
     Vector3 endVector;
 
     public GameObject flyingTxt;
-    
+
+    //public IEnumerator MoveUI(String str)
+    //{
+    //    startVector = startPos.transform.position;
+    //    middleVector = middlePos.transform.position;
+    //    endVector = endPos.transform.position;
+
+    //    flyingTxt.transform.position = startVector;
+
+    //    flyingTxt.GetComponentInChildren<TMP_Text>().text = str;
+
+    //    while(true)
+    //    {
+    //        currTime += Time.deltaTime;
+    //        float t;
+
+    //        if(currTime > endTime)
+    //        {
+    //            currTime = 0;
+    //            flyingTxt.transform.position = startVector;
+    //            break;
+    //        }
+    //        else if(currTime > stayTime)
+    //        {
+    //            t = EaseInQuint(currTime - stayTime);
+    //            print("!!!!!!!!!!!!!!!!!" + t);
+    //            flyingTxt.transform.position = new Vector3(Mathf.Lerp(transform.position.x, endVector.x, t * 0.1f), flyingTxt.transform.position.y, flyingTxt.transform.position.z);
+    //        }
+    //        else if(currTime > middleTime)
+    //        {
+    //            flyingTxt.transform.position = middleVector;
+    //        }
+    //        else
+    //        {
+    //            t = EaseOutQuint(currTime);
+    //            print("???????????" + t);
+    //            flyingTxt.transform.position = new Vector3(Mathf.Lerp(transform.position.x, middleVector.x, t * 0.1f), flyingTxt.transform.position.y, flyingTxt.transform.position.z);
+    //        }
+
+    //        yield return null;
+    //    }
+    //}
+
     public IEnumerator MoveUI(String str)
     {
         startVector = startPos.transform.position;
@@ -144,38 +186,44 @@ public class Y_UIManager : MonoBehaviour
         flyingTxt.transform.position = startVector;
 
         flyingTxt.GetComponentInChildren<TMP_Text>().text = str;
-
-        while(true)
+        float t = 0;
+        while (true)
         {
-            currTime += Time.deltaTime;
-            float t;
-
-            if(currTime > endTime)
+            t += Time.deltaTime;
+            flyingTxt.transform.position = Vector3.Lerp(flyingTxt.transform.position, middleVector, t * 1f);
+            if (t > middleTime)
             {
-                currTime = 0;
-                flyingTxt.transform.position = startVector;
+                t = 0;
                 break;
             }
-            else if(currTime > stayTime)
-            {
-                t = EaseInQuint(currTime - stayTime);
-                print("!!!!!!!!!!!!!!!!!" + t);
-                flyingTxt.transform.position = new Vector3(Mathf.Lerp(transform.position.x, endVector.x, t * 0.1f), flyingTxt.transform.position.y, flyingTxt.transform.position.z);
-            }
-            else if(currTime > middleTime)
-            {
-                flyingTxt.transform.position = middleVector;
-            }
-            else
-            {
-                t = EaseOutQuint(currTime);
-                print("???????????" + t);
-                flyingTxt.transform.position = new Vector3(Mathf.Lerp(transform.position.x, middleVector.x, t * 0.1f), flyingTxt.transform.position.y, flyingTxt.transform.position.z);
-            }
-
             yield return null;
         }
+        while (true)
+        {
+            t += Time.deltaTime;
+            flyingTxt.transform.position = Vector3.Lerp(flyingTxt.transform.position, endVector, t * 0.001f);
+            if (t > middleTime)
+            {
+                t = 0;
+                break;
+            }
+            yield return null;
+        }
+        while (true)
+        {
+            t += Time.deltaTime;
+            flyingTxt.transform.position = Vector3.Lerp(flyingTxt.transform.position, endVector, t * 1f);
+            if (t > middleTime)
+            {
+                t = 0;
+                break;
+            }
+            yield return null;
+        }
+        flyingTxt.transform.position = startVector;
     }
+
+
 
     float EaseOutQuint(float x)
     {
