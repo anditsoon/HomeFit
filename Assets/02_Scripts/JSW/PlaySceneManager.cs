@@ -17,28 +17,52 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
 
     public static PlaySceneManager instance;
 
+    bool leftRoom;
+    bool disconnect;
+
     private Hashtable CP;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
+    //private void Awake()
+    //{
+    //    if (instance == null)
+    //    {
+    //        instance = this;
 
-            // 씬 전환이 되도 게임 오브젝트를 파괴하고 싶지않다.
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    //        // 씬 전환이 되도 게임 오브젝트를 파괴하고 싶지않다.
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     public void MoveMainScene()
     {
         PhotonNetwork.LeaveRoom();
-        PhotonNetwork.LoadLevel(1);
-        //SceneManager.LoadScene("MainScene");
+    }
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        base.OnDisconnected(cause);
+    }
+
+    public override void OnLeftRoom()
+    {
+        base.OnLeftRoom();
+
+        SceneManager.LoadScene(1);
+    }
+
+    IEnumerator LeftRoom()
+    {
+        while(true)
+        {
+            if (disconnect && leftRoom) break;
+            yield return null;
+        }
+        disconnect = false;
+        leftRoom = false;
+        SceneManager.LoadScene(1);
     }
 
     void Start()

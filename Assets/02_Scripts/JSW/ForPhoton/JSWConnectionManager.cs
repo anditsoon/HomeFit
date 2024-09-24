@@ -13,12 +13,14 @@ using UnityEngine.SceneManagement;
 using System.Text;
 using UnityEngine.Networking;
 using static Gpm.Common.Util.XmlHelper;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class JSWConnectionManager : MonoBehaviourPunCallbacks
 {
     public GameObject roomPrefab;
     public Transform scrollContent;
     public GameObject[] panelList;
+    bool isExit;
 
     private readonly string CreateRoomUrl = "https://125.132.216.190:12502/api/room";
     private readonly string RemoveRoomUrl = "https://125.132.216.190:12502/api/room";
@@ -61,6 +63,7 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         base.OnDisconnected(cause);
+        isExit = true;
         Debug.LogError("Disconnected from Server - " + cause);
         LobbyUIController.lobbyUI.btn_login.interactable = true;
     }
@@ -204,6 +207,18 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     {
         SceneManager.LoadScene("ProfileScene");
     }
+
+    //public void MoveMainScene()
+    //{
+    //    PhotonNetwork.Disconnect();
+    //    //SceneManager.LoadScene("MainScene");
+    //}
+    //public override void OnDisconnected(DisconnectCause cause)
+    //{
+    //    base.OnDisconnected(cause);
+    //    SceneManager.LoadScene(1);
+    //}
+
 
     private IEnumerator SendRoomInfo(string method, string roomId, string ownerId = null)
     {
