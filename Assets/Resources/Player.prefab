@@ -1233,7 +1233,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -9.45, y: 2.01}
-  m_SizeDelta: {x: 3, y: 3}
+  m_SizeDelta: {x: 4, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6718729701495944072
 CanvasRenderer:
@@ -3106,6 +3106,7 @@ MonoBehaviour:
   - {x: -1.2, y: -1.05, z: -7.01}
   - {x: 5.2, y: -1.05, z: -7.01}
   - {x: -3.9, y: -1.05, z: -7.01}
+  itsMe: {fileID: 2001754076751220409}
   AllplayerInRoom: 0
 --- !u!114 &2387866554625896886
 MonoBehaviour:
@@ -4667,7 +4668,7 @@ PrefabInstance:
     - target: {fileID: 4219853776171442717, guid: 9303caf80204f6b4f9918e2b41760b0e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4488765651546551880, guid: 9303caf80204f6b4f9918e2b41760b0e,
         type: 3}
