@@ -90,7 +90,9 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
         }
         Debug.Log($"JWT Token (first 20 chars): {jwtToken.Substring(0, Mathf.Min(jwtToken.Length, 20))}...");
 
-        UnityWebRequest www = UnityWebRequest.Delete(url);
+        UnityWebRequest www = new UnityWebRequest(url, "DELETE");
+        www.downloadHandler = new DownloadHandlerBuffer();
+        www.SetRequestHeader("Content-Type", "application/json");
         www.SetRequestHeader("Authorization", "Bearer " + jwtToken);
         www.certificateHandler = new BypassCertificate1();
 
