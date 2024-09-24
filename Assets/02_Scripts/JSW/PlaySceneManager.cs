@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Voice.PUN;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlaySceneManager : MonoBehaviourPunCallbacks

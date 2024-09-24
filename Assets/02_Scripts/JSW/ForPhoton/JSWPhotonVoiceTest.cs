@@ -89,7 +89,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
         if (y_timerUI.hasStart && !allStart && IsAllGoOkay())
         {
-            itsMe.SetActive(true);
+            if (pv.IsMine) itsMe.SetActive(true);
             allStart = true;
             AllReadyGO_RPC();
         }
