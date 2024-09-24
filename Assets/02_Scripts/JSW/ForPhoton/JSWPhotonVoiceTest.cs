@@ -249,6 +249,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         if (y_uiManager.PSM.myPlayer.GetComponent<Y_CountSquatt>().isActiveAndEnabled)
         {
             y_uiManager.squatPanel.SetActive(false);
+            StartCoroutine(y_uiManager.MoveUI("게임 시작!"));
         }
         else
         {

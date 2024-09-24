@@ -133,11 +133,13 @@ public class Y_UIManager : MonoBehaviour
 
     public GameObject flyingTxt;
     
-    IEnumerator MoveUI(String str)
+    public IEnumerator MoveUI(String str)
     {
         startVector = startPos.transform.position;
         middleVector = middlePos.transform.position;
         endVector = endPos.transform.position;
+
+        flyingTxt.transform.position = startVector;
 
         flyingTxt.GetComponent<TMP_Text>().text = str;
 
