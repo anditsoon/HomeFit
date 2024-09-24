@@ -51,7 +51,10 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         y_uiManager = GameObject.Find("Canvas").GetComponent<Y_UIManager>();
         y_timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
         playUI.GetComponent<RectTransform>().localPosition = array[photonView.Owner.ActorNumber - 1];
-
+        if (pv.IsMine)
+        {
+            itsMe.SetActive(true);
+        }
     }
 
     bool isStart;
@@ -90,7 +93,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
         if (y_timerUI.hasStart && !allStart && IsAllGoOkay())
         {
-            if (pv.IsMine) itsMe.SetActive(true);
+
             allStart = true;
             AllReadyGO_RPC();
         }
