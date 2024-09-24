@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Y_TimerUI : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Y_TimerUI : MonoBehaviour
     public float duration;
 
     public GameObject timerPanel;
+    public GameObject timerTxt;
     public GameObject resultPanel;
 
     public Y_UIManager uiManager;
@@ -25,9 +27,13 @@ public class Y_TimerUI : MonoBehaviour
 
     private bool isFlashing = false;
 
+    Color oldColor;
+
     void Start()
     {
         duration = 30;
+        oldColor = timerPanel.GetComponent<Image>().color;
+        oldColor.a = 0.72f;
     }
 
     void Update()
@@ -35,6 +41,10 @@ public class Y_TimerUI : MonoBehaviour
 
         if(hasStart && allReadyGo)
         {
+            timerPanel.GetComponent<Image>().color = oldColor;
+
+            timerTxt.SetActive(true);
+
             elapsedTime += Time.deltaTime;
 
             // 경과 시간을 분:초 형식으로 변환
