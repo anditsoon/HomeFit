@@ -47,6 +47,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         y_uiManager = GameObject.Find("Canvas").GetComponent<Y_UIManager>();
         y_timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
         playUI.GetComponent<RectTransform>().localPosition = array[photonView.Owner.ActorNumber - 1];
+
     }
 
     bool isStart;
