@@ -80,7 +80,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         {
             // 현재 말을 하고 있다면 보이스 아이콘을 활성화한다.
             voiceIcon.gameObject.SetActive(voiceView.IsRecording);
-            GameStartReady.SetActive(y_timerUI.hasStart); // Pose에서 받아온 값
+            // GameStartReady.SetActive(y_timerUI.hasStart); // Pose에서 받아온 값
         }
         else
         {
