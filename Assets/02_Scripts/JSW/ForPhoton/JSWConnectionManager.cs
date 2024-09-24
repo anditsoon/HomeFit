@@ -23,21 +23,17 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     bool isExit;
 
     private readonly string CreateRoomUrl = "https://125.132.216.190:12502/api/room";
-    private readonly string RemoveRoomUrl = "https://125.132.216.190:12502/api/room";
 
     List<RoomInfo> cachedRoomList = new List<RoomInfo>();
+    private int currentRoomId;
 
     void Start()
     {
-        // 모든 인증서 무시 설정
         ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-
-        Screen.SetResolution(640, 480, FullScreenMode.Windowed);
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_SCENEMOVE2);
         StartLogin();
     }
 
-    // 모든 인증서를 신뢰하는 메서드
     private bool TrustAllCertificates(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
     {
         return true;
@@ -105,6 +101,9 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
             roomOpt.IsOpen = true;
             roomOpt.IsVisible = true;
 
+            currentRoomId = Mathf.Abs(DateTime.Now.GetHashCode());
+            roomOpt.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable { { "RoomId", currentRoomId } };
+
             PhotonNetwork.CreateRoom(roomName, roomOpt, TypedLobby.Default);
         }
     }
@@ -124,8 +123,7 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     {
         base.OnCreatedRoom();
         print(MethodInfo.GetCurrentMethod().Name + " is Call!");
-        // 이따가 다시 원상복구
-        //StartCoroutine(SendRoomInfo("POST", PhotonNetwork.CurrentRoom.Name, PlayerPrefs.GetString("userId")));
+        StartCoroutine(SendRoomInfo("POST", currentRoomId.ToString(), PlayerPrefs.GetString("userId")));
     }
 
     public override void OnJoinedRoom()
@@ -154,10 +152,16 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
         base.OnPlayerLeftRoom(otherPlayer);
         string playerMsg = $"{otherPlayer.NickName}님이 퇴장하셨습니다.";
         LobbyUIController.lobbyUI.PrintLog(playerMsg);
+    }
 
+    public void DeleteRoomToServer()
+    {
+        Debug.Log(PhotonNetwork.CountOfPlayersInRooms);
         if (PhotonNetwork.CountOfPlayersInRooms == 0)
         {
-            StartCoroutine(SendRoomInfo("DELETE", PhotonNetwork.CurrentRoom.Name));
+            Debug.Log(PhotonNetwork.CountOfPlayersInRooms);
+            int roomId = (int)PhotonNetwork.CurrentRoom.CustomProperties["RoomId"];
+            StartCoroutine(SendRoomInfo("DELETE", roomId.ToString()));
         }
     }
 
@@ -208,18 +212,6 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
         SceneManager.LoadScene("ProfileScene");
     }
 
-    //public void MoveMainScene()
-    //{
-    //    PhotonNetwork.Disconnect();
-    //    //SceneManager.LoadScene("MainScene");
-    //}
-    //public override void OnDisconnected(DisconnectCause cause)
-    //{
-    //    base.OnDisconnected(cause);
-    //    SceneManager.LoadScene(1);
-    //}
-
-
     private IEnumerator SendRoomInfo(string method, string roomId, string ownerId = null)
     {
         string url;
@@ -227,17 +219,12 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
         {
             url = CreateRoomUrl;
         }
-        else if (method == "DELETE")
-        {
-            url = $"{RemoveRoomUrl}/{roomId}";
-        }
         else
         {
             Debug.LogError("Invalid HTTP method");
             yield break;
         }
 
-        // JWT 토큰 가져오기
         string jwtToken = PlayerPrefs.GetString("jwtToken");
         if (string.IsNullOrEmpty(jwtToken))
         {
@@ -246,30 +233,23 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
         }
 
         UnityWebRequest www;
-        if (method == "POST")
-        {
-            CreateRoomData roomData = new CreateRoomData
-            {
-                roomId = long.Parse(roomId),
-                ownerId = long.Parse(ownerId)
-            };
-            string jsonData = JsonUtility.ToJson(roomData);
-            www = UnityWebRequest.Put(url, jsonData);
-            www.method = "POST"; // 메서드를 POST로 변경
-            www.SetRequestHeader("Content-Type", "application/json");
-        }
-        else // DELETE
-        {
-            www = UnityWebRequest.Delete(url);
-        }
 
-        // JWT 토큰을 Authorization 헤더에 추가
+        CreateRoomData roomData = new CreateRoomData
+        {
+            roomId = int.Parse(roomId),
+            ownerId = long.Parse(ownerId)
+        };
+        string jsonData = JsonUtility.ToJson(roomData);
+        www = UnityWebRequest.Put(url, jsonData);
+        www.method = "POST";
+        www.SetRequestHeader("Content-Type", "application/json");
+
         www.SetRequestHeader("Authorization", "Bearer " + jwtToken);
 
         www.certificateHandler = new BypassCertificate1();
 
         Debug.Log($"Sending {method} request to {url}");
-        Debug.Log($"Authorization: Bearer {jwtToken.Substring(0, Math.Min(jwtToken.Length, 10))}..."); // 토큰의 일부만 로그에 출력
+        Debug.Log($"Authorization: Bearer {jwtToken.Substring(0, Math.Min(jwtToken.Length, 10))}...");
         if (method == "POST")
         {
             Debug.Log($"Request body: {www.uploadHandler.data}");
@@ -306,6 +286,6 @@ public class BypassCertificate1 : CertificateHandler
 [Serializable]
 public class CreateRoomData
 {
-    public long roomId;
+    public int roomId;
     public long ownerId;
 }
