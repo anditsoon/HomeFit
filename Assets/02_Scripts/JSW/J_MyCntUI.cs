@@ -27,10 +27,11 @@ public class J_MyCntUI : MonoBehaviour
     void Update()
     {
         // 숫자가 바뀔 때에는 방향 리셋하고 처음 위치에서 처음 색과 폰트 크기로 시작
-        if (playerUIManager.squatReset)
+        if (playerUIManager.squatReset || playerUIManager.jumpingJackReset)
         {
             resetAnim();
             playerUIManager.squatReset = false;
+            playerUIManager.jumpingJackReset = false;
         }
         else
         {
@@ -59,7 +60,7 @@ public class J_MyCntUI : MonoBehaviour
     {
         transform.position = startPos;
         // dir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1).normalized;
-        squatTxt.color = new Color(0.8930817f, 0.862123f, 0.4746251f, 1f);
+        squatTxt.color = new Color(0.4745098f, 0.8941177f, 0.5128013f, 1f);
         squatTxt.fontSize = startFontSize;
         time = 0;
     }

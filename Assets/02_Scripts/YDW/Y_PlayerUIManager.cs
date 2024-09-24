@@ -24,12 +24,11 @@ public class Y_PlayerUIManager : MonoBehaviour
     public bool jumpingJackReset = false;
 
     public GameObject MyCntUIgo;
-    PhotonView pv;
+    public PhotonView pv;
 
     // Start is called before the first frame update
     void LateStart()
     {
-        pv = GetComponentInParent<PhotonView>();
         squatCntUIScript = GetComponentInChildren<Y_SquatCntUI>();
         jumpingJackCntUIScript = GetComponentInChildren<Y_JumpingJackCntUI>();
     }
