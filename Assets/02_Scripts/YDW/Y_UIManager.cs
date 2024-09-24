@@ -118,6 +118,69 @@ public class Y_UIManager : MonoBehaviour
         }
     }
 
+    float currTime;
+    float middleTime = 1f;
+    float stayTime = 2f;
+    float endTime = 3f;
+
+    public GameObject startPos;
+    public GameObject middlePos;
+    public GameObject endPos;
+
+    Vector3 startVector;
+    Vector3 middleVector;
+    Vector3 endVector;
+
+    public GameObject flyingTxt;
+    
+    IEnumerator MoveUI(String str)
+    {
+        startVector = startPos.transform.position;
+        middleVector = middlePos.transform.position;
+        endVector = endPos.transform.position;
+
+        flyingTxt.GetComponent<TMP_Text>().text = str;
+
+        while(true)
+        {
+            currTime += Time.deltaTime;
+            float t;
+
+            if(currTime > endTime)
+            {
+                currTime = 0;
+                flyingTxt.transform.position = startVector;
+                break;
+            }
+            else if(currTime > stayTime)
+            {
+                t = EaseInQuint(currTime - stayTime);
+                Vector3.Lerp(transform.position, endVector, t);
+            }
+            else if(currTime > middleTime)
+            {
+                flyingTxt.transform.position = middleVector;
+            }
+            else
+            {
+                t = EaseOutQuint(currTime);
+                Vector3.Lerp(transform.position, middleVector, t);
+            }
+
+            yield return null;
+        }
+    }
+
+    float EaseOutQuint(float x)
+    {
+        return 1 - (float)Math.Pow(1 - x, 5);
+    }
+
+    float EaseInQuint(float x)
+    {
+        return x * x * x * x * x;
+    }
+
 
     // 스쿼트 / 팔벌려뛰기 버튼 선택 시 호출되는 함수들
     public void SelectSquat()

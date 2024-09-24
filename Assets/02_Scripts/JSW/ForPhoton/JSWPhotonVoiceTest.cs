@@ -38,6 +38,8 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     bool allStart;
 
+    public GameObject timer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -236,7 +238,6 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
             y_uiManager.jumpingJackPanel.SetActive(true);
             CD = y_uiManager.CD2;
         }
-        //y_uiManager.CD.SetActive(true);
         CD.GetComponent<TMP_Text>().text = "3";
         yield return new WaitForSeconds(1f);
         CD.GetComponent<TMP_Text>().text = "2";
@@ -252,7 +253,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         {
             y_uiManager.jumpingJackPanel.SetActive(false);
         }
-        //y_uiManager.CD.SetActive(false);
+        timer.SetActive(true);
         y_timerUI.allReadyGo = true;
         JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_Playing);
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_START);
