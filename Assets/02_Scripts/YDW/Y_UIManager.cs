@@ -29,7 +29,8 @@ public class Y_UIManager : MonoBehaviour
 
     public GameObject CD;
 
-    public GameObject SquatPanel;
+    public GameObject squatPanel;
+    public GameObject jumpingJackPanel;
 
     void Start()
     {

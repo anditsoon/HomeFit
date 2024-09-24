@@ -37,6 +37,8 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     bool allStart;
 
+    public PlaySceneManager PSM;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -222,7 +224,14 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     IEnumerator Readygo()
     {
-        y_uiManager.SquatPanel.SetActive(true);
+        if(PSM.myPlayer.GetComponent<Y_CountSquatt>() != null)
+        {
+            y_uiManager.squatPanel.SetActive(true);
+        }
+        else
+        {
+            y_uiManager.jumpingJackPanel.SetActive(true);
+        }
         //y_uiManager.CD.SetActive(true);
         y_uiManager.CD.GetComponent<TMP_Text>().text = "3";
         yield return new WaitForSeconds(1f);
@@ -231,7 +240,14 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         y_uiManager.CD.GetComponent<TMP_Text>().text = "1";
         yield return new WaitForSeconds(1f);
         y_uiManager.CD.GetComponent<TMP_Text>().text = "GameStart!";
-        y_uiManager.SquatPanel.SetActive(false);
+        if (PSM.myPlayer.GetComponent<Y_CountSquatt>() != null)
+        {
+            y_uiManager.squatPanel.SetActive(false);
+        }
+        else
+        {
+            y_uiManager.jumpingJackPanel.SetActive(false);
+        }
         //y_uiManager.CD.SetActive(false);
         y_timerUI.allReadyGo = true;
         JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_Playing);
