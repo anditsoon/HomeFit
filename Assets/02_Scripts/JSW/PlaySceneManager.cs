@@ -25,6 +25,21 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
 
     private int currentRoomId;
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+
+            // 씬 전환이 되도 게임 오브젝트를 파괴하고 싶지않다.
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void MoveMainScene()
     {
         StartCoroutine(LeaveRoom());
