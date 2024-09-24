@@ -8,6 +8,7 @@ using Photon.Realtime;
 using System.Linq;
 using TMPro;
 using UnityEditor.Build;
+using static System.Net.Mime.MediaTypeNames;
 
 public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -37,6 +38,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     bool allStart;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         y_uiManager = GameObject.Find("Canvas").GetComponent<Y_UIManager>();
         y_timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
         playUI.GetComponent<RectTransform>().localPosition = array[photonView.Owner.ActorNumber - 1];
+
     }
 
     bool isStart;
@@ -222,15 +225,34 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     IEnumerator Readygo()
     {
-        y_uiManager.CD.SetActive(true);
-        y_uiManager.CD.GetComponent<TMP_Text>().text = "2";
+        GameObject CD;
+        if (y_uiManager.PSM.myPlayer.GetComponent<Y_CountSquatt>().isActiveAndEnabled)
+        {
+            y_uiManager.squatPanel.SetActive(true);
+            CD = y_uiManager.CD;
+        }
+        else
+        {
+            y_uiManager.jumpingJackPanel.SetActive(true);
+            CD = y_uiManager.CD2;
+        }
+        //y_uiManager.CD.SetActive(true);
+        CD.GetComponent<TMP_Text>().text = "3";
         yield return new WaitForSeconds(1f);
-        y_uiManager.CD.GetComponent<TMP_Text>().text = "1";
+        CD.GetComponent<TMP_Text>().text = "2";
         yield return new WaitForSeconds(1f);
-        y_uiManager.CD.GetComponent<TMP_Text>().text = "0";
+        CD.GetComponent<TMP_Text>().text = "1";
         yield return new WaitForSeconds(1f);
-        y_uiManager.CD.GetComponent<TMP_Text>().text = "GameStart!";
-        y_uiManager.CD.SetActive(false);
+        CD.GetComponent<TMP_Text>().text = "시작!";
+        if (y_uiManager.PSM.myPlayer.GetComponent<Y_CountSquatt>().isActiveAndEnabled)
+        {
+            y_uiManager.squatPanel.SetActive(false);
+        }
+        else
+        {
+            y_uiManager.jumpingJackPanel.SetActive(false);
+        }
+        //y_uiManager.CD.SetActive(false);
         y_timerUI.allReadyGo = true;
         JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_Playing);
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_START);
