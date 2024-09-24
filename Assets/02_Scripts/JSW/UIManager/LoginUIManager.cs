@@ -113,6 +113,7 @@ public class LoginUIManager : MonoBehaviour
     public void Number4ButtonGL()
     {
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
+        transform.GetChild(3).gameObject.GetComponent<CanvasGroup>().alpha = 0;
         ChangePanel(3);
     }
 
@@ -123,15 +124,20 @@ public class LoginUIManager : MonoBehaviour
         ChangePanel(4);
     }
 
+    public void BackChoiceForm(int idx)//4, 5
+    {
+        JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
+        transform.GetChild(idx).gameObject.SetActive(false);
+        StartCoroutine(FadeIn(transform.GetChild(3).gameObject));
+    }
+
     public void Login()
     {
-        
         StartCoroutine(RoopCheck());
     }
 
     public void Register()
     {
-        
         StartCoroutine(RoopCheckRegister());
     }
 
@@ -238,9 +244,11 @@ public class LoginUIManager : MonoBehaviour
             if (Scene2.GetComponent<CanvasGroup>().alpha > 0.99f)
             {
                 Scene2.GetComponent<CanvasGroup>().alpha = 1;
+                break;
             }
             startTime += Time.deltaTime;
             yield return null;
         }
+        yield return null;
     }
 }

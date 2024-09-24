@@ -35,6 +35,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     public GameObject playUI;
     public Vector3[] array;
+    public GameObject itsMe;
 
     bool allStart;
 
@@ -90,6 +91,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
         if (y_timerUI.hasStart && !allStart && IsAllGoOkay())
         {
+            if (pv.IsMine) itsMe.SetActive(true);
             allStart = true;
             AllReadyGO_RPC();
         }

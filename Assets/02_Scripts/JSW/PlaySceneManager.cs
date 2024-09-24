@@ -1,13 +1,13 @@
 ﻿using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+using System.Net;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Voice.PUN;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
-
 
 public class PlaySceneManager : MonoBehaviourPunCallbacks
 {
@@ -21,6 +21,10 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
     bool disconnect;
 
     private Hashtable CP;
+
+    private readonly string RemoveRoomUrl = "https://125.132.216.190:12502/api/room";
+
+    private int currentRoomId;
 
     private void Awake()
     {
@@ -39,8 +43,27 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
 
     public void MoveMainScene()
     {
-        PhotonNetwork.LeaveRoom();
+        StartCoroutine(LeaveRoom());
     }
+
+    private IEnumerator LeaveRoom()
+    {
+        if (PhotonNetwork.InRoom)
+        {
+            currentRoomId = (int)PhotonNetwork.CurrentRoom.CustomProperties["RoomId"];
+            Debug.Log($"Preparing to leave room: {currentRoomId}");
+
+            yield return StartCoroutine(SendRoomInfo("DELETE", currentRoomId.ToString()));
+
+            PhotonNetwork.LeaveRoom();
+        }
+        else
+        {
+            Debug.Log("Not in a room");
+            SceneManager.LoadScene(1);
+        }
+    }
+
     public override void OnDisconnected(DisconnectCause cause)
     {
         base.OnDisconnected(cause);
@@ -48,14 +71,67 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
 
     public override void OnLeftRoom()
     {
+        Debug.Log("OnLeftRoom called");
         base.OnLeftRoom();
 
         SceneManager.LoadScene(1);
     }
 
+    private IEnumerator SendRoomInfo(string method, string roomId)
+    {
+        Debug.Log($"Sending {method} request for room: {roomId}");
+        string url = $"{RemoveRoomUrl}/{roomId}";
+        Debug.Log($"Request URL: {url}");
+
+        string jwtToken = PlayerPrefs.GetString("jwtToken");
+        if (string.IsNullOrEmpty(jwtToken))
+        {
+            Debug.LogError("JWT token is missing or empty");
+            yield break;
+        }
+        Debug.Log($"JWT Token (first 20 chars): {jwtToken.Substring(0, Mathf.Min(jwtToken.Length, 20))}...");
+
+        UnityWebRequest www = new UnityWebRequest(url, "DELETE");
+        www.downloadHandler = new DownloadHandlerBuffer();
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("Authorization", "Bearer " + jwtToken);
+        www.certificateHandler = new BypassCertificate1();
+
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"{method} request failed. Error: {www.error}");
+            Debug.LogError($"Response Code: {www.responseCode}");
+            Debug.LogError($"Response Headers: {www.GetResponseHeaders()}");
+            if (www.downloadHandler != null && www.downloadHandler.text != null)
+            {
+                Debug.LogError($"Response Body: {www.downloadHandler.text}");
+            }
+            else
+            {
+                Debug.LogError("Response Body is null");
+            }
+        }
+        else
+        {
+            Debug.Log($"{method} request successful!");
+            if (www.downloadHandler != null && www.downloadHandler.text != null)
+            {
+                Debug.Log($"Response: {www.downloadHandler.text}");
+            }
+            else
+            {
+                Debug.Log("Response Body is null");
+            }
+        }
+
+        www.certificateHandler.Dispose();
+    }
+
     IEnumerator LeftRoom()
     {
-        while(true)
+        while (true)
         {
             if (disconnect && leftRoom) break;
             yield return null;
@@ -67,23 +143,21 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
         StartCoroutine(SpawnPlayer());
 
-        // OnPhotonSerializeView에서 데이터 전송 빈도 수 설정하기 (per seconds)
         PhotonNetwork.SerializationRate = 30;
-        // 대부분의 데이터 전송 빈도 수 설정하기(per seconds)
         PhotonNetwork.SendRate = 30;
 
         GameObject playerListUI = GameObject.Find("text_PlayerList");
         CP = PhotonNetwork.LocalPlayer.CustomProperties;
+
         JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_Play);
     }
 
     IEnumerator SpawnPlayer()
     {
-        // 룸에 입장이 완료될 때까지 기다린다.
         yield return new WaitUntil(() => { return PhotonNetwork.InRoom; });
-
 
         Vector2 randomPos = Random.insideUnitCircle * 5.0f;
         Vector3 initPosition = new Vector3(randomPos.x, 0, randomPos.y);
@@ -102,6 +176,6 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
         avatarsetting[8] = (string)CP["Outerwear"];
         avatarsetting[9] = (string)CP["Pants"];
         avatarsetting[10] = (string)CP["Shoe"];
-        myPlayer.GetComponent<JSWPhotonVoiceTest>().SettingAvatar_RPC(avatarsetting,(string)CP["NickName"]);
+        myPlayer.GetComponent<JSWPhotonVoiceTest>().SettingAvatar_RPC(avatarsetting, (string)CP["NickName"]);
     }
 }
