@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -22,10 +23,13 @@ public class Y_PlayerUIManager : MonoBehaviour
     public GameObject jumpingJackCntUIgo;
     public bool jumpingJackReset = false;
 
+    public GameObject MyCntUIgo;
+    PhotonView pv;
 
     // Start is called before the first frame update
     void LateStart()
     {
+        pv = GetComponentInParent<PhotonView>();
         squatCntUIScript = GetComponentInChildren<Y_SquatCntUI>();
         jumpingJackCntUIScript = GetComponentInChildren<Y_JumpingJackCntUI>();
     }
@@ -36,8 +40,16 @@ public class Y_PlayerUIManager : MonoBehaviour
         squatNum = cntSquatScript.squatCount;
         if (prevSquatNum < squatNum)
         {
-            squatCntUIgo.SetActive(true);
-            squatCntUI.text = squatNum.ToString();
+            if (pv.IsMine)
+            {
+                MyCntUIgo.SetActive(true);
+                MyCntUIgo.GetComponent<TMP_Text>().text = squatNum.ToString();
+            }
+            else
+            {
+                squatCntUIgo.SetActive(true);
+                squatCntUI.text = squatNum.ToString();
+            }
             squatReset = true;
             prevSquatNum = squatNum;
         }
@@ -45,8 +57,16 @@ public class Y_PlayerUIManager : MonoBehaviour
         jumpingJackNum = cntJumpingJackScript.jumpingJackCount;
         if (prevJumpingJackNum < jumpingJackNum)
         {
-            jumpingJackCntUIgo.SetActive(true);
-            jumpingJackCntUI.text = jumpingJackNum.ToString();
+            if (pv.IsMine)
+            {
+                MyCntUIgo.SetActive(true);
+                MyCntUIgo.GetComponent<TMP_Text>().text = jumpingJackNum.ToString();
+            }
+            else
+            {
+                jumpingJackCntUIgo.SetActive(true);
+                jumpingJackCntUI.text = jumpingJackNum.ToString();
+            }
             jumpingJackReset = true;
             prevJumpingJackNum = jumpingJackNum;
         }
