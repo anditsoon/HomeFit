@@ -222,15 +222,17 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     IEnumerator Readygo()
     {
-        y_uiManager.CD.SetActive(true);
+        y_uiManager.SquatPanel.SetActive(true);
+        //y_uiManager.CD.SetActive(true);
+        y_uiManager.CD.GetComponent<TMP_Text>().text = "3";
+        yield return new WaitForSeconds(1f);
         y_uiManager.CD.GetComponent<TMP_Text>().text = "2";
         yield return new WaitForSeconds(1f);
         y_uiManager.CD.GetComponent<TMP_Text>().text = "1";
         yield return new WaitForSeconds(1f);
-        y_uiManager.CD.GetComponent<TMP_Text>().text = "0";
-        yield return new WaitForSeconds(1f);
         y_uiManager.CD.GetComponent<TMP_Text>().text = "GameStart!";
-        y_uiManager.CD.SetActive(false);
+        y_uiManager.SquatPanel.SetActive(false);
+        //y_uiManager.CD.SetActive(false);
         y_timerUI.allReadyGo = true;
         JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_Playing);
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_START);
