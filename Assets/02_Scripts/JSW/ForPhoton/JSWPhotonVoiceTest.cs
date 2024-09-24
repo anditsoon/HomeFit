@@ -224,7 +224,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     IEnumerator Readygo()
     {
-        if(PSM.myPlayer.GetComponent<Y_CountSquatt>() != null)
+        if(PSM.myPlayer.GetComponent<Y_CountSquatt>().enabled)
         {
             y_uiManager.squatPanel.SetActive(true);
         }
@@ -240,7 +240,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         y_uiManager.CD.GetComponent<TMP_Text>().text = "1";
         yield return new WaitForSeconds(1f);
         y_uiManager.CD.GetComponent<TMP_Text>().text = "GameStart!";
-        if (PSM.myPlayer.GetComponent<Y_CountSquatt>() != null)
+        if (PSM.myPlayer.GetComponent<Y_CountSquatt>().enabled)
         {
             y_uiManager.squatPanel.SetActive(false);
         }
