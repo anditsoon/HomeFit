@@ -28,6 +28,7 @@ public class Y_UIManager : MonoBehaviour
     GameObject playerScreenCanvas;
 
     public GameObject CD;
+    public GameObject CD2;
 
     public GameObject squatPanel;
     public GameObject jumpingJackPanel;
