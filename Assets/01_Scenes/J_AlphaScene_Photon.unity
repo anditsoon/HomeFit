@@ -3288,6 +3288,11 @@ PrefabInstance:
       propertyPath: win
       value: 
       objectReference: {fileID: 1054980438}
+    - target: {fileID: 971233022553122696, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1132
+      objectReference: {fileID: 0}
     - target: {fileID: 1865802829740600935, guid: 65943aec8ef2fd74889fc45eacbc2762,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3302,6 +3307,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3223040045949757151, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1177
       objectReference: {fileID: 0}
     - target: {fileID: 4892973657400980162, guid: 65943aec8ef2fd74889fc45eacbc2762,
         type: 3}
