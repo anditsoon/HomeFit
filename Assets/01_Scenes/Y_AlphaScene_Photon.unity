@@ -3414,8 +3414,26 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 915870707}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 915870709}
   m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21b565675735b043afded57f265b4e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &915870709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3352204870466635465, guid: 65943aec8ef2fd74889fc45eacbc2762,
+    type: 3}
+  m_PrefabInstance: {fileID: 915870707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &915870710 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7417609932998429092, guid: 65943aec8ef2fd74889fc45eacbc2762,
+    type: 3}
+  m_PrefabInstance: {fileID: 915870707}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d21b565675735b043afded57f265b4e9, type: 3}
   m_Name: 
@@ -9957,14 +9975,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5641490948959948880, guid: 144a3fa0b44ac974e8e55edd33994d33,
         type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 915870709}
+    - target: {fileID: 5641490948959948880, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
       propertyPath: y_timerUI
       value: 
       objectReference: {fileID: 915870708}
+    - target: {fileID: 5881271143326230952, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: timerUI
+      value: 
+      objectReference: {fileID: 915870710}
     - target: {fileID: 6514969496642273152, guid: 144a3fa0b44ac974e8e55edd33994d33,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8198723576876859283, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: timerUI
+      value: 
+      objectReference: {fileID: 915870710}
+    - target: {fileID: 8603493246259551764, guid: 144a3fa0b44ac974e8e55edd33994d33,
+        type: 3}
+      propertyPath: timerUI
+      value: 
+      objectReference: {fileID: 915870710}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

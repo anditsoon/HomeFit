@@ -3107,6 +3107,7 @@ MonoBehaviour:
   - {x: 5.2, y: -1.05, z: -7.01}
   - {x: -3.9, y: -1.05, z: -7.01}
   itsMe: {fileID: 2001754076751220409}
+  timer: {fileID: 0}
   AllplayerInRoom: 0
 --- !u!114 &2387866554625896886
 MonoBehaviour:
