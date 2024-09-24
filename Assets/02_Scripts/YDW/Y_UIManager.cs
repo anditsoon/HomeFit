@@ -57,6 +57,8 @@ public class Y_UIManager : MonoBehaviour
                 LoadingPanelNotMaster.SetActive(false);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha9)) StartCoroutine(MoveUI("만세!"));
     }
 
     CanvasRenderer[] canvasRenderers;
@@ -141,7 +143,7 @@ public class Y_UIManager : MonoBehaviour
 
         flyingTxt.transform.position = startVector;
 
-        flyingTxt.GetComponent<TMP_Text>().text = str;
+        flyingTxt.GetComponentInChildren<TMP_Text>().text = str;
 
         while(true)
         {
@@ -157,7 +159,8 @@ public class Y_UIManager : MonoBehaviour
             else if(currTime > stayTime)
             {
                 t = EaseInQuint(currTime - stayTime);
-                Vector3.Lerp(transform.position, endVector, t);
+                print("!!!!!!!!!!!!!!!!!" + t);
+                flyingTxt.transform.position = new Vector3(Mathf.Lerp(transform.position.x, endVector.x, t * 0.1f), flyingTxt.transform.position.y, flyingTxt.transform.position.z);
             }
             else if(currTime > middleTime)
             {
@@ -166,7 +169,8 @@ public class Y_UIManager : MonoBehaviour
             else
             {
                 t = EaseOutQuint(currTime);
-                Vector3.Lerp(transform.position, middleVector, t);
+                print("???????????" + t);
+                flyingTxt.transform.position = new Vector3(Mathf.Lerp(transform.position.x, middleVector.x, t * 0.1f), flyingTxt.transform.position.y, flyingTxt.transform.position.z);
             }
 
             yield return null;
@@ -175,12 +179,12 @@ public class Y_UIManager : MonoBehaviour
 
     float EaseOutQuint(float x)
     {
-        return 1 - (float)Math.Pow(1 - x, 5);
+        return 1 - (float)Math.Pow(1 - x, 3);
     }
 
     float EaseInQuint(float x)
     {
-        return x * x * x * x * x;
+        return x * x * x;
     }
 
 
