@@ -4456,11 +4456,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MyCnt
       objectReference: {fileID: 0}
-    - target: {fileID: 457727192997554609, guid: fb85395ddd7baf1488147b63acc2cf1c,
+    - target: {fileID: 2844385769121343581, guid: fb85395ddd7baf1488147b63acc2cf1c,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 4880536794396212717}
     - target: {fileID: 7749614859454770937, guid: fb85395ddd7baf1488147b63acc2cf1c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4539,12 +4539,12 @@ PrefabInstance:
     - target: {fileID: 7749614859454770937, guid: fb85395ddd7baf1488147b63acc2cf1c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.13
+      value: 0.053
       objectReference: {fileID: 0}
     - target: {fileID: 7749614859454770937, guid: fb85395ddd7baf1488147b63acc2cf1c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.53
+      value: 2.674
       objectReference: {fileID: 0}
     - target: {fileID: 7749614859454770937, guid: fb85395ddd7baf1488147b63acc2cf1c,
         type: 3}
@@ -4561,15 +4561,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9028904436198659728, guid: fb85395ddd7baf1488147b63acc2cf1c, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 457727192997554609, guid: fb85395ddd7baf1488147b63acc2cf1c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2662718064188755516}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb85395ddd7baf1488147b63acc2cf1c, type: 3}
 --- !u!1 &1810946083057261922 stripped
 GameObject:
@@ -4577,33 +4572,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2268663757198898387}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2662718064188755516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810946083057261922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8617542acc8077948a7811c769e1a535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasRectTransform: {fileID: 0}
-  squatTxt: {fileID: 4620387095389736415}
-  _fadeTime: 1.5
---- !u!114 &4620387095389736415 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6873900679168375052, guid: fb85395ddd7baf1488147b63acc2cf1c,
-    type: 3}
-  m_PrefabInstance: {fileID: 2268663757198898387}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810946083057261922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &8428416390138386986 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7749614859454770937, guid: fb85395ddd7baf1488147b63acc2cf1c,
@@ -4727,11 +4695,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: JumpingJackCnt
-      objectReference: {fileID: 0}
-    - target: {fileID: 8193353899944085456, guid: 7f84eb93fb2c5f9469ba8aa5659a227f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5106,36 +5069,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SquatCnt
       objectReference: {fileID: 0}
-    - target: {fileID: 457727192997554609, guid: 6654cb13b1480e247ab5fdb12f14a30d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873900679168375052, guid: 6654cb13b1480e247ab5fdb12f14a30d,
-        type: 3}
-      propertyPath: m_text
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873900679168375052, guid: 6654cb13b1480e247ab5fdb12f14a30d,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873900679168375052, guid: 6654cb13b1480e247ab5fdb12f14a30d,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873900679168375052, guid: 6654cb13b1480e247ab5fdb12f14a30d,
-        type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873900679168375052, guid: 6654cb13b1480e247ab5fdb12f14a30d,
-        type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7749614859454770937, guid: 6654cb13b1480e247ab5fdb12f14a30d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5235,16 +5168,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9028904436198659728, guid: 6654cb13b1480e247ab5fdb12f14a30d,
-        type: 3}
-      propertyPath: squatTxt
-      value: 
-      objectReference: {fileID: 4344131548958931410}
-    - target: {fileID: 9028904436198659728, guid: 6654cb13b1480e247ab5fdb12f14a30d,
-        type: 3}
-      propertyPath: _fadeTime
-      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9028904436198659728, guid: 6654cb13b1480e247ab5fdb12f14a30d,
         type: 3}

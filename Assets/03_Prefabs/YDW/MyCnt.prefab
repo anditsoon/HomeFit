@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 7749614859454770937}
   - component: {fileID: 2021344915974179372}
   - component: {fileID: 6873900679168375052}
-  - component: {fileID: 9028904436198659728}
+  - component: {fileID: 2844385769121343581}
   m_Layer: 5
   m_Name: MyCnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7749614859454770937
 RectTransform:
   m_ObjectHideFlags: 0
@@ -94,15 +94,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.5
-  m_fontSizeBase: 1.5
+  m_fontSize: 1
+  m_fontSizeBase: 1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &9028904436198659728
+--- !u!114 &2844385769121343581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,9 +145,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 457727192997554609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e463d17c00672284da2995f1d1d9437c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8617542acc8077948a7811c769e1a535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canvasRectTransform: {fileID: 0}
-  squatTxt: {fileID: 0}
+  squatTxt: {fileID: 6873900679168375052}
   _fadeTime: 1.5

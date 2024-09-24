@@ -59,6 +59,9 @@ public class Y_TimerUI : MonoBehaviour
             {
                 if (!isFlashing)
                 {
+                    JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_CLOCKING);
+                    JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_GAMEOVER);
+                    JSWSoundManager.Get().AudioSourceEtc(1.3f);
                     StartCoroutine(FlashTimerText());
                 }
             }
@@ -71,10 +74,9 @@ public class Y_TimerUI : MonoBehaviour
                 win.PerformWinnerCloseup();
                 canvasRenderers = resultPanel.GetComponentsInChildren<CanvasRenderer>();
                 StartCoroutine(uiManager.IncreaseAlpha(canvasRenderers));
-                JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_end);
+                
                 // 이 변수를 스쿼트/점핑잭 세는 스크립트에서 호출하고 해당 스크립트에서 더 이상 횟수 세지 못하게 한다
                 hasStart = false;
-                JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_end);
             }
         }
 
@@ -92,6 +94,8 @@ public class Y_TimerUI : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
 
+            JSWSoundManager.Get().AudioSourceEtc(1f);
+            JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_end);
             timerText.color = originalColor; // 타이머 종료 후 원래 색으로 복구
             isFlashing = false;
         }

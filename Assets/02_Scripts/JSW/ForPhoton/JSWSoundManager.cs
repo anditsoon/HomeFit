@@ -23,6 +23,8 @@ public class JSWSoundManager : MonoBehaviour
         EFT_START,
         EFT_COUNTDONW,
         EFT_GETCOIN,
+        EFT_CLOCKING,
+        EFT_GAMEOVER
 
 
         //EFT_GUN1,
@@ -149,8 +151,9 @@ public class JSWSoundManager : MonoBehaviour
         return bgmAudio.clip == bgmAudios[1];
     }
 
-    //public void AudioSourceEtc()
-    //{
+    public void AudioSourceEtc(float pit)
+    {
+        bgmAudio.pitch = 1.5f;
 
     //    // 일시 정지
     //    bgmAudio.Pause();
@@ -161,5 +164,5 @@ public class JSWSoundManager : MonoBehaviour
     //    // 시간 건너뛰기
     //    bgmAudio.time += 10;
 
-    //}
+    }
 }
