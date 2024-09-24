@@ -1762,7 +1762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7128143203350662721
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1986,6 +1986,7 @@ MonoBehaviour:
   elapsedTime: 0
   duration: 0
   timerPanel: {fileID: 3352204870466635465}
+  timerTxt: {fileID: 4881352354457125914}
   resultPanel: {fileID: 6612900637517700682}
   uiManager: {fileID: 6044088219391220527}
   win: {fileID: 0}
@@ -2057,7 +2058,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4993253066559845073
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2099,7 +2100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.76862746}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2133,8 +2134,9 @@ MonoBehaviour:
   timerText: {fileID: 2780418593178051075}
   elapsedTime: 0
   duration: 0
-  timerPanel: {fileID: 0}
-  resultPanel: {fileID: 0}
+  timerPanel: {fileID: 3352204870466635465}
+  timerTxt: {fileID: 0}
+  resultPanel: {fileID: 6612900637517700682}
   uiManager: {fileID: 6044088219391220527}
   win: {fileID: 0}
   allReadyGo: 0
@@ -2996,7 +2998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1654485654095605763
 RectTransform:
   m_ObjectHideFlags: 0

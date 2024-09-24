@@ -39,7 +39,6 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     bool allStart;
 
-    public GameObject timer;
 
 
     // Start is called before the first frame update
@@ -255,7 +254,6 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         {
             y_uiManager.jumpingJackPanel.SetActive(false);
         }
-        timer.SetActive(true);
         y_timerUI.allReadyGo = true;
         JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_Playing);
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_START);
