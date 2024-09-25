@@ -61,7 +61,7 @@ public class DataSender : MonoBehaviour
     {
         string jsonData = JsonUtility.ToJson(data);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
-        print((double)PlayerPrefs.GetFloat("caloriesBurned", 0f) + "결과");
+        print(PlayerPrefs.GetInt("exerciseCount") + "결과");
         using (UnityWebRequest www = new UnityWebRequest(SERVER_URL, "POST"))
         {
             string jwtToken = PlayerPrefs.GetString("jwtToken");
