@@ -5,8 +5,9 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class Y_TimerUI : MonoBehaviour
+public class Y_TimerUI : MonoBehaviourPunCallbacks
 {
     public bool hasStart;
     public PlaySceneManager PSM;
@@ -69,6 +70,7 @@ public class Y_TimerUI : MonoBehaviour
 
             if (elapsedTime > duration)
             {
+                photonView.RPC(nameof(TimerEnded), RpcTarget.All);
                 timerPanel.SetActive(false); // 타이머 없애고
                 resultPanel.SetActive(true); // 결과창 서서히 띄운다
 
@@ -81,6 +83,15 @@ public class Y_TimerUI : MonoBehaviour
                 // 이 변수를 스쿼트/점핑잭 세는 스크립트에서 호출하고 해당 스크립트에서 더 이상 횟수 세지 못하게 한다
                 hasStart = false;
             }
+        }
+
+        [PunRPC]
+        void TimerEnded()
+        {
+            // 현재 시간을 PlayerPrefs에 저장
+            DateTime curTime = DateTime.Now;
+            PlayerPrefs.SetString("EndTime", curTime.ToString("yyMMdd"));
+            PlayerPrefs.Save();
         }
 
         // 타이머 텍스트 깜박이기
