@@ -33,7 +33,7 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
             instance = this;
 
             // 씬 전환이 되도 게임 오브젝트를 파괴하고 싶지않다.
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -127,6 +127,8 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
         }
 
         www.certificateHandler.Dispose();
+
+
     }
 
     IEnumerator LeftRoom()
