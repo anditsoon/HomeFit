@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Photon.Pun;
+using Photon.Realtime;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.UI;
 
 public class Y_TimerUI : MonoBehaviour
@@ -28,6 +31,8 @@ public class Y_TimerUI : MonoBehaviour
     private bool isFlashing = false;
 
     Color oldColor;
+
+    public WinnerCloseup winnerCloseUp;
 
     void Start()
     {
@@ -78,7 +83,26 @@ public class Y_TimerUI : MonoBehaviour
                 // 결과창 서서히 띄운다 2
                 canvasRenderers = resultPanel.GetComponentsInChildren<CanvasRenderer>();
                 StartCoroutine(uiManager.IncreaseAlpha(canvasRenderers));
-                
+
+                PhotonView[] allPhotonViews = FindObjectsOfType<PhotonView>();
+
+                foreach (PhotonView view in allPhotonViews)
+                {
+                    // IK 리깅 꺼 줌
+                    view.gameObject.GetComponentInChildren<RigBuilder>().enabled = false;
+
+                    // 우승한 플레이어는 승리한 포즈, 패배한 플레이어는 쓰러지게
+                    if(view.Owner.NickName == winnerCloseUp.winnerName)
+                    {
+                        view.gameObject.GetComponentInChildren<Animator>().SetBool("IsWin", true);
+                    }
+                    else
+                    {
+                        view.gameObject.GetComponentInChildren<Animator>().SetBool("IsLose", true);
+                    }    
+                    
+                }
+
                 // 이 변수를 스쿼트/점핑잭 세는 스크립트에서 호출하고 해당 스크립트에서 더 이상 횟수 세지 못하게 한다
                 hasStart = false;
 

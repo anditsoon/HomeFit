@@ -14,7 +14,7 @@ public class WinnerCloseup : MonoBehaviour
 
     private void Start()
     {
-        leftOffset = 2f;
+        leftOffset = 1.6f;
 
         if (mainCamera == null)
         {
@@ -79,9 +79,11 @@ public class WinnerCloseup : MonoBehaviour
         Debug.Log("Closeup completed. Final pos: " + mainCamera.transform.position);
     }
 
+    public string winnerName;
+
     private Transform FindWinnerTransform()
     {
-        string winnerName = rankUI.name1st.text;
+        winnerName = rankUI.name1st.text;
         Debug.Log("Searching for winner with name: " + winnerName);
 
         var players = FindObjectsOfType<PhotonView>();
