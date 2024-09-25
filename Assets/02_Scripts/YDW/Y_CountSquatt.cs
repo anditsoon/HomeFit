@@ -76,14 +76,16 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
             //print("y 좌표 : " + (pelvisPos.position.y - startPelvisPos));
             if (pelvisPos.position.y - startPelvisPos < 3.58f && !isSquatting) // 3.35
             {
-                    squatCount++;
-                    isSquatting = true;
-                    JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_GETCOIN);
+                squatCount++;
+                isSquatting = true;
+                JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_GETCOIN);
+                PlayerPrefs.SetFloat("CountSquatt", squatCount);
+                PlayerPrefs.Save();
             }
         
             if(pelvisPos.position.y - startPelvisPos > 3.67f && isSquatting) // 3.45
             {
-                    isSquatting = false;
+                isSquatting = false;
             }
 
             //Debug.LogError("스쿼트 개수 : " + squatCount);
