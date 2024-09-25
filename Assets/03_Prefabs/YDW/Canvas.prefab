@@ -2233,7 +2233,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8961054016213587233}
   - {fileID: 6175029740728915574}
   - {fileID: 8397223734066040542}
   - {fileID: 4993253066559845073}
@@ -2241,6 +2240,7 @@ RectTransform:
   - {fileID: 739409906529577313}
   - {fileID: 7128143203350662721}
   - {fileID: 2778251294396946352}
+  - {fileID: 8961054016213587233}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3815,6 +3815,7 @@ GameObject:
   - component: {fileID: 8043123545268211047}
   - component: {fileID: 1509786106717048661}
   - component: {fileID: 1865802829740600935}
+  - component: {fileID: 9187009423149420278}
   m_Layer: 5
   m_Name: Img_Home
   m_TagString: Untagged
@@ -3935,6 +3936,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &9187009423149420278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5515024824507429197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &5607360374884969541
 GameObject:
   m_ObjectHideFlags: 0

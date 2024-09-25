@@ -79,7 +79,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
             PoseRecCountdown.text = "시작!";
 
             // directionCanvas 비활성화
-            canvasRenderers = directionCanvas.GetComponentsInChildren<CanvasRenderer>();
+            canvasRenderers = directionCanvas.transform.GetChild(0).GetChild(2).GetComponents<CanvasRenderer>();
             StartCoroutine(uiManager.decreaseAlpha(canvasRenderers)); // 투명도 조절 후
             directionCanvas.SetActive(false);
 
