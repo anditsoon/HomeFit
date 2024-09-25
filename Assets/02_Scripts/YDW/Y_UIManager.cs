@@ -33,11 +33,6 @@ public class Y_UIManager : MonoBehaviour
     public GameObject squatPanel;
     public GameObject jumpingJackPanel;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if (!isnextPanel && PSM.myPlayer != null && PSM.myPlayer.GetComponent<JSWPhotonVoiceTest>().isMaster)

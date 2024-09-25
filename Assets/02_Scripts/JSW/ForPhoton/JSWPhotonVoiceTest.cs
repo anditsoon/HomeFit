@@ -9,6 +9,7 @@ using System.Linq;
 using TMPro;
 using UnityEditor.Build;
 using static System.Net.Mime.MediaTypeNames;
+using System;
 
 public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -209,12 +210,15 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         if (chooseNum == 1)
         {
             y_uiManager.SelectSquat2();
+            PlayerPrefs.SetInt("Exercise", chooseNum);
         }
         else if (chooseNum == 2)
         {
 
             y_uiManager.SelectJumpingJack2();
+            PlayerPrefs.SetInt("Exercise", chooseNum);
         }
+        PlayerPrefs.Save();
     }
 
     public void AllReadyGO_RPC()
@@ -260,6 +264,9 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
             StartCoroutine(y_uiManager.MoveUI("게임 시작!"));
         
         }
+        DateTime curTime = DateTime.Now;
+        PlayerPrefs.SetString("StartTime", curTime.ToString("yyMMdd"));
+        PlayerPrefs.Save();
         JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_Playing);
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_START);
         yield return new WaitForSeconds(1f);
