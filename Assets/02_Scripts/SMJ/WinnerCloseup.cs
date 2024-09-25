@@ -8,12 +8,14 @@ public class WinnerCloseup : MonoBehaviour
     public Camera mainCamera;
     public float closeUpDistance = 2f;
     public float moveTime = 1f;
-    public float leftOffset = 0.5f; // 왼쪽으로의 오프셋 (0.5는 예시 값입니다)
+    public float leftOffset; // 왼쪽으로의 오프셋 (0.5는 예시 값입니다)
 
     private Y_RankUI rankUI;
 
     private void Start()
     {
+        leftOffset = 2f;
+
         if (mainCamera == null)
         {
             mainCamera = Camera.main;
@@ -52,7 +54,7 @@ public class WinnerCloseup : MonoBehaviour
         Quaternion startRotation = mainCamera.transform.rotation;
 
         // 카메라 위치 계산: 타겟의 뒤쪽에 위치
-        Vector3 targetPosition = target.position - target.forward * closeUpDistance + Vector3.up;
+        Vector3 targetPosition = target.position - target.forward * closeUpDistance + Vector3.up * 2;
 
         Vector3 lookAtPoint = target.position + (target.right * leftOffset);
 

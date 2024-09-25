@@ -60,6 +60,7 @@ public class Y_MediaPipeTest : MonoBehaviour, IPunObservable
         spineTarget,
         spineHint;
 
+    //Animator anim;
 
     // conn 의 랜드마크리스트에서 특정 인덱스를 이용, 벡터로 만들어서 가져온다
     public Vector3 getV3FromLandmark(int i)
@@ -100,6 +101,7 @@ public class Y_MediaPipeTest : MonoBehaviour, IPunObservable
 
     void Start()
     {
+        //anim = GetComponent<Animator>();
         pv = GetComponent<PhotonView>();
         conn = GameObject.Find("UDPConnector").GetComponent<UDPPoseHandler>();
         ground = GameObject.Find("Ground_01");
