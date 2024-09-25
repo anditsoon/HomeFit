@@ -52,7 +52,7 @@ public class WinnerCloseup : MonoBehaviour
         Quaternion startRotation = mainCamera.transform.rotation;
 
         // 카메라 위치 계산: 타겟의 뒤쪽에 위치
-        Vector3 targetPosition = target.position - target.forward * closeUpDistance;
+        Vector3 targetPosition = target.position - target.forward * closeUpDistance + Vector3.up;
 
         Vector3 lookAtPoint = target.position + (target.right * leftOffset);
 
