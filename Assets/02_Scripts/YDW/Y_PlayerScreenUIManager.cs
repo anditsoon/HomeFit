@@ -59,6 +59,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
 
     IEnumerator MoveCamera()
     {
+        print("!!!!!!!!!!!!!!!" + newCamPos.transform.position);
         while (true)
         {
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, newCamPos.transform.position, Time.deltaTime * 10);
