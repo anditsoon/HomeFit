@@ -73,7 +73,7 @@ public class Y_TimerUI : MonoBehaviourPunCallbacks
 
             if (elapsedTime > duration)
             {
-                pv.RPC(nameof(TimerEnded), RpcTarget.All);
+                
                 timerPanel.SetActive(false); // 타이머 없애고
                 resultPanel.SetActive(true); // 결과창 서서히 띄운다
 
@@ -85,6 +85,8 @@ public class Y_TimerUI : MonoBehaviourPunCallbacks
                 
                 // 이 변수를 스쿼트/점핑잭 세는 스크립트에서 호출하고 해당 스크립트에서 더 이상 횟수 세지 못하게 한다
                 hasStart = false;
+
+                pv.RPC(nameof(TimerEnded), RpcTarget.All);
             }
         }
 
