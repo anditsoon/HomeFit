@@ -29,8 +29,12 @@ public class Y_TimerUI : MonoBehaviour
 
     Color oldColor;
 
+    private DataSender dataSender;
+
     void Start()
     {
+        dataSender = FindObjectOfType<DataSender>();
+
         duration = 30;
         oldColor = timerPanel.GetComponent<Image>().color;
         oldColor.a = 0.72f;
@@ -88,10 +92,10 @@ public class Y_TimerUI : MonoBehaviour
 
         void TimerEnded()
         {
-            // 현재 시간을 PlayerPrefs에 저장
-            DateTime curTime = DateTime.Now;
-            PlayerPrefs.SetString("EndTime", curTime.ToString("yyMMdd"));
-            PlayerPrefs.Save();
+            if (dataSender != null)
+            {
+                dataSender.SendDataToServer();
+            }
         }
 
         // 타이머 텍스트 깜박이기

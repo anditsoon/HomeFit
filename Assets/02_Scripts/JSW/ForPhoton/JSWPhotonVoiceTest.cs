@@ -10,6 +10,7 @@ using TMPro;
 using UnityEditor.Build;
 using static System.Net.Mime.MediaTypeNames;
 using System;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -210,13 +211,13 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         if (chooseNum == 1)
         {
             y_uiManager.SelectSquat2();
-            PlayerPrefs.SetInt("Exercise", chooseNum);
+            PlayerPrefs.SetInt("exerciseId", chooseNum);
         }
         else if (chooseNum == 2)
         {
 
             y_uiManager.SelectJumpingJack2();
-            PlayerPrefs.SetInt("Exercise", chooseNum);
+            PlayerPrefs.SetInt("exerciseId", chooseNum);
         }
         PlayerPrefs.Save();
     }
@@ -265,7 +266,10 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         
         }
         DateTime curTime = DateTime.Now;
-        PlayerPrefs.SetString("StartTime", curTime.ToString("yyMMdd"));
+        DateTime offsetTime = curTime.AddSeconds(30);
+        PlayerPrefs.SetString("Date", curTime.ToString("yyyy-MM-dd"));
+        PlayerPrefs.SetString("startTime", curTime.ToString("HH:mm:ss"));
+        PlayerPrefs.SetString("endTime", offsetTime.ToString("HH:mm:ss"));
         PlayerPrefs.Save();
         JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_Playing);
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_START);
