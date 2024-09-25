@@ -88,4 +88,6 @@ public class Y_RankUI : MonoBehaviour
             img3rd.SetActive(false);
         }
     }
+
+
 }

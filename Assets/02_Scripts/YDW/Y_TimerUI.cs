@@ -34,7 +34,6 @@ public class Y_TimerUI : MonoBehaviour
 
 
     private DataSender dataSender;
-    public WinnerCloseup winnerCloseUp;
 
 
     void Start()
@@ -97,7 +96,7 @@ public class Y_TimerUI : MonoBehaviour
                     view.gameObject.GetComponentInChildren<RigBuilder>().enabled = false;
 
                     // 우승한 플레이어는 승리한 포즈, 패배한 플레이어는 쓰러지게
-                    if(view.Owner.NickName == winnerCloseUp.winnerName)
+                    if(view.Owner.NickName == win.winnerName)
                     {
                         view.gameObject.GetComponentInChildren<Animator>().SetBool("IsWin", true);
                     }

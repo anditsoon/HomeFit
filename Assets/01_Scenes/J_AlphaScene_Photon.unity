@@ -3472,6 +3472,11 @@ PrefabInstance:
       propertyPath: PSM
       value: 
       objectReference: {fileID: 653898896}
+    - target: {fileID: 6772460308392620520, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 653898896}
     - target: {fileID: 7417609932998429092, guid: 65943aec8ef2fd74889fc45eacbc2762,
         type: 3}
       propertyPath: PSM
@@ -3480,11 +3485,6 @@ PrefabInstance:
     - target: {fileID: 7417609932998429092, guid: 65943aec8ef2fd74889fc45eacbc2762,
         type: 3}
       propertyPath: win
-      value: 
-      objectReference: {fileID: 1054980438}
-    - target: {fileID: 7417609932998429092, guid: 65943aec8ef2fd74889fc45eacbc2762,
-        type: 3}
-      propertyPath: winnerCloseUp
       value: 
       objectReference: {fileID: 1054980438}
     - target: {fileID: 7765225737191659906, guid: 65943aec8ef2fd74889fc45eacbc2762,
