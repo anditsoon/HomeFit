@@ -46,11 +46,15 @@ public class CalenderImage : MonoBehaviour
 
     private void Update()
     {
-        NowExerciseCountNum = (int)Mathf.Ceil(Mathf.Lerp(NowExerciseCountNum, ExerciseCountNum, Time.deltaTime * 0.5f));
+        if (GetComponent<TMP_Text>().fontStyle != FontStyles.Bold)
+        {
+            return;
+        }
+        NowExerciseCountNum = ExerciseCountNum;
         ExerciseCount.text = NowExerciseCountNum.ToString();
-        NowKcalCountNum = (int)Mathf.Ceil(Mathf.Lerp(NowKcalCountNum, KcalCountNum, Time.deltaTime * 0.5f));
+        NowKcalCountNum = (int)Mathf.Ceil(Mathf.Lerp(NowKcalCountNum, KcalCountNum, Time.deltaTime * 5));
         KcalCount.text = NowKcalCountNum.ToString();
-        NowMinutesCountNum = (int)Mathf.Ceil(Mathf.Lerp(NowMinutesCountNum, MinutesCountNum, Time.deltaTime * 0.5f));
+        NowMinutesCountNum = (int)Mathf.Ceil(Mathf.Lerp(NowMinutesCountNum, MinutesCountNum, Time.deltaTime * 0.001f));
         MinutesCount.text = NowMinutesCountNum.ToString();
     }
 
@@ -74,10 +78,13 @@ public class CalenderImage : MonoBehaviour
         NowKcalCountNum = 0;
         NowMinutesCountNum = 0;
 
+        print(NowExerciseCountNum);
+
         // 그 날 날짜에 해당하는 수치 이때 넣어주면 됨
         ExerciseCountNum = Random.Range(1, 5);
         KcalCountNum = Random.Range(1, 200);
         MinutesCountNum = Random.Range(1, 60);
+
         GameObject.Find("Profile").GetComponent<Animator>().enabled = true;
         GameObject.Find("Profile").GetComponent<Animator>().CrossFade("ProfileUIUI",0);
     }
