@@ -14,7 +14,7 @@ public class WinnerCloseup : MonoBehaviour
 
     private void Start()
     {
-        leftOffset = 1.6f;
+        leftOffset = 1.4f;
 
         if (mainCamera == null)
         {
