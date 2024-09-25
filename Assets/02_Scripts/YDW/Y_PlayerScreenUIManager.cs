@@ -82,6 +82,9 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
             StartCoroutine(uiManager.decreaseAlpha(canvasRenderers)); // 투명도 조절 후
             directionCanvas.SetActive(false);
 
+            // "다른 사람을 인식 중입니다" 표시
+            StartCoroutine(uiManager.MoveUI("상대방이 준비 중이에요"));
+
             canActive = false;
             isSelected = false;
             startWorkOut = true;

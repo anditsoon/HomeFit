@@ -135,48 +135,6 @@ public class Y_UIManager : MonoBehaviour
 
     public GameObject flyingTxt;
 
-    //public IEnumerator MoveUI(String str)
-    //{
-    //    startVector = startPos.transform.position;
-    //    middleVector = middlePos.transform.position;
-    //    endVector = endPos.transform.position;
-
-    //    flyingTxt.transform.position = startVector;
-
-    //    flyingTxt.GetComponentInChildren<TMP_Text>().text = str;
-
-    //    while(true)
-    //    {
-    //        currTime += Time.deltaTime;
-    //        float t;
-
-    //        if(currTime > endTime)
-    //        {
-    //            currTime = 0;
-    //            flyingTxt.transform.position = startVector;
-    //            break;
-    //        }
-    //        else if(currTime > stayTime)
-    //        {
-    //            t = EaseInQuint(currTime - stayTime);
-    //            print("!!!!!!!!!!!!!!!!!" + t);
-    //            flyingTxt.transform.position = new Vector3(Mathf.Lerp(transform.position.x, endVector.x, t * 0.1f), flyingTxt.transform.position.y, flyingTxt.transform.position.z);
-    //        }
-    //        else if(currTime > middleTime)
-    //        {
-    //            flyingTxt.transform.position = middleVector;
-    //        }
-    //        else
-    //        {
-    //            t = EaseOutQuint(currTime);
-    //            print("???????????" + t);
-    //            flyingTxt.transform.position = new Vector3(Mathf.Lerp(transform.position.x, middleVector.x, t * 0.1f), flyingTxt.transform.position.y, flyingTxt.transform.position.z);
-    //        }
-
-    //        yield return null;
-    //    }
-    //}
-
     public IEnumerator MoveUI(String str)
     {
         startVector = startPos.transform.position;
@@ -190,6 +148,7 @@ public class Y_UIManager : MonoBehaviour
         while (true)
         {
             t += Time.deltaTime;
+            //t = EaseOutQuint(t);
             flyingTxt.transform.position = Vector3.Lerp(flyingTxt.transform.position, middleVector, t * 1f);
             if (t > middleTime)
             {
@@ -212,6 +171,7 @@ public class Y_UIManager : MonoBehaviour
         while (true)
         {
             t += Time.deltaTime;
+            //t = EaseInQuint(t);
             flyingTxt.transform.position = Vector3.Lerp(flyingTxt.transform.position, endVector, t * 1f);
             if (t > middleTime)
             {
@@ -225,15 +185,15 @@ public class Y_UIManager : MonoBehaviour
 
 
 
-    float EaseOutQuint(float x)
-    {
-        return 1 - (float)Math.Pow(1 - x, 3);
-    }
+    //float EaseOutQuint(float x)
+    //{
+    //    return 1 - (float)Math.Pow(1 - x, 3);
+    //}
 
-    float EaseInQuint(float x)
-    {
-        return x * x * x;
-    }
+    //float EaseInQuint(float x)
+    //{
+    //    return x * x * x;
+    //}
 
 
     // 스쿼트 / 팔벌려뛰기 버튼 선택 시 호출되는 함수들

@@ -59,6 +59,7 @@ public class Y_TimerUI : MonoBehaviour
             {
                 if (!isFlashing)
                 {
+                    StartCoroutine(uiManager.MoveUI("5초 남았어요!"));
                     JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_CLOCKING);
                     JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_GAMEOVER);
                     JSWSoundManager.Get().AudioSourceEtc(1.3f);
@@ -68,10 +69,12 @@ public class Y_TimerUI : MonoBehaviour
 
             if (elapsedTime > duration)
             {
-                
                 timerPanel.SetActive(false); // 타이머 없애고
                 resultPanel.SetActive(true); // 결과창 서서히 띄운다
+
                 win.PerformWinnerCloseup();
+
+                // 결과창 서서히 띄운다 2
                 canvasRenderers = resultPanel.GetComponentsInChildren<CanvasRenderer>();
                 StartCoroutine(uiManager.IncreaseAlpha(canvasRenderers));
                 
