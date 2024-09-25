@@ -30,11 +30,14 @@ public class Y_TimerUI : MonoBehaviourPunCallbacks
 
     Color oldColor;
 
+    PhotonView pv;
+
     void Start()
     {
         duration = 30;
         oldColor = timerPanel.GetComponent<Image>().color;
         oldColor.a = 0.72f;
+        pv = GetComponent<PhotonView>();
     }
 
     void Update()
@@ -70,7 +73,7 @@ public class Y_TimerUI : MonoBehaviourPunCallbacks
 
             if (elapsedTime > duration)
             {
-                photonView.RPC(nameof(TimerEnded), RpcTarget.All);
+                pv.RPC(nameof(TimerEnded), RpcTarget.All);
                 timerPanel.SetActive(false); // 타이머 없애고
                 resultPanel.SetActive(true); // 결과창 서서히 띄운다
 

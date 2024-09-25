@@ -47,6 +47,7 @@ MonoBehaviour:
   - ChooseSquateOrJump
   - AllReadyGo
   - <Update>g__TimerEnded|15_0
+  - <Update>g__TimerEnded|16_0
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
