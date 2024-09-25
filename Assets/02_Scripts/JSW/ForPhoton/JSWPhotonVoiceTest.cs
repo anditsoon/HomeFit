@@ -211,13 +211,13 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         if (chooseNum == 1)
         {
             y_uiManager.SelectSquat2();
-            PlayerPrefs.SetInt("exerciseId", chooseNum);
+            PlayerPrefs.SetString("exerciseId", chooseNum.ToString());
         }
         else if (chooseNum == 2)
         {
 
             y_uiManager.SelectJumpingJack2();
-            PlayerPrefs.SetInt("exerciseId", chooseNum);
+            PlayerPrefs.SetString("exerciseId", chooseNum.ToString());
         }
         PlayerPrefs.Save();
     }
@@ -268,8 +268,8 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         DateTime curTime = DateTime.Now;
         DateTime offsetTime = curTime.AddSeconds(30);
         PlayerPrefs.SetString("Date", curTime.ToString("yyyy-MM-dd"));
-        PlayerPrefs.SetString("startTime", curTime.ToString("HH:mm:ss"));
-        PlayerPrefs.SetString("endTime", offsetTime.ToString("HH:mm:ss"));
+        PlayerPrefs.SetString("startTime", curTime.ToString("HHmmss"));
+        PlayerPrefs.SetString("endTime", offsetTime.ToString("HHmmss"));
         PlayerPrefs.Save();
         JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_Playing);
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_START);
