@@ -18,6 +18,7 @@ public class ProfileUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CalenderInit();
         AvatarInfo.instance.SettingAvatar();
         anim = player.GetComponent<Animator>();
         anim.CrossFade("Idle", 0f);
@@ -46,8 +47,15 @@ public class ProfileUIManager : MonoBehaviour
     {
         for (int i =0;i < CalenderUI.transform.childCount;i++)
         {
-            CalenderUI.transform.GetChild(i).GetComponent<TMP_Text>().fontStyle = FontStyles.Normal;
-            CalenderUI.transform.GetChild(i).GetComponent<TMP_Text>().fontSize = 30;
+            CalenderUI.transform.GetChild(i).GetChild(1).GetComponent<TMP_Text>().fontStyle = FontStyles.Normal;
+            CalenderUI.transform.GetChild(i).GetChild(0).gameObject.SetActive(false);
+        }
+    }
+    public void CalenderInit()
+    {
+        for (int i = 0; i < CalenderUI.transform.childCount; i++)
+        {
+            CalenderUI.transform.GetChild(i).GetChild(1).GetComponent<CalenderImage>().backImage = CalenderUI.transform.GetChild(i).GetChild(0).gameObject;
         }
     }
 

@@ -7,17 +7,19 @@ using UnityEngine.SceneManagement;
 
 public class AvartarUIManager : MonoBehaviour
 {
-    public TMP_Text text_Backpacks;
-    public TMP_Text text_body;
-    public TMP_Text text_Eyebrow;
-    public TMP_Text text_Glasses;
-    public TMP_Text text_Glove;
-    public TMP_Text text_Hair;
-    public TMP_Text text_Hat;
-    public TMP_Text text_Mustache;
-    public TMP_Text text_Outwear;
-    public TMP_Text text_Pants;
-    public TMP_Text text_Shoe;
+    public GameObject G_Backpacks;
+    public GameObject G_body;
+    public GameObject G_Eyebrow;
+    public GameObject G_Glasses;
+    public GameObject G_Glove;
+    public GameObject G_Hair;
+    public GameObject G_Hat;
+    public GameObject G_Mustache;
+    public GameObject G_Outwear;
+    public GameObject G_Pants;
+    public GameObject G_Shoe;
+
+
     public GameObject playerPos;
     public GameObject player;
     public bool isChanged;
@@ -56,9 +58,9 @@ public class AvartarUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
 
-        text_Backpacks.color = SelectingColor;
+
+        G_Backpacks.transform.GetChild(0).gameObject.SetActive(true);
         anim = player.GetComponent<Animator>();
         anim.CrossFade("Idle", 0f);
         JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_AVAR);
@@ -108,75 +110,74 @@ public class AvartarUIManager : MonoBehaviour
     public void ChangeTextColorBackPacks()
     {
         UIAllReset();
-        text_Backpacks.color = SelectingColor;
+        G_Backpacks.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void ChangeTextColorBody()
     {
         UIAllReset();
-        text_body.color = SelectingColor;
+        G_body.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorEyebrow()
     {
         UIAllReset();
-        text_Eyebrow.color = SelectingColor;
+        G_Eyebrow.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorGlasses()
     {
         UIAllReset();
-        text_Glasses.color = SelectingColor;
+        G_Glasses.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorGlove()
     {
         UIAllReset();
-        text_Glove.color = SelectingColor;
+        G_Glove.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorHair()
     {
         UIAllReset();
-        text_Hair.color = SelectingColor;
+        G_Hair.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorHat()
     {
         UIAllReset();
-        text_Hat.color = SelectingColor;
+        G_Hat.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorMustache()
     {
         UIAllReset();
-        text_Mustache.color = SelectingColor;
+        G_Mustache.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorOutwear()
     {
         UIAllReset();
-        text_Outwear.color = SelectingColor;
+        G_Outwear.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorPants()
     {
         UIAllReset();
-        text_Pants.color = SelectingColor;
+        G_Pants.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorShoe()
     {
         UIAllReset();
-        text_Shoe.color = SelectingColor;
+        G_Shoe.transform.GetChild(0).gameObject.SetActive(true);
     }
 
-    
     private void UIAllReset()
     {
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_BTN);
-        text_Backpacks.color = Color.black;
-        text_body.color = Color.black;
-        text_Eyebrow.color = Color.black;
-        text_Glasses.color = Color.black;
-        text_Glove.color = Color.black;
-        text_Hair.color = Color.black;
-        text_Hat.color = Color.black;
-        text_Mustache.color = Color.black;
-        text_Outwear.color = Color.black;
-        text_Pants.color = Color.black;
-        text_Shoe.color = Color.black;
+        G_Backpacks.transform.GetChild(0).gameObject.SetActive(false);
+        G_body.transform.GetChild(0).gameObject.SetActive(false);
+        G_Eyebrow.transform.GetChild(0).gameObject.SetActive(false);
+        G_Glasses.transform.GetChild(0).gameObject.SetActive(false);
+        G_Glove.transform.GetChild(0).gameObject.SetActive(false);
+        G_Hair.transform.GetChild(0).gameObject.SetActive(false);
+        G_Hat.transform.GetChild(0).gameObject.SetActive(false);
+        G_Mustache.transform.GetChild(0).gameObject.SetActive(false);
+        G_Outwear.transform.GetChild(0).gameObject.SetActive(false);
+        G_Pants.transform.GetChild(0).gameObject.SetActive(false);
+        G_Shoe.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void AlamIsChanged()
