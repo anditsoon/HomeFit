@@ -191,6 +191,7 @@ public class UserInfoManager : MonoBehaviour
                 string responseBody = www.downloadHandler.text;
                 Debug.Log("회원가입 성공. 서버 응답: " + responseBody);
                 OnRegisterStatusChanged?.Invoke(true);
+                yield return new WaitForSeconds(0.5f);
                 StartCoroutine(LoginCoroutine(username, password));
             }
         }
