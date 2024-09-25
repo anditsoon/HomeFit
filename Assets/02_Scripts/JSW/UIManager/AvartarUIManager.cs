@@ -23,7 +23,6 @@ public class AvartarUIManager : MonoBehaviour
     public bool isChanged;
     public GameObject ChangePopup;
     public GameObject prevCheckButton;
-
     Animator anim;
     public Animator animUI;
     
