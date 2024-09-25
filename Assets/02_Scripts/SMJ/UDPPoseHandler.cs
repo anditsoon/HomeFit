@@ -170,5 +170,4 @@ public class UDPPoseHandler : MonoBehaviour
     {
         UDPClose();
     }
-
 }
