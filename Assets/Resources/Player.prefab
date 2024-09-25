@@ -1218,7 +1218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5831848309028375713
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1235,7 +1235,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.72, y: 1.86}
+  m_AnchoredPosition: {x: 0, y: -4.2}
   m_SizeDelta: {x: 4, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6718729701495944072
@@ -1259,14 +1259,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.98017985, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a35e3c8dab02348ee870b786da3b112b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2dacf1629469744608b69e5ac1e1570e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4456,6 +4456,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MyCnt
       objectReference: {fileID: 0}
+    - target: {fileID: 457727192997554609, guid: fb85395ddd7baf1488147b63acc2cf1c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2844385769121343581, guid: fb85395ddd7baf1488147b63acc2cf1c,
         type: 3}
       propertyPath: canvasRectTransform
@@ -4801,7 +4806,7 @@ PrefabInstance:
     - target: {fileID: 4219853776171442717, guid: 9303caf80204f6b4f9918e2b41760b0e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4488765651546551880, guid: 9303caf80204f6b4f9918e2b41760b0e,
         type: 3}
