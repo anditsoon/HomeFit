@@ -11,6 +11,7 @@ public class MultiModelToImage : MonoBehaviour
     public Transform CustomContent;
 
     private Coroutine coroutine;
+    public AvartarUIManager AUI;
 
     private RenderTexture[] renderTextures;
     bool ClickOkay = true;
@@ -108,6 +109,7 @@ public class MultiModelToImage : MonoBehaviour
                     GameObject cri = Instantiate(CustomRawImage, CustomContent);
                     RawImage ri = cri.GetComponent<RawImage>();
                     cri.GetComponent<CustomRawImageScript>().SetItemPath($"Meshes/{avar}/{i + 1}", avar);
+                    CheckingSame(avar, $"Meshes/{avar}/{i + 1}", cri);
                     models[i].transform.localScale = models[i].transform.localScale * 120;
 
                     // 각 모델을 위한 Render Texture 생성
@@ -138,6 +140,65 @@ public class MultiModelToImage : MonoBehaviour
                 
             }
             ClickOkay = true;
+        }
+    }
+
+    void CheckingSame(string avar, string name, GameObject rawimage)
+    {
+        if (avar == "Backpack" && AUI.Backpack == name)
+        {
+            AUI.prevCheckButton = rawimage;
+            rawimage.GetComponent<CustomRawImageScript>().checking.SetActive(true);
+        }
+        if (avar == "Body" && AUI.Body == name)
+        {
+            AUI.prevCheckButton = rawimage;
+            rawimage.GetComponent<CustomRawImageScript>().checking.SetActive(true);
+        }
+        if (avar == "Eyebrow" && AUI.Eyebrow == name)
+        {
+            AUI.prevCheckButton = rawimage;
+            rawimage.GetComponent<CustomRawImageScript>().checking.SetActive(true);
+        }
+        if (avar == "Glasses"&& AUI.Glasses == name)
+        {
+            AUI.prevCheckButton = rawimage;
+            rawimage.GetComponent<CustomRawImageScript>().checking.SetActive(true);
+        }
+        if (avar == "Glove" && AUI.Glove == name)
+        {
+            AUI.prevCheckButton = rawimage;
+            rawimage.GetComponent<CustomRawImageScript>().checking.SetActive(true);
+        }
+        if (avar == "Hair" && AUI.Hair == name)
+        {
+            AUI.prevCheckButton = rawimage;
+            rawimage.GetComponent<CustomRawImageScript>().checking.SetActive(true);
+        }
+        if (avar == "Hat" && AUI.Hat == name)
+        {
+            AUI.prevCheckButton = rawimage;
+            rawimage.GetComponent<CustomRawImageScript>().checking.SetActive(true);
+        }
+        if (avar == "Mustache" && AUI.Mustache == name)
+        {
+            AUI.prevCheckButton = rawimage;
+            rawimage.GetComponent<CustomRawImageScript>().checking.SetActive(true);
+        }
+        if (avar == "Outerwear" && AUI.Outerwear == name)
+        {
+            AUI.prevCheckButton = rawimage;
+            rawimage.GetComponent<CustomRawImageScript>().checking.SetActive(true);
+        }
+        if (avar == "Pants" && AUI.Pants == name)
+        {
+            AUI.prevCheckButton = rawimage;
+            rawimage.GetComponent<CustomRawImageScript>().checking.SetActive(true);
+        }
+        if (avar == "Shoe" && AUI.Shoe == name)
+        {
+            AUI.prevCheckButton = rawimage;
+            rawimage.GetComponent<CustomRawImageScript>().checking.SetActive(true);
         }
     }
 

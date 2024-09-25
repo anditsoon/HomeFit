@@ -22,14 +22,13 @@ public class AvartarUIManager : MonoBehaviour
     public GameObject player;
     public bool isChanged;
     public GameObject ChangePopup;
+    public GameObject prevCheckButton;
     Animator anim;
     public Animator animUI;
     
 
     public int rotationSensitive;
     private float mouseXNum = 0;
-
-    public TMP_Text all;
 
 
 
@@ -60,7 +59,6 @@ public class AvartarUIManager : MonoBehaviour
         
 
         text_Backpacks.color = SelectingColor;
-        all.color = SelectingColor;
         anim = player.GetComponent<Animator>();
         anim.CrossFade("Idle", 0f);
         JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_AVAR);
@@ -179,8 +177,6 @@ public class AvartarUIManager : MonoBehaviour
         text_Outwear.color = Color.black;
         text_Pants.color = Color.black;
         text_Shoe.color = Color.black;
-
-        all.color = SelectingColor;
     }
 
     public void AlamIsChanged()

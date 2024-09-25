@@ -10,6 +10,7 @@ public class CustomRawImageScript : MonoBehaviour
     public Button btn_Image;
     public GameObject Player;
     public Mesh mesh;
+    public GameObject checking;
     Animator anim;
     GameObject AvatarUiManage;
 
@@ -37,6 +38,12 @@ public class CustomRawImageScript : MonoBehaviour
 
     public void SettingAvar()
     {
+        if (AvatarUiManage.GetComponent<AvartarUIManager>().prevCheckButton != null)
+        {
+            AvatarUiManage.GetComponent<AvartarUIManager>().prevCheckButton.GetComponent<CustomRawImageScript>().checking.SetActive(false);
+        }
+        checking.SetActive(true);
+        AvatarUiManage.GetComponent<AvartarUIManager>().prevCheckButton = gameObject;
         GameObject itematPlayer = GameObject.Find(avarItem);
         anim.CrossFade("Jumping", 0f);
         if (itemPath != "")
@@ -50,6 +57,8 @@ public class CustomRawImageScript : MonoBehaviour
             SetAvarInfo("", avarItem);
         }
     }
+
+    
 
     public void SetAvarInfo(string itemP, string avarN)
     {
