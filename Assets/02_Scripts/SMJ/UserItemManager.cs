@@ -4,7 +4,6 @@ using System.Net;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-using static UnityEditor.Progress;
 
 public class UserItemManager : MonoBehaviour
 {

@@ -8,7 +8,6 @@ using System.Text;
 using System.Net;
 using System.Globalization;
 using TMPro;
-using static UnityEditor.Progress;
 //using UnityEditor.PackageManager.Requests;
 
 public class UserInfoManager : MonoBehaviour
