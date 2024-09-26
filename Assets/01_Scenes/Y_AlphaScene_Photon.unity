@@ -3283,14 +3283,49 @@ PrefabInstance:
       propertyPath: PSM
       value: 
       objectReference: {fileID: 653898896}
+    - target: {fileID: 1153554026124815362, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153554026124815362, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153554026124815362, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153554026124815362, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153554026124815362, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153554026124815362, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1865802829740600935, guid: 65943aec8ef2fd74889fc45eacbc2762,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 653898896}
-    - target: {fileID: 3124877693640147543, guid: 65943aec8ef2fd74889fc45eacbc2762,
+    - target: {fileID: 3159138500911520105, guid: 65943aec8ef2fd74889fc45eacbc2762,
         type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159138500911520105, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3191159979354738153, guid: 65943aec8ef2fd74889fc45eacbc2762,
@@ -3398,6 +3433,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5814994062403513046, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814994062403513046, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814994062403513046, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814994062403513046, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814994062403513046, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6044088219391220527, guid: 65943aec8ef2fd74889fc45eacbc2762,
         type: 3}
       propertyPath: PSM
@@ -3408,6 +3468,16 @@ PrefabInstance:
       propertyPath: PSM
       value: 
       objectReference: {fileID: 653898896}
+    - target: {fileID: 7765225737191659906, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7765225737191659906, guid: 65943aec8ef2fd74889fc45eacbc2762,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

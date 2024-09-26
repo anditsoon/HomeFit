@@ -1,10 +1,12 @@
 ﻿using Google.Protobuf.WellKnownTypes;
+using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class Y_PlayerScreenUIManager : MonoBehaviour
 {
@@ -25,6 +27,9 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
     bool startWorkOut = false;
 
     public Y_TimerUI timerUI;
+
+    public GameObject flickerImg;
+    CanvasGroup flickerImgCG;
 
     // Update is called once per frame
     void Update()
@@ -71,8 +76,12 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
     CanvasRenderer[] canvasRenderers;
     CanvasRenderer[] canvasRenderers2;
 
+    
+
     void Countdown()
     {
+        flickerImgCG = flickerImg.GetComponent<CanvasGroup>();
+
         if (showTime <= 0)
         {
             uiManager = GameObject.Find("Canvas").GetComponent<Y_UIManager>();
@@ -84,7 +93,12 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
             directionCanvas.SetActive(false);
 
             // "다른 사람을 인식 중입니다" 표시
-            StartCoroutine(uiManager.MoveUI("상대방이 준비 중이에요"));
+            if(timerUI.allReadyGo)
+            {
+                StartCoroutine(uiManager.Flicker(flickerImgCG, 100));
+            }
+
+            //StartCoroutine(uiManager.MoveUI("상대방이 준비 중이에요"));
 
             canActive = false;
             isSelected = false;

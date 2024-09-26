@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.Loading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,6 +33,8 @@ public class Y_UIManager : MonoBehaviour
 
     public GameObject squatPanel;
     public GameObject jumpingJackPanel;
+
+    public Y_TimerUI timerUI;
 
     void Update()
     {
@@ -228,6 +231,50 @@ public class Y_UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         chooseWorkOut.SetActive(false);
+    }
+
+    public float fadeSpeed = 2f;
+    public float flickerInterval = 0.5f;
+    public GameObject flickerImg;
+
+    public IEnumerator Flicker(CanvasGroup uiElement, float flickerDuration)
+    {
+        float timer = 0f;
+        bool isFadingOut = true;
+
+        while (timer < flickerDuration)
+        {
+            if (timerUI.allReadyGo) // 플레이어가 모두 자세 인식을 마쳤으면
+            {
+                // Inactive
+                flickerImg.SetActive(false);
+                yield break;
+            }
+
+            // 서서히 알파 값을 변경 (보임 -> 안보임, 안보임 -> 보임)
+            if (isFadingOut)
+                uiElement.alpha = Mathf.Lerp(uiElement.alpha, 0, Time.deltaTime * fadeSpeed); // 서서히 투명해짐
+            else
+                uiElement.alpha = Mathf.Lerp(uiElement.alpha, 1, Time.deltaTime * fadeSpeed); // 서서히 보임
+
+            // 알파 값이 거의 다 도달하면 상태 전환
+            if (isFadingOut && uiElement.alpha <= 0.05f)
+            {
+                isFadingOut = false;
+                yield return new WaitForSeconds(flickerInterval); // 잠시 대기 후 다시 서서히 보이기
+            }
+            else if (!isFadingOut && uiElement.alpha >= 0.95f)
+            {
+                isFadingOut = true;
+                yield return new WaitForSeconds(flickerInterval); // 잠시 대기 후 다시 서서히 투명하게
+            }
+
+            timer += Time.deltaTime;
+            yield return null; // 매 프레임마다 업데이트
+        }
+
+        // 깜박임이 끝난 후 UI가 보이는 상태로 유지
+        uiElement.alpha = 1;
     }
 
 }
