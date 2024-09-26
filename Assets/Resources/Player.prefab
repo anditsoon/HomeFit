@@ -923,7 +923,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 18b03159fe608b14397a0ae61e896488, type: 2}
   m_sharedMaterial: {fileID: -3622974945824963563, guid: 18b03159fe608b14397a0ae61e896488,
@@ -1892,7 +1892,6 @@ MonoBehaviour:
   timerUI: {fileID: 0}
   flickerImg: {fileID: 0}
   flickerImgCR: {fileID: 0}
-  newCamPos: {fileID: 0}
 --- !u!114 &3642497527583409605
 MonoBehaviour:
   m_ObjectHideFlags: 0

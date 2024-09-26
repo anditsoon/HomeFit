@@ -50,8 +50,6 @@ public class Y_TimerUI : MonoBehaviour
 
         if(hasStart && allReadyGo)
         {
-
-
             timerPanel.GetComponent<Image>().color = oldColor;
 
             timerTxt.SetActive(true);
@@ -61,7 +59,7 @@ public class Y_TimerUI : MonoBehaviour
             // 경과 시간을 분:초 형식으로 변환
             TimeSpan timeSpan = TimeSpan.FromSeconds(elapsedTime);
             string timeText = string.Format("{0:00}:{1:00}",
-                timeSpan.Minutes, timeSpan.Seconds);
+                timeSpan.Minutes, duration - timeSpan.Seconds);
 
             timerText.text = timeText;
 
