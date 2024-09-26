@@ -256,14 +256,13 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
         if (y_uiManager.PSM.myPlayer.GetComponent<Y_CountSquatt>().isActiveAndEnabled)
         {
             y_uiManager.squatPanel.SetActive(false);
-            StartCoroutine(y_uiManager.MoveUI("게임 시작!"));
         }
         else
         {
             y_uiManager.jumpingJackPanel.SetActive(false);
-            StartCoroutine(y_uiManager.MoveUI("게임 시작!"));
-        
         }
+        StartCoroutine(y_uiManager.MoveUI("게임 시작!"));
+
         DateTime curTime = DateTime.Now;
         DateTime offsetTime = curTime.AddSeconds(30);
         PlayerPrefs.SetString("Date", curTime.ToString("yyyy-MM-dd"));
