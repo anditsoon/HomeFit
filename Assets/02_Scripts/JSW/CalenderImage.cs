@@ -14,9 +14,9 @@ public class CalenderImage : MonoBehaviour
     TMP_Text KcalCount;
     TMP_Text MinutesCount;
 
-    float ExerciseCountNum=0;
-    float KcalCountNum=0;
-    float MinutesCountNum=0;
+    float ExerciseCountNum = 0;
+    float KcalCountNum = 0;
+    float MinutesCountNum = 0;
 
     float NowExerciseCountNum = 0;
     float NowKcalCountNum = 0;
@@ -69,8 +69,6 @@ public class CalenderImage : MonoBehaviour
 
         profileManager.GetComponent<ProfileUIManager>().calenderUI.transform.GetChild(int.Parse(num) - 1).GetChild(1).gameObject.SetActive(true);
 
-
-
         if (num.Length == 1)
         {
             CalenderDay.text = "2024-09-0" + num;
@@ -87,11 +85,7 @@ public class CalenderImage : MonoBehaviour
 
         // 그 날 날짜에 해당하는 수치 이때 넣어주면 됨
         ExerciseCountNum = AvatarInfo.instance.totalExerciseCount;
-        KcalCountNum = (float) AvatarInfo.instance.totalCaloriesBurned;
+        KcalCountNum = (float)AvatarInfo.instance.totalCaloriesBurned;
         MinutesCountNum = ExerciseCountNum * 0.5f;
-
-
     }
-
-    
 }
