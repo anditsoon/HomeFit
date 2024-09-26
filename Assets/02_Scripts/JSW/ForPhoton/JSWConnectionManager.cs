@@ -31,6 +31,8 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     {
         ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_SCENEMOVE2);
+        PhotonNetwork.JoinLobby();
+
         StartLogin();
     }
 
