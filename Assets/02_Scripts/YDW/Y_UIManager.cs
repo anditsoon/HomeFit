@@ -240,7 +240,7 @@ public class Y_UIManager : MonoBehaviour
     public IEnumerator Flicker(CanvasGroup uiElement, float flickerDuration)
     {
         float timer = 0f;
-        bool isFadingOut = true;
+        bool isFadingOut = false;
 
         while (timer < flickerDuration)
         {

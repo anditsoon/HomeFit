@@ -80,6 +80,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
 
     void Countdown()
     {
+        flickerImg = GameObject.Find("FlickerImg");
         flickerImgCG = flickerImg.GetComponent<CanvasGroup>();
 
         if (showTime <= 0)
