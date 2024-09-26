@@ -170,4 +170,9 @@ public class UDPPoseHandler : MonoBehaviour
     {
         UDPClose();
     }
+
+    private void OnDisable()
+    {
+        UDPClose();
+    }
 }
