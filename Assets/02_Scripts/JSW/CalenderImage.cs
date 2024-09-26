@@ -31,11 +31,11 @@ public class CalenderImage : MonoBehaviour
         ExerciseCount = GameObject.Find("ExerciseCount").transform.GetChild(0).GetComponent<TMP_Text>();
         KcalCount = GameObject.Find("KcalCount").transform.GetChild(0).GetComponent<TMP_Text>();
         MinutesCount = GameObject.Find("MinutesCount").transform.GetChild(0).GetComponent<TMP_Text>();
-        
+
         // 첫시작 즉 이때 오늘 날짜에 해당하는 값 넣어 주면됨 
-        ExerciseCountNum = Random.Range(1, 5);
-        KcalCountNum = Random.Range(1, 200);
-        MinutesCountNum = Random.Range(1, 60);
+        ExerciseCountNum = AvatarInfo.instance.totalExerciseCount;
+        KcalCountNum = (float)AvatarInfo.instance.totalCaloriesBurned;
+        MinutesCountNum = ExerciseCountNum * 0.5f;
 
         btn_Cal = GetComponent<Button>();
         btn_Cal.onClick.AddListener(() =>
@@ -81,9 +81,9 @@ public class CalenderImage : MonoBehaviour
         print(NowExerciseCountNum);
 
         // 그 날 날짜에 해당하는 수치 이때 넣어주면 됨
-        ExerciseCountNum = Random.Range(1, 5);
-        KcalCountNum = Random.Range(1, 200);
-        MinutesCountNum = Random.Range(1, 60);
+        ExerciseCountNum = AvatarInfo.instance.totalExerciseCount;
+        KcalCountNum = (float) AvatarInfo.instance.totalCaloriesBurned;
+        MinutesCountNum = ExerciseCountNum * 0.5f;
 
         GameObject.Find("Profile").GetComponent<Animator>().enabled = true;
         GameObject.Find("Profile").GetComponent<Animator>().CrossFade("ProfileUIUI",0);
