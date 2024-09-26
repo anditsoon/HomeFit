@@ -154,7 +154,7 @@ public class JSWSoundManager : MonoBehaviour
 
     public void AudioSourceEtc(float pit)
     {
-        bgmAudio.pitch = 1.5f;
+        bgmAudio.pitch = pit;
 
     //    // 일시 정지
     //    bgmAudio.Pause();

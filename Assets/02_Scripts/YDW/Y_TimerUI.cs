@@ -143,10 +143,6 @@ public class Y_TimerUI : MonoBehaviour
             isFlashing = false;
         }
     }
-
-    
-
-
 }
 
 
