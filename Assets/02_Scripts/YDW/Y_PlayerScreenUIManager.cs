@@ -29,7 +29,8 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
     public Y_TimerUI timerUI;
 
     public GameObject flickerImg;
-    CanvasGroup flickerImgCG;
+    public CanvasGroup flickerImgCR;
+
 
     // Update is called once per frame
     void Update()
@@ -80,8 +81,11 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
 
     void Countdown()
     {
+        timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
         flickerImg = GameObject.Find("FlickerImg");
-        flickerImgCG = flickerImg.GetComponent<CanvasGroup>();
+        flickerImgCR = flickerImg.GetComponent<CanvasGroup>();
+        //flickerImgCR.AddRange(flickerImg.GetComponents<CanvasRenderer>());
+        //flickerImgCR.AddRange(flickerImg.GetComponentsInChildren<CanvasRenderer>());
 
         if (showTime <= 0)
         {
@@ -94,10 +98,8 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
             directionCanvas.SetActive(false);
 
             // "다른 사람을 인식 중입니다" 표시
-            if(timerUI.allReadyGo)
-            {
-                StartCoroutine(uiManager.Flicker(flickerImgCG, 100));
-            }
+            StartCoroutine(uiManager.Flicker(flickerImgCR));
+
 
             //StartCoroutine(uiManager.MoveUI("상대방이 준비 중이에요"));
 
