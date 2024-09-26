@@ -22,8 +22,6 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
 
     private Hashtable CP;
 
-    private readonly string RemoveRoomUrl = "https://125.132.216.190:12502/api/room";
-
     private int currentRoomId;
 
     private void Awake()
@@ -53,7 +51,7 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
             currentRoomId = (int)PhotonNetwork.CurrentRoom.CustomProperties["RoomId"];
             Debug.Log($"Preparing to leave room: {currentRoomId}");
 
-            yield return StartCoroutine(SendRoomInfo("DELETE", currentRoomId.ToString()));
+            yield return new WaitForSeconds(0.3f);
 
             PhotonNetwork.LeaveRoom();
         }
@@ -75,60 +73,6 @@ public class PlaySceneManager : MonoBehaviourPunCallbacks
         base.OnLeftRoom();
 
         SceneManager.LoadScene(1);
-    }
-
-    private IEnumerator SendRoomInfo(string method, string roomId)
-    {
-        Debug.Log($"Sending {method} request for room: {roomId}");
-        string url = $"{RemoveRoomUrl}/{roomId}";
-        Debug.Log($"Request URL: {url}");
-
-        string jwtToken = PlayerPrefs.GetString("jwtToken");
-        if (string.IsNullOrEmpty(jwtToken))
-        {
-            Debug.LogError("JWT token is missing or empty");
-            yield break;
-        }
-        Debug.Log($"JWT Token (first 20 chars): {jwtToken.Substring(0, Mathf.Min(jwtToken.Length, 20))}...");
-
-        UnityWebRequest www = new UnityWebRequest(url, "DELETE");
-        www.downloadHandler = new DownloadHandlerBuffer();
-        www.SetRequestHeader("Content-Type", "application/json");
-        www.SetRequestHeader("Authorization", "Bearer " + jwtToken);
-        www.certificateHandler = new BypassCertificate1();
-
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Debug.LogError($"{method} request failed. Error: {www.error}");
-            Debug.LogError($"Response Code: {www.responseCode}");
-            Debug.LogError($"Response Headers: {www.GetResponseHeaders()}");
-            if (www.downloadHandler != null && www.downloadHandler.text != null)
-            {
-                Debug.LogError($"Response Body: {www.downloadHandler.text}");
-            }
-            else
-            {
-                Debug.LogError("Response Body is null");
-            }
-        }
-        else
-        {
-            Debug.Log($"{method} request successful!");
-            if (www.downloadHandler != null && www.downloadHandler.text != null)
-            {
-                Debug.Log($"Response: {www.downloadHandler.text}");
-            }
-            else
-            {
-                Debug.Log("Response Body is null");
-            }
-        }
-
-        www.certificateHandler.Dispose();
-
-
     }
 
     IEnumerator LeftRoom()

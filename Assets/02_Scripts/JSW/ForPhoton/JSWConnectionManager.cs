@@ -22,8 +22,6 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     public GameObject[] panelList;
     bool isExit;
 
-    private readonly string CreateRoomUrl = "https://125.132.216.190:12502/api/room";
-
     List<RoomInfo> cachedRoomList = new List<RoomInfo>();
     private int currentRoomId;
 
@@ -137,7 +135,6 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     {
         base.OnCreatedRoom();
         print(MethodInfo.GetCurrentMethod().Name + " is Call!");
-        StartCoroutine(SendRoomInfo("POST", currentRoomId.ToString(), PlayerPrefs.GetString("userId")));
     }
 
     public override void OnJoinedRoom()
@@ -166,17 +163,6 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
         base.OnPlayerLeftRoom(otherPlayer);
         string playerMsg = $"{otherPlayer.NickName}님이 퇴장하셨습니다.";
         LobbyUIController.lobbyUI.PrintLog(playerMsg);
-    }
-
-    public void DeleteRoomToServer()
-    {
-        Debug.Log(PhotonNetwork.CountOfPlayersInRooms);
-        if (PhotonNetwork.CountOfPlayersInRooms == 0)
-        {
-            Debug.Log(PhotonNetwork.CountOfPlayersInRooms);
-            int roomId = (int)PhotonNetwork.CurrentRoom.CustomProperties["RoomId"];
-            StartCoroutine(SendRoomInfo("DELETE", roomId.ToString()));
-        }
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
@@ -224,68 +210,6 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     public void MoveProfileScene()
     {
         profileManager.SendDataToServer(DateTime.Now.ToString("yyyy-MM-dd"), true);
-    }
-
-    private IEnumerator SendRoomInfo(string method, string roomId, string ownerId = null)
-    {
-        string url;
-        if (method == "POST")
-        {
-            url = CreateRoomUrl;
-        }
-        else
-        {
-            Debug.LogError("Invalid HTTP method");
-            yield break;
-        }
-
-        string jwtToken = PlayerPrefs.GetString("jwtToken");
-        if (string.IsNullOrEmpty(jwtToken))
-        {
-            Debug.LogError("JWT token is missing or empty");
-            yield break;
-        }
-
-        UnityWebRequest www;
-
-        CreateRoomData roomData = new CreateRoomData
-        {
-            roomId = int.Parse(roomId),
-            ownerId = long.Parse(ownerId)
-        };
-        string jsonData = JsonUtility.ToJson(roomData);
-        www = UnityWebRequest.Put(url, jsonData);
-        www.method = "POST";
-        www.SetRequestHeader("Content-Type", "application/json");
-
-        www.SetRequestHeader("Authorization", "Bearer " + jwtToken);
-
-        www.certificateHandler = new BypassCertificate1();
-
-        Debug.Log($"Sending {method} request to {url}");
-        Debug.Log($"Authorization: Bearer {jwtToken.Substring(0, Math.Min(jwtToken.Length, 10))}...");
-        if (method == "POST")
-        {
-            Debug.Log($"Request body: {www.uploadHandler.data}");
-        }
-
-        yield return www.SendWebRequest();
-
-        Debug.Log($"Response Code: {www.responseCode}");
-        Debug.Log($"Response Headers: {www.GetResponseHeaders()}");
-        Debug.Log($"Response Body: {www.downloadHandler.text}");
-
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Debug.LogError($"{method} request to {url} failed. Error: {www.error}");
-            Debug.LogError($"Full response: {www.downloadHandler.text}");
-        }
-        else
-        {
-            Debug.Log($"{method} request to {url} successful!");
-        }
-
-        www.certificateHandler.Dispose();
     }
 }
 
