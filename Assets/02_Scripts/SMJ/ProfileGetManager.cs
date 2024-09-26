@@ -14,6 +14,8 @@ public class ProfileGetManager : MonoBehaviour
     public TextMeshProUGUI dateText;
     public string date = string.Empty;
 
+    public bool isChangeDone = false;
+
     [System.Serializable]
     private class ProfileData
     {
@@ -40,6 +42,7 @@ public class ProfileGetManager : MonoBehaviour
         string jwtToken = PlayerPrefs.GetString("jwtToken");
         string userId = PlayerPrefs.GetString("userId");
         StartCoroutine(GetProfileCoroutine(jwtToken, userId, checkDate, isMoveScene));
+        isChangeDone = false;
     }
 
     IEnumerator GetProfileCoroutine(string jwtToken, string _userId, string _checkDate, bool _isMoveScene)
@@ -65,6 +68,7 @@ public class ProfileGetManager : MonoBehaviour
                     ProfileData profile = JsonUtility.FromJson<ProfileData>(responseBody);
                     AvatarInfo.instance.totalCaloriesBurned = profile.totalCaloriesBurned;
                     AvatarInfo.instance.totalExerciseCount = profile.totalExerciseCount;
+                    isChangeDone = true;
                     if (_isMoveScene == true)
                     {
                         SceneManager.LoadScene("ProfileScene");

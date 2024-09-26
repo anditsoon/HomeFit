@@ -22,6 +22,8 @@ public class CalenderImage : MonoBehaviour
     float NowKcalCountNum = 0;
     float NowMinutesCountNum = 0;
 
+    public ProfileGetManager profileGet;
+
     private void Start()
     {
         profileManager = GameObject.Find("ProfileUIManager");
@@ -46,16 +48,19 @@ public class CalenderImage : MonoBehaviour
 
     private void Update()
     {
-        if (GetComponent<TMP_Text>().fontStyle != FontStyles.Bold)
+        if (profileGet.isChangeDone)
         {
-            return;
+            if (GetComponent<TMP_Text>().fontStyle != FontStyles.Bold)
+            {
+                return;
+            }
+            NowExerciseCountNum = ExerciseCountNum;
+            ExerciseCount.text = NowExerciseCountNum.ToString();
+            NowKcalCountNum = (int)Mathf.Ceil(Mathf.Lerp(NowKcalCountNum, KcalCountNum, Time.deltaTime * 5));
+            KcalCount.text = NowKcalCountNum.ToString();
+            NowMinutesCountNum = (int)Mathf.Ceil(Mathf.Lerp(NowMinutesCountNum, MinutesCountNum, Time.deltaTime * 0.001f));
+            MinutesCount.text = NowMinutesCountNum.ToString();
         }
-        NowExerciseCountNum = ExerciseCountNum;
-        ExerciseCount.text = NowExerciseCountNum.ToString();
-        NowKcalCountNum = (int)Mathf.Ceil(Mathf.Lerp(NowKcalCountNum, KcalCountNum, Time.deltaTime * 5));
-        KcalCount.text = NowKcalCountNum.ToString();
-        NowMinutesCountNum = (int)Mathf.Ceil(Mathf.Lerp(NowMinutesCountNum, MinutesCountNum, Time.deltaTime * 0.001f));
-        MinutesCount.text = NowMinutesCountNum.ToString();
     }
 
     public void SetBoldText()
