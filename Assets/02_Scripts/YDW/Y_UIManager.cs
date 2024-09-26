@@ -304,7 +304,8 @@ public class Y_UIManager : MonoBehaviour
             {
                 // Inactive
                 flickerImg.SetActive(false);
-                yield break;
+                //yield break;
+                break;
             }
 
             // 서서히 알파 값을 변경 (보임 -> 안보임, 안보임 -> 보임)
