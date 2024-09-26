@@ -265,7 +265,7 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
         DateTime curTime = DateTime.Now;
         DateTime offsetTime = curTime.AddSeconds(30);
-        PlayerPrefs.SetString("Date", curTime.ToString("yyyy-MM-dd"));
+        PlayerPrefs.SetString("date", curTime.ToString("yyyy-MM-dd"));
         PlayerPrefs.SetString("startTime", curTime.ToString("HHmmss"));
         PlayerPrefs.SetString("endTime", offsetTime.ToString("HHmmss"));
         PlayerPrefs.Save();
