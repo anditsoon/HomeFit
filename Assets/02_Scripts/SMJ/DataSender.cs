@@ -47,7 +47,7 @@ public class DataSender : MonoBehaviour
         {
             date = PlayerPrefs.GetString("date", DateTime.Now.ToString("yyyy-MM-dd")),
             caloriesBurned = (double) PlayerPrefs.GetFloat("caloriesBurned", 0f),
-            exerciseCount = PlayerPrefs.GetInt("exerciseCount"),
+            exerciseCount = PlayerPrefs.GetInt("exerciseCount", 0),
             startTime = timeStartString,
             endTime = timeEndString,
             userId = long.Parse(PlayerPrefs.GetString("userId")),

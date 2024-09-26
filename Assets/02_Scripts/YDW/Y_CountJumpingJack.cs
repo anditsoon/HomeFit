@@ -81,9 +81,9 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
                 //print("!!!!!!!! 손 좌표 : " + leftHandPos.position.y + " 오른손도!! : " + rightHandPos.position.y);
                 JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_GETCOIN);
                 float caloriesBurned = (0.2f * jumpingJackCount) * (AvatarInfo.instance.Weight / 70);
-                print(jumpingJackCount + "계산");
+                //print(jumpingJackCount + "계산");
                 PlayerPrefs.SetFloat("caloriesBurned", caloriesBurned);
-                PlayerPrefs.SetFloat("exerciseCount", jumpingJackCount);
+                PlayerPrefs.SetInt("exerciseCount", (int) jumpingJackCount);
                 PlayerPrefs.Save();
             }
 

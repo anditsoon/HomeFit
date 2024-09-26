@@ -81,7 +81,7 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
                 JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_GETCOIN);
                 float caloriesBurned = (0.32f * squatCount) * (AvatarInfo.instance.Weight / 70);
                 PlayerPrefs.SetFloat("caloriesBurned", caloriesBurned);
-                PlayerPrefs.SetFloat("exerciseCount", squatCount);
+                PlayerPrefs.SetInt("exerciseCount", (int) squatCount);
                 PlayerPrefs.Save();
             }
         
