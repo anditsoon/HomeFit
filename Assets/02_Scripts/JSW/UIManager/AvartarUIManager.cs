@@ -59,6 +59,7 @@ public class AvartarUIManager : MonoBehaviour
         
 
         text_Backpacks.color = SelectingColor;
+        text_Backpacks.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         anim = player.GetComponent<Animator>();
         anim.CrossFade("Idle", 0f);
         JSWSoundManager.Get().PlayBgmSound(JSWSoundManager.EBgmType.BGM_AVAR);
@@ -69,7 +70,7 @@ public class AvartarUIManager : MonoBehaviour
         Backpack = AvatarInfo.instance.Backpack;
         Body = AvatarInfo.instance.Body;
         Eyebrow = AvatarInfo.instance.Eyebrow;
-        Glasses = AvatarInfo.instance.Glasses; ;
+        Glasses = AvatarInfo.instance.Glasses;
         Glove = AvatarInfo.instance.Glove;
         Hair = AvatarInfo.instance.Hair;
         Hat = AvatarInfo.instance.Hat;
@@ -109,57 +110,68 @@ public class AvartarUIManager : MonoBehaviour
     {
         UIAllReset();
         text_Backpacks.color = SelectingColor;
+        text_Backpacks.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void ChangeTextColorBody()
     {
         UIAllReset();
         text_body.color = SelectingColor;
+        text_body.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorEyebrow()
     {
         UIAllReset();
         text_Eyebrow.color = SelectingColor;
+        text_Eyebrow.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorGlasses()
     {
         UIAllReset();
         text_Glasses.color = SelectingColor;
+        text_Glasses.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorGlove()
     {
         UIAllReset();
         text_Glove.color = SelectingColor;
+        text_Glove.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorHair()
     {
         UIAllReset();
         text_Hair.color = SelectingColor;
+        text_Hair.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorHat()
     {
         UIAllReset();
         text_Hat.color = SelectingColor;
+        text_Hat.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorMustache()
     {
         UIAllReset();
         text_Mustache.color = SelectingColor;
+        text_Mustache.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorOutwear()
     {
         UIAllReset();
         text_Outwear.color = SelectingColor;
+        text_Outwear.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorPants()
     {
         UIAllReset();
         text_Pants.color = SelectingColor;
+        text_Pants.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangeTextColorShoe()
     {
         UIAllReset();
         text_Shoe.color = SelectingColor;
+        text_Shoe.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     
@@ -177,6 +189,18 @@ public class AvartarUIManager : MonoBehaviour
         text_Outwear.color = Color.black;
         text_Pants.color = Color.black;
         text_Shoe.color = Color.black;
+
+        text_Backpacks.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        text_body.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        text_Eyebrow.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        text_Glasses.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        text_Glove.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        text_Hair.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        text_Hat.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        text_Mustache.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        text_Outwear.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        text_Pants.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        text_Shoe.gameObject.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void AlamIsChanged()
