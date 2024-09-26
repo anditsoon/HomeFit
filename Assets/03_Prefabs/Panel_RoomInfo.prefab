@@ -661,6 +661,7 @@ MonoBehaviour:
   roomTexts:
   - {fileID: 1701516762064428050}
   - {fileID: 7865953127500825014}
+  - {fileID: 433847442350961105}
   btn_join: {fileID: 3783806378454643573}
 --- !u!1 &9046525603336231087
 GameObject:
