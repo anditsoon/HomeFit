@@ -300,13 +300,13 @@ public class Y_UIManager : MonoBehaviour
 
         while (true)
         {
-            if (timerUI.allReadyGo) // 플레이어가 모두 자세 인식을 마쳤으면
-            {
-                // Inactive
-                flickerImg.SetActive(false);
-                //yield break;
-                break;
-            }
+            //if (timerUI.allReadyGo) // 플레이어가 모두 자세 인식을 마쳤으면
+            //{
+            //    // Inactive
+            //    flickerImg.SetActive(false);
+            //    //yield break;
+            //    break;
+            //}
 
             // 서서히 알파 값을 변경 (보임 -> 안보임, 안보임 -> 보임)
             if (isFadingOut)

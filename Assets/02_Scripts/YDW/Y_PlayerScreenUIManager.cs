@@ -33,7 +33,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
 
     // 이거 추가함
     bool isFlick = false;
-
+    bool countdownEnd;
 
     void Start() {
         flickerImg = GameObject.Find("FlickerImg");
@@ -89,14 +89,16 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
 
     void Countdown()
     {
-        
-        timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
+
+
 
         //flickerImgCR.AddRange(flickerImg.GetComponents<CanvasRenderer>());
         //flickerImgCR.AddRange(flickerImg.GetComponentsInChildren<CanvasRenderer>());
+        if (countdownEnd == true) return;
 
         if (showTime <= 0)
         {
+            timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
             uiManager = GameObject.Find("Canvas").GetComponent<Y_UIManager>();
             PoseRecCountdown.text = "시작!";
 
@@ -117,7 +119,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
                 }
             }
 
-
+            countdownEnd = true;
             //StartCoroutine(uiManager.MoveUI("상대방이 준비 중이에요"));
 
             canActive = false;
