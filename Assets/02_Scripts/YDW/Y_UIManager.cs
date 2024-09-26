@@ -233,16 +233,72 @@ public class Y_UIManager : MonoBehaviour
         chooseWorkOut.SetActive(false);
     }
 
+    
+
+    //public IEnumerator Flicker(List<CanvasRenderer> uiElements)
+    //{
+    //    bool isFadingOut = false;
+
+    //    float[] alphas = new float[uiElements.Count];
+
+    //    for (int i = 0; i < uiElements.Count; i++)
+    //    {
+    //        alphas[i] = uiElements[i].GetAlpha();
+    //    }
+
+    //    while (true)
+    //    {
+    //        if (timerUI.allReadyGo) // 플레이어가 모두 자세 인식을 마쳤으면
+    //        {
+    //            // Inactive
+    //            flickerImg.SetActive(false);
+    //            yield break;
+    //        }
+
+    //        for (int i = 0; i < uiElements.Count; i++)
+    //        {
+    //            if (isFadingOut)
+    //                alphas[i] = Mathf.Lerp(alphas[i], 0, Time.deltaTime * fadeSpeed); // 서서히 투명해짐
+    //            else
+    //                alphas[i] = Mathf.Lerp(alphas[i], 1, Time.deltaTime * fadeSpeed); // 서서히 보임
+
+    //            // 각 CanvasRenderer의 알파 값 설정
+    //            uiElements[i].SetAlpha(alphas[i]);
+    //        }
+
+    //        // 알파 값이 거의 다 도달하면 상태 전환
+    //        if (isFadingOut && alphas[0] <= 0.05f)
+    //        {
+    //            isFadingOut = false;
+    //            yield return new WaitForSeconds(flickerInterval); // 잠시 대기 후 다시 서서히 보이기
+    //        }
+    //        else if (!isFadingOut && alphas[0] >= 0.95f)
+    //        {
+    //            isFadingOut = true;
+    //            yield return new WaitForSeconds(flickerInterval); // 잠시 대기 후 다시 서서히 투명하게
+    //        }
+
+    //        yield return null; // 매 프레임마다 업데이트
+    //    }
+
+    //    //// 깜박임이 끝난 후 UI가 안보이는 상태로 유지
+    //    //for (int i = 0; i < uiElements.Length; i++)
+    //    //{
+    //    //    uiElements[i].SetAlpha(0);
+    //    //}
+    //}
+
+    //public float flickerDuration = 1f; // 한 번 깜박이는 데 걸리는 시간
     public float fadeSpeed = 2f;
     public float flickerInterval = 0.5f;
     public GameObject flickerImg;
 
-    public IEnumerator Flicker(CanvasGroup uiElement, float flickerDuration)
+    public IEnumerator Flicker(CanvasGroup uiElement)
     {
         float timer = 0f;
         bool isFadingOut = false;
 
-        while (timer < flickerDuration)
+        while (true)
         {
             if (timerUI.allReadyGo) // 플레이어가 모두 자세 인식을 마쳤으면
             {
@@ -269,7 +325,7 @@ public class Y_UIManager : MonoBehaviour
                 yield return new WaitForSeconds(flickerInterval); // 잠시 대기 후 다시 서서히 투명하게
             }
 
-            timer += Time.deltaTime;
+            //timer += Time.deltaTime;
             yield return null; // 매 프레임마다 업데이트
         }
 
