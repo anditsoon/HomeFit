@@ -8,7 +8,7 @@ using UnityEditor.Rendering;
 
 public class JSWRoomPanel : MonoBehaviour
 {
-    public TMP_Text[] roomTexts = new TMP_Text[2];
+    public TMP_Text[] roomTexts = new TMP_Text[3];
     public Button btn_join;
 
     public void SetRoomInfo(RoomInfo room)
