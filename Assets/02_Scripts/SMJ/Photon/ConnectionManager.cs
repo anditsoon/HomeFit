@@ -18,7 +18,7 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        Screen.SetResolution(640, 480, FullScreenMode.Windowed);
+        Screen.SetResolution(1920, 1080, FullScreenMode.MaximizedWindow);
     }
 
     public void StartLogin()
