@@ -50,6 +50,8 @@ public class Y_TimerUI : MonoBehaviour
 
         if(hasStart && allReadyGo)
         {
+
+
             timerPanel.GetComponent<Image>().color = oldColor;
 
             timerTxt.SetActive(true);

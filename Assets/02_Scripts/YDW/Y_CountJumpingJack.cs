@@ -61,7 +61,7 @@ public class Y_CountJumpingJack : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        if (startGame && timerUI.hasStart)
+        if (startGame && timerUI.hasStart && timerUI.allReadyGo)
         {
             startPelvisPos = mediapipe.startSP.y;
 
