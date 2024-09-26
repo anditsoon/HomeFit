@@ -15,7 +15,7 @@ public class JSWRoomPanel : MonoBehaviour
     {
         roomTexts[0].text = room.Name;
         roomTexts[1].text = $"({room.PlayerCount}/{room.MaxPlayers})";
-        //string masterName = room.CustomProperties["MASTER_NAME"].ToString();
-        //roomTexts[2].text = masterName;
+        string masterName = room.CustomProperties["MASTER_NAME"].ToString();
+        roomTexts[2].text = masterName;
     }
 }

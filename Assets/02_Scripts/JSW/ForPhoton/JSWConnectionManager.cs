@@ -102,7 +102,7 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
             roomOpt.IsVisible = true;
 
             currentRoomId = Mathf.Abs(DateTime.Now.GetHashCode());
-            roomOpt.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable { { "RoomId", currentRoomId } };
+            roomOpt.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable { { "RoomId", currentRoomId }, { "MASTER_NAME", PhotonNetwork.NickName }};
 
             PhotonNetwork.CreateRoom(roomName, roomOpt, TypedLobby.Default);
         }
