@@ -34,6 +34,11 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
     // 이거 추가함
     bool isFlick = false;
 
+
+    void Start() {
+        flickerImg = GameObject.Find("FlickerImg");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -86,8 +91,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
     {
         
         timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
-        flickerImg = GameObject.Find("FlickerImg");
-        flickerImgCR = flickerImg.GetComponent<CanvasGroup>();
+
         //flickerImgCR.AddRange(flickerImg.GetComponents<CanvasRenderer>());
         //flickerImgCR.AddRange(flickerImg.GetComponentsInChildren<CanvasRenderer>());
 
@@ -103,9 +107,14 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
 
             if (!isFlick)
             {
-                // "다른 사람을 인식 중입니다" 표시
-                StartCoroutine(uiManager.Flicker(flickerImgCR));
-                isFlick = true;
+                
+                if (flickerImg.activeSelf)
+                {
+                    flickerImgCR = flickerImg.GetComponent<CanvasGroup>();
+                    // "다른 사람을 인식 중입니다" 표시
+                    StartCoroutine(uiManager.Flicker(flickerImgCR));
+                    isFlick = true;
+                }
             }
 
 
