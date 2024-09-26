@@ -64,8 +64,13 @@ public class CalenderImage : MonoBehaviour
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
         profileManager.GetComponent<ProfileUIManager>().CalenderReset();
         GetComponent<TMP_Text>().fontStyle = FontStyles.Bold;
-        GetComponent<TMP_Text>().fontSize = 45;
+
         string num = GetComponent<TMP_Text>().text;
+
+        profileManager.GetComponent<ProfileUIManager>().calenderUI.transform.GetChild(int.Parse(num) - 1).GetChild(1).gameObject.SetActive(true);
+
+
+
         if (num.Length == 1)
         {
             CalenderDay.text = "2024-09-0" + num;
@@ -85,8 +90,7 @@ public class CalenderImage : MonoBehaviour
         KcalCountNum = (float) AvatarInfo.instance.totalCaloriesBurned;
         MinutesCountNum = ExerciseCountNum * 0.5f;
 
-        GameObject.Find("Profile").GetComponent<Animator>().enabled = true;
-        GameObject.Find("Profile").GetComponent<Animator>().CrossFade("ProfileUIUI",0);
+
     }
 
     
