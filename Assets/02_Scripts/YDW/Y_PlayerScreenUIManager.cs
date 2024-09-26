@@ -32,7 +32,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
     public CanvasGroup flickerImgCR;
 
     // 이거 추가함
-    bool isFlick;
+    bool isFlick = false;
 
     // Update is called once per frame
     void Update()
@@ -105,7 +105,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
             {
                 // "다른 사람을 인식 중입니다" 표시
                 StartCoroutine(uiManager.Flicker(flickerImgCR));
-                isFlick = false;
+                isFlick = true;
             }
 
 

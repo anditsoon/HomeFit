@@ -235,6 +235,9 @@ public class JSWPhotonVoiceTest : MonoBehaviourPunCallbacks, IPunObservable
 
     IEnumerator Readygo()
     {
+        GameObject flickerImg = GameObject.Find("FlickerImg");
+        flickerImg.SetActive(false);
+
         GameObject CD;
         if (y_uiManager.PSM.myPlayer.GetComponent<Y_CountSquatt>().isActiveAndEnabled)
         {
