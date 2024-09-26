@@ -150,6 +150,10 @@ public class LoginUIManager : MonoBehaviour
                 //ChangePanel(5);
                 //로그인 성공!
                 //씬이동
+                if (userManager.isRegister == true)
+                {
+                    break;
+                }
                 SceneManager.LoadScene("MainScene");
                 //TODO: 아이템 동기화 로직 구현
                 break;

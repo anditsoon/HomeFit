@@ -5995,6 +5995,7 @@ GameObject:
   - component: {fileID: 854725733}
   - component: {fileID: 854725732}
   - component: {fileID: 854725734}
+  - component: {fileID: 854725735}
   m_Layer: 5
   m_Name: ProfileIcon
   m_TagString: Untagged
@@ -6116,6 +6117,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &854725735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854725730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!4 &856985367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6465124731149313926, guid: 91bf992e86a71ea4585fde4a3b19e970,
@@ -6780,6 +6794,50 @@ PrefabInstance:
       addedObject: {fileID: 448513081}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96d2c0b9820cc79428df6accd580dfa6, type: 3}
+--- !u!1 &987556096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 987556097}
+  - component: {fileID: 987556098}
+  m_Layer: 0
+  m_Name: ProfileGetManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &987556097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987556096}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &987556098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987556096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6889f08b947eed94290890425a08087c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &993520855
 GameObject:
   m_ObjectHideFlags: 0
@@ -9560,6 +9618,7 @@ MonoBehaviour:
   backGround: {fileID: 1276849469}
   badgeScene: {fileID: 1571893983}
   cousultingScene: {fileID: 1728248071}
+  profileManager: {fileID: 987556098}
 --- !u!4 &1507661763
 Transform:
   m_ObjectHideFlags: 0
@@ -14539,3 +14598,4 @@ SceneRoots:
   - {fileID: 2053249501}
   - {fileID: 1970790259}
   - {fileID: 102643083}
+  - {fileID: 987556097}

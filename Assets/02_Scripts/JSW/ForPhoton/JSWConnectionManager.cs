@@ -218,10 +218,10 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     {
         SceneManager.LoadScene("MainScene");
     }
-
+    public ProfileGetManager profileManager;
     public void MoveProfileScene()
     {
-        SceneManager.LoadScene("ProfileScene");
+        profileManager.SendDataToServer(DateTime.Now.ToString("yyyy-MM-dd"));
     }
 
     private IEnumerator SendRoomInfo(string method, string roomId, string ownerId = null)
