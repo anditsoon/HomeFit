@@ -852,7 +852,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4910127255222177514, guid: 9303caf80204f6b4f9918e2b41760b0e,
         type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d9f897064766ca445a23dcd41b0ecab0, type: 2}
+    - target: {fileID: 4910127255222177514, guid: 9303caf80204f6b4f9918e2b41760b0e,
+        type: 3}
       propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342178004711203554, guid: 9303caf80204f6b4f9918e2b41760b0e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342178004711203554, guid: 9303caf80204f6b4f9918e2b41760b0e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342178004711203554, guid: 9303caf80204f6b4f9918e2b41760b0e,
+        type: 3}
+      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6342178004711203554, guid: 9303caf80204f6b4f9918e2b41760b0e,
@@ -903,6 +923,11 @@ PrefabInstance:
     - target: {fileID: 6342178004711203554, guid: 9303caf80204f6b4f9918e2b41760b0e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384736579786543249, guid: 9303caf80204f6b4f9918e2b41760b0e,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4029,6 +4054,9 @@ MonoBehaviour:
   Outerwear: 
   Pants: 
   Shoe: 
+  totalCaloriesBurned: 0
+  totalExerciseCount: 0
+  totalExerciseMinute: 0
 --- !u!4 &1101006468
 Transform:
   m_ObjectHideFlags: 0

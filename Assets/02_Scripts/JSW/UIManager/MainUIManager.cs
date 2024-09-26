@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using System;
 
 public class MainUIManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class MainUIManager : MonoBehaviour
 
     public GameObject badgeScene;
     public GameObject cousultingScene;
+    public ProfileGetManager profileManager;
 
     float exerciseNowNum = 0;
     float exerciseNum = 50;
@@ -58,9 +60,8 @@ public class MainUIManager : MonoBehaviour
     }
     public void MoveProfileScene()
     {
-        SceneManager.LoadScene("ProfileScene");
+        profileManager.SendDataToServer(DateTime.Now.ToString("yyyy-MM-dd"));
     }
-
     public void MovePlayScene()
     {
         //SceneManager.LoadScene("Y_ProtoScene 1");

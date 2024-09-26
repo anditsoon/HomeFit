@@ -160,7 +160,7 @@ public class UserInfoManager : MonoBehaviour
             }
         }
     }
-
+    public bool isRegister = false;
     IEnumerator RegisterCoroutine(string username, string password)
     {
         RegisterData registerData = new RegisterData { userName = username, password = password, role = "USER" };
@@ -188,6 +188,7 @@ public class UserInfoManager : MonoBehaviour
             }
             else
             {
+                isRegister = true;
                 string responseBody = www.downloadHandler.text;
                 Debug.Log("회원가입 성공. 서버 응답: " + responseBody);
                 OnRegisterStatusChanged?.Invoke(true);

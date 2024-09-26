@@ -24,8 +24,8 @@ public class AvatarInfo : MonoBehaviour
     // 유저 기본 정보
     public string NickName = null;
     public string Birthday = null;
-    public float Height = 0;
-    public float Weight = 0;
+    public float Height = 0f;
+    public float Weight = 0f;
 
 
     public string Backpack = null;
@@ -39,6 +39,10 @@ public class AvatarInfo : MonoBehaviour
     public string Outerwear = null;
     public string Pants = null;
     public string Shoe = null;
+
+    public double totalCaloriesBurned = 0d;
+    public int totalExerciseCount = 0;
+    public int totalExerciseMinute = 0;
 
     public void SettingAvatar()
     {
