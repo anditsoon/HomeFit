@@ -63,7 +63,7 @@ public class Y_CountSquatt : MonoBehaviour, IPunObservable
     void Update()
     {
         
-        if (startGame && timerUI.hasStart)
+        if (startGame && timerUI.hasStart && timerUI.allReadyGo)
         {
             startPelvisPos = mediapipe.startSP.y;
             /////////////////
