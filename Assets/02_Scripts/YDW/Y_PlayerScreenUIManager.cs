@@ -111,7 +111,6 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
         }
         else if (showTime < 6)
         {
-            
             PoseRecCountdown.text = showTime.ToString();
         }
     }
