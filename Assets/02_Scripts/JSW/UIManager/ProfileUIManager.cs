@@ -27,12 +27,6 @@ public class ProfileUIManager : MonoBehaviour
         easingProfile();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void MoveMainScene()
     {
         SceneManager.LoadScene("MainScene");

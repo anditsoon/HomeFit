@@ -852,7 +852,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 203128355}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 203128353}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &228146867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,7 +1192,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 234512840}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 234512838}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &246895302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,7 +1469,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 292136521}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 292136519}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &295506807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,7 +1809,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 297460074}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 297460072}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &331206701
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,7 +2187,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 360400487}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 360400485}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &383644465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,7 +2526,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 418054285}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 418054283}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &445007110
 GameObject:
   m_ObjectHideFlags: 0
@@ -2845,7 +2917,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 469246493}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 469246491}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &496443318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3409,7 +3493,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 544826846}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 544826844}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &560608291
 GameObject:
   m_ObjectHideFlags: 0
@@ -3602,7 +3698,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 560608293}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 560608291}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &591895988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3869,7 +3977,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 625208700}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 625208698}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &644214443
 GameObject:
   m_ObjectHideFlags: 0
@@ -4070,6 +4190,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661057441}
   m_CullTransparentMesh: 1
+--- !u!1 &679494491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 679494493}
+  - component: {fileID: 679494492}
+  m_Layer: 0
+  m_Name: ProfileGetManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &679494492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679494491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6889f08b947eed94290890425a08087c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dateText: {fileID: 0}
+  date: 
+--- !u!4 &679494493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679494491}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &724318056
 GameObject:
   m_ObjectHideFlags: 0
@@ -4565,7 +4731,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 777196488}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 777196486}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &816085854
 GameObject:
   m_ObjectHideFlags: 0
@@ -4758,7 +4936,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 816085856}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 816085854}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &854725730
 GameObject:
   m_ObjectHideFlags: 0
@@ -5027,7 +5217,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 860482698}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 860482696}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &876692693
 GameObject:
   m_ObjectHideFlags: 0
@@ -5450,7 +5652,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 908988012}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 908988010}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &981756057
 GameObject:
   m_ObjectHideFlags: 0
@@ -5878,7 +6092,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1001590722}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1001590720}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1039560062
 GameObject:
   m_ObjectHideFlags: 0
@@ -6326,7 +6552,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1116883835}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1116883833}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1121770498
 GameObject:
   m_ObjectHideFlags: 0
@@ -6828,7 +7066,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1164326358}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1164326356}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1166955204
 GameObject:
   m_ObjectHideFlags: 0
@@ -7261,7 +7511,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1237556499}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1237556497}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1262833594
 GameObject:
   m_ObjectHideFlags: 0
@@ -7830,7 +8092,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1298564127}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1298564125}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1303622719
 GameObject:
   m_ObjectHideFlags: 0
@@ -8728,7 +9002,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1378803729}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1378803727}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1420615579
 GameObject:
   m_ObjectHideFlags: 0
@@ -8958,7 +9244,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1484073146}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1484073144}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1500368874
 GameObject:
   m_ObjectHideFlags: 0
@@ -9425,7 +9723,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1566784133}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1566784131}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1580191874
 GameObject:
   m_ObjectHideFlags: 0
@@ -10021,7 +10331,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1632905705}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1632905703}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1635850839
 GameObject:
   m_ObjectHideFlags: 0
@@ -10214,7 +10536,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1635850841}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1635850839}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1671733021
 GameObject:
   m_ObjectHideFlags: 0
@@ -10542,7 +10876,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1712218396}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1712218394}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1714933322
 GameObject:
   m_ObjectHideFlags: 0
@@ -10735,7 +11081,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1714933324}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1714933322}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1738137885
 GameObject:
   m_ObjectHideFlags: 0
@@ -10928,7 +11286,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1738137887}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1738137885}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1772803566
 GameObject:
   m_ObjectHideFlags: 0
@@ -11121,7 +11491,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1772803568}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1772803566}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1789739659
 GameObject:
   m_ObjectHideFlags: 0
@@ -11314,7 +11696,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1789739661}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1789739659}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1832730981
 GameObject:
   m_ObjectHideFlags: 0
@@ -12386,7 +12780,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2143323547}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679494492}
+        m_TargetAssemblyTypeName: ProfileGetManager, Assembly-CSharp
+        m_MethodName: SendDataToServerWithDate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2143323545}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -12400,3 +12806,4 @@ SceneRoots:
   - {fileID: 1039560066}
   - {fileID: 591895988}
   - {fileID: 496443320}
+  - {fileID: 679494493}

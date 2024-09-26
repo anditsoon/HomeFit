@@ -221,7 +221,7 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
     public ProfileGetManager profileManager;
     public void MoveProfileScene()
     {
-        profileManager.SendDataToServer(DateTime.Now.ToString("yyyy-MM-dd"));
+        profileManager.SendDataToServer(DateTime.Now.ToString("yyyy-MM-dd"), true);
     }
 
     private IEnumerator SendRoomInfo(string method, string roomId, string ownerId = null)

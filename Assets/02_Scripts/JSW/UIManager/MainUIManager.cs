@@ -60,7 +60,7 @@ public class MainUIManager : MonoBehaviour
     }
     public void MoveProfileScene()
     {
-        profileManager.SendDataToServer(DateTime.Now.ToString("yyyy-MM-dd"));
+        profileManager.SendDataToServer(DateTime.Now.ToString("yyyy-MM-dd"), true);
     }
     public void MovePlayScene()
     {

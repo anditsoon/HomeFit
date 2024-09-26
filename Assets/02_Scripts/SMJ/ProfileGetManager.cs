@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using UnityEngine;
+using TMPro;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 public class ProfileGetManager : MonoBehaviour
 {
     private const string SERVER_URL = "https://125.132.216.190:12502/api/exerciseLogs/user/";
+    public TextMeshProUGUI dateText;
+    public string date = string.Empty;
 
     [System.Serializable]
     private class ProfileData
@@ -21,19 +24,25 @@ public class ProfileGetManager : MonoBehaviour
 
     private void Start()
     {
+        dateText = GetComponent<TextMeshProUGUI>();
         // SSL 인증서 검증 우회 설정
         ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
     }
-
-    public void SendDataToServer(string checkDate)
+    public void SendDataToServerWithDate(GameObject dateObj)
     {
-        print(checkDate);
-        string jwtToken = PlayerPrefs.GetString("jwtToken");
-        string userId = PlayerPrefs.GetString("userId");
-        StartCoroutine(GetProfileCoroutine(jwtToken, userId, checkDate));
+        dateText = dateObj.GetComponent<TextMeshProUGUI>();
+        date = "2024-09-" + dateText.text;
+        SendDataToServer(date, false);
     }
 
-    IEnumerator GetProfileCoroutine(string jwtToken, string _userId, string _checkDate)
+    public void SendDataToServer(string checkDate, bool isMoveScene)
+    {
+        string jwtToken = PlayerPrefs.GetString("jwtToken");
+        string userId = PlayerPrefs.GetString("userId");
+        StartCoroutine(GetProfileCoroutine(jwtToken, userId, checkDate, isMoveScene));
+    }
+
+    IEnumerator GetProfileCoroutine(string jwtToken, string _userId, string _checkDate, bool _isMoveScene)
     {
         using (UnityWebRequest www = UnityWebRequest.Get(SERVER_URL + _userId + "/date?date=" + _checkDate))
         {
@@ -56,7 +65,10 @@ public class ProfileGetManager : MonoBehaviour
                     ProfileData profile = JsonUtility.FromJson<ProfileData>(responseBody);
                     AvatarInfo.instance.totalCaloriesBurned = profile.totalCaloriesBurned;
                     AvatarInfo.instance.totalExerciseCount = profile.totalExerciseCount;
-                    SceneManager.LoadScene("ProfileScene");
+                    if (_isMoveScene == true)
+                    {
+                        SceneManager.LoadScene("ProfileScene");
+                    }
                 }
                 catch (Exception e)
                 {
