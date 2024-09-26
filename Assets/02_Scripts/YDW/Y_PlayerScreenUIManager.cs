@@ -38,8 +38,9 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
         if (isSelected)
         {
             directionCanvas.SetActive(true);
+            countdownText.SetActive(true);
             countdownTime = setStandardPos.duration;
-            showTime = (int)(6 - countdownTime);
+            showTime = (int)(5 - countdownTime) + 1;
             if (canActive) Countdown();
             currTime += Time.deltaTime;
             if (currTime > duration)
@@ -61,18 +62,18 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
         //}
     }
 
-    public GameObject newCamPos;
+    //public GameObject newCamPos;
 
-    IEnumerator MoveCamera()
-    {
-        print("!!!!!!!!!!!!!!!" + newCamPos.transform.position);
-        while (true)
-        {
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, newCamPos.transform.position, Time.deltaTime * 10);
-            if (Vector3.Distance(Camera.main.transform.position, newCamPos.transform.position) < 0.2f) break;
-            yield return null;
-        }
-    }
+    //IEnumerator MoveCamera()
+    //{
+    //    print("!!!!!!!!!!!!!!!" + newCamPos.transform.position);
+    //    while (true)
+    //    {
+    //        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, newCamPos.transform.position, Time.deltaTime * 10);
+    //        if (Vector3.Distance(Camera.main.transform.position, newCamPos.transform.position) < 0.2f) break;
+    //        yield return null;
+    //    }
+    //}
 
     CanvasRenderer[] canvasRenderers;
     CanvasRenderer[] canvasRenderers2;
@@ -81,6 +82,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
 
     void Countdown()
     {
+        
         timerUI = GameObject.Find("Canvas").GetComponent<Y_TimerUI>();
         flickerImg = GameObject.Find("FlickerImg");
         flickerImgCR = flickerImg.GetComponent<CanvasGroup>();
@@ -109,7 +111,7 @@ public class Y_PlayerScreenUIManager : MonoBehaviour
         }
         else if (showTime < 6)
         {
-            countdownText.SetActive(true);
+            
             PoseRecCountdown.text = showTime.ToString();
         }
     }
