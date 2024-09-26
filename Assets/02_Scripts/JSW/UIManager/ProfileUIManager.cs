@@ -9,9 +9,9 @@ public class ProfileUIManager : MonoBehaviour
     public RawImage chaRawImage;
     public GameObject player;
     public TMP_Text nickNameText;
-    public GameObject CalenderUI;
-    public GameObject Profile;
-    public GameObject Calender;
+    public GameObject calenderUI;
+    public GameObject profile;
+    //public GameObject calender;
 
     Animator anim;
  
@@ -38,10 +38,10 @@ public class ProfileUIManager : MonoBehaviour
 
     public void CalenderReset()
     {
-        for (int i =0;i < CalenderUI.transform.childCount;i++)
+        for (int i =0;i < calenderUI.transform.childCount;i++)
         {
-            CalenderUI.transform.GetChild(i).GetComponent<TMP_Text>().fontStyle = FontStyles.Normal;
-            CalenderUI.transform.GetChild(i).GetComponent<TMP_Text>().fontSize = 30;
+            calenderUI.transform.GetChild(i).GetChild(1).GetComponent<TMP_Text>().fontStyle = FontStyles.Normal;
+            calenderUI.transform.GetChild(i).GetChild(0).gameObject.SetActive(false);
         }
     }
 
@@ -57,7 +57,7 @@ public class ProfileUIManager : MonoBehaviour
     void easingProfile()
     {
         print("1");
-        iTween.ScaleTo(Profile, iTween.Hash("scale", new Vector3(1,1,1),
+        iTween.ScaleTo(profile, iTween.Hash("scale", new Vector3(1,1,1),
 
                                                        "time", 0.5f,
 
