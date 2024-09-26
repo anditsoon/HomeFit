@@ -8,7 +8,6 @@ public class CalenderImage : MonoBehaviour
 {
     public Button btn_Cal;
     GameObject profileManager;
-    public GameObject backImage;
     TMP_Text CalenderDay;
 
     TMP_Text ExerciseCount;
@@ -25,8 +24,6 @@ public class CalenderImage : MonoBehaviour
 
     private void Start()
     {
-        
-       
         profileManager = GameObject.Find("ProfileUIManager");
 
         CalenderDay = GameObject.Find("CalenderDay").GetComponent<TMP_Text>();
@@ -67,9 +64,7 @@ public class CalenderImage : MonoBehaviour
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_PROFILESCENE);
         profileManager.GetComponent<ProfileUIManager>().CalenderReset();
         GetComponent<TMP_Text>().fontStyle = FontStyles.Bold;
-        //profileManager.SetActive(false);
-        backImage.SetActive(true);
-
+        GetComponent<TMP_Text>().fontSize = 45;
         string num = GetComponent<TMP_Text>().text;
         if (num.Length == 1)
         {
@@ -90,7 +85,8 @@ public class CalenderImage : MonoBehaviour
         KcalCountNum = Random.Range(1, 200);
         MinutesCountNum = Random.Range(1, 60);
 
-
+        GameObject.Find("Profile").GetComponent<Animator>().enabled = true;
+        GameObject.Find("Profile").GetComponent<Animator>().CrossFade("ProfileUIUI",0);
     }
 
     
