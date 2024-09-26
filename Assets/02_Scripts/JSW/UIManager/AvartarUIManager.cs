@@ -48,6 +48,7 @@ public class AvartarUIManager : MonoBehaviour
     public GameObject CamPosEnding;
     public GameObject endingDestroyUI1;
     public GameObject endingDestroyUI2;
+    public GameObject endingDestroyUI3;
     Color SelectingColor = Color.blue;
 
     bool Ending = false;
@@ -233,6 +234,7 @@ public class AvartarUIManager : MonoBehaviour
         JSWSoundManager.Get().PlayEftSound(JSWSoundManager.ESoundType.EFT_DECOEND);
         endingDestroyUI1.SetActive(false);
         endingDestroyUI2.SetActive(false);
+        endingDestroyUI3.SetActive(false);
         player.transform.forward = Camera.main.transform.forward * -1;
         ChangePopup.SetActive(false);
         anim.CrossFade("Win", 0f);

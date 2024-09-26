@@ -72,7 +72,7 @@ public class CalenderImage : MonoBehaviour
 
         string num = GetComponent<TMP_Text>().text;
 
-        profileManager.GetComponent<ProfileUIManager>().calenderUI.transform.GetChild(int.Parse(num) - 1).GetChild(1).gameObject.SetActive(true);
+        profileManager.GetComponent<ProfileUIManager>().calenderUI.transform.GetChild(int.Parse(num) - 1).GetChild(0).gameObject.SetActive(true);
 
         if (num.Length == 1)
         {
