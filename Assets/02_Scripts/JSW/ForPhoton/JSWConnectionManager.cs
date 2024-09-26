@@ -79,7 +79,8 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
 
         string[] avatarInfo = AvatarInfo.instance.ReturnAvatarInfo();
         string nickName = AvatarInfo.instance.NickName;
-        print(avatarInfo);
+
+        PhotonNetwork.NickName = AvatarInfo.instance.NickName;
         PhotonNetwork.LocalPlayer.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
             { "Backpack", avatarInfo[0]}, { "Body", avatarInfo[1] }, { "Eyebrow", avatarInfo[2] },
             { "Glasses", avatarInfo[3] }, { "Glove", avatarInfo[4] }, { "Hair", avatarInfo[5] },
