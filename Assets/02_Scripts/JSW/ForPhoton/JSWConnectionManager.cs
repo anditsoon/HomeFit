@@ -102,9 +102,20 @@ public class JSWConnectionManager : MonoBehaviourPunCallbacks
             roomOpt.IsOpen = true;
             roomOpt.IsVisible = true;
 
+            roomOpt.CustomRoomPropertiesForLobby = new string[] { "MASTER_NAME" };
             currentRoomId = Mathf.Abs(DateTime.Now.GetHashCode());
             roomOpt.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable { { "RoomId", currentRoomId }, { "MASTER_NAME", PhotonNetwork.NickName }};
 
+
+            //roomOpt.CustomRoomPropertiesForLobby = new string[] { "MASTER_NAME", "PASSWORD", "SCENE_NUMBER" };
+
+
+            //// 키에 맞는 해시테이블 추가하기
+            //Hashtable roomTable = new Hashtable();
+            //roomTable.Add("MASTER_NAME", PhotonNetwork.NickName);
+            //roomTable.Add("PASSWORD", 1234);
+            //roomTable.Add("SCENE_NUMBER", LobbyUIController.lobbyUI.drop_mapSelection.value + 2);
+            //roomOpt.CustomRoomProperties = roomTable;
             PhotonNetwork.CreateRoom(roomName, roomOpt, TypedLobby.Default);
         }
     }
