@@ -21,6 +21,7 @@ public class CalenderImage : MonoBehaviour
     float NowExerciseCountNum = 0;
     float NowKcalCountNum = 0;
     float NowMinutesCountNum = 0;
+    float tempMinutes = 0;
 
     public ProfileGetManager profileGet;
 
@@ -37,7 +38,7 @@ public class CalenderImage : MonoBehaviour
         // 첫시작 즉 이때 오늘 날짜에 해당하는 값 넣어 주면됨 
         ExerciseCountNum = AvatarInfo.instance.totalExercisePerformances;
         KcalCountNum = (float)AvatarInfo.instance.totalCaloriesBurned;
-        MinutesCountNum = ExerciseCountNum * 0.5f;
+        MinutesCountNum = ExerciseCountNum / 2;
 
         btn_Cal = GetComponent<Button>();
         btn_Cal.onClick.AddListener(() =>
@@ -58,7 +59,8 @@ public class CalenderImage : MonoBehaviour
             ExerciseCount.text = NowExerciseCountNum.ToString();
             NowKcalCountNum = (int)Mathf.Ceil(Mathf.Lerp(NowKcalCountNum, KcalCountNum, Time.deltaTime * 5));
             KcalCount.text = NowKcalCountNum.ToString();
-            NowMinutesCountNum = (int)Mathf.Floor(Mathf.Lerp(NowMinutesCountNum, MinutesCountNum, Time.deltaTime * 0.001f));
+            NowMinutesCountNum = Mathf.Round(Mathf.Lerp(tempMinutes, MinutesCountNum, Time.deltaTime * 100f) * 10f) * 0.1f;
+            Debug.Log(NowMinutesCountNum);
             MinutesCount.text = NowMinutesCountNum.ToString();
         }
     }
@@ -91,6 +93,6 @@ public class CalenderImage : MonoBehaviour
         // 그 날 날짜에 해당하는 수치 이때 넣어주면 됨
         ExerciseCountNum = AvatarInfo.instance.totalExercisePerformances;
         KcalCountNum = (float)AvatarInfo.instance.totalCaloriesBurned;
-        MinutesCountNum = ExerciseCountNum * 0.5f;
+        MinutesCountNum = ExerciseCountNum / 2;
     }
 }
