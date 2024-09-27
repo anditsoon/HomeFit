@@ -40,6 +40,10 @@ public class CalenderImage : MonoBehaviour
         KcalCountNum = (float)AvatarInfo.instance.totalCaloriesBurned;
         MinutesCountNum = ExerciseCountNum / 2;
 
+        ExerciseCount.text = ExerciseCountNum.ToString();
+        KcalCount.text = ((int)Mathf.Ceil(KcalCountNum)).ToString();
+        MinutesCount.text = (Mathf.Round(Mathf.Lerp(tempMinutes, MinutesCountNum, 100f) * 10f) * 0.1f).ToString();
+
         btn_Cal = GetComponent<Button>();
         btn_Cal.onClick.AddListener(() =>
         {
