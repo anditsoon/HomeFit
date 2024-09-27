@@ -58,7 +58,7 @@ public class CalenderImage : MonoBehaviour
             ExerciseCount.text = NowExerciseCountNum.ToString();
             NowKcalCountNum = (int)Mathf.Ceil(Mathf.Lerp(NowKcalCountNum, KcalCountNum, Time.deltaTime * 5));
             KcalCount.text = NowKcalCountNum.ToString();
-            NowMinutesCountNum = (int)Mathf.Ceil(Mathf.Lerp(NowMinutesCountNum, MinutesCountNum, Time.deltaTime * 0.001f));
+            NowMinutesCountNum = (int)Mathf.Floor(Mathf.Lerp(NowMinutesCountNum, MinutesCountNum, Time.deltaTime * 0.001f));
             MinutesCount.text = NowMinutesCountNum.ToString();
         }
     }
