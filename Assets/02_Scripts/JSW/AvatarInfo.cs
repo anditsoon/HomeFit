@@ -41,7 +41,7 @@ public class AvatarInfo : MonoBehaviour
     public string Shoe = null;
 
     public double totalCaloriesBurned = 0d;
-    public int totalExerciseCount = 0;
+    public int totalExercisePerformances = 0;
     public int totalExerciseMinute = 0;
 
     public void SettingAvatar()

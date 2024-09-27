@@ -21,7 +21,7 @@ public class ProfileGetManager : MonoBehaviour
     {
         public string date;
         public double totalCaloriesBurned;
-        public int totalExerciseCount;
+        public int totalExercisePerformances;
     }
 
     private void Start()
@@ -67,7 +67,7 @@ public class ProfileGetManager : MonoBehaviour
                 {
                     ProfileData profile = JsonUtility.FromJson<ProfileData>(responseBody);
                     AvatarInfo.instance.totalCaloriesBurned = profile.totalCaloriesBurned;
-                    AvatarInfo.instance.totalExerciseCount = profile.totalExerciseCount;
+                    AvatarInfo.instance.totalExercisePerformances = profile.totalExercisePerformances;
                     isChangeDone = true;
                     if (_isMoveScene == true)
                     {

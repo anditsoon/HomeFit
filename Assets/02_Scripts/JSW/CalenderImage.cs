@@ -35,7 +35,7 @@ public class CalenderImage : MonoBehaviour
         MinutesCount = GameObject.Find("MinutesCount").transform.GetChild(0).GetComponent<TMP_Text>();
 
         // 첫시작 즉 이때 오늘 날짜에 해당하는 값 넣어 주면됨 
-        ExerciseCountNum = AvatarInfo.instance.totalExerciseCount;
+        ExerciseCountNum = AvatarInfo.instance.totalExercisePerformances;
         KcalCountNum = (float)AvatarInfo.instance.totalCaloriesBurned;
         MinutesCountNum = ExerciseCountNum * 0.5f;
 
@@ -89,7 +89,7 @@ public class CalenderImage : MonoBehaviour
         print(NowExerciseCountNum);
 
         // 그 날 날짜에 해당하는 수치 이때 넣어주면 됨
-        ExerciseCountNum = AvatarInfo.instance.totalExerciseCount;
+        ExerciseCountNum = AvatarInfo.instance.totalExercisePerformances;
         KcalCountNum = (float)AvatarInfo.instance.totalCaloriesBurned;
         MinutesCountNum = ExerciseCountNum * 0.5f;
     }
